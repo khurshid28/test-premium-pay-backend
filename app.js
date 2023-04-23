@@ -23,7 +23,6 @@ app.get("/", (req, res) => res.send("premium pay"));
 const PORT = process.env.PORT || 8090;
 
 // middlewares
-// app.use(morgan("dev"), cors(), helmet(),rateLimit(), express.json());
 app.use(morgan("dev"), cors(),rateLimit(), express.json());
 
 // auth for APIs
@@ -31,6 +30,8 @@ app.use(morgan("dev"), cors(),rateLimit(), express.json());
 
 // all routes
 app.use(router);
+
+app.use(helmet());
 
 // error handling
 app.use(errorHandler);
