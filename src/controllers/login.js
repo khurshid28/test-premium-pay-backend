@@ -1,4 +1,5 @@
 const Super = require("../models/Super.js");
+const Admin = require("../models/Admin.js");
 const User = require("../models/User.js");
 const {
 	InternalServerError,
@@ -14,7 +15,7 @@ class Login {
 
 			const user =
 				(await User.findOne({ loginName })) ||
-				(await Super.findOne({ loginName }));
+				(await Super.findOne({ loginName })) || (await Admin.findOne({ loginName }));
 			if (!user || user.loginPassword !== loginPassword) {
 				return next(new AuthorizationError(401, "Invalid login credentials!"));
 			}
@@ -27,7 +28,7 @@ class Login {
 
 			return res
 				.status(200)
-				.json({ data: user, message: "Here is your token", token });
+				.json({data: user, message: "Here is your token", token });
 		} catch (error) {
 			return next(new InternalServerError(500, error.message));
 		}
