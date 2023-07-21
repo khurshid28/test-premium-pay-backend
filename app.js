@@ -1,9 +1,13 @@
 require("./src/config/index.js");
 require("./src/config/db.js");
+
+
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const express = require("express");
+const path = require('path')
+
 
 // all routes
 const router = require("./src/routes/index.js");
@@ -36,6 +40,10 @@ app.use(helmet());
 // error handling
 app.use(errorHandler);
 app.use(logger);
+ 
+
+// static 
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // starting server
 app.listen(PORT, () => console.log(`server ready on port:${PORT}`));
