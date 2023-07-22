@@ -34,3 +34,5 @@
 /upload-image/___POST___1689996940632___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\2023-07-22T03:35:40.630Zmee.jpg'
 /upload-image/___POST___1689996976416___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\2023-07-22T03:36:16.407Zmee.jpg'
 /upload-image/___POST___1689997273394___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\Sat Jul 22 2023 08:41:13 GMT+0500 (Uzbekistan Standard Time)mee.jpg'
+/app/upload/___POST___1690022666743___InternalServerError___app-test1 validation failed: user_fullname: Path `user_fullname` is required.
+/app/upload/___POST___1690022701813___InternalServerError___app-test1 validation failed: user_fullname: Path `user_fullname` is required.

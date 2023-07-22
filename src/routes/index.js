@@ -10,7 +10,7 @@ const extraRouter = require("./extra.js");
 const swaggerDoc = require("../docs/swagger.js");
 const pdfRouter = require("./createPDF.js");
 const uploadRouter = require("./uploadImage.js");
-
+const appRouter = require("./app.js");
 router.use("/api/login", loginRouter);
 router.use("/api/myid", myidRouter);
 router.use("/api/user", userRouter);
@@ -18,6 +18,8 @@ router.use("/api/super", superRouter);
 router.use("/api", extraRouter);
 router.use("/create-pdf", pdfRouter);
 router.use("/upload-image", uploadRouter);
+router.use("/app", appRouter);
+
 
 router.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 

@@ -71,3 +71,5 @@ superSchema.index({ phoneNumber: 1 });
 const Super = mongoose.model("Super", superSchema);
 
 module.exports = Super;
+
+

@@ -18,9 +18,9 @@ class CreatePDF {
             let PdfUrl= "https://premiumpayapi.uz/static/pdfs/"+ user_id + date+".pdf";
             const doc = new PDFDocument({ size: 'A5' });
             doc.text(text)
-            
             doc.pipe(fs.createWriteStream(PdfPath));
             doc.end();
+            
             res.status(200).json({
                 "doc_url": PdfUrl
             });
