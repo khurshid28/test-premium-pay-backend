@@ -1,7 +1,6 @@
 
 const {
     InternalServerError,
-    AuthorizationError,
 } = require("../utils/errors.js");
 let axios = require("axios")
 class Myid {
