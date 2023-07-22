@@ -7,6 +7,14 @@ class App {
 
     async upload(req, res, next) {
         try {
+            if (req.user.role !== "user") {
+				return next(
+					new ForbiddenError(
+						403,
+						"You do not have permission to access this resource"
+					)
+				);
+			}
             const { user_id, status, canceled_reason,user_fullname } = req.body;
             await AppModel.create({
 				user_id, status, canceled_reason,user_fullname
@@ -20,6 +28,14 @@ class App {
         }
     }
     async get(req, res, next) {
+        if (req.user.role !== "user") {
+            return next(
+                new ForbiddenError(
+                    403,
+                    "You do not have permission to access this resource"
+                )
+            );
+        }
         try {
             const { user_id, status, canceled_reason } = req.body;
             const apps = await AppModel.find({ user_id });
@@ -31,7 +47,15 @@ class App {
     }
     async getAll(req, res, next) {
         try {
-            const { user_id, status, canceled_reason } = req.body;
+            // const { user_id, status, canceled_reason } = req.body;
+            if (req.user.role === "user") {
+				return next(
+					new ForbiddenError(
+						403,
+						"You do not have permission to access this resource"
+					)
+				);
+			}
             const apps = await AppModel.find();
             res.status(200).json(apps);
         } catch (error) {
