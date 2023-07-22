@@ -23,3 +23,14 @@
 /api/myid___POST___1689954651486___InternalServerError___Request failed with status code 400
 /api/myid___POST___1689954785000___InternalServerError___Request failed with status code 404
 /api/myid___POST___1689954935989___InternalServerError___Request failed with status code 401
+/upload-image/___POST___1689964482644___InternalServerError___Cannot read properties of undefined (reading '0')
+/upload-image/___POST___1689964515471___InternalServerError___Cannot read properties of undefined (reading '0')
+/upload-image/___POST___1689964951130___MulterError___Unexpected field
+/upload-image/___POST___1689965184126___InternalServerError___Cannot read properties of undefined (reading '0')
+/upload-image/___POST___1689965592724___InternalServerError___Cannot read properties of undefined (reading '0')
+/upload-image/___POST___1689995855455___undefined___undefined
+/upload-image/___POST___1689996862305___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\2023-07-22T03:34:22.297Zggg.jpg'
+/upload-image/___POST___1689996907761___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\2023-07-22T03:35:07.759Zanisa.png'
+/upload-image/___POST___1689996940632___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\2023-07-22T03:35:40.630Zmee.jpg'
+/upload-image/___POST___1689996976416___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\2023-07-22T03:36:16.407Zmee.jpg'
+/upload-image/___POST___1689997273394___Error___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\premium pay finish\_git folder\premium-pay-backend\public\images\Sat Jul 22 2023 08:41:13 GMT+0500 (Uzbekistan Standard Time)mee.jpg'

@@ -3,6 +3,7 @@ const multer = require("multer");
 const { BadRequestError } = require("../utils/errors.js");
 
 const fileFilter = (req, file, cb) => {
+
 	if (file.mimetype.startsWith("image/")) {
 		cb(null, true);
 	} else {
@@ -12,14 +13,14 @@ const fileFilter = (req, file, cb) => {
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, "uploads/");
+		cb(null, "public/images/");
 	},
 	filename: function (req, file, cb) {
-		cb(null, Date.now() + path.extname(file.originalname));
+		cb(null, Date.now() + file.originalname);
 	},
 });
 
 // Create Multer object
-const upload = multer({ storage: storage, fileFilter });
+const upload = multer({ storage: storage, limits: { fileSize: 10 * 1024 * 1024 }, fileFilter });
 
 module.exports = upload;
