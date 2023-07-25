@@ -5,10 +5,10 @@ const checkToken = require("../middlewares/check-token.js");
 
 const router = Router();
 
-router.use(checkToken);
+// router.use(checkToken);
 router.get("/all", superController.getAllSuper);
 router.get("/get/:id", superController.getSuper);
-router.post("/create", upload.single("imageUrl"), superController.createSuper);
+router.post("/create", superController.createSuper);
 router.put("/update/:id", upload.single("imageUrl"), superController.updateSuper);
 router.delete("/delete/:id", superController.deleteUser);
 

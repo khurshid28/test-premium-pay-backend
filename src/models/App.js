@@ -22,7 +22,7 @@ const appSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        
+
         status: {
             type: String,
             default: "finished",
@@ -30,13 +30,13 @@ const appSchema = new mongoose.Schema(
         },
         finished_time: {
             type: Date,
-            default:  () => new Date(Date.now() + 5*60*60*1000),
+            default: () => new Date(Date.now() + 5 * 60 * 60 * 1000),
         },
         canceled_reason: {
             type: String,
             default: null,
         },
-        
+
 
 
     },
@@ -44,6 +44,6 @@ const appSchema = new mongoose.Schema(
 );
 
 
-const App = mongoose.model("app-test6", appSchema);
+const App = mongoose.model("app-test7", appSchema);
 
 module.exports = App;

@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
 		},
 		imageUrl: {
 			type: String,
-			default:null
+			default: null
 		},
 		fullName: {
 			type: String,
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
 			unique: true,
 			match: /^\+998([378]{2}|(9[013-57-9]))\d{7}$/,
 		},
-	
+
 		gender: {
 			type: String,
 			enum: ["Мужской", "Женский"],
@@ -69,6 +69,6 @@ const userSchema = new mongoose.Schema(
 
 userSchema.index({ phoneNumber: 1 });
 
-const User = mongoose.model("User-test6", userSchema);
+const User = mongoose.model("User-test7", userSchema);
 
 module.exports = User;

@@ -42,22 +42,17 @@ class SuperAdmin {
 	}
 	async createSuper(req, res, next) {
 		try {
-			if (req.user.role !== "super_admin") {
-				return next(
-					new ForbiddenError(
-						403,
-						"You do not have permission to access this resource"
-					)
-				);
-			}
-			let imageUrl = req.file.filename;
+			// if (req.user.role !== "super_admin") {
+			// 	return next(
+			// 		new ForbiddenError(
+			// 			403,
+			// 			"You do not have permission to access this resource"
+			// 		)
+			// 	);
+			// }
 			const {
 				fullName,
 				phoneNumber,
-				email,
-				birthDate,
-				gender,
-				address,
 				description,
 			} = req.body;
 
@@ -75,19 +70,14 @@ class SuperAdmin {
 				);
 			}
 
-			await Super.create({
+			let super_admin = await Super.create({
 				loginName,
 				loginPassword,
-				imageUrl,
 				fullName,
 				phoneNumber,
-				email,
-				birthDate,
-				gender,
-				address,
 				description,
 			});
-			return res.status(201).json({ loginName, loginPassword });
+			return res.status(201).json({ super_admin });
 		} catch (error) {
 			return next(new InternalServerError(500, error.message));
 		}

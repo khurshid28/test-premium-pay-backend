@@ -27,7 +27,7 @@ const merchantSchema = new mongoose.Schema(
             default: "Merchant",
             enum: ["Merchant", "Agent"],
         },
-        
+
 
     },
     { timestamps: true }
@@ -37,7 +37,7 @@ const merchantSchema = new mongoose.Schema(
 
 
 
-const Merchant = mongoose.model("merchant-test6", merchantSchema);
+const Merchant = mongoose.model("merchant-test7", merchantSchema);
 
 module.exports = Merchant;
 

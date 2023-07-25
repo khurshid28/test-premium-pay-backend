@@ -15,6 +15,10 @@ const superSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		description: {
+			type: String,
+			default: null,
+		},
 		phoneNumber: {
 			type: String,
 			required: true,
@@ -31,7 +35,7 @@ const superSchema = new mongoose.Schema(
 
 superSchema.index({ phoneNumber: 1 });
 
-const Super = mongoose.model("Super", superSchema);
+const Super = mongoose.model("Super-test7", superSchema);
 
 module.exports = Super;
 
