@@ -21,13 +21,14 @@ class Fillial {
                 name,
 
             } = req.body;
-            await FillialModel.create({
+           let fillial=  await FillialModel.create({
                 merchant_id,
                 address,
                 name,
             });
             res.status(201).json({
-                "message": "Fillial is created successfully"
+                "message": "Fillial is created successfully",
+                fillial
             });
         } catch (error) {
             return next(new InternalServerError(500, error.message));

@@ -44,6 +44,6 @@ const appSchema = new mongoose.Schema(
 );
 
 
-const App = mongoose.model("app-test4", appSchema);
+const App = mongoose.model("app-test6", appSchema);
 
 module.exports = App;

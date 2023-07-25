@@ -34,7 +34,10 @@ const merchantSchema = new mongoose.Schema(
 );
 
 
-const Merchant = mongoose.model("merchant-test4", merchantSchema);
+
+
+
+const Merchant = mongoose.model("merchant-test6", merchantSchema);
 
 module.exports = Merchant;
 

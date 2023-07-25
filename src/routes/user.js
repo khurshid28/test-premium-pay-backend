@@ -6,7 +6,7 @@ const checkToken = require("../middlewares/check-token.js");
 const router = Router();
 
 router.use(checkToken);
-router.get("/all", userController.getAllUsers);
+router.get("/all/:merchant_id", userController.getAllUsers);
 router.get("/get/:id", userController.getUser);
 router.post("/create", upload.single("imageUrl"), userController.createUser);
 router.put("/update/:id", upload.single("imageUrl"), userController.updateUser);

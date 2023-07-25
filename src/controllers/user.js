@@ -1,11 +1,12 @@
 const User = require("../models/User.js");
 const Merchant = require("../models/Merchant.js");
 const { InternalServerError, ForbiddenError } = require("../utils/errors.js");
+const cryptoRandomString = require("secure-random-string");
 
 class Users {
 	async getAllUsers(req, res, next) {
 		try {
-			if (req.user.role !== "super_admin") {
+			if (req.user.role === "user" ) {
 				return next(
 					new ForbiddenError(
 						403,
@@ -13,7 +14,8 @@ class Users {
 					)
 				);
 			}
-			const users = await User.find({ role: "user" });
+			let {merchant_id} = req.params
+			const users = await User.find({ merchant_id });
 			return res.status(200).send(users);
 		} catch (error) {
 			return next(new InternalServerError(500, error.message));
@@ -45,7 +47,7 @@ class Users {
 					)
 				);
 			}
-			if(req.user.role !== "admin"){
+			if(req.user.role === "admin"){
 				let merchant  = await Merchant.findOne({ "_id": req.user.merchant_id});
 				if (!merchant) {
 					return next(
@@ -67,7 +69,7 @@ class Users {
 			}
 			
 
-			let imageUrl = req.file.filename;
+			// let imageUrl = req.file.filename;
 			const {
 				fullName,
 				phoneNumber,
@@ -93,12 +95,12 @@ class Users {
 				);
 			}
 
-			await User.create({
+			let user = await User.create({
 				loginName,
 				loginPassword,
 				merchant_id,
 				fillial_id,
-				imageUrl,
+				// imageUrl,
 				fullName,
 				phoneNumber,
 				age,
@@ -106,8 +108,9 @@ class Users {
 				address,
 			});
 			
-			return res.status(201).json({ loginName, loginPassword });
+			return res.status(201).json({ user });
 		} catch (error) {
+			console.log(error.message)
 			return next(new InternalServerError(500, error.message));
 		}
 	}
@@ -142,7 +145,7 @@ class Users {
 			user.imageUrl = image ? image : user.imageUrl;
 			user.fullName = fullName || user.fullName;
 			user.phoneNumber = phoneNumber || user.phoneNumber;
-			user.email = email || user.email;
+		
 			user.course = course || user.course;
 			user.birthDate = birthDate || user.birthDate;
 			user.gender = gender || user.gender;

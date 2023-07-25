@@ -32,6 +32,6 @@ const fillialSchema = new mongoose.Schema(
 );
 
 
-const Fillial = mongoose.model("Fillial-test4", fillialSchema);
+const Fillial = mongoose.model("Fillial-test6", fillialSchema);
 
 module.exports = Fillial;

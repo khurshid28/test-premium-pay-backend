@@ -121,7 +121,7 @@ class SuperAdmin {
 			superr.imageUrl = image ? image : superr.imageUrl;
 			superr.fullName = fullName || superr.fullName;
 			superr.phoneNumber = phoneNumber || superr.phoneNumber;
-			superr.email = email || superr.email;
+			
 			superr.birthDate = birthDate || superr.birthDate;
 			superr.gender = gender || superr.gender;
 			superr.address = address || superr.address;

@@ -45,8 +45,7 @@ const adminSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-adminSchema.index({ phoneNumber: 1 });
 
-const Admin = mongoose.model("Admin", adminSchema);
+const Admin = mongoose.model("Admin-test6", adminSchema);
 
 module.exports = Admin;

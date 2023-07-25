@@ -32,7 +32,7 @@ module.exports = async (req, res, next) => {
 		}
 
 		req.user = {
-			id: user._id,
+			id: user["_id"],
 			role,
 		};
 		return next();

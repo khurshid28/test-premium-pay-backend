@@ -1,7 +1,7 @@
 const {
     InternalServerError, BadRequestError,
 } = require("../utils/errors.js");
-
+const cryptoRandomString = require("secure-random-string");
 const MerchantModel = require("../models/Merchant.js");
 const AdminModel = require("../models/Admin.js");
 class Merchant {
@@ -34,21 +34,27 @@ class Merchant {
                 loginPassword
 
             });
-
+            console.log("admin >>")
+            console.log(admin)
             if (admin) {
-                await MerchantModel.create({
-                    "who_created": req.user._id,
-                    "admin_id": admin._id,
+                console.log("user")
+                console.log(req.user)
+              let merchant=   await MerchantModel.create({
+                    "who_created": req.user["id"],
+                    "admin_id": admin["_id"],
                     type,
                     name,
                 });
                 res.status(201).json({
-                    "message": "Merchant is created successfully"
+                    "message": "Merchant is created successfully",
+                    admin,
+                    merchant
                 });
             } else {
                 return next(new BadRequestError(400, "Admin isnot created"));
             }
         } catch (error) {
+            console.log(error.message)
             return next(new InternalServerError(500, error.message));
         }
     }
@@ -64,9 +70,10 @@ class Merchant {
                 );
             }
 
-            let merchant = await Merchant.find();
+            let merchant = await MerchantModel.find();
             res.status(200).json(merchant);
         } catch (error) {
+            console.log(error.message)
             return next(new InternalServerError(500, error.message));
         }
     }

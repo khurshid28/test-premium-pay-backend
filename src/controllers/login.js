@@ -21,7 +21,7 @@ class Login {
 			}
 
 			const token = jwt.sign({
-				userId: user._id,
+				userId: user["_id"],
 				agent: req.headers["user-agent"],
 				role: user.role,
 			});
