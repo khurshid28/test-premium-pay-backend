@@ -2,6 +2,14 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
 	{
+		fillial_id: {
+			type: String,
+			required: true,
+		},
+		merchant_id: {
+			type: String,
+			required: true,
+		},
 		loginName: {
 			type: String,
 			required: true,
@@ -12,6 +20,7 @@ const userSchema = new mongoose.Schema(
 		},
 		imageUrl: {
 			type: String,
+			default:null
 		},
 		fullName: {
 			type: String,
@@ -23,15 +32,7 @@ const userSchema = new mongoose.Schema(
 			unique: true,
 			match: /^\+998([378]{2}|(9[013-57-9]))\d{7}$/,
 		},
-		email: {
-			type: String,
-			required: true,
-			unique: true,
-		},
-		birthDate: {
-			type: Date,
-			required: true,
-		},
+	
 		gender: {
 			type: String,
 			enum: ["Мужской", "Женский"],
@@ -54,8 +55,8 @@ const userSchema = new mongoose.Schema(
 			},
 			required: true,
 		},
-		description: {
-			type: String,
+		age: {
+			type: Number,
 			required: true,
 		},
 		role: {

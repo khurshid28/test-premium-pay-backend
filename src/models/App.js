@@ -6,10 +6,23 @@ const appSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        user_fullname: {
+        merchant_id: {
             type: String,
             required: true,
         },
+        fillial_id: {
+            type: String,
+            required: true,
+        },
+        fullname: {
+            type: String,
+            required: true,
+        },
+        middleName: {
+            type: String,
+            required: true,
+        },
+        
         status: {
             type: String,
             default: "finished",
@@ -17,12 +30,13 @@ const appSchema = new mongoose.Schema(
         },
         finished_time: {
             type: Date,
-            default: Date.now,
+            default:  () => new Date(Date.now() + 5*60*60*1000),
         },
         canceled_reason: {
             type: String,
             default: null,
         },
+        
 
 
     },
@@ -30,6 +44,6 @@ const appSchema = new mongoose.Schema(
 );
 
 
-const App = mongoose.model("app-test1", appSchema);
+const App = mongoose.model("app-test4", appSchema);
 
 module.exports = App;

@@ -1,4 +1,5 @@
 const User = require("../models/User.js");
+const Merchant = require("../models/Merchant.js");
 const { InternalServerError, ForbiddenError } = require("../utils/errors.js");
 
 class Users {
@@ -36,7 +37,7 @@ class Users {
 	}
 	async createUser(req, res, next) {
 		try {
-			if (req.user.role !== "super_admin") {
+			if (req.user.role === "user") {
 				return next(
 					new ForbiddenError(
 						403,
@@ -44,16 +45,38 @@ class Users {
 					)
 				);
 			}
+			if(req.user.role !== "admin"){
+				let merchant  = await Merchant.findOne({ "_id": req.user.merchant_id});
+				if (!merchant) {
+					return next(
+						new ForbiddenError(
+							403,
+							"You do not have permission to access this resource"
+						)
+					);
+				}else{
+					if(merchant.type == "Agent") {
+						return next(
+							new ForbiddenError(
+								403,
+								"You do not have permission to access this resource"
+							)
+						);
+					}
+				}
+			}
+			
+
 			let imageUrl = req.file.filename;
 			const {
 				fullName,
 				phoneNumber,
-				email,
-				course,
-				birthDate,
+				merchant_id,
+				fillial_id,
 				gender,
 				address,
-				description,
+				age,
+				
 			} = req.body;
 
 			// Generate random login name and password
@@ -73,16 +96,16 @@ class Users {
 			await User.create({
 				loginName,
 				loginPassword,
+				merchant_id,
+				fillial_id,
 				imageUrl,
 				fullName,
 				phoneNumber,
-				email,
-				course,
-				birthDate,
+				age,
 				gender,
 				address,
-				description,
 			});
+			
 			return res.status(201).json({ loginName, loginPassword });
 		} catch (error) {
 			return next(new InternalServerError(500, error.message));

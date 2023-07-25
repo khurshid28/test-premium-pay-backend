@@ -7,20 +7,20 @@ class App {
 
     async upload(req, res, next) {
         try {
-            if (req.user.role !== "user") {
-				return next(
-					new ForbiddenError(
-						403,
-						"You do not have permission to access this resource"
-					)
-				);
-			}
-            const { user_id, status, canceled_reason,user_fullname } = req.body;
+            // if (req.user.role !== "user") {
+            // 	return next(
+            // 		new ForbiddenError(
+            // 			403,
+            // 			"You do not have permission to access this resource"
+            // 		)
+            // 	);
+            // }
+            const { user_id, status, canceled_reason, fullname, id } = req.body;
             await AppModel.create({
-				user_id, status, canceled_reason,user_fullname
-			});
-            res.status(200).json({
-                "message":"App is created Successfully"
+                user_id, status, canceled_reason, fullname, id,
+            });
+            res.status(201).json({
+                "message": "App is created Successfully"
             });
         } catch (error) {
             console.log(error.message)
@@ -28,16 +28,18 @@ class App {
         }
     }
     async get(req, res, next) {
-        if (req.user.role !== "user") {
-            return next(
-                new ForbiddenError(
-                    403,
-                    "You do not have permission to access this resource"
-                )
-            );
-        }
+        // if (req.user.role !== "user") {
+        //     return next(
+        //         new ForbiddenError(
+        //             403,
+        //             "You do not have permission to access this resource"
+        //         )
+        //     );
+        // }
         try {
-            const { user_id, status, canceled_reason } = req.body;
+            console.log(req.params)
+            const { user_id } = req.params;
+
             const apps = await AppModel.find({ user_id });
             res.status(200).json(apps);
         } catch (error) {
@@ -47,15 +49,21 @@ class App {
     }
     async getAll(req, res, next) {
         try {
-            // const { user_id, status, canceled_reason } = req.body;
+            const { merchant_id } = req.params;
             if (req.user.role === "user") {
-				return next(
-					new ForbiddenError(
-						403,
-						"You do not have permission to access this resource"
-					)
-				);
-			}
+                return next(
+                    new ForbiddenError(
+                        403,
+                        "You do not have permission to access this resource"
+                    )
+                );
+            } else if (req.user.role === "admin") {
+                const apps = await AppModel.find({merchant_id});
+                res.status(200).json(apps);
+            } else {
+                const apps = await AppModel.find();
+                res.status(200).json(apps);
+            }
             const apps = await AppModel.find();
             res.status(200).json(apps);
         } catch (error) {
