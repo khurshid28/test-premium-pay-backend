@@ -1,5 +1,6 @@
 const {
-    InternalServerError, BadRequestError,
+    InternalServerError,
+    BadRequestError,
 } = require("../utils/errors.js");
 const cryptoRandomString = require("secure-random-string");
 const MerchantModel = require("../models/Merchant.js");
@@ -22,6 +23,8 @@ class Merchant {
                 address,
                 type,
                 name,
+                percent,
+                expired_months
 
             } = req.body;
             const loginName = cryptoRandomString({ length: 10 });
@@ -31,7 +34,8 @@ class Merchant {
                 phoneNumber,
                 address,
                 loginName,
-                loginPassword
+                loginPassword,
+
 
             });
             console.log("admin >>")
@@ -39,11 +43,13 @@ class Merchant {
             if (admin) {
                 console.log("user")
                 console.log(req.user)
-              let merchant=   await MerchantModel.create({
+                let merchant = await MerchantModel.create({
                     "who_created": req.user["id"],
                     "admin_id": admin["_id"],
                     type,
                     name,
+                    percent,
+                    expired_months
                 });
                 res.status(201).json({
                     "message": "Merchant is created successfully",

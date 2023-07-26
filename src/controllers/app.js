@@ -15,12 +15,25 @@ class App {
             // 		)
             // 	);
             // }
-            const { user_id, status, canceled_reason, fullname, id } = req.body;
-            await AppModel.create({
-                user_id, status, canceled_reason, fullname, id,
+            const { user_id, status, canceled_reason, fullname, middlename, device, location, products, amount, payment_amount, expired_month } = req.body;
+            let app = await AppModel.create({
+                user_id,
+                status,
+                canceled_reason,
+                fullname,
+                middlename,
+                device,
+                location,
+                products,
+                amount,
+                payment_amount,
+                expired_month
+
+
             });
             res.status(201).json({
-                "message": "App is created Successfully"
+                "message": "App is created Successfully",
+                app,
             });
         } catch (error) {
             console.log(error.message)
@@ -58,7 +71,7 @@ class App {
                     )
                 );
             } else if (req.user.role === "admin") {
-                const apps = await AppModel.find({merchant_id});
+                const apps = await AppModel.find({ merchant_id });
                 res.status(200).json(apps);
             } else {
                 const apps = await AppModel.find();

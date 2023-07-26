@@ -1,154 +1,148 @@
 const Super = require("../models/Super.js");
 const cryptoRandomString = require("secure-random-string");
 const {
-	InternalServerError,
-	ForbiddenError,
-	BadRequestError,
-	NotFoundError,
+    InternalServerError,
+    ForbiddenError,
+    BadRequestError,
+    NotFoundError,
 } = require("../utils/errors.js");
 
 class SuperAdmin {
-	async getAllSuper(req, res, next) {
-		try {
-			if (req.user.role !== "super_admin") {
-				return next(
-					new ForbiddenError(
-						403,
-						"You do not have permission to access this resource"
-					)
-				);
-			}
-			const supers = await Super.find({ role: "super_admin" });
-			return res.status(200).send(supers);
-		} catch (error) {
-			return next(new InternalServerError(500, error.message));
-		}
-	}
-	async getSuper(req, res, next) {
-		try {
-			if (req.user.role !== "super_admin") {
-				return next(
-					new ForbiddenError(
-						403,
-						"You do not have permission to access this resource"
-					)
-				);
-			}
-			const superr = await Super.findById(req.params.id);
-			return res.status(200).send(superr);
-		} catch (error) {
-			return next(new InternalServerError(500, error.message));
-		}
-	}
-	async createSuper(req, res, next) {
-		try {
-			// if (req.user.role !== "super_admin") {
-			// 	return next(
-			// 		new ForbiddenError(
-			// 			403,
-			// 			"You do not have permission to access this resource"
-			// 		)
-			// 	);
-			// }
-			const {
-				fullName,
-				phoneNumber,
-				description,
-			} = req.body;
+    async getAllSuper(req, res, next) {
+        try {
+            if (req.user.role !== "super_admin") {
+                return next(
+                    new ForbiddenError(
+                        403,
+                        "You do not have permission to access this resource"
+                    )
+                );
+            }
+            const supers = await Super.find({ role: "super_admin" });
+            return res.status(200).send(supers);
+        } catch (error) {
+            return next(new InternalServerError(500, error.message));
+        }
+    }
+    async getSuper(req, res, next) {
+        try {
+            if (req.user.role !== "super_admin") {
+                return next(
+                    new ForbiddenError(
+                        403,
+                        "You do not have permission to access this resource"
+                    )
+                );
+            }
+            const superr = await Super.findById(req.params.id);
+            return res.status(200).send(superr);
+        } catch (error) {
+            return next(new InternalServerError(500, error.message));
+        }
+    }
+    async createSuper(req, res, next) {
+        try {
 
-			// Generate random login name and password
-			const loginName = cryptoRandomString({ length: 10 });
-			const loginPassword = cryptoRandomString({ length: 15 });
+            const {
+                fullName,
+                phoneNumber,
+                description,
+            } = req.body;
 
-			const existingUser = await Super.exists({ phoneNumber });
-			if (existingUser) {
-				return next(
-					new BadRequestError(
-						400,
-						"A super with the given phone number already exists"
-					)
-				);
-			}
+            // Generate random login name and password
+            const loginName = cryptoRandomString({ length: 10 });
+            const loginPassword = cryptoRandomString({ length: 15 });
 
-			let super_admin = await Super.create({
-				loginName,
-				loginPassword,
-				fullName,
-				phoneNumber,
-				description,
-			});
-			return res.status(201).json({ super_admin });
-		} catch (error) {
-			return next(new InternalServerError(500, error.message));
-		}
-	}
-	async updateSuper(req, res, next) {
-		try {
-			if (req.superr.role !== "super_admin") {
-				return next(
-					new ForbiddenError(
-						403,
-						"You do not have permission to access this resource"
-					)
-				);
-			}
-			const {
-				fullName,
-				phoneNumber,
-				email,
-				birthDate,
-				gender,
-				address,
-				description,
-			} = req.body;
-			let image = req.file ? req.file.filename : null; // use null if no file was uploaded
+            const existingUser = await Super.exists({ phoneNumber });
+            if (existingUser) {
+                return next(
+                    new BadRequestError(
+                        400,
+                        "A super with the given phone number already exists"
+                    )
+                );
+            }
 
-			const superr = await Super.findById(req.params.id);
-			if (!superr) {
-				return next(new NotFoundError(404, "Super admin not found"));
-			}
+            let super_admin = await Super.create({
+                loginName,
+                loginPassword,
+                fullName,
+                phoneNumber,
+                description,
+            });
+            return res.status(201).json({ super_admin });
+        } catch (error) {
+            console.log(error.message)
+            return next(new InternalServerError(500, error.message));
+        }
+    }
+    async updateSuper(req, res, next) {
+        try {
+            if (req.superr.role !== "super_admin") {
+                return next(
+                    new ForbiddenError(
+                        403,
+                        "You do not have permission to access this resource"
+                    )
+                );
+            }
+            const {
+                fullName,
+                phoneNumber,
+                email,
+                birthDate,
+                gender,
+                address,
+                description,
+            } = req.body;
+            let image = req.file ? req.file.filename : null; // use null if no file was uploaded
 
-			superr.imageUrl = image ? image : superr.imageUrl;
-			superr.fullName = fullName || superr.fullName;
-			superr.phoneNumber = phoneNumber || superr.phoneNumber;
-			
-			superr.birthDate = birthDate || superr.birthDate;
-			superr.gender = gender || superr.gender;
-			superr.address = address || superr.address;
-			superr.description = description || superr.description;
+            const superr = await Super.findById(req.params.id);
+            if (!superr) {
+                return next(new NotFoundError(404, "Super admin not found"));
+            }
 
-			await superr.save();
+            superr.imageUrl = image ? image : superr.imageUrl;
+            superr.fullName = fullName || superr.fullName;
+            superr.phoneNumber = phoneNumber || superr.phoneNumber;
 
-			return res
-				.status(200)
-				.send({ message: "Successfully updated", data: superr });
-		} catch (error) {
-			return next(new InternalServerError(500, error.message));
-		}
-	}
-	async deleteUser(req, res, next) {
-		try {
-			if (req.user.role !== "super_admin") {
-				return next(
-					new ForbiddenError(
-						403,
-						"You do not have permission to access this resource"
-					)
-				);
-			}
+            superr.birthDate = birthDate || superr.birthDate;
+            superr.gender = gender || superr.gender;
+            superr.address = address || superr.address;
+            superr.description = description || superr.description;
 
-			const superr = await Super.findById(req.params.id);
-			if (!superr) {
-				return next(new NotFoundError(404, "Super not found!"));
-			}
+            await superr.save();
 
-			await Super.deleteOne({ _id: req.params.id });
+            return res
+                .status(200)
+                .send({ message: "Successfully updated", data: superr });
+        } catch (error) {
+            return next(new InternalServerError(500, error.message));
+        }
+    }
+    async deleteUser(req, res, next) {
+        try {
+            if (req.user.role !== "super_admin") {
+                return next(
+                    new ForbiddenError(
+                        403,
+                        "You do not have permission to access this resource"
+                    )
+                );
+            }
 
-			return res.status(200).send({ message: "Super deleted" });
-		} catch (error) {
-			return next(new InternalServerError(500, error.message));
-		}
-	}
+            const superr = await Super.findById(req.params.id);
+            if (!superr) {
+                return next(new NotFoundError(404, "Super not found!"));
+            }
+
+            await Super.deleteOne({ _id: req.params.id });
+
+            return res.status(200).send({ message: "Super deleted" });
+        } catch (error) {
+            return next(new InternalServerError(500, error.message));
+        }
+    }
 }
 
 module.exports = new SuperAdmin();

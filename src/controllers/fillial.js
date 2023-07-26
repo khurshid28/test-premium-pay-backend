@@ -19,12 +19,16 @@ class Fillial {
                 merchant_id,
                 address,
                 name,
-
+                inn
             } = req.body;
-           let fillial=  await FillialModel.create({
+
+
+            let fillial = await FillialModel.create({
                 merchant_id,
                 address,
                 name,
+                inn,
+                "who_created": req.user.id
             });
             res.status(201).json({
                 "message": "Fillial is created successfully",
@@ -45,9 +49,9 @@ class Fillial {
                     )
                 );
             }
-            
+
             let { merchant_id } = req.params;
-            let fillials = await FillialModel.find({merchant_id});
+            let fillials = await FillialModel.find({ merchant_id });
             res.status(200).json(fillials);
         } catch (error) {
             return next(new InternalServerError(500, error.message));
