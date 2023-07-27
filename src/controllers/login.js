@@ -6,6 +6,7 @@ const {
     InternalServerError,
     AuthorizationError,
     BadRequestError,
+    NotFoundError
 } = require("../utils/errors.js");
 const jwt = require("../utils/jwt.js");
 const { mockUser, mockSuper } = require("../../mock.js");
@@ -21,6 +22,12 @@ class Login {
             if (!user || user.loginPassword !== loginPassword) {
                 return next(new AuthorizationError(401, "Invalid login credentials!"));
             }
+
+            if (user.work_status == "deleted") {
+                return next(new NotFoundError(404, "Not Found"));
+            } else if (user.work_status == "blocked") {
+                return next(new BadRequestError(400, "You are blocked and No Active"));
+            }
             const token = jwt.sign({
                 userId: user["_id"],
                 agent: req.headers["user-agent"],
@@ -32,7 +39,7 @@ class Login {
                     "merchant_id": user.merchant_id
                 })
                 if (!merchant) {
-                    return next(new BadRequestError(400, "Merchant Not Found"));
+                    return next(new NotFoundError(404, "Merchant Not Found"));
                 }
                 return res
                     .status(200)

@@ -76,7 +76,9 @@ class Merchant {
                 );
             }
 
-            let merchant = await MerchantModel.find();
+            let merchant = await MerchantModel.find({
+                work_status: { $not: "deleted" }
+            });
             res.status(200).json(merchant);
         } catch (error) {
             console.log(error.message)

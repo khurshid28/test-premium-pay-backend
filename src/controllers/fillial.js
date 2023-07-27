@@ -51,7 +51,10 @@ class Fillial {
             }
 
             let { merchant_id } = req.params;
-            let fillials = await FillialModel.find({ merchant_id });
+            let fillials = await FillialModel.find({
+                merchant_id,
+                work_status: { $not: "deleted" }
+            });
             res.status(200).json(fillials);
         } catch (error) {
             return next(new InternalServerError(500, error.message));

@@ -16,7 +16,7 @@ class Users {
                 );
             }
             let { merchant_id } = req.params
-            const users = await User.find({ merchant_id });
+            const users = await User.find({ merchant_id, work_status: { $not: "deleted" } });
             return res.status(200).send(users);
         } catch (error) {
             return next(new InternalServerError(500, error.message));
@@ -69,7 +69,7 @@ class Users {
                 if (!merchant) {
                     return next(
                         new BadRequestError(
-                            400,
+                            404,
                             "Merchant not found"
                         )
                     );

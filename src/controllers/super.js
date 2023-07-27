@@ -7,6 +7,7 @@ const {
     NotFoundError,
 } = require("../utils/errors.js");
 
+
 class SuperAdmin {
     async getAllSuper(req, res, next) {
         try {
@@ -18,7 +19,7 @@ class SuperAdmin {
                     )
                 );
             }
-            const supers = await Super.find({ role: "super_admin" });
+            const supers = await Super.find({ work_status: { $not: "deleted" } });
             return res.status(200).send(supers);
         } catch (error) {
             return next(new InternalServerError(500, error.message));
@@ -70,7 +71,7 @@ class SuperAdmin {
                 phoneNumber,
                 description,
             });
-            return res.status(201).json({ super_admin });
+            return res.status(201).json({ super_admin, });
         } catch (error) {
             console.log(error.message)
             return next(new InternalServerError(500, error.message));

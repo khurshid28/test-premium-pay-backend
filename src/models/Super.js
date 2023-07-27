@@ -18,6 +18,11 @@ const superSchema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    work_status: {
+        type: String,
+        enum: ["working", "blocked", "deleted", ],
+        default: "working",
+    },
     phoneNumber: {
         type: String,
         required: true,
