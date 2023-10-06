@@ -8,6 +8,8 @@ const {
 } = require("../utils/errors.js");
 
 
+let db = require("../config/db")
+
 class SuperAdmin {
     async getAllSuper(req, res, next) {
         try {
@@ -44,34 +46,82 @@ class SuperAdmin {
     async createSuper(req, res, next) {
         try {
 
-            const {
-                fullName,
-                phoneNumber,
-                description,
-            } = req.body;
+            // const {
+            //     fullName,
+            //     phoneNumber,
+            //     age,
+            //     gender
+            // } = req.body;
+           
 
             // Generate random login name and password
             const loginName = cryptoRandomString({ length: 10 });
             const loginPassword = cryptoRandomString({ length: 15 });
 
-            const existingUser = await Super.exists({ phoneNumber });
-            if (existingUser) {
-                return next(
-                    new BadRequestError(
-                        400,
-                        "A super with the given phone number already exists"
-                    )
-                );
-            }
+            req.body.loginName= loginName
+            req.body.loginPassword= loginPassword
 
-            let super_admin = await Super.create({
-                loginName,
-                loginPassword,
-                fullName,
-                phoneNumber,
-                description,
-            });
-            return res.status(201).json({ super_admin, });
+
+            // const existingUser = await Super.exists({ phoneNumber });
+            // if (existingUser) {
+            //     return next(
+            //         new BadRequestError(
+            //             400,
+            //             "A super with the given phone number already exists"
+            //         )
+            //     );
+            // }
+
+            // let super_admin = await Super.create({
+            //     loginName,
+            //     loginPassword,
+            //     fullName,
+            //     phoneNumber,
+            //     description,
+            // });
+
+
+
+         let id = await new Promise(function (resolve, reject) {
+              let KEYS =Object.keys(req.body).join().replaceAll("'", "ʻ")
+              let VALUES =[]
+              
+              Object.values(req.body).forEach((el)=>{
+               VALUES.push(`"${el}"`)
+              })
+             
+                db.query(
+                  `INSERT INTO SuperAdmin (${KEYS}) VALUES(${VALUES.join().replaceAll("'", "ʻ")}) ;`,
+                  function (err, results, fields) {
+                    if (err) {
+                       reject(err);
+                    }
+                    console.log("++++", results);
+                    if (results.insertId) {
+                      resolve(results.insertId);
+                    } else {
+                       reject(err);
+                    }
+                  }
+                );
+              });
+            let  user = await new Promise(function (resolve, reject) {
+                db.query(
+                  `SELECT * from SuperAdmin WHERE id=${id}`,
+                  function (err, results, fields) {
+                    if (err) {
+                       reject(err);
+                    }
+                    if (results.length != 0) {
+                      resolve(results[0]);
+                    } else {
+                       reject(err);
+                    }
+                  }
+                );
+              });
+
+            return res.status(201).json({ data:user,message:"SuperAdmin is created successfully" });
         } catch (error) {
             console.log(error.message)
             return next(new InternalServerError(500, error.message));

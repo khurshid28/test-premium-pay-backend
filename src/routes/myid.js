@@ -9,5 +9,7 @@ router.use(checkToken);
 router.use(checkBlocked);
 router.post("/", myidController.getMe);
 
+router.post("/check", myidController.check);
+
 
 module.exports = router;

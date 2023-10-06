@@ -2,6 +2,10 @@ const jwt = require("../utils/jwt.js");
 const User = require("../models/User.js");
 const Super = require("../models/Super.js");
 const Admin = require("../models/Admin.js");
+
+
+
+
 const {
     AuthorizationError,
     ForbiddenError,
@@ -9,7 +13,9 @@ const {
     InvalidTokenError
 } = require("../utils/errors.js");
 const { TokenExpiredError, JsonWebTokenError } = require("jsonwebtoken");
-const Admin = require("../models/Admin.js");
+
+let db= require("../config/db")
+
 
 module.exports = async(req, res, next) => {
     try {
@@ -21,11 +27,30 @@ module.exports = async(req, res, next) => {
         }
 
         const { userId, agent, role } = jwt.verify(token);
-        const user = (await User.findById(userId)) || (await Admin.findById(userId)) || (await Super.findById(userId));
+        
+        
+         let user = await new Promise(function (resolve, reject) {
+                db.query(
+                  `SELECT * from ${role} WHERE id='${userId}'`,
+                  function (err, results, fields) {
+                    if (err) {
+                       reject(err);
+                    }
+                    if (results.length != 0) {
+                      resolve(results[0]);
+                    } else {
+                       reject(err);
+                    }
+                  }
+                );
+              });
+        
+       
+          
         if (!user) {
             return next(new AuthorizationError(401, "Invalid token"));
         }
-
+       
         const reqAgent = req.headers["user-agent"];
         if (agent !== reqAgent) {
             return next(
@@ -34,9 +59,10 @@ module.exports = async(req, res, next) => {
         }
 
         req.user = {
-            id: user["_id"],
-            role,
+            id: user["id"],
+            role:user["role"],
         };
+        
         return next();
     } catch (error) {
         if (error instanceof TokenExpiredError) {
@@ -44,6 +70,7 @@ module.exports = async(req, res, next) => {
         } else if (error instanceof JsonWebTokenError) {
             return next(new InvalidTokenError(401, "Malformed token"));
         }
+        
         return next(new InternalServerError(500, error.message));
     }
 };

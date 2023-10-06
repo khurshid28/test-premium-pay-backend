@@ -1,16 +1,18 @@
 const { Router } = require("express");
 const upload = require("../utils/upload.js");
-const userController = require("../controllers/user.js");
+const userController = require("../controllers/5.user.js");
 const checkToken = require("../middlewares/check-token.js");
 const checkBlocked = require("../middlewares/check-blocked.js");
 
 const router = Router();
 
+
 router.use(checkToken);
 router.use(checkBlocked);
+
 router.get("/all/:merchant_id", userController.getAllUsers);
 router.get("/get/:id", userController.getUser);
-router.post("/create", upload.single("imageUrl"), userController.createUser);
+router.post("/create", userController.createUser);
 router.put("/update/:id", upload.single("imageUrl"), userController.updateUser);
 router.delete("/delete/:id", userController.deleteUser);
 

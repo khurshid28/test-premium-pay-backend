@@ -1,11 +1,10 @@
 const { Router } = require("express");
-const loginController = require("../controllers/login.js");
+const loginController = require("../controllers/7.login.js");
 
 const router = Router();
 
 router.post("/", loginController.userLogin);
-router.post("/mockUser", loginController.addMockUser);
-router.post("/mockAdmin", loginController.addMockAdmin);
+
 
 module.exports = router;
 

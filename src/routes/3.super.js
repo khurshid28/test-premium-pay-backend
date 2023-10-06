@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const upload = require("../utils/upload.js");
-const superController = require("../controllers/super.js");
+const superController = require("../controllers/3.super.js");
 const checkToken = require("../middlewares/check-token.js");
 
 const router = Router();

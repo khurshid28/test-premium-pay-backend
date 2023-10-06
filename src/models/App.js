@@ -74,6 +74,6 @@ const appSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 
-const App = mongoose.model("app-test8", appSchema);
+const App = mongoose.model("app-test10", appSchema);
 
 module.exports = App;

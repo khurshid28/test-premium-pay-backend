@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const appController = require("../controllers/app.js");
+const fillialController = require("../controllers/2.fillial.js");
 const checkToken = require("../middlewares/check-token.js");
 const checkBlocked = require("../middlewares/check-blocked.js");
 
@@ -7,10 +7,8 @@ const router = Router();
 
 router.use(checkToken);
 router.use(checkBlocked);
-
-router.post("/upload", appController.upload);
-router.get("/get/:user_id", appController.get);
-router.get("/getAll/:merchant_id", appController.getAll);
+router.post("/create", fillialController.create);
+router.get("/getAll", fillialController.getAll);
 
 
 module.exports = router;
