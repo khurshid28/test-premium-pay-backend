@@ -636,7 +636,7 @@ function update5ZayavkaFunc(data) {
 }
 
 function update6ZayavkaFunc(data) {
-  let { id, products, location, device } = data;
+  let { id, products, location, device,amount } = data;
   let productsString = `'[`;
   products.forEach((product) => {
     productsString += toMyString(product).slice(1, -1);
@@ -645,14 +645,14 @@ function update6ZayavkaFunc(data) {
   productsString = productsString.slice(0, -1);
   productsString += "]'";
   console.log(productsString);
-  return `UPDATE Zayavka SET step=6,products=${productsString},location=${toMyString(
+  return `UPDATE Zayavka SET step=6,amount=${amount},products=${productsString},location=${toMyString(
     location
   )},device=${toMyString(device)} WHERE id = ${id};`;
 }
 
 function update7ZayavkaFunc(data) {
-  let { id, amount, payment_amount, expired_month } = data;
-  return `UPDATE Zayavka SET step=7,amount=${amount},payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+  let { id, payment_amount, expired_month } = data;
+  return `UPDATE Zayavka SET step=7,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 }
 
 function updateFinishZayavkaFunc(data) {

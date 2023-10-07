@@ -59,9 +59,9 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
 
-  db.query(`Select *  from Zayavka WHERE id=9`, function (err, results, fields) {
+  db.query(`Select *  from Zayavka WHERE id=12`, function (err, results, fields) {
     if (err) { 
-      console.log({ err });
+      console.log({ err }); 
     }
  
     console.log({ results });
