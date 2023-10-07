@@ -36,11 +36,13 @@ class Login {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-               reject(err);
+              resolve(null);
             }
           }
         );
       });
+      console.log("super admin");
+      console.log(user);
       if (!user)
         user = await new Promise(function (resolve, reject) {
           db.query(
@@ -53,7 +55,7 @@ class Login {
               if (results.length != 0) {
                 resolve(results[0]);
               } else {
-                 reject(err);
+                resolve(null);
               }
             }
           );
@@ -70,7 +72,7 @@ class Login {
               if (results.length != 0) {
                 resolve(results[0]);
               } else {
-                 reject(err);
+                resolve(null);
               }
             }
           );
@@ -84,7 +86,7 @@ class Login {
 
       if (user.work_status == "deleted") {
         return next(new NotFoundError(404, "Not Found"));
-      } else if (user.work_status == "blocked" || user.work_status=="super_admin") {
+      } else if (user.work_status == "blocked" || user.work_status=="super_blocked") {
         return next(new ForbiddenError(403, "You are blocked and No Active"));
       } 
       
@@ -100,7 +102,7 @@ class Login {
         token,
       });
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       return next(new InternalServerError(500, error.message));
     }
   }

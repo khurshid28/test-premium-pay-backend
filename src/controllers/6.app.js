@@ -31,7 +31,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -61,7 +61,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -86,51 +86,7 @@ class App {
           )
         );
       }
-      let token;
-      let urlScoring = ""
-      let urlToken = ""
-      let responseToken = await axios.post(
-        urlToken,
-        {
-          "username": "PP02",
-          "password": "1500000"
-        
-      },
-        {
-          headers: {
-            "Content-Type":  "application/json"
-          },
-        }
-      );
-      token= responseToken.data.token;
-
-      
-       
-      let response = await axios.post(
-        urlScoring,
-        {
-          "orderId": "PP02",
-          "amount": "1500000",
-          "duration": "12",
-          "passSeria": "AA",
-          "passNumber": "1234567",
-          "birthDate": "1986-02-11",
-          "phoneNumber": "998900051616",
-          "cardNumber": "8600510387444544",
-          "inn": "305269071",
-          "selfie": "/9asdfasdfasdf"
-      },
-        {
-          headers: {
-            "Authorization": "Bearer " + token,
-            "Content-Type":  "application/json"
-
-          },
-        }
-      );
-
-      if(response.data.status =="ok"){
-        await new Promise(function (resolve, reject) {
+       await new Promise(function (resolve, reject) {
           db.query(update2ZayavkaFunc(req.body), function (err, results, fields) {
             if (err) {
               return reject(err);
@@ -140,30 +96,93 @@ class App {
           });
         });
   
-        let zayavka = await new Promise(function (resolve, reject) {
-          db.query(
-            `SELECT * from Zayavka WHERE id=${req.body.id}`,
-            function (err, results, fields) {
-              if (err) {
-                reject(err);
-              }
-              if (results.length != 0) {
-                resolve(results[0]);
-              } else {
-                reject(err);
-              }
-            }
-          );
-        });
-        return res.status(200).json({
-          data: zayavka,
+         return res.status(200).json({
           message: "Update 2 is done",
         });
-      }
+
+ 
+
+      // let token;
+      // let urlScoring = ""
+      // let urlToken = ""
+      // let responseToken = await axios.post(
+      //   urlToken,
+      //   {
+      //     "username": "PP02",
+      //     "password": "1500000"
+        
+      // },
+      //   {
+      //     headers: {
+      //       "Content-Type":  "application/json"
+      //     },
+      //   }
+      // );
+      // token= responseToken.data.token;
+
+      
+       
+      // let response = await axios.post(
+      //   urlScoring,
+      //   {
+      //     "orderId": "PP02",
+      //     "amount": "1500000",
+      //     "duration": "12",
+      //     "passSeria": "AA",
+      //     "passNumber": "1234567",
+      //     "birthDate": "1986-02-11",
+      //     "phoneNumber": "998900051616",
+      //     "cardNumber": "8600510387444544",
+      //     "inn": "305269071",
+      //     "selfie": "/9asdfasdfasdf"
+      // },
+      //   {
+      //     headers: {
+      //       "Authorization": "Bearer " + token,
+      //       "Content-Type":  "application/json"
+
+      //     },
+      //   }
+      // );
+
+      // if(response.data.status =="ok"){
+      //   await new Promise(function (resolve, reject) {
+      //     db.query(update2ZayavkaFunc(req.body), function (err, results, fields) {
+      //       if (err) {
+      //         return reject(err);
+      //       }
+  
+      //       resolve(results);
+      //     });
+      //   });
+  
+
+        
+      //   let zayavka = await new Promise(function (resolve, reject) {
+      //     db.query(
+      //       `SELECT * from Zayavka WHERE id=${req.body.id}`,
+      //       function (err, results, fields) {
+      //         if (err) {
+      //           reject(err);
+      //         }
+      //         if (results.length != 0) {
+      //           resolve(results[0]);
+      //         } else {
+      //           resolve(null);
+      //         }
+      //       }
+      //     );
+      //   });
+      //   return res.status(200).json({
+      //     data: zayavka,
+      //     message: "Update 2 is done",
+      //   });
+      // }
       
       throw new Error("Something Error"); 
     } catch (error) {
-      console.log(error);
+      console.log("error");
+      console.log(error);  
       return next(new InternalServerError(500, error.message));
     }
   }
@@ -198,7 +217,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -244,7 +263,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -290,7 +309,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -335,7 +354,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -380,7 +399,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -429,7 +448,7 @@ class App {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );
@@ -444,7 +463,49 @@ class App {
       return next(new InternalServerError(500, error.message));
     }
   }
+  
 
+  async getPercents(req, res, next) {
+    try {
+
+
+
+      if (req.user.role !== "User") {
+        return next(
+          new ForbiddenError(
+            403,
+            "You do not have permission to access this resource"
+          )
+        );
+      }
+
+      let {merchant_id} =req.params;
+
+      let merchant = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from merchant WHERE id=${merchant_id}`,
+          function (err, results, fields) {
+            if (err) {
+              reject(err);
+            }else if (results.length !=0) {
+              return resolve(results[0]);
+            }else{
+              return resolve(null);
+            }
+            
+          }
+        );
+      });
+
+      
+      return res.status(200).json({
+        data: merchant.expired_months,
+      });
+    } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+    }
+  }
   async getAll(req, res, next) {
     try {
       let zayavkalar;
@@ -452,7 +513,7 @@ class App {
       if (req.user.role === "User") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE user_id=${req.user.id}`,
+            `SELECT * from Zayavka WHERE user_id=${req.user.id} ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
                 reject(err);
@@ -463,7 +524,7 @@ class App {
         });
       } else if (req.user.role === "SuperAdmin") {
         zayavkalar = await new Promise(function (resolve, reject) {
-          db.query(`SELECT * from Zayavka`, function (err, results, fields) {
+          db.query(`SELECT * from Zayavka ORDER BY id DESC`, function (err, results, fields) {
             if (err) {
               reject(err);
             }
@@ -474,7 +535,7 @@ class App {
         console.log("keldi >>");
         let user = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Admin WHERE id=${req.user.id}`,
+            `SELECT *  from Admin WHERE id=${req.user.id} ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
                 reject(err);
@@ -509,7 +570,7 @@ class App {
         // condition = condition.join(` OR `);
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id}`,
+            `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
                 reject(err);

@@ -26,4 +26,8 @@ router.get("/get/:id", appController.get);
 router.get("/getAll/", appController.getAll);
 
 
+router.get("/percents/:merchant_id", appController.getPercents);
+
+
+
 module.exports = router;

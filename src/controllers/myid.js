@@ -38,7 +38,7 @@ class Myid {
             });
           return res.status(200).json(response2.data);
         } catch (error) {
-           
+            console.log(error);
             return next(new InternalServerError(500, error.message));
         }
     }
@@ -70,7 +70,7 @@ class Myid {
                   resolve(results[0]);
                 } else {
                   
-                   resolve(undefined);
+                    resolve(null);
                 }
               }
             );
@@ -78,7 +78,7 @@ class Myid {
           
 
           if (!zayavka) {
-            res
+           return res
             .status(200)
             .json({  message: "User is available",status : true });
           }

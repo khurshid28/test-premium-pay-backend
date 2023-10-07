@@ -22,14 +22,14 @@ module.exports = async(req, res, next) => {
                 if (results.length != 0) {
                   resolve(results[0]);
                 } else {
-                   reject(err);
+                  resolve(null);
                 }
               }
             );
           });
          
 
-        if (user.work_status == "deleted" || user.work_status == "blocked" || user.work_status=="super_admin") {
+        if (user.work_status == "deleted" || user.work_status == "blocked" || user.work_status=="super_blocked") {
             return next(
                 new ForbiddenError(
                     403,
@@ -49,7 +49,7 @@ module.exports = async(req, res, next) => {
                 if (results.length != 0) {
                   resolve(results[0]);
                 } else {
-                   reject(err);
+                  resolve(null);
                 }
               }
             );

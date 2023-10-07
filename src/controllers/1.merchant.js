@@ -36,7 +36,6 @@ class Merchant {
         type,
         percent_type,
         expired_months,
-
         admin,
       } = req.body;
 
@@ -129,7 +128,7 @@ class Merchant {
             });
       if (result =="success") {
               return   res.status(201).json({
-              "message": "Merchant and User is created successfully",
+              "message": "Merchant and Admin is created successfully",
               "merchant_id":id,
                admin_id
              
@@ -227,7 +226,7 @@ class Merchant {
             if (results.length != 0) {
               resolve(results[0]);
             } else {
-              reject(err);
+              resolve(null);
             }
           }
         );

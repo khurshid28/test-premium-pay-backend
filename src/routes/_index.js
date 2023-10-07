@@ -26,19 +26,19 @@ const uploadRouter = require("./uploadImage.js");
 
 const scoringRouter = require("./8.scoring");
 
-router.use("/api/login", loginRouter);
-router.use("/api/myid", myidRouter);
-router.use("/api/user", userRouter);
-router.use("/api/super", superRouter);
+router.use("/api/v1/login", loginRouter);
+router.use("/api/v1/myid", myidRouter);
+router.use("/api/v1/user", userRouter);
+router.use("/api/v1/super", superRouter);
 router.use("/api", extraRouter);
 router.use("/create-pdf", pdfRouter);
 router.use("/upload-image", uploadRouter);
-router.use("/api/zayavka", appRouter);
-router.use("/api/merchant", merchantRouter);
-router.use("/api/fillial", fillialRouter);
+router.use("/api/v1/zayavka", appRouter);
+router.use("/api/v1/merchant", merchantRouter);
+router.use("/api/v1/fillial", fillialRouter);
 
 router.use("/api/scoring",scoringRouter );
 
-router.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+router.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 module.exports = router;

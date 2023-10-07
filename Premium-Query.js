@@ -62,7 +62,7 @@ Date.prototype.addHours = function (h) {
       expired_months JSON,
       who_created JSON,
       who_edited JSON,
-      who_deleted JSON,
+      who_deleted JSON
 
   );`;
   
@@ -174,7 +174,7 @@ Date.prototype.addHours = function (h) {
   let update6Zayavka = `UPDATE Zayavka SET step=6,products ='[{"name":"iphone 12","price":4100000},{"name":"iphone 12","price":4780000}]',location='{"lat":41.20499,"long":69.11922}',device='{"id":"1223","model":"SAMSUNG 21s"}' WHERE id = 1;`; // products page
   let update7Zayavka = `UPDATE Zayavka SET step=7,amount=1000000,payment_amount=1410000,expired_month = 12 WHERE id = 1;`; // to bank in last request,for oformeleniya  // grafik page
   let updateFinishZayavka = `UPDATE Zayavka SET step=8,selfie='/9vashgdsagh',status = 'finished',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE id = 1;`; // for selfie to our server  // selfie with tilhat page
-  
+
   let cancelByClientZayavka = `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='procent is too high' WHERE id = 1`;
   let cancelByScoringZayavka = `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='canceled by scoring' WHERE id = 1`;
   

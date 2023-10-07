@@ -115,7 +115,7 @@ class SuperAdmin {
                     if (results.length != 0) {
                       resolve(results[0]);
                     } else {
-                       reject(err);
+                        resolve(null);
                     }
                   }
                 );

@@ -39,7 +39,7 @@ module.exports = async(req, res, next) => {
                     if (results.length != 0) {
                       resolve(results[0]);
                     } else {
-                       reject(err);
+                        resolve(null);
                     }
                   }
                 );

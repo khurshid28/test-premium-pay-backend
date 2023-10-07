@@ -10,9 +10,10 @@
 // 	.catch((err) => console.log("Database error: ", err.message));
 
 // get the client
+
 const mysql = require('mysql2');
 
-// create the connection to database
+
 const connection = mysql.createConnection({
   host: process.env.HOST_TEST,
   user: process.env.ROOT_TEST,
@@ -23,5 +24,9 @@ const connection = mysql.createConnection({
 
 
 
+
 module.exports = connection
+
+
+
 
