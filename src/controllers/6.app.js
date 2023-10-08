@@ -196,7 +196,7 @@ class App {
           )
         );
       }
-
+      let { id,max_amount,selfie_with_passport } = req.body;
       await new Promise(function (resolve, reject) {
         db.query(update3ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
@@ -209,7 +209,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from Zayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
               reject(err);
@@ -621,8 +621,8 @@ function update2ZayavkaFunc(data) {
 }
 
 function update3ZayavkaFunc(data) {
-  let { id } = data;
-  return `UPDATE Zayavka SET step=3 WHERE id = ${id};`;
+  let { id,max_amount } = data;
+  return `UPDATE Zayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
 }
 
 function update4ZayavkaFunc(data) {

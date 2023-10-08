@@ -40,6 +40,7 @@ Date.prototype.addHours = function (h) {
       location JSON,
       products JSON,
       amount DOUBLE(10,2),
+      max_amount DOUBLE(10,2),
       payment_amount DOUBLE(10,2),
       expired_month int,
       created_time TIMESTAMP DEFAULT (CURRENT_TIMESTAMP + INTERVAL 5 HOUR) NOT NULL,

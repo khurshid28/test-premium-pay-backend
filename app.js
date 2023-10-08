@@ -89,13 +89,13 @@ app.get("/test", (req, res) => {
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
 
-  // db.query(`Select *  from Zayavka WHERE id=12`, function (err, results, fields) {
-  //   if (err) { 
-  //     console.log({ err }); 
-  //   }
+  db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
+    if (err) { 
+      console.log({ err }); 
+    }
  
-  //   console.log({ results });
-  // });
+    console.log({ results });
+  });
   // db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
   //   console.log(err);
   //   if (err) {
