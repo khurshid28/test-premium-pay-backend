@@ -79,6 +79,7 @@ Date.prototype.addHours = function (h) {
       who_deleted JSON,
       nds varchar(255),
       hisob_raqam varchar(255),
+      bank_name varchar(255),
       mfo varchar(255),
       inn varchar(255),
       director_name varchar(255),

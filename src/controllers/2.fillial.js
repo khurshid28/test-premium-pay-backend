@@ -43,6 +43,7 @@ class Fillial {
                 inn,
                 mfo,
                 nds,
+                bank_name,
                 hisob_raqam,
                 director_name,
                 director_phone
@@ -51,12 +52,14 @@ class Fillial {
             } = req.body;
             name = name.replaceAll("'", "ʻ");
             director_name = director_name.replaceAll("'", "ʻ");
+            bank_name = bank_name.replaceAll("'", "ʻ");
+            
            
             let id = await new Promise(function (resolve, reject) {
                 db.query(
-                  `INSERT INTO Fillial (name,address,merchant_id,who_created,inn,mfo,nds,hisob_raqam,director_name,director_phone) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
+                  `INSERT INTO Fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
                     req.user.id
-                  },"date": "${new Date().addHours(5).toISOString()}"}','${inn}','${mfo}','${nds}','${hisob_raqam}','${director_name}','${director_phone}') ;`,
+                  },"date": "${new Date().addHours(5).toISOString()}"}','${inn}','${mfo}','${bank_name}','${nds}','${hisob_raqam}','${director_name}','${director_phone}') ;`,
                   function (err, results, fields) {
                     console.log(">>>>>>....");
                     console.log(err);
