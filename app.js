@@ -88,14 +88,15 @@ app.get("/test", (req, res) => {
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
+  // db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
+  //   if (err) { 
+  //     console.log({ err }); 
+  //   }
+  //   console.log({ results });
+  // });
 
-  db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
-    if (err) { 
-      console.log({ err }); 
-    }
- 
-    console.log({ results });
-  });
+
+   
   // db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
   //   console.log(err);
   //   if (err) {

@@ -9,14 +9,7 @@ class Myid {
 
     async getMe(req, res, next) {
 
-        if (req.user.role !== "User") {
-            return next(
-                new ForbiddenError(
-                    403,
-                    "You do not have permission to access this resource"
-                )
-            );
-        }
+        
         try {
             let { code } = req.body;
             let url1 = process.env.FACE_URL + "oauth2/access-token"
@@ -47,14 +40,7 @@ class Myid {
     
     async check(req, res, next) {
 
-        if (req.user.role !== "User") {
-            return next(
-                new ForbiddenError(
-                    403,
-                    "You do not have permission to access this resource"
-                )
-            );
-        }
+      
         try {
            let {passport} = req.body;
            let zayavka = await new Promise(function (resolve, reject) { 
@@ -82,12 +68,12 @@ class Myid {
             .status(200)
             .json({  message: "User is available",status : true });
           }
-         if(zayavka.status == "finished" &&  Date.daysBetween(Date.parse(zayavka.finished_time),Date.now() ) < 60 ){
+         if((zayavka.status == "finished" || zayavka.status == "canceled_by_client") &&  Date.daysBetween(Date.parse(zayavka.finished_time),Date.now() ) < 60 ){
             return res
             .status(200)
             .json({  message: "User is unavailable",status : false });
          }else{
-            if(zayavka.step >= 5 && zayavka.status == "canceled_by_scoring"){
+            if(zayavka.status == "canceled_by_scoring" &&  Date.daysBetween(Date.parse(zayavka.finished_time),Date.now() ) < 3){
                 return res
                 .status(200)
                 .json({  message: "User is unavailable",status : false });

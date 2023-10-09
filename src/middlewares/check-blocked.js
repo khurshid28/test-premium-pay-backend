@@ -70,6 +70,7 @@ module.exports = async(req, res, next) => {
       }
         return next();
     } catch (error) {
+      console.log("check blocked >>");
         console.log(error);
         return next(new InternalServerError(500, error.message));
     }

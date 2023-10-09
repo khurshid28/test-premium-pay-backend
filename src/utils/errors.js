@@ -79,6 +79,16 @@ class InvalidTokenError extends Error {
 	}
 }
 
+
+class UnAvailableError extends Error {
+	constructor(status, message) {
+		super();
+		this.status = status;
+		this.name = "UnAvailableError";
+		this.message = message;
+	}
+}
+
 module.exports = {
 	NotFoundError,
 	ForbiddenError,
@@ -88,5 +98,7 @@ module.exports = {
 	RateLimiting,
 	BadRequestError,
 	SessionExpiredError,
-	InvalidTokenError
+	InvalidTokenError,
+	UnAvailableError
+
 };
