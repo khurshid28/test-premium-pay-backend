@@ -88,80 +88,8 @@ class App {
         message: "Update 2 is done",
       });
 
-      // let token;
-      // let urlScoring = ""
-      // let urlToken = ""
-      // let responseToken = await axios.post(
-      //   urlToken,
-      //   {
-      //     "username": "PP02",
-      //     "password": "1500000"
+     
 
-      // },
-      //   {
-      //     headers: {
-      //       "Content-Type":  "application/json"
-      //     },
-      //   }
-      // );
-      // token= responseToken.data.token;
-
-      // let response = await axios.post(
-      //   urlScoring,
-      //   {
-      //     "orderId": "PP02",
-      //     "amount": "1500000",
-      //     "duration": "12",
-      //     "passSeria": "AA",
-      //     "passNumber": "1234567",
-      //     "birthDate": "1986-02-11",
-      //     "phoneNumber": "998900051616",
-      //     "cardNumber": "8600510387444544",
-      //     "inn": "305269071",
-      //     "selfie": "/9asdfasdfasdf"
-      // },
-      //   {
-      //     headers: {
-      //       "Authorization": "Bearer " + token,
-      //       "Content-Type":  "application/json"
-
-      //     },
-      //   }
-      // );
-
-      // if(response.data.status =="ok"){
-      //   await new Promise(function (resolve, reject) {
-      //     db.query(update2ZayavkaFunc(req.body), function (err, results, fields) {
-      //       if (err) {
-      //         return reject(err);
-      //       }
-
-      //       resolve(results);
-      //     });
-      //   });
-
-      //   let zayavka = await new Promise(function (resolve, reject) {
-      //     db.query(
-      //       `SELECT * from Zayavka WHERE id=${req.body.id}`,
-      //       function (err, results, fields) {
-      //         if (err) {
-      //           reject(err);
-      //         }
-      //         if (results.length != 0) {
-      //           resolve(results[0]);
-      //         } else {
-      //           resolve(null);
-      //         }
-      //       }
-      //     );
-      //   });
-      //   return res.status(200).json({
-      //     data: zayavka,
-      //     message: "Update 2 is done",
-      //   });
-      // }
-
-      throw new Error("Something Error");
     } catch (error) {
       console.log("error");
       console.log(error);
@@ -171,81 +99,83 @@ class App {
   async update3(req, res, next) {
     try {
       let { id, max_amount, selfie_with_passport,cardNumber,birthDate } = req.body;
-      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
-      const response1 = await axios.post(
-        url1,
-        {
-          username: process.env.DAVR_USERNAME,
-          password: process.env.DAVR_PASSWORD, 
-        },
 
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      
+      // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      // let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
+      // const response1 = await axios.post(
+      //   url1,
+      //   {
+      //     username: process.env.DAVR_USERNAME,
+      //     password: process.env.DAVR_PASSWORD, 
+      //   },
 
-      let zayavka = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
-          function (err, results, fields) {
-            if (err) {
-              reject(err);
-            }
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
-      let alldata = {
-        orderId: "PP-test-" + zayavka.id,
-        amount: max_amount,
-        duration: "12",
-        passSeria: zayavka.passport.substring(0, 2),
-        passNumber: zayavka.passport.substring(2),
-        birthDate: birthDate,
-        phoneNumber: zayavka.phoneNumber,
-        phoneNumber2: zayavka.phoneNumber2,
-        cardNumber: cardNumber,
-        inn: process.env.PREMIUM_INN,
-        selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
-      };
-      fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
-        if (err) throw {
-            err,
-            type:"file"
-        };
-       });
-      const response2 = await axios.post(url2,{
-        orderId: "PP-test-" + zayavka.id,
-        amount: max_amount,
-        duration: "12",
-        passSeria: zayavka.passport.substring(0, 2),
-        passNumber: zayavka.passport.substring(2),
-        birthDate: birthDate,
-        phoneNumber: zayavka.phoneNumber.substring(2),
-        phoneNumber2: zayavka.phoneNumber2.substring(2),
-        cardNumber: cardNumber,
-        inn: process.env.PREMIUM_INN,
-        selfie: selfie_with_passport.substring(0, 20),
-      },
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
 
-        {
-          headers: {
-              "Authorization": "Bearer " + response1.data["token"],
-              "Content-Type": "application/json",
+      // let zayavka = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `SELECT * from Zayavka WHERE id=${req.body.id}`,
+      //     function (err, results, fields) {
+      //       if (err) {
+      //         reject(err);
+      //       }
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
+      // let alldata = {
+      //   orderId: "PP-test-" + zayavka.id,
+      //   amount: max_amount,
+      //   duration: "12",
+      //   passSeria: zayavka.passport.substring(0, 2),
+      //   passNumber: zayavka.passport.substring(2),
+      //   birthDate: birthDate,
+      //   phoneNumber: zayavka.phoneNumber,
+      //   phoneNumber2: zayavka.phoneNumber2,
+      //   cardNumber: cardNumber,
+      //   inn: process.env.PREMIUM_INN,
+      //   selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
+      // };
+      // fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
+      //   if (err) throw {
+      //       err,
+      //       type:"file"
+      //   };
+      //  });
+      // const response2 = await axios.post(url2,{
+      //   orderId: "PP-test-" + zayavka.id,
+      //   amount: max_amount,
+      //   duration: "12",
+      //   passSeria: zayavka.passport.substring(0, 2),
+      //   passNumber: zayavka.passport.substring(2),
+      //   birthDate: birthDate,
+      //   phoneNumber: zayavka.phoneNumber.substring(2),
+      //   phoneNumber2: zayavka.phoneNumber2.substring(2),
+      //   cardNumber: cardNumber,
+      //   inn: process.env.PREMIUM_INN,
+      //   selfie: selfie_with_passport.substring(0, 20),
+      // },
 
-          }
-      });
+      //   {
+      //     headers: {
+      //         "Authorization": "Bearer " + response1.data["token"],
+      //         "Content-Type": "application/json",
+
+      //     }
+      // });
+
       // console.log(response2.data);
 
 
-      // return next(new InternalServerError(500, "error.message"));
 
       await new Promise(function (resolve, reject) {
         db.query(update3ZayavkaFunc(req.body), function (err, results, fields) {
@@ -433,6 +363,55 @@ class App {
 
   async updateFinish(req, res, next) {
     try {
+
+      // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      // let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
+      // const response1 = await axios.post(
+      //   url1,
+      //   {
+      //     username: process.env.DAVR_USERNAME,
+      //     password: process.env.DAVR_PASSWORD, 
+      //   },
+
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+
+      // let zayavka1 = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `SELECT * from Zayavka WHERE id=${req.body.id}`,
+      //     function (err, results, fields) {
+      //       if (err) {
+      //         reject(err);
+      //       }
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
+     
+      // const response2 = await axios.post(url2,{
+      //     "orderId": `PP-test-${zayavka1.id}`,
+      //     "durationMonth": zayavka1.expired_month,
+      //     "summa": zayavka1.payment_amount,
+      // },
+      //   {
+      //     headers: {
+      //         "Authorization": "Bearer " + response1.data["token"],
+      //         "Content-Type": "application/json",
+
+      //     }
+      // });
+      
+
+
+
       await new Promise(function (resolve, reject) {
         db.query(
           updateFinishZayavkaFunc(req.body),
@@ -446,6 +425,8 @@ class App {
         );
       });
 
+
+      
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
@@ -603,6 +584,8 @@ class App {
         //   condition.push(`user_id=${u.id}`);
         // });
         // condition = condition.join(` OR `);
+
+
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
             `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
