@@ -4,13 +4,13 @@ const User = require("../models/User.js");
 const Merchant = require("../models/Merchant.js");
 const {
     InternalServerError,
-    AuthorizationError,
+    AuthorizationError, 
     BadRequestError,
     NotFoundError,
     ForbiddenError
 } = require("../utils/errors.js");
 const jwt = require("../utils/jwt.js");
-const { mockUser, mockSuper } = require("../../mock.js");
+// const { mockUser, mockSuper } = require("../../mock.js");
 
 let db =require("../config/db")
 

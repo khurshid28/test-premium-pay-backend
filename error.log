@@ -53,3 +53,13 @@
 /api/v1/zayavka/update/3/___POST___1696848335174___InternalServerError___error.message
 /api/v1/zayavka/update/3/___POST___1696849246649___InternalServerError___error.message
 /api/v1/zayavka/update/3/___POST___1696850438332___InternalServerError___Request failed with status code 413
+/api/v1/myid/check___POST___1696930476643___InternalServerError___Cannot read properties of null (reading 'finished_time')
+/api/v1/zayavka/update/2/___POST___1696931334106___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931336933___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931339186___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931343030___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931375094___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931388527___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931511703___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/myid___POST___1696940769913___InternalServerError___Request failed with status code 400
+/api/v1/myid___POST___1696941073764___InternalServerError___Request failed with status code 400

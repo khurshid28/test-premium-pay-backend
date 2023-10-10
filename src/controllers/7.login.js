@@ -14,7 +14,7 @@ const {
 } = require("../utils/errors.js");
 const jwt = require("../utils/jwt.js");
 
-const { mockUser, mockSuper } = require("../../mock.js");
+// const { mockUser, mockSuper } = require("../../mock.js");
 
 class Login {
   async userLogin(req, res, next) {

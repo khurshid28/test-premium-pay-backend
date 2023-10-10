@@ -39,18 +39,48 @@ class Myid {
 
     
     async check(req, res, next) {
-
+  
       
         try {
            let {passport} = req.body;
+           console.log(req.body);
+           let zayavka2 = await new Promise(function (resolve, reject) { 
+            db.query(
+              `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring ORDER BY id DESC '`,
+              function (err, results, fields) {
+                // console.log("here");
+                // console.log(err);
+                if (err) {
+                   reject(err);
+                }
+                console.log("++++", results.length+"ta topildi");
+                if (results.length != 0) {
+                   
+                  resolve(results[0]);
+                } else {
+                    resolve(null);
+                }
+              }
+            );
+          });
+          
+          if(zayavka2){
+            if(Date.daysBetween(Date.parse(zayavka2.finished_time),Date.now() ) < 4 ){
+                return res
+                .status(200)
+                .json({  message: "Пользователю не предоставлено разрешение",status : false });
+             }
+          }
+
+
            let zayavka = await new Promise(function (resolve, reject) { 
             db.query(
-              `Select * from Zayavka WHERE passport='${passport}'`,
+              `Select * from Zayavka WHERE passport='${passport}' AND status='finished' ORDER BY id DESC `,
               function (err, results, fields) {
                 if (err) {
                    reject(err);
                 }
-                console.log("++++", results);
+                console.log("++++", results.length+"ta topildi");
                 if (results.length != 0) {
                    
                   resolve(results[0]);
@@ -66,25 +96,19 @@ class Myid {
           if (!zayavka) {
            return res
             .status(200)
-            .json({  message: "User is available",status : true });
+            .json({  message: "Пользователю предоставлено разрешение",status : true });
+          }else{
+            if(Date.daysBetween(Date.parse(zayavka.finished_time),Date.now() ) < 60 ){
+                return res
+                .status(200)
+                .json({  message: "Пользователю не предоставлено разрешение",status : false });
+             }
           }
-         if((zayavka.status == "finished" || zayavka.status == "canceled_by_client") &&  Date.daysBetween(Date.parse(zayavka.finished_time),Date.now() ) < 60 ){
-            return res
+          return res
             .status(200)
-            .json({  message: "User is unavailable",status : false });
-         }else{
-            if(zayavka.status == "canceled_by_scoring" &&  Date.daysBetween(Date.parse(zayavka.finished_time),Date.now() ) < 3){
-                return res
-                .status(200)
-                .json({  message: "User is unavailable",status : false });
-            }else{
-                return res
-                .status(200)
-                .json({  message: "User is available",status : true });
-            }
-            
-         }
-          
+            .json({  message: "Пользователю предоставлено разрешение",status : true });
+        
+        
 
         } catch (error) {
             console.log(">>>>>>>>>. ERROR >>>>>>>>>>");
