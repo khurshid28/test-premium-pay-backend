@@ -33,7 +33,9 @@ module.exports = async (req, res, next) => {
         }
       );
     });
-
+    if(!Myzayavka) {
+      return next();
+    }
     let zayavka = await new Promise(function (resolve, reject) {
       db.query(
         `Select * from Zayavka WHERE passport='${Myzayavka.passport}' AND id != '${req.body.id}' AND status='progress' `,
@@ -57,6 +59,7 @@ module.exports = async (req, res, next) => {
     return next(new UnAvailableError(403, "Пользователю не предоставлено разрешение"));
   } catch (error) {
     console.log("????????????");
+    console.log(error);
     if (error instanceof TokenExpiredError) {
       return next(new AuthorizationError(401, "Token has expired"));
     } else if (error instanceof JsonWebTokenError) {

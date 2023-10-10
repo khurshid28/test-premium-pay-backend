@@ -30,10 +30,9 @@ let PREMIUM = require("./Premium-Query").PREMIUM;
 const PORT = process.env.PORT || 8090;
 
 // middlewares
-app.use(morgan("dev"), cors(), rateLimit(), express.json({limit: '50mb'}));
+app.use(morgan("dev"), cors(), rateLimit(), express.json({limit: '10mb'}));
 
-// auth for APIs
-// app.use(authenticateToken);
+
 
 // all routes
 app.use(router);
@@ -47,43 +46,11 @@ app.use(logger);
 // static
 app.use("/static", express.static(path.join(__dirname, "public")));
 
-// app.use(express.limit(10*1024*1024*1024));
 
 
 
 
 
-
-
-
-
-app.get("/test", (req, res) => {
-  // db.query("insert into test_table (name) values(?)",['fffd'], function (err, results, fields) {
-  //   console.log(err);
-  //   if (err) {
-  //     return res.send({ err });
-  //   }
-  //   return res.send({ results });
-  // });
-  try {
-    const inputSring = req.body.image;
-    var decodedImage = Buffer.from( inputSring).toString("base64");
-// const buffer = Buffer.from(inputSring);
-// const base64String = buffer.toString('base64');
- 
-// console.log(base64String);
-    return res.send({
-      "status":"ok",
-      decodedImage
-    })
-  } catch (error) {
-    console.log(error);
-    return res.send({
-      "status":"ok",
-      error
-    })
-  }
-});
 
 // starting server
 app.listen(PORT, async () => {
@@ -94,7 +61,7 @@ app.listen(PORT, async () => {
   //   }
   //   console.log({ results });
   // });
- 
+  
 
    
   // db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {

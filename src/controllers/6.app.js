@@ -673,10 +673,10 @@ function update6ZayavkaFunc(data) {
 }
 
 function update7ZayavkaFunc(data) {
-  let { id, selfie } = data;
-  return `UPDATE Zayavka SET step=7,selfie='${selfie}' WHERE id = ${id};`;
+  let { id } = data;
+  return `UPDATE Zayavka SET step=7,selfie='/static/images/zayavka${id}.jpg' WHERE id = ${id};`;
 }
-
+ 
 function updateFinishZayavkaFunc(data) {
   let { id } = data;
   return `UPDATE Zayavka SET step=8,agree = TRUE,status = 'finished',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE id = ${id};`;

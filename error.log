@@ -63,3 +63,7 @@
 /api/v1/zayavka/update/2/___POST___1696931511703___UnAvailableError___Пользователю не предоставлено разрешение
 /api/v1/myid___POST___1696940769913___InternalServerError___Request failed with status code 400
 /api/v1/myid___POST___1696941073764___InternalServerError___Request failed with status code 400
+/api/v1/zayavka/update/7/___POST___1696948358550___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/zayavka/update/7/___POST___1696948390821___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/zayavka/update/7/___POST___1696948426293___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/zayavka/update/7/___POST___1696948457041___InternalServerError___Cannot read properties of null (reading 'passport')
