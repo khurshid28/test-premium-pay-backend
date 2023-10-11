@@ -1,7 +1,9 @@
 require("./src/config/_index.js");
 require("./src/config/db.js");
+require("./src/utils/schedule")
 
 var express = require("express");
+
 
 const cors = require("cors");
 const morgan = require("morgan");
@@ -55,12 +57,12 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
-  db.query(`UPDATE Zayavka SET status='progress' WHERE id=29`, function (err, results, fields) {
-    if (err) { 
-      console.log({ err }); 
-    }
-    console.log({ results });
-  });
+  // db.query(`UPDATE Zayavka SET status='progress' WHERE id=29`, function (err, results, fields) {
+  //   if (err) { 
+  //     console.log({ err }); 
+  //   }
+  //   console.log({ results });
+  // });
   
 
    
@@ -103,3 +105,5 @@ app.listen(PORT, async () => {
   //   }
   // );
 });
+
+
