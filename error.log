@@ -67,3 +67,13 @@
 /api/v1/zayavka/update/7/___POST___1696948390821___InternalServerError___Cannot read properties of null (reading 'passport')
 /api/v1/zayavka/update/7/___POST___1696948426293___InternalServerError___Cannot read properties of null (reading 'passport')
 /api/v1/zayavka/update/7/___POST___1696948457041___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/myid/___POST___1697053818683___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697053971185___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697053999109___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054034729___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054042232___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054067995___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054085572___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054147708___InternalServerError___Request failed with status code 400
+/api/v1/myid___POST___1697081315006___InternalServerError___Request failed with status code 403
+/api/v1/myid___POST___1697081487225___InternalServerError___Request failed with status code 403

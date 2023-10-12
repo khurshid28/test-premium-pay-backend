@@ -1,5 +1,5 @@
 require("./src/config/_index.js");
-require("./src/config/db.js");
+
 require("./src/utils/schedule")
 
 var express = require("express");
@@ -57,14 +57,14 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
-  // db.query(`UPDATE Zayavka SET status='progress' WHERE id=29`, function (err, results, fields) {
+  // db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
   //   if (err) { 
   //     console.log({ err }); 
   //   }
   //   console.log({ results });
   // });
   
-
+ 
    
   // db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
   //   console.log(err);
@@ -105,5 +105,7 @@ app.listen(PORT, async () => {
   //   }
   // );
 });
+
+
 
 
