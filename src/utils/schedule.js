@@ -6,7 +6,7 @@ schedule.scheduleJob({hour: 0, minute: 0,}, () => {
     console.log("Job runs every day at = " + date.toString());
     
     db.query(
-      `Update Zayavka SET status='canceled_by_daily',canceled_reason='Автоматический',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE status='progress';`,
+      `Update Zayavka SET status='canceled_by_daily',canceled_reason='Автоматический',finished_time = CURRENT_TIMESTAMP WHERE status='progress';`,
       function (err, results, fields) {
         console.log(err);
         console.log("okkk");

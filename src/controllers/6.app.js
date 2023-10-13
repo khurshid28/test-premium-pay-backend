@@ -323,10 +323,10 @@ class App {
       return next(new InternalServerError(500, error.message));
     }
   }
-  async update7(req, res, next) {
+  async updateFinish(req, res, next) {
     try {
       await new Promise(function (resolve, reject) {
-        db.query(update7ZayavkaFunc(req.body), function (err, results, fields) {
+        db.query(updateFinishZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
             return reject(err);
           }
@@ -353,7 +353,7 @@ class App {
 
       return res.status(200).json({
         data: zayavka,
-        message: "Update 7 is done",
+        message: "Update is finished Successfully",
       });
     } catch (error) {
       console.log(error.message);
@@ -361,7 +361,7 @@ class App {
     }
   }
 
-  async updateFinish(req, res, next) {
+  async update7(req, res, next) {
     try {
 
       // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
@@ -414,7 +414,7 @@ class App {
 
       await new Promise(function (resolve, reject) {
         db.query(
-          updateFinishZayavkaFunc(req.body),
+          update7ZayavkaFunc(req.body),
           function (err, results, fields) {
             if (err) {
               return reject(err);
@@ -445,13 +445,15 @@ class App {
 
       return res.status(200).json({
         data: zayavka,
-        message: "Update Finish is done",
+        message: "Update 7 is done ",
       });
     } catch (error) {
       console.log(error.message);
       return next(new InternalServerError(500, error.message));
     }
   }
+
+
   async cancel_by_client(req,res,next){
     try {
       await new Promise(function (resolve, reject) {
@@ -655,15 +657,18 @@ function update6ZayavkaFunc(data) {
   return `UPDATE Zayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 }
 
+
 function update7ZayavkaFunc(data) {
   let { id } = data;
-  return `UPDATE Zayavka SET step=7,selfie='/static/images/zayavka${id}.jpg' WHERE id = ${id};`;
+  return `UPDATE Zayavka SET step=7,agree = TRUE WHERE id = ${id};`;
 }
- 
+
 function updateFinishZayavkaFunc(data) {
   let { id } = data;
-  return `UPDATE Zayavka SET step=8,agree = TRUE,status = 'finished',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE id = ${id};`;
+  return `UPDATE Zayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE id = ${id};`;
 }
+ 
+
 function cancelByClientZayavkaFunc(data) {
   let { id, canceled_reason } = data;
   return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
