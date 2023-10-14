@@ -84,7 +84,24 @@ class App {
         });
       });
 
+      let zayavkaUpdated = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          function (err, results, fields) {
+            if (err) {
+              reject(err);
+            }
+            if (results.length != 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
+
       return res.status(200).json({
+        data: zayavkaUpdated,
         message: "Update 2 is done",
       });
 
@@ -224,7 +241,7 @@ class App {
         });
       });
 
-      let zayavka = await new Promise(function (resolve, reject) {
+      let zayavkaUpdated = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
@@ -241,7 +258,7 @@ class App {
       });
 
       return res.status(200).json({
-        data: zayavka,
+        data: zayavkaUpdated,
         message: "Update 4 is done",
       });
     } catch (error) {
