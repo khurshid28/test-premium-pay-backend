@@ -25,6 +25,7 @@ const app = express();
 app.get("/", (req, res) => res.send("premium pay"));
 
 let db = require("./src/config/db");
+const checkToken = require("./src/middlewares/check-token.js");
 let PREMIUM = require("./Premium-Query").PREMIUM;
 
 
@@ -46,7 +47,7 @@ app.use(errorHandler);
 app.use(logger);
 
 // static
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use( checkToken, express.static(path.join(__dirname, "public")));
 
 
 
@@ -57,12 +58,12 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
-  db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
-    if (err) { 
-      console.log({ err }); 
-    }
-    console.log({ results });
-  });
+  // db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
+  //   if (err) { 
+  //     console.log({ err }); 
+  //   }
+  //   console.log({ results });
+  // });
   
 
  
