@@ -80,6 +80,6 @@ const userSchema = new mongoose.Schema({
 
 userSchema.index({ phoneNumber: 1 });
 
-const User = mongoose.model("User-test8", userSchema);
+const User = mongoose.model("User-test10", userSchema);
 
 module.exports = User;

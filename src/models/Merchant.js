@@ -48,6 +48,6 @@ const merchantSchema = new mongoose.Schema({
 
 
 
-const Merchant = mongoose.model("merchant-test8", merchantSchema);
+const Merchant = mongoose.model("merchant-test10", merchantSchema);
 
 module.exports = Merchant;

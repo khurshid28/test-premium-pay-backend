@@ -18,6 +18,11 @@ const superSchema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    work_status: {
+        type: String,
+        enum: ["working", "blocked", "deleted", ],
+        default: "working",
+    },
     phoneNumber: {
         type: String,
         required: true,
@@ -32,6 +37,6 @@ const superSchema = new mongoose.Schema({
 
 superSchema.index({ phoneNumber: 1 });
 
-const Super = mongoose.model("Super-test8", superSchema);
+const Super = mongoose.model("Super-test10", superSchema);
 
 module.exports = Super;

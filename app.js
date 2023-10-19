@@ -1,36 +1,41 @@
-require("./src/config/index.js");
-require("./src/config/db.js");
+require("./src/config/_index.js");
+
+require("./src/utils/schedule")
+
+var express = require("express");
 
 
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const express = require("express");
-const path = require('path')
-
+const path = require("path");
+const { Buffer } = require('buffer');
 
 // all routes
-const router = require("./src/routes/index.js");
+const router = require("./src/routes/_index.js");
 
-// bult in middlewares
+// built in middlewares
 const logger = require("./src/middlewares/logger.js");
 const rateLimit = require("./src/middlewares/rate-limit.js");
 const errorHandler = require("./src/middlewares/error-handler.js");
-// const authenticateToken = require('./src/middlewares/authMiddleware.js');
 
 const app = express();
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
 
+let db = require("./src/config/db");
+const checkToken = require("./src/middlewares/check-token.js");
+let PREMIUM = require("./Premium-Query").PREMIUM;
+
+
 // PORT
 const PORT = process.env.PORT || 8090;
 
 // middlewares
-app.use(morgan("dev"), cors(),rateLimit(), express.json());
+app.use(morgan("dev"), cors(), rateLimit(), express.json({limit: '10mb'}));
 
-// auth for APIs
-// app.use(authenticateToken);
+
 
 // all routes
 app.use(router);
@@ -40,10 +45,69 @@ app.use(helmet());
 // error handling
 app.use(errorHandler);
 app.use(logger);
- 
 
-// static 
-app.use('/static', express.static(path.join(__dirname, 'public')));
+// static
+app.use( checkToken, express.static(path.join(__dirname, "public")));
+
+
+
+
+
+
 
 // starting server
-app.listen(PORT, () => console.log(`server ready on port:${PORT}`));
+app.listen(PORT, async () => {
+  console.log(`server ready on port:${PORT}`);
+  // db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
+  //   if (err) { 
+  //     console.log({ err }); 
+  //   }
+  //   console.log({ results });
+  // });
+  
+
+ 
+   
+  // db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
+  //   console.log(err);
+  //   if (err) {
+  //     console.log({ err });
+  //   }
+  //   console.log({ results });
+  // });
+  // db.query(
+  //   PREMIUM.createMerchantTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+  // db.query(
+  //   PREMIUM.createFillialTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+
+  // db.query(
+  //   PREMIUM.createZayavkaTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+});
+
+
+
+

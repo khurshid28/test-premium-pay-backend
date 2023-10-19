@@ -1,0 +1,82 @@
+/api/v1/fillial/create/___POST___1696663701895___InternalServerError___Column count doesn't match value count at row 1
+/api/v1/myid/check___POST___1696683948110___InternalServerError___Cannot read properties of null (reading 'status')
+/api/v1/myid___POST___1696683992489___InternalServerError___Request failed with status code 404
+/api/v1/myid/check___POST___1696684154315___InternalServerError___Cannot read properties of null (reading 'status')
+/api/v1/myid___POST___1696684164879___InternalServerError___Request failed with status code 404
+/api/v1/myid/check___POST___1696684228644___InternalServerError___Cannot read properties of null (reading 'status')
+/api/v1/myid___POST___1696684240961___InternalServerError___Request failed with status code 404
+/api/v1/myid___POST___1696684321911___InternalServerError___Request failed with status code 404
+/api/v1/myid___POST___1696684412574___InternalServerError___Request failed with status code 404
+/api/v1/myid___POST___1696684514882___InternalServerError___Request failed with status code 404
+/api/v1/zayavka/update/2___POST___1696685717940___InternalServerError___connect ECONNREFUSED ::1:80
+/api/v1/zayavka/update/2___POST___1696685738167___InternalServerError___connect ECONNREFUSED ::1:80
+/api/v1/zayavka/update/2___POST___1696685751207___InternalServerError___connect ECONNREFUSED ::1:80
+/api/v1/zayavka/update/2___POST___1696685964211___InternalServerError___zayavka is not defined
+/api/v1/zayavka/update/2___POST___1696685965676___InternalServerError___zayavka is not defined
+/test___GET___1696722096980___ReferenceError___request is not defined
+/test___GET___1696722123331___ReferenceError___request is not defined
+/test___GET___1696722124610___ReferenceError___request is not defined
+/test___GET___1696722132427___ReferenceError___request is not defined
+/test___GET___1696722133780___ReferenceError___request is not defined
+/test___GET___1696722211349___ReferenceError___request is not defined
+/api/v1/zayavka/update/3/___POST___1696772200497___InternalServerError___Data truncated for column 'max_amount' at row 1
+/api/v1/zayavka/getAll/___GET___1696799247466___InternalServerError___Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',step>0 ORDER BY id DESC' at line 1
+/api/v1/zayavka/update/3/___POST___1696834379078___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696834498281___InternalServerError___Cannot read properties of undefined (reading 'passport')
+/api/v1/zayavka/update/3/___POST___1696834572996___InternalServerError___Cannot read properties of undefined (reading 'passport')
+/api/v1/zayavka/update/3/___POST___1696834662331___InternalServerError___Cannot read properties of undefined (reading 'passport')
+/api/v1/zayavka/update/3/___POST___1696834747639___InternalServerError___Cannot read properties of undefined (reading 'passport')
+/api/v1/zayavka/update/3/___POST___1696834799498___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696834887204___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696834909226___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696834958459___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696835003807___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696835359238___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696835421151___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696835507945___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696835522646___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696835810631___UnAvailableError___User is unavailable
+/api/v1/zayavka/update/3/___POST___1696844156799___InternalServerError___Request failed with status code 415
+/api/v1/zayavka/update/3/___POST___1696844221474___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696844575678___InternalServerError___Request failed with status code 404
+/api/v1/zayavka/update/3/___POST___1696844604808___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696845370439___InternalServerError___Request failed with status code 401
+/api/v1/zayavka/update/3/___POST___1696845448489___InternalServerError___Request failed with status code 401
+/api/v1/zayavka/update/3/___POST___1696845622119___InternalServerError___Request failed with status code 401
+/api/v1/zayavka/update/3/___POST___1696845786606___InternalServerError___Request failed with status code 401
+/api/v1/zayavka/update/3/___POST___1696847267745___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696847408773___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696847423816___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696847477850___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696847811346___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696847907057___InternalServerError___Request failed with status code 401
+/api/v1/zayavka/update/3/___POST___1696848335174___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696849246649___InternalServerError___error.message
+/api/v1/zayavka/update/3/___POST___1696850438332___InternalServerError___Request failed with status code 413
+/api/v1/myid/check___POST___1696930476643___InternalServerError___Cannot read properties of null (reading 'finished_time')
+/api/v1/zayavka/update/2/___POST___1696931334106___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931336933___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931339186___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931343030___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931375094___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931388527___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/zayavka/update/2/___POST___1696931511703___UnAvailableError___Пользователю не предоставлено разрешение
+/api/v1/myid___POST___1696940769913___InternalServerError___Request failed with status code 400
+/api/v1/myid___POST___1696941073764___InternalServerError___Request failed with status code 400
+/api/v1/zayavka/update/7/___POST___1696948358550___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/zayavka/update/7/___POST___1696948390821___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/zayavka/update/7/___POST___1696948426293___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/zayavka/update/7/___POST___1696948457041___InternalServerError___Cannot read properties of null (reading 'passport')
+/api/v1/myid/___POST___1697053818683___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697053971185___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697053999109___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054034729___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054042232___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054067995___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054085572___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1697054147708___InternalServerError___Request failed with status code 400
+/api/v1/myid___POST___1697081315006___InternalServerError___Request failed with status code 403
+/api/v1/myid___POST___1697081487225___InternalServerError___Request failed with status code 403
+/api/v1/zayavka/update/3___POST___1697227465852___InternalServerError___Data truncated for column 'max_amount' at row 1
+/api/v1/zayavka/update/7___POST___1697227551206___InternalServerError___You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'HOUR WHERE id = 8' at line 1
+/api/v1/zayavka/update/finish___POST___1697227609666___InternalServerError___You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE id = 8' at line 1
