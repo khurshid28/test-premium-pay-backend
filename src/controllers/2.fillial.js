@@ -57,7 +57,7 @@ class Fillial {
            
             let id = await new Promise(function (resolve, reject) {
                 db.query(
-                  `INSERT INTO Fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
+                  `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
                     req.user.id
                   },"date": "${new Date().addHours(5).toISOString()}"}','${inn}','${mfo}','${bank_name}','${nds}','${hisob_raqam}','${director_name}','${director_phone}') ;`,
                   function (err, results, fields) {
