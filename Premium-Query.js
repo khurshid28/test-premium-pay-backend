@@ -43,7 +43,7 @@ Date.prototype.addHours = function (h) {
       max_amount DOUBLE(10,2),
       payment_amount DOUBLE(10,2),
       expired_month int,
-      created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP + INTERVAL 5 HOUR,
+      created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       finished_time TIMESTAMP,
       bank varchar(255) default 'Davr',
       selfie varchar(255),
@@ -58,7 +58,7 @@ Date.prototype.addHours = function (h) {
       work_status ENUM("working","blocked","super_blocked","deleted") default "working",
       type ENUM("MERCHANT","AGENT") default "MERCHANT",
       percent_type ENUM("IN","OUT") default "OUT",
-      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP + INTERVAL 5 HOUR,
+      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       admin_id int,
       expired_months JSON,
       who_created JSON,
@@ -71,7 +71,7 @@ Date.prototype.addHours = function (h) {
       id int PRIMARY KEY AUTO_INCREMENT,
       name varchar(255),
       work_status ENUM("working","blocked","super_blocked","deleted") default "working",
-      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP + INTERVAL 5 HOUR,
+      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       address JSON,
       merchant_id int,
       admin_id int,
@@ -93,7 +93,7 @@ Date.prototype.addHours = function (h) {
       loginName varchar(255),
       loginPassword varchar(255),
       fullName varchar(255),
-      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP + INTERVAL 5 HOUR,
+      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       work_status ENUM("working","blocked","super_blocked","deleted") default "working",
       age int,
       gender ENUM("ERKAK","AYOL") default "ERKAK",
@@ -106,7 +106,7 @@ Date.prototype.addHours = function (h) {
       loginName varchar(255),
       loginPassword varchar(255),
       fullName varchar(255),
-      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP + INTERVAL 5 HOUR,
+      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       work_status ENUM("working","blocked","super_blocked","deleted") default "working",
       phoneNumber varchar(255),
       role varchar(255) default "Admin",
@@ -137,7 +137,7 @@ Date.prototype.addHours = function (h) {
       loginName varchar(255),
       loginPassword varchar(255),
       fullName varchar(255),
-      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP + INTERVAL 5 HOUR,
+      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       work_status ENUM("working","blocked","super_blocked","deleted") default "working",
       age int,
       gender ENUM("ERKAK","AYOL") default "ERKAK",
@@ -151,7 +151,7 @@ Date.prototype.addHours = function (h) {
       loginName varchar(255),
       loginPassword varchar(255),
       fullName varchar(255),
-      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP + INTERVAL 5 HOUR,
+      created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       work_status ENUM("working","blocked","super_blocked","deleted") default "working",
       phoneNumber varchar(255),
       image LONGTEXT,
@@ -175,10 +175,10 @@ Date.prototype.addHours = function (h) {
   let update5Zayavka = `UPDATE Zayavka SET step=5,agree = TRUE WHERE id = 1;`; //  oferta page
   let update6Zayavka = `UPDATE Zayavka SET step=6,products ='[{"name":"iphone 12","price":4100000},{"name":"iphone 12","price":4780000}]',location='{"lat":41.20499,"long":69.11922}',device='{"id":"1223","model":"SAMSUNG 21s"}' WHERE id = 1;`; // products page
   let update7Zayavka = `UPDATE Zayavka SET step=7,amount=1000000,payment_amount=1410000,expired_month = 12 WHERE id = 1;`; // to bank in last request,for oformeleniya  // grafik page
-  let updateFinishZayavka = `UPDATE Zayavka SET step=8,selfie='/9vashgdsagh',status = 'finished',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE id = 1;`; // for selfie to our server  // selfie with tilhat page
+  let updateFinishZayavka = `UPDATE Zayavka SET step=8,selfie='/9vashgdsagh',status = 'finished',finished_time = CURRENT_TIMESTAMP WHERE id = 1;`; // for selfie to our server  // selfie with tilhat page
 
-  let cancelByClientZayavka = `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='procent is too high' WHERE id = 1`;
-  let cancelByScoringZayavka = `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='canceled by scoring' WHERE id = 1`;
+  let cancelByClientZayavka = `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP,canceled_reason='procent is too high' WHERE id = 1`;
+  let cancelByScoringZayavka = `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP,canceled_reason='canceled by scoring' WHERE id = 1`;
   
   let dropZayavkeTable = `DROP TABLE Zayavka;`;
   let dropUserTable = `DROP TABLE User;`;
@@ -230,17 +230,17 @@ Date.prototype.addHours = function (h) {
   
   function updateFinishZayavkaFunc(data) {
     let { id, selfie } = data;
-    return `UPDATE Zayavka SET step=8,selfie='${selfie}',status = 'finished',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE id = ${id};`;
+    return `UPDATE Zayavka SET step=8,selfie='${selfie}',status = 'finished',finished_time = CURRENT_TIMESTAMP WHERE id = ${id};`;
   }
   
   function cancelByScoringZayavkaFunc(data) {
     let { id } = data;
-    return `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='canceled by scoring' WHERE id = ${id}`;
+    return `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP,canceled_reason='canceled by scoring' WHERE id = ${id}`;
   }
   
   function cancelByClientZayavkaFunc(data) {
     let { id, canceled_reason } = data;
-    return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
+    return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
   }
 
   
