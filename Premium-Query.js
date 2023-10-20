@@ -34,7 +34,7 @@ Date.prototype.addHours = function (h) {
       phoneNumber2 varchar(255),
       cardNumber varchar(255),
       passport varchar(255),
-      status ENUM("progress","canceled_by_scoring","canceled_by_client","canceled_by_daily","finished","confirmed","uncorfirmed","paid") default "progress",
+      status ENUM("progress","canceled_by_scoring","canceled_by_client","canceled_by_daily","finished","confirmed","uncorfirmed","paid") DEFAULT "progress",
       canceled_reason varchar(255),
       device JSON,
       location JSON,
@@ -45,10 +45,10 @@ Date.prototype.addHours = function (h) {
       expired_month int,
       created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       finished_time TIMESTAMP,
-      bank varchar(255) default "Davr",
+      bank varchar(255) DEFAULT "Davr",
       selfie varchar(255),
       agree BOOLEAN,
-      step int default 1
+      step int DEFAULT 1
   
   );`;
   
