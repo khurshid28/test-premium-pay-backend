@@ -87,7 +87,7 @@ class Scoring {
 function cancelByScoringZayavkaFunc(data) {
     let { id,reason } = data;
     reason = reason.replaceAll("'", "ʻ")
-    return `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='${reason}' WHERE id = ${id}`;
+    return `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${reason}' WHERE id = ${id}`;
   }
   function update4ZayavkaFunc(data) {
     let { id } = data;

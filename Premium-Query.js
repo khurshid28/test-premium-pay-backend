@@ -24,7 +24,7 @@ Date.prototype.addHours = function (h) {
   };
   
   
-  let createDB = `CREATE DATABASE IF NOT EXISTS PremiumDB;`;
+  let createDB = `CREATE DATABASE IF NOT EXISTS premiumdb;`;
   let createZayavkaTable = `CREATE TABLE IF NOT EXISTS Zayavka  (
       id int PRIMARY KEY AUTO_INCREMENT,
       merchant_id int,
@@ -44,8 +44,8 @@ Date.prototype.addHours = function (h) {
       payment_amount DOUBLE(10,2),
       expired_month int,
       created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      finished_time TIMESTAMP DEFAULT (NULL),
-      bank varchar(255) default 'Davr',
+      finished_time TIMESTAMP,
+      bank varchar(255) default "Davr",
       selfie varchar(255),
       agree BOOLEAN,
       step int default 1

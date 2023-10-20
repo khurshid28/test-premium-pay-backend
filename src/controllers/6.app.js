@@ -682,13 +682,13 @@ function update7ZayavkaFunc(data) {
 
 function updateFinishZayavkaFunc(data) {
   let { id } = data;
-  return `UPDATE Zayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR WHERE id = ${id};`;
+  return `UPDATE Zayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP  WHERE id = ${id};`;
 }
  
 
 function cancelByClientZayavkaFunc(data) {
   let { id, canceled_reason } = data;
-  return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP + INTERVAL 5 HOUR,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
+  return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
 }
 
 function toMyString(ob) {
