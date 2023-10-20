@@ -47,7 +47,7 @@ app.use(errorHandler);
 app.use(logger);
 
 // static
-app.use( checkToken, express.static(path.join(__dirname, "public")));
+app.use( "static", express.static(path.join(__dirname, "public")));
 
 
 
