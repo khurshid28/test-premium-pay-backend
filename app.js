@@ -23,6 +23,7 @@ const app = express();
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
+app.get("/test", (req, res) => res.send("premium pay test api"));
 
 let db = require("./src/config/db");
 const checkToken = require("./src/middlewares/check-token.js");

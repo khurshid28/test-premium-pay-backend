@@ -22,8 +22,8 @@ class Login {
       console.log(">>>>>>>>>> userLogin");
       let user;
       const { loginName, loginPassword } = req.body;
-   console.log(loginName);
-   console.log(loginPassword);
+      console.log(loginName);
+      console.log(loginPassword);
       user = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * from SuperAdmin WHERE loginName ='${loginName}' AND loginPassword ='${loginPassword}'`,
