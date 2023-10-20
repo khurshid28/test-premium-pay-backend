@@ -44,7 +44,7 @@ Date.prototype.addHours = function (h) {
       payment_amount DOUBLE(10,2),
       expired_month int,
       created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      finished_time TIMESTAMP,
+      finished_time TIMESTAMP DEFAULT (NULL),
       bank varchar(255) default 'Davr',
       selfie varchar(255),
       agree BOOLEAN,
