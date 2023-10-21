@@ -23,7 +23,20 @@ const app = express();
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
-app.get("/test", (req, res) => res.send("premium pay test api"));
+app.get("/test/delete", (req, res) =>{
+    db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
+    if (err) { 
+      return res.send({ err });
+    }
+    return res.send({ results });
+  });
+  
+  
+
+});
+
+
+
 
 let db = require("./src/config/db");
 const checkToken = require("./src/middlewares/check-token.js");
@@ -59,13 +72,7 @@ app.use( "static", express.static(path.join(__dirname, "public")));
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
-  // db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
-  //   if (err) { 
-  //     console.log({ err }); 
-  //   }
-  //   console.log({ results });
-  // });
-  
+
 
  
    
