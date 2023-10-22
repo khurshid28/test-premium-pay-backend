@@ -80,3 +80,6 @@
 /api/v1/zayavka/update/3___POST___1697227465852___InternalServerError___Data truncated for column 'max_amount' at row 1
 /api/v1/zayavka/update/7___POST___1697227551206___InternalServerError___You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'HOUR WHERE id = 8' at line 1
 /api/v1/zayavka/update/finish___POST___1697227609666___InternalServerError___You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE id = 8' at line 1
+/api/v1/zayavka/getAll/___GET___1697945503080___InternalServerError___Error: Table 'premiumdb.zayavka' doesn't exist
+/api/v1/zayavka/getAll/___GET___1697945540011___InternalServerError___Error: Table 'premiumdb.zayavka' doesn't exist
+/api/v1/zayavka/update/2/___POST___1697948757194___InternalServerError___You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'l tumani Ichki ishlar boshqarmasi',address='Buxoro viloyati, Qorako'l tumani, ar' at line 1

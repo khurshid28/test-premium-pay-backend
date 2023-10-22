@@ -31,10 +31,39 @@ app.get("/test/delete", (req, res) =>{
     return res.send({ results });
   });
   
-  
 
 });
 
+
+app.get("/test/droptable", (req, res) =>{
+  db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
+  if (err) { 
+    db.query(
+      PREMIUM.createZayavkaTable,
+      function (err, results, fields) {
+        console.log(err);
+        if (err) {
+          console.log({err})
+        }
+        console.log({results})
+      });
+    return res.send({ err });
+  }
+   db.query(
+    PREMIUM.createZayavkaTable,
+    function (err, results, fields) {
+      console.log(err);
+      if (err) {
+        console.log({err})
+      }
+      console.log({results})
+    }
+  );
+  return res.send({ results });
+});
+
+
+});
 
 
 
@@ -73,7 +102,16 @@ app.use( "static", express.static(path.join(__dirname, "public")));
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
 
-
+  // db.query("SELECT * from Zayavka", function (err, results, fields) {
+    // for (let index = 0; index < 40; index++) {
+    //   console.log(">>>>>>>>>>>>");
+      
+    // }
+  //   if (err) {
+  //     console.log({ err });
+  //   }
+  //   console.log({ results });
+  // });
  
    
   db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
@@ -130,6 +168,7 @@ app.listen(PORT, async () => {
         console.log({err})
       }
       console.log({results})
+      
     }
   );
   db.query(
@@ -142,16 +181,8 @@ app.listen(PORT, async () => {
       console.log({results})
     }
   );
-  db.query(
-    PREMIUM.createZayavkaTable,
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
+ 
+
 });
 
 

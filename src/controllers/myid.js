@@ -68,13 +68,13 @@ class Myid {
           headers: {
             Authorization: "Bearer " + myid_access_token,
           },
-        }).then((r)=>r).catch((err)=>err);
-
+        }).then((r)=>r).catch((err)=> err);
+        console.log(response2.data);
         return res.status(200).json(response2.data);
       }
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500, error.message)); 
     }
   }
 

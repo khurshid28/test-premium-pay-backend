@@ -34,6 +34,9 @@ Date.prototype.addHours = function (h) {
       phoneNumber2 varchar(255),
       cardNumber varchar(255),
       passport varchar(255),
+      passport_date varchar(255),
+      passport_by varchar(255),
+      address varchar(255),
       status ENUM("progress","canceled_by_scoring","canceled_by_client","canceled_by_daily","finished","confirmed","uncorfirmed","paid") DEFAULT "progress",
       canceled_reason varchar(255),
       device JSON,
@@ -51,6 +54,7 @@ Date.prototype.addHours = function (h) {
       step int DEFAULT 1
   
   );`;
+  
   
   let createMerchantTable = `CREATE TABLE IF NOT EXISTS merchant  (
       id int PRIMARY KEY AUTO_INCREMENT,

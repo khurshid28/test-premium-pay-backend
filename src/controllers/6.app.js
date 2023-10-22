@@ -639,9 +639,11 @@ function update1ZayavkaFunc(data) {
 }
 
 function update2ZayavkaFunc(data) {
-  let { id, phoneNumber, phoneNumber2, cardNumber } = data;
-
-  return `UPDATE Zayavka SET step=2,phoneNumber ='${phoneNumber}',phoneNumber2 ='${phoneNumber2}',cardNumber='${cardNumber}' WHERE id = ${id};`;
+  let { id, phoneNumber, phoneNumber2, cardNumber,passport_by,passport_date,address } = data;
+  passport_by =passport_by.replaceAll("'", "ʻ");
+  address =address.replaceAll("'", "ʻ");
+  
+  return `UPDATE Zayavka SET step=2,phoneNumber ='${phoneNumber}',phoneNumber2 ='${phoneNumber2}',cardNumber='${cardNumber}',passport_date='${passport_date}',passport_by='${passport_by}',address='${address}' WHERE id = ${id};`;
 }
 
 function update3ZayavkaFunc(data) {
