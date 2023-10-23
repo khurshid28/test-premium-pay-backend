@@ -8,7 +8,7 @@ const router = Router();
 router.use(checkToken);
 router.use(checkBlocked);
 router.post("/create", merchantController.create);
-router.get("/get/:id", merchantController.get);
+router.get("/:id", merchantController.get);
 router.get("/getAll", merchantController.getAll);
 
 
