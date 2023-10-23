@@ -53,7 +53,7 @@ Date.prototype.addHours = function (h) {
       agree BOOLEAN,
       step int DEFAULT 1
   
-  );`;
+  )  ENGINE=InnoDB DEFAULT CHARSET=utf8;`;
   
   
   let createMerchantTable = `CREATE TABLE IF NOT EXISTS merchant  (
