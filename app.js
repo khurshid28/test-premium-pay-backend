@@ -23,6 +23,7 @@ const app = express();
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
+
 app.get("/test/delete", (req, res) =>{
     db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
     if (err) { 
