@@ -6,6 +6,7 @@ let storage = require("../config/storage");
 class Myid {
   async getMe(req, res, next) {
     try {
+      console.log(">>>>>>>>>>>>>>>>>");
       let { code } = req.body;
       let url1 = process.env.FACE_URL + "oauth2/access-token";
       let url2 = process.env.FACE_URL + "users/me";
@@ -44,6 +45,7 @@ class Myid {
         },
       }).then((r)=>r).catch((err)=>err);
       if (response2.status == 200) {
+        console.log(response2.data);
         return res.status(200).json(response2.data);
       } else {
         console.log(response2.status);
@@ -69,6 +71,7 @@ class Myid {
             Authorization: "Bearer " + myid_access_token,
           },
         }).then((r)=>r).catch((err)=> err);
+
         console.log(response2.data);
         return res.status(200).json(response2.data);
       }

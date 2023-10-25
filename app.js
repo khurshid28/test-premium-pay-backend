@@ -115,74 +115,76 @@ app.listen(PORT, async () => {
   // });
  
    
-  db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
-    console.log(err);
-    if (err) {
-      console.log({ err });
-    }
-    console.log({ results });
-  });
-  db.query(PREMIUM.createAccountantTable, function (err, results, fields) {
-    console.log(err);
-    if (err) {
-      console.log({ err });
-    }
-    console.log({ results });
-  });
-  db.query(
-    PREMIUM.createMerchantTable,
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
-  db.query(
-    PREMIUM.createFillialTable,
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
+  // db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
+  //   console.log(err);
+  //   if (err) {
+  //     console.log({ err });
+  //   }
+  //   console.log({ results });
+  // });
+  // db.query(PREMIUM.createAccountantTable, function (err, results, fields) {
+  //   console.log(err);
+  //   if (err) {
+  //     console.log({ err });
+  //   }
+  //   console.log({ results });
+  // });
+  // db.query(
+  //   PREMIUM.createMerchantTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+  // db.query(
+  //   PREMIUM.createFillialTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
 
 
-  db.query(
-    PREMIUM.createUserTable,
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
-  db.query(
-    PREMIUM.createSuperAdminTable,
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
+  // db.query(
+  //   PREMIUM.createUserTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+  // db.query(
+  //   PREMIUM.createSuperAdminTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
       
-    }
-  );
-  db.query(
-    PREMIUM.createAdminTable,
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
- 
+  //   }
+  // );
+  // db.query(
+  //   PREMIUM.createAdminTable,
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+  
+  
+
 
 });
 
