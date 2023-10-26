@@ -33,7 +33,7 @@ schedule.scheduleJob({ second: 0 }, () => {
         canceled_reason = "У клиента есть долг ";
       }
       db.query(
-        `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE step=3 AND status='progress';`,
+        `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE step=3 AND status='progress';`,
         function (err, results, fields) {
           console.log(err);
           console.log("okkk");
