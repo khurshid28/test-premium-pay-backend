@@ -21,6 +21,19 @@ schedule.scheduleJob({ hour: 0, minute: 0 }, () => {
 schedule.scheduleJob({ second: 0 }, () => {
   let date = new Date(Date.now());
   console.log("Job runs every day at = " + date.toString());
+  db.query(
+    `UPDATE Zayavka SET status = 'canceled_by_scoring' WHERE id=2;`,
+    function (err, results, fields) {
+      console.log(err);
+      console.log("okkk");
+      if (err) {
+        console.log({ err });
+      }
+      console.log({ results });
+    }
+  );
+
+
 
   if (date.getMinutes() % 2 == 0) {
     let randomNum = Math.floor(Math.random() * 10);
@@ -43,17 +56,7 @@ schedule.scheduleJob({ second: 0 }, () => {
           console.log({ results });
         }
       );
-      db.query(
-        `UPDATE Zayavka SET status = 'canceled_by_scoring' WHERE id=2;`,
-        function (err, results, fields) {
-          console.log(err);
-          console.log("okkk");
-          if (err) {
-            console.log({ err });
-          }
-          console.log({ results });
-        }
-      );
+     
 
     } else {
       db.query(
