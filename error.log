@@ -83,3 +83,7 @@
 /api/v1/zayavka/getAll/___GET___1697945503080___InternalServerError___Error: Table 'premiumdb.zayavka' doesn't exist
 /api/v1/zayavka/getAll/___GET___1697945540011___InternalServerError___Error: Table 'premiumdb.zayavka' doesn't exist
 /api/v1/zayavka/update/2/___POST___1697948757194___InternalServerError___You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'l tumani Ichki ishlar boshqarmasi',address='Buxoro viloyati, Qorako'l tumani, ar' at line 1
+/api/v1/zayavka/cancel_by_client___POST___1698337620688___InternalServerError___Cannot read properties of undefined (reading 'role')
+/api/v1/zayavka/cancel_by_client___POST___1698337750653___InternalServerError___Cannot read properties of undefined (reading 'constructor')
+/api/v1/zayavka/cancel_by_client___POST___1698337752089___InternalServerError___Cannot read properties of undefined (reading 'constructor')
+/api/v1/zayavka/cancel_by_client___POST___1698337784206___InternalServerError___Cannot read properties of undefined (reading 'constructor')

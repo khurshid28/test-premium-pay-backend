@@ -47,7 +47,6 @@ schedule.scheduleJob({ second: 0 }, () => {
         }
       );
      
-
     } else {
       db.query(
         `Update Zayavka SET step=4 WHERE step=3 AND status='progress';`,
