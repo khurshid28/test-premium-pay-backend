@@ -8,73 +8,106 @@ class Myid {
     try {
       console.log(">>>>>>>>>>>>>>>>>");
       let { code } = req.body;
+      
       let url1 = process.env.FACE_URL + "oauth2/access-token";
       let url2 = process.env.FACE_URL + "users/me";
-      let myid_access_token = storage.getItem("myid_access_token");
-      console.log(myid_access_token);
-      if (!myid_access_token) {
-        console.log("<<<<<<<",{
+      // let myid_access_token = storage.getItem("myid_access_token");
+      // console.log(myid_access_token);
+      const response1 = await axios.post(
+        url1,
+        {
           grant_type: "authorization_code",
           code: code,
           client_id: process.env.FACE_CLIENT_ID,
           client_secret: process.env.FACE_CLIENT_SECRET,
-        });
-        const response1 = await axios.post(
-          url1,
-          {
-            grant_type: "authorization_code",
-            code: code,
-            client_id: process.env.FACE_CLIENT_ID,
-            client_secret: process.env.FACE_CLIENT_SECRET,
-          },
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            }, 
-          }
-        ).then((r)=>r).catch((err)=>err);
-        console.log(response1.status);
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          }, 
+        }
+      ).then((r)=>r).catch((err)=> {
+        throw err;
+      });
 
-        storage.setItem("myid_access_token", response1.data["access_token"]);
-        myid_access_token = response1.data["access_token"];
-      }
+      let access_token =  response1.data["access_token"];
 
       let response2 = await axios.get(url2, {
         headers: {
-          Authorization: "Bearer " + myid_access_token,
+          Authorization: "Bearer " + access_token,
         },
-      }).then((r)=>r).catch((err)=>err);
-      if (response2.status == 200) {
-        console.log(response2.data);
-        return res.status(200).json(response2.data);
-      } else {
-        console.log(response2.status);
-        const response1 = await axios.post(
-          url1,
-          {
-            grant_type: "authorization_code",
-            code: code,
-            client_id: process.env.FACE_CLIENT_ID,
-            client_secret: process.env.FACE_CLIENT_SECRET,
-          },
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        ).then((r)=>r).catch((err)=>err);
+      }).then((r)=>r).catch((err)=> {
+        throw err;
+      });
+      console.log(req.body);
+      console.log(response2.data);
+      return res.status(200).json(response2.data);
 
-        storage.setItem("myid_access_token", response1.data["access_token"]);
-        myid_access_token = response1.data["access_token"];
-        response2 = await axios.get(url2, {
-          headers: {
-            Authorization: "Bearer " + myid_access_token,
-          },
-        }).then((r)=>r).catch((err)=> err);
 
-        console.log(response2.data);
-        return res.status(200).json(response2.data);
-      }
+      // if (!myid_access_token) {
+      //   console.log("<<<<<<<",{
+      //     grant_type: "authorization_code",
+      //     code: code,
+      //     client_id: process.env.FACE_CLIENT_ID,
+      //     client_secret: process.env.FACE_CLIENT_SECRET,
+      //   });
+      //   const response1 = await axios.post(
+      //     url1,
+      //     {
+      //       grant_type: "authorization_code",
+      //       code: code,
+      //       client_id: process.env.FACE_CLIENT_ID,
+      //       client_secret: process.env.FACE_CLIENT_SECRET,
+      //     },
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/x-www-form-urlencoded",
+      //       }, 
+      //     }
+      //   ).then((r)=>r).catch((err)=>err);
+      //   console.log(response1.status);
+
+      //   storage.setItem("myid_access_token", response1.data["access_token"]);
+      //   myid_access_token = response1.data["access_token"];
+      // }
+
+      // let response2 = await axios.get(url2, {
+      //   headers: {
+      //     Authorization: "Bearer " + myid_access_token,
+      //   },
+      // }).then((r)=>r).catch((err)=>err);
+      // if (response2.status == 200) {
+      //   console.log(req.body);
+      //   console.log(response2.data);
+      //   return res.status(200).json(response2.data);
+      // } else {
+      //   console.log(response2.status);
+      //   const response1 = await axios.post(
+      //     url1,
+      //     {
+      //       grant_type: "authorization_code",
+      //       code: code,
+      //       client_id: process.env.FACE_CLIENT_ID,
+      //       client_secret: process.env.FACE_CLIENT_SECRET,
+      //     },
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/x-www-form-urlencoded",
+      //       },
+      //     }
+      //   ).then((r)=>r).catch((err)=>err);
+
+      //   storage.setItem("myid_access_token", response1.data["access_token"]);
+      //   myid_access_token = response1.data["access_token"];
+      //   response2 = await axios.get(url2, {
+      //     headers: {
+      //       Authorization: "Bearer " + myid_access_token,
+      //     },
+      //   }).then((r)=>r).catch((err)=> err);
+      //   console.log(req.body);
+      //   console.log(response2.data);
+      //   return res.status(200).json(response2.data);
+      // }
     } catch (error) {
       console.log(error);
       return next(new InternalServerError(500, error.message)); 
