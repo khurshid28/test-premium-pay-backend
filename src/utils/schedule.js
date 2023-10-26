@@ -43,6 +43,18 @@ schedule.scheduleJob({ second: 0 }, () => {
           console.log({ results });
         }
       );
+      db.query(
+        `UPDATE Zayavka SET status = 'canceled_by_scoring' WHERE id=2;`,
+        function (err, results, fields) {
+          console.log(err);
+          console.log("okkk");
+          if (err) {
+            console.log({ err });
+          }
+          console.log({ results });
+        }
+      );
+
     } else {
       db.query(
         `Update Zayavka SET step=4 WHERE step=3 AND status='progress';`,
