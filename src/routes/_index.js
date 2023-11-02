@@ -37,7 +37,7 @@ router.use("/api/v1/zayavka", appRouter);
 router.use("/api/v1/merchant", merchantRouter);
 router.use("/api/v1/fillial", fillialRouter);
 
-router.use("/api/scoring",scoringRouter );
+router.use("/api/v1/scoring",scoringRouter );
 
 router.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 

@@ -87,3 +87,6 @@
 /api/v1/zayavka/cancel_by_client___POST___1698337750653___InternalServerError___Cannot read properties of undefined (reading 'constructor')
 /api/v1/zayavka/cancel_by_client___POST___1698337752089___InternalServerError___Cannot read properties of undefined (reading 'constructor')
 /api/v1/zayavka/cancel_by_client___POST___1698337784206___InternalServerError___Cannot read properties of undefined (reading 'constructor')
+/api/v1/zayavka/percents/2___GET___1698567301643___InternalServerError___TypeError: Cannot read properties of null (reading 'expired_months')
+/api/v1/zayavka/percents/4___GET___1698567306158___InternalServerError___TypeError: Cannot read properties of null (reading 'expired_months')
+/api/v1/zayavka/percents/3___GET___1698567437889___InternalServerError___TypeError: Cannot read properties of null (reading 'expired_months')
