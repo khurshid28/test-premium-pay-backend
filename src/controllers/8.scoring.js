@@ -77,6 +77,7 @@ class Scoring {
 
 
         } catch (error) {
+          console.log(error);
             return next(new InternalServerError(500, error.message));
         }
     }
@@ -91,6 +92,8 @@ function cancelByScoringZayavkaFunc(data) {
   }
   function update4ZayavkaFunc(data) {
     let { id } = data;
+    console.log(id);
+    id = `${id}`.split("-")[1]
     return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
   }
 module.exports = new Scoring();
