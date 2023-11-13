@@ -87,6 +87,7 @@ class Scoring {
 
 function cancelByScoringZayavkaFunc(data) {
     let { id,reason } = data;
+    id = `${id}`.split("-")[1]
     reason = reason.replaceAll("'", "ʻ")
     return `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${reason}' WHERE id = ${id}`;
   }
@@ -96,4 +97,5 @@ function cancelByScoringZayavkaFunc(data) {
     id = `${id}`.split("-")[1]
     return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
   }
+
 module.exports = new Scoring();

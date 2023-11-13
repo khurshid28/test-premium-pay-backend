@@ -118,79 +118,79 @@ class App {
       let { id, max_amount, selfie_with_passport,cardNumber,birthDate } = req.body;
 
       
-      // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      // let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
-      // const response1 = await axios.post(
-      //   url1,
-      //   {
-      //     username: process.env.DAVR_USERNAME,
-      //     password: process.env.DAVR_PASSWORD, 
-      //   },
+      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
+      const response1 = await axios.post(
+        url1,
+        {
+          username: process.env.DAVR_USERNAME,
+          password: process.env.DAVR_PASSWORD, 
+        },
 
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      // let zayavka = await new Promise(function (resolve, reject) {
-      //   db.query(
-      //     `SELECT * from Zayavka WHERE id=${req.body.id}`,
-      //     function (err, results, fields) {
-      //       if (err) {
-      //         reject(err);
-      //       }
-      //       if (results.length != 0) {
-      //         resolve(results[0]);
-      //       } else {
-      //         resolve(null);
-      //       }
-      //     }
-      //   );
-      // });
-      // let alldata = {
-      //   orderId: "PP-test-" + zayavka.id,
-      //   amount: max_amount,
-      //   duration: "12",
-      //   passSeria: zayavka.passport.substring(0, 2),
-      //   passNumber: zayavka.passport.substring(2),
-      //   birthDate: birthDate,
-      //   phoneNumber: zayavka.phoneNumber,
-      //   phoneNumber2: zayavka.phoneNumber2,
-      //   cardNumber: cardNumber,
-      //   inn: process.env.PREMIUM_INN,
-      //   selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
-      // };
-      // fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
-      //   if (err) throw {
-      //       err,
-      //       type:"file"
-      //   };
-      //  });
-      // const response2 = await axios.post(url2,{
-      //   orderId: "PP-test-" + zayavka.id,
-      //   amount: max_amount,
-      //   duration: "12",
-      //   passSeria: zayavka.passport.substring(0, 2),
-      //   passNumber: zayavka.passport.substring(2),
-      //   birthDate: birthDate,
-      //   phoneNumber: zayavka.phoneNumber.substring(2),
-      //   phoneNumber2: zayavka.phoneNumber2.substring(2),
-      //   cardNumber: cardNumber,
-      //   inn: process.env.PREMIUM_INN,
-      //   selfie: selfie_with_passport.substring(0, 20),
-      // },
+      let zayavka = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          function (err, results, fields) {
+            if (err) {
+              reject(err);
+            }
+            if (results.length != 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
+      let alldata = {
+        orderId: "pptest-" + zayavka.id,
+        amount: max_amount,
+        duration: "12",
+        passSeria: zayavka.passport.substring(0, 2),
+        passNumber: zayavka.passport.substring(2),
+        birthDate: birthDate,
+        phoneNumber: zayavka.phoneNumber,
+        phoneNumber2: zayavka.phoneNumber2,
+        cardNumber: cardNumber,
+        inn: process.env.PREMIUM_INN,
+        selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
+      };
+      fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
+        if (err) throw {
+            err,
+            type:"file"
+        };
+       });
+      const response2 = await axios.post(url2,{
+        orderId: "pptest-" + zayavka.id,
+        amount: max_amount,
+        duration: "12",
+        passSeria: zayavka.passport.substring(0, 2),
+        passNumber: zayavka.passport.substring(2),
+        birthDate: birthDate,
+        phoneNumber: zayavka.phoneNumber.substring(2),
+        phoneNumber2: zayavka.phoneNumber2.substring(2),
+        cardNumber: cardNumber,
+        inn: process.env.PREMIUM_INN,
+        selfie: selfie_with_passport.substring(0, 20),
+      },
 
-      //   {
-      //     headers: {
-      //         "Authorization": "Bearer " + response1.data["token"],
-      //         "Content-Type": "application/json",
+        {
+          headers: {
+              "Authorization": "Bearer " + response1.data["token"],
+              "Content-Type": "application/json",
 
-      //     }
-      // });
+          }
+      });
 
-      // console.log(response2.data);
+      console.log(response2.data);
 
 
 
