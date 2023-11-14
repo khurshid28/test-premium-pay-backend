@@ -179,7 +179,7 @@ class App {
         phoneNumber2: zayavka.phoneNumber2.substring(2),
         cardNumber: cardNumber,
         // inn: process.env.PREMIUM_INN,
-        inn: "309685755",
+        inn: "200655453",
         selfie: selfie_with_passport.substring(0, 20),
       },
 
