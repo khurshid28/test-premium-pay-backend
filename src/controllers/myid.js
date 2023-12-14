@@ -235,7 +235,7 @@ class Myid {
           grant_type: "password",
           client_id: process.env.FACE_CLIENT_ID_2,
           username:process.env.FACE_USERNAME,
-          password :`{process.env.FACE_PASSWORD}`.replace("%","@"),
+          password :process.env.FACE_PASSWORD.replace("%","@"),
         },
         {
           headers: {
