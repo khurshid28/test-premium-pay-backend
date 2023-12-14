@@ -28,6 +28,7 @@ Date.prototype.addHours = function (h) {
   let createZayavkaTable = `CREATE TABLE IF NOT EXISTS Zayavka  (
       id int PRIMARY KEY AUTO_INCREMENT,
       merchant_id int,
+      fillial_id int,
       user_id int,
       fullname varchar(255),
       phoneNumber varchar(255),
@@ -115,7 +116,22 @@ Date.prototype.addHours = function (h) {
       phoneNumber varchar(255),
       role varchar(255) default "Admin",
       merchant_id int
+
   );`;
+  let createFillialAdminTable = `CREATE TABLE IF NOT EXISTS FillialAdmin  (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    fillial_id int,
+    loginName varchar(255),
+    loginPassword varchar(255),
+    fullName varchar(255),
+    created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
+    work_status ENUM("working","blocked","super_blocked","deleted") default "working",
+    phoneNumber varchar(255),
+    role varchar(255) default "FillialAdmin",
+    merchant_id int
+);`;
+
+
   
   let createUserTable = `CREATE TABLE IF NOT EXISTS User  (
       id int PRIMARY KEY AUTO_INCREMENT,
@@ -166,6 +182,7 @@ Date.prototype.addHours = function (h) {
   let getUser = `SELECT * FROM User`;
   let getSuperAdmin = `SELECT * FROM SuperAdmin`;
   let getAdmin = `SELECT * FROM Admin`;
+  let getFillialAdmin = `SELECT * FROM FillialAdmin`;
   let getCallCenter = `SELECT * FROM CallCenter`;
   let getAccountant = `SELECT * FROM Accountant`;
   let getMerchant = `SELECT * FROM Merchant`;
@@ -312,6 +329,7 @@ Date.prototype.addHours = function (h) {
   
     createSuperAdminTable,
     createAdminTable,
+    createFillialAdminTable,
     createUserTable,
     createCallCenterTable,
     createAccountantTable,

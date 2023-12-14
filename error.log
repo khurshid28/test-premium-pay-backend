@@ -97,3 +97,86 @@
 /api/v1/scoring/result/___POST___1699602690260___InternalServerError___Unknown column 'undefined' in 'where clause'
 /api/v1/scoring/result/___POST___1699602717574___InternalServerError___Unknown column 'undefined' in 'where clause'
 /api/v1/scoring/result/___POST___1699602735480___InternalServerError___Unknown column 'undefined' in 'where clause'
+/api/v1/zayavka/getAll___GET___1700726353859___InternalServerError___Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fillial_id=1' at line 1
+/api/v1/zayavka/getAll___GET___1700726407243___InternalServerError___Error: Unknown column 'fillial_id' in 'where clause'
+/api/v1/zayavka/getAll___GET___1700726408416___InternalServerError___Error: Unknown column 'fillial_id' in 'where clause'
+/api/v1/zayavka/getAll___GET___1700726435403___InternalServerError___Error: Unknown column 'fillial_id' in 'where clause'
+/api/v1/fillial/getAll___GET___1700733951414___InternalServerError___Cannot read properties of undefined (reading 'role')
+/api/v1/fillial/getAll___GET___1700733978145___InternalServerError___Cannot read properties of undefined (reading 'role')
+/api/v1/fillial/getAll___GET___1700734030985___InternalServerError___Cannot read properties of undefined (reading 'role')
+/api/v1/merchant/getAll___GET___1700737698027___InternalServerError___ForbiddenError is not defined
+/api/v1/merchant/getAll___GET___1700737741051___InternalServerError___Cannot read properties of undefined (reading 'role')
+/api/v1/fillial/getAll___GET___1700737777238___InternalServerError___ForbiddenError is not defined
+/api/v1/fillial/getAll___GET___1700737818842___InternalServerError___ForbiddenError is not defined
+/api/v1/fillial/getAll___GET___1700737819655___InternalServerError___ForbiddenError is not defined
+/api/v1/myid/image___POST___1702465002195___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465028960___InternalServerError___Cannot read properties of undefined (reading 'image')
+/api/v1/myid/image___POST___1702465149771___InternalServerError___Cannot read properties of undefined (reading 'image')
+/api/v1/myid/image___POST___1702465159676___InternalServerError___Cannot read properties of undefined (reading 'image')
+/api/v1/myid/image___POST___1702465217020___InternalServerError___Cannot read properties of undefined (reading 'toString')
+/api/v1/myid/image___POST___1702465230879___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465245727___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465258474___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465276848___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465277710___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465293963___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465400792___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465402006___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465417927___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465436892___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465448208___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465503786___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465566533___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465605138___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465610484___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465611467___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465622478___InternalServerError___Cannot read properties of undefined (reading 'buffer')
+/api/v1/myid/image___POST___1702465679704___InternalServerError___Request failed with status code 400
+/api/v1/myid/image___POST___1702465880836___InternalServerError___Request failed with status code 400
+/api/v1/myid/___POST___1702532659286___InternalServerError___Request failed with status code 400
+/api/v1/myid/image/___POST___1702533077746___InternalServerError___Cannot read properties of undefined (reading 'complete')
+/api/v1/myid/image/___POST___1702533957864___MulterError___Unexpected field
+/api/v1/myid/image/___POST___1702534720034___InternalServerError___fs is not defined
+/api/v1/myid/image/___POST___1702534738665___InternalServerError___fs is not defined
+/api/v1/myid/image/___POST___1702534760669___InternalServerError___ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\src\controllers\public\extraImages\ronaldo.jpg'
+/api/v1/myid/image/___POST___1702534962335___InternalServerError___Request failed with status code 400
+/api/v1/myid/image/___POST___1702535233110___InternalServerError___Request failed with status code 400
+/api/v1/myid/image/___POST___1702535290477___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535357302___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535472935___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535498906___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535586531___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535615460___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535650198___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535652563___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702535755182___InternalServerError___Request failed with status code 422
+/api/v1/myid/image/___POST___1702536271103___InternalServerError___Request failed with status code 405
+/api/v1/myid/image/___POST___1702536292659___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702536419772___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702536693439___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702537268700___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702537288416___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702543408991___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702553421112___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702554543858___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702554580943___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702554595091___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556025801___InternalServerError___connect ETIMEDOUT 185.8.213.29:443
+/api/v1/myid/image/___POST___1702556055082___InternalServerError___connect ETIMEDOUT 185.8.213.29:443
+/api/v1/myid/image/___POST___1702556103713___InternalServerError___connect ETIMEDOUT 185.8.213.29:443
+/api/v1/myid/image/___POST___1702556210422___InternalServerError___connect ETIMEDOUT 185.8.213.29:443
+/api/v1/myid/image/___POST___1702556287368___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556300871___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556365492___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556368008___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556436830___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556464789___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556467286___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556497404___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556499304___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556531895___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556542951___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702556544715___InternalServerError___Request failed with status code 401
+/api/v1/myid/image/___POST___1702561389717___InternalServerError___Data after transformation must be a string, an ArrayBuffer, a Buffer, or a Stream
+/api/v1/myid/image/___POST___1702563441554___InternalServerError___Invalid status code: undefined
+/api/v1/myid/image/___POST___1702564532755___InternalServerError___Request failed with status code 404

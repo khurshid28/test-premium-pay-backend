@@ -81,6 +81,25 @@ class Login {
       console.log(">>>>>>>>>>");
       console.log(user);
       if (!user) {
+        user = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from FillialAdmin WHERE loginName='${loginName}' AND loginPassword='${loginPassword}'`,
+            function (err, results, fields) {
+              if (err) {
+                return reject(err);
+              }
+              console.log("++++", results);
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+
+      }
+      if (!user) {
         return next(new AuthorizationError(401, "Invalid login credentials!"));
       }
 

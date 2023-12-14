@@ -3,6 +3,7 @@ const {
     InternalServerError
 } = require("../utils/errors.js");
 class UploadImage {
+    
  
     async upload(req, res, next) {
         try {

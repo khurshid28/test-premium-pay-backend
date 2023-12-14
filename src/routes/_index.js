@@ -15,8 +15,8 @@ const appRouter = require("./6.app.js");
 
 const merchantRouter = require("./1.merchant.js");
 
-const fillialRouter = require("./2.fillial.js");
-
+const fillialAdminRouter = require("./4.2.fillial_admin.js");
+const fillialRouter =  require("./2.fillial");
 
 const extraRouter = require("./extra.js");
 
@@ -30,12 +30,14 @@ router.use("/api/v1/login", loginRouter);
 router.use("/api/v1/myid", myidRouter);
 router.use("/api/v1/user", userRouter);
 router.use("/api/v1/super", superRouter);
+router.use("/api/v1/fillial-admin", fillialAdminRouter);
 router.use("/api", extraRouter);
 router.use("/create-pdf", pdfRouter);
 router.use("/upload-image", uploadRouter);
 router.use("/api/v1/zayavka", appRouter);
 router.use("/api/v1/merchant", merchantRouter);
 router.use("/api/v1/fillial", fillialRouter);
+
 
 router.use("/api/v1/scoring",scoringRouter );
 

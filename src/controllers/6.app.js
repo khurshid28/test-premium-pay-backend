@@ -184,7 +184,6 @@ class App {
         inn:"303085034", // javohir
         selfie: selfie_with_passport.substring(0, 20),
       },
-
         {
           headers: {
               "Authorization": "Bearer " + response1.data["token"],
@@ -507,7 +506,7 @@ class App {
 
       return res.status(200).json({
         data: zayavka,
-        message: "Zayavka is deleted by client",
+        message: "Zayavka is canceled by client",
       });
     } catch (error) {
       console.log(error);
@@ -569,7 +568,38 @@ class App {
             }
           );
         });
-      } else {
+      }
+      else if (req.user.role === "FillialAdmin") {
+        let  user = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from FillialAdmin WHERE id=${req.user.id}`,
+            function (err, results, fields) {
+              if (err) {
+                 reject(err);
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                  resolve(null);
+              }
+            }
+          );
+        });
+        console.log(user);
+        zayavkalar = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+            function (err, results, fields) {
+              if (err) {
+                reject(err);
+              }
+              return resolve(results);
+            }
+          );
+        });
+      }
+      
+      else {
         console.log("keldi >>");
         let user = await new Promise(function (resolve, reject) {
           db.query(

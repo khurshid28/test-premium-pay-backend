@@ -1,5 +1,5 @@
 const {
-    InternalServerError,
+    InternalServerError, ForbiddenError,
 } = require("../utils/errors.js");
 
 const FillialModel = require("../models/Fillial.js");
@@ -87,7 +87,7 @@ class Fillial {
 
     async getAll(req, res, next) {
         try {
-            if (req.user.role == "user") {
+            if (!(req.user.role == "SuperAdmin" || req.user.role == "Admin")) {
                 return next(
                     new ForbiddenError(
                         403,
@@ -95,13 +95,24 @@ class Fillial {
                     )
                 );
             }
-
-            let { merchant_id } = req.params;
-            let fillials = await FillialModel.find({
-                merchant_id,
-                work_status: { $not: "deleted" }
+           
+            let fillials = await new Promise(function (resolve, reject) {
+              db.query(
+                `SELECT * FROM merchant;`,
+                function (err, results, fields) {
+                  if (err) {
+                    reject(err);
+                  }
+                  console.log("++++", results);
+                  if (results.length != 0) {
+                    resolve(results);
+                  } else {
+                    resolve(null);
+                  }
+                }
+              );
             });
-            res.status(200).json(fillials);
+            res.status(200).json({data:fillials});
         } catch (error) {
             console.log(error);
             return next(new InternalServerError(500, error.message));

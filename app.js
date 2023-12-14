@@ -9,7 +9,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const path = require("path");
-const { Buffer } = require('buffer');
+const bodyParser = require('body-parser');
 
 // all routes
 const router = require("./src/routes/_index.js");
@@ -20,6 +20,58 @@ const rateLimit = require("./src/middlewares/rate-limit.js");
 const errorHandler = require("./src/middlewares/error-handler.js");
 
 const app = express();
+
+let db = require("./src/config/db");
+const checkToken = require("./src/middlewares/check-token.js");
+let PREMIUM = require("./Premium-Query").PREMIUM;
+
+
+// PORT
+const PORT = process.env.PORT || 8090;
+
+// middlewares
+
+app.use(express.json({limit: '10mb'}),);
+app.use(express.urlencoded({extended:false,limit: '10mb',parameterLimit : 10}));
+
+// app.use(bodyParser.json({limit: '10mb'}));
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(morgan("dev"), cors(), rateLimit(), );
+
+
+ 
+
+
+// all routes
+app.use(router);
+
+app.use(helmet());
+
+// error handling
+app.use(errorHandler);
+app.use(logger);
+
+// static
+app.use( "static", express.static(path.join(__dirname, "public")));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
@@ -68,34 +120,6 @@ app.get("/test/droptable", (req, res) =>{
 
 
 
-let db = require("./src/config/db");
-const checkToken = require("./src/middlewares/check-token.js");
-let PREMIUM = require("./Premium-Query").PREMIUM;
-
-
-// PORT
-const PORT = process.env.PORT || 8090;
-
-// middlewares
-app.use(morgan("dev"), cors(), rateLimit(), express.json({limit: '10mb'}));
-
-
-
-// all routes
-app.use(router);
-
-app.use(helmet());
-
-// error handling
-app.use(errorHandler);
-app.use(logger);
-
-// static
-app.use( "static", express.static(path.join(__dirname, "public")));
-
-
-
-
 
 
 
@@ -113,9 +137,11 @@ app.listen(PORT, async () => {
   //   }
   //   console.log({ results });
   // });
+
+  // 
  
    
-  // db.query(PREMIUM.createCallCenterTable, function (err, results, fields) {
+  // db.query(PREMIUM.createFillialAdminTable, function (err, results, fields) {
   //   console.log(err);
   //   if (err) {
   //     console.log({ err });
@@ -173,7 +199,7 @@ app.listen(PORT, async () => {
   //   }
   // );
   // db.query(
-  //   PREMIUM.createAdminTable,
+  //   PREMIUM.createZayavkaTable,
   //   function (err, results, fields) {
   //     console.log(err);
   //     if (err) {

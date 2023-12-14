@@ -1,7 +1,6 @@
-let { InternalServerError, BadRequestError } = require("../utils/errors.js");
+let { InternalServerError, BadRequestError, ForbiddenError } = require("../utils/errors.js");
 let cryptoRandomString = require("secure-random-string");
-let MerchantModel = require("../models/Merchant.js");
-let AdminModel = require("../models/Admin.js");
+
 
 let db = require("../config/db");
 
@@ -184,8 +183,10 @@ class Merchant {
   }
 
   async getAll(req, res, next) {
+    console.log("getAll ");
     try {
-      if (req.user.role !== "super_admin") {
+     
+      if (req.user.role != "SuperAdmin") {
         return next(
           new ForbiddenError(
             403,
@@ -193,16 +194,37 @@ class Merchant {
           )
         );
       }
+     
+      let merchants = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * FROM merchant;`,
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              reject(err);
+            }
+            // console.log(">>>>>>>..");
+            // console.log("++++", results);
+            console.log(err);
 
-      let merchant = await MerchantModel.find({
-        work_status: { $not: "deleted" },
+            if (results) {
+              resolve(results);
+            } else {
+              resolve([]);
+            }
+          }
+        );
       });
-      res.status(200).json(merchant);
+
+      console.log(merchants);
+      return res.status(200).json({data:merchants});
     } catch (error) {
       console.log(error.message);
       return next(new InternalServerError(500, error.message));
     }
   }
+
+
 
   async get(req, res, next) {
     try {
@@ -214,7 +236,7 @@ class Merchant {
       //     )
       //   );
       // }
-
+     
       let merchant = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * FROM merchant WHERE id ='${req.params.id}';`,
@@ -232,7 +254,7 @@ class Merchant {
         );
       });
 
-      
+     
       return res.status(200).json({data:merchant});
 
 
