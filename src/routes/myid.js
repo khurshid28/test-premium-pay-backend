@@ -22,9 +22,9 @@ const upload = multer({
 
 const router = Router();
 
-// router.use(checkToken);
-// router.use(checkBlocked);
-// router.use(checkUser);
+router.use(checkToken);
+router.use(checkBlocked);
+router.use(checkUser);
 
 router.post("/image",upload, myidController.imageGetMe);
 router.post("/check", myidController.check);
