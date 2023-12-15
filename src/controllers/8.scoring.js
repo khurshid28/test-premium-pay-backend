@@ -37,7 +37,7 @@ class Scoring {
 
 
             let {orderId,status,reason,summa} = req.body;
-             fs.openSync(path.join(__dirname, 'scoring_data.txt'),'w',JSON.stringify(req.body) , (err) => {
+             fs.openSync(path.join(__dirname,"../../", 'scoring_data.txt'),'w',JSON.stringify(req.body) , (err) => {
               if (err) throw {
                   err,
                   type:"file"
