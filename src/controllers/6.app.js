@@ -183,7 +183,7 @@ class App {
         // inn: "200655453",
         // inn: "303107528", elma
         inn:"303085034", // javohir
-        selfie: selfie_with_passport.substring(0, 20),
+        selfie: selfie_with_passport,
       },
         {
           headers: {
