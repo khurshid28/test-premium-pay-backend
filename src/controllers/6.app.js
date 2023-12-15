@@ -150,7 +150,7 @@ class App {
         );
       });
       let alldata = {
-        orderId: "pptestt-" + zayavka.id,
+        orderId: "newpptest-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         passSeria: zayavka.passport.substring(0, 2),
@@ -169,7 +169,7 @@ class App {
         };
        });
       const response2 = await axios.post(url2,{
-        orderId: "pptestt-" + zayavka.id,
+        orderId: "newpptest-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         term:12,
