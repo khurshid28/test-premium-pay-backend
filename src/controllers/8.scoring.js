@@ -43,7 +43,7 @@ class Scoring {
                   type:"file"
               };
              });
-           if (status == "4") {
+           if (status == "3") {
             await new Promise(function (resolve, reject) {
                 db.query(
                     cancelByScoringZayavkaFunc({id:orderId,reason:reason}),
@@ -59,7 +59,7 @@ class Scoring {
                   }
                 );
               });
-           }else if (status == "3") {
+           }else if (status == "4") {
             await new Promise(function (resolve, reject) {
               db.query(
                   update4ZayavkaFunc({id:orderId}),
