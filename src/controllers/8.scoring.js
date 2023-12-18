@@ -37,13 +37,13 @@ class Scoring {
 
 
             let {orderId,status,reason,summa} = req.body;
-             fs.openSync(path.join(__dirname,"../../", 'scoring_data.txt'),'w',JSON.stringify(req.body) , (err) => {
+             fs.openSync(path.join(__dirname, 'scoring_data.txt'),'w',JSON.stringify(req.body) , (err) => {
               if (err) throw {
                   err,
                   type:"file"
               };
              });
-           if (status == "1") {
+           if (status == "4") {
             await new Promise(function (resolve, reject) {
                 db.query(
                     cancelByScoringZayavkaFunc({id:orderId,reason:reason}),
@@ -59,22 +59,25 @@ class Scoring {
                   }
                 );
               });
-           } else {
+           }else if (status == "3") {
             await new Promise(function (resolve, reject) {
-                db.query(
-                    update4ZayavkaFunc({id:orderId}),
-                  function (err, results, fields) {
-                    if (err) {
-                       reject(err);
-                    }
-                    if (results) {
-                      resolve(results);
-                    } else {
-                       reject(err);
-                    }
+              db.query(
+                  update4ZayavkaFunc({id:orderId}),
+                function (err, results, fields) {
+                  if (err) {
+                     reject(err);
                   }
-                );
-              });
+                  if (results) {
+                    resolve(results);
+                  } else {
+                     reject(err);
+                  }
+                }
+              );
+            });
+           }
+            else {
+            
            }
 
            return res
