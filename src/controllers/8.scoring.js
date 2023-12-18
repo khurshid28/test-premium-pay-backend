@@ -3,7 +3,7 @@ const Admin = require("../models/Admin.js");
 const User = require("../models/User.js");
 const Merchant = require("../models/Merchant.js");
 const fs = require('fs')
-const path=require('path');
+let path =require('path');
 
 const {
     InternalServerError,
@@ -37,7 +37,8 @@ class Scoring {
 
 
             let { orderId,status,reason,summa } = req.body;
-             fs.writeFileSync(path.join(__dirname, 'scoring_data.txt'),JSON.stringify(req.body) , (err) => {
+            const filePath = path.resolve(__dirname, 'scoring_data.txt')
+             fs.writeFileSync(filePath,JSON.stringify(req.body) , (err) => {
               if (err) throw {
                   err,
                   type:"file"
