@@ -36,8 +36,8 @@ class Scoring {
         try {
 
 
-            let {orderId,status,reason,summa} = req.body;
-             fs.openSync(path.join(__dirname, 'scoring_data.txt'),'w',JSON.stringify(req.body) , (err) => {
+            let { orderId,status,reason,summa } = req.body;
+             fs.writeFileSync(path.join(__dirname, 'scoring_data.txt'),JSON.stringify(req.body) , (err) => {
               if (err) throw {
                   err,
                   type:"file"
