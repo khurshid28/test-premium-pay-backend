@@ -77,9 +77,6 @@ class Scoring {
               );
             });
            }
-            else {
-            
-           }
 
            return res
            .status(200)

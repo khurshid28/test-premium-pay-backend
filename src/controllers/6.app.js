@@ -149,19 +149,19 @@ class App {
           }
         );
       });
-      let alldata = {
-        orderId: "newpptest-" + zayavka.id,
-        amount: max_amount,
-        duration: "12",
-        passSeria: zayavka.passport.substring(0, 2),
-        passNumber: zayavka.passport.substring(2),
-        birthDate: birthDate,
-        phoneNumber: zayavka.phoneNumber,
-        phoneNumber2: zayavka.phoneNumber2,
-        cardNumber: cardNumber,
-        inn: process.env.PREMIUM_INN,
-        selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
-      };
+      // let alldata = {
+      //   orderId: "newpptest-" + zayavka.id,
+      //   amount: max_amount,
+      //   duration: "12",
+      //   passSeria: zayavka.passport.substring(0, 2),
+      //   passNumber: zayavka.passport.substring(2),
+      //   birthDate: birthDate,
+      //   phoneNumber: zayavka.phoneNumber,
+      //   phoneNumber2: zayavka.phoneNumber2,
+      //   cardNumber: cardNumber,
+      //   inn: process.env.PREMIUM_INN,
+      //   selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
+      // };
       fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
         if (err) throw {
             err,
@@ -171,7 +171,6 @@ class App {
       const response2 = await axios.post(url2,{
         orderId: "newpptest-" + zayavka.id,
         amount: max_amount,
-        duration: "12",
         term:"12",
         passSeria: zayavka.passport.substring(0, 2),
         passNumber: zayavka.passport.substring(2),
@@ -384,53 +383,55 @@ class App {
   async update7(req, res, next) {
     try {
 
-      // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      // let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
-      // const response1 = await axios.post(
-      //   url1,
-      //   {
-      //     username: process.env.DAVR_USERNAME,
-      //     password: process.env.DAVR_PASSWORD, 
-      //   },
+      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
+      let {contractPdf,id} =req.body;
+      const response1 = await axios.post(
+        url1,
+        {
+          username: process.env.DAVR_USERNAME,
+          password: process.env.DAVR_PASSWORD, 
+        },
 
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      // let zayavka1 = await new Promise(function (resolve, reject) {
-      //   db.query(
-      //     `SELECT * from Zayavka WHERE id=${req.body.id}`,
-      //     function (err, results, fields) {
-      //       if (err) {
-      //         reject(err);
-      //       }
-      //       if (results.length != 0) {
-      //         resolve(results[0]);
-      //       } else {
-      //         resolve(null);
-      //       }
-      //     }
-      //   );
-      // });
+      let zayavka1 = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from Zayavka WHERE id=${id}`,
+          function (err, results, fields) {
+            if (err) {
+              reject(err);
+            }
+            if (results.length != 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
      
-      // const response2 = await axios.post(url2,{
-      //     "orderId": `PP-test-${zayavka1.id}`,
-      //     "durationMonth": zayavka1.expired_month,
-      //     "summa": zayavka1.payment_amount,
-      // },
-      //   {
-      //     headers: {
-      //         "Authorization": "Bearer " + response1.data["token"],
-      //         "Content-Type": "application/json",
+      const response2 = await axios.post(url2,{
+          "orderId": `newpptest-${zayavka1.id}`,
+          "term": "12",
+          "oferta":true,
+          "contractPdf": contractPdf
+      },
+      {
+          headers: {
+              "Authorization": "Bearer " + response1.data["token"],
+              "Content-Type": "application/json",
 
-      //     }
-      // });
+          }
+      });
       
 
-
+      
 
       await new Promise(function (resolve, reject) {
         db.query(
@@ -465,7 +466,7 @@ class App {
 
       return res.status(200).json({
         data: zayavka,
-        message: "Update 7 is done ",
+        message: "Update 7 is done , oferta is sent ",
       });
     } catch (error) {
       console.log(error.message);
