@@ -150,7 +150,7 @@ class App {
         );
       });
       let alldata = {
-        orderId: "newpptest-" + zayavka.id,
+        orderId: "testpp-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         passSeria: zayavka.passport.substring(0, 2),
@@ -169,7 +169,7 @@ class App {
         };
        });
       const response2 = await axios.post(url2,{
-        orderId: "newpptest-" + zayavka.id,
+        orderId: "testpp-" + zayavka.id,
         amount: max_amount,
         term:"12",
         duration:"12",
@@ -418,7 +418,7 @@ class App {
       });
      
       const response2 = await axios.post(url2,{
-          "orderId": `newpptest-${zayavka1.id}`,
+          "orderId": `testpp-${zayavka1.id}`,
           "term": "12",
           "oferta":true,
           "contractPdf": contractPdf
