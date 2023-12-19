@@ -150,7 +150,7 @@ class App {
         );
       });
       let alldata = {
-        orderId: "testpp2-" + zayavka.id,
+        orderId: "testpp3-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         term :'12',
@@ -170,7 +170,7 @@ class App {
         };
        });
       const response2 = await axios.post(url2,{
-        orderId: "testpp2-" + zayavka.id,
+        orderId: "testpp3-" + zayavka.id,
         amount: max_amount,
         term:"12",
         duration:"12",
@@ -419,7 +419,7 @@ class App {
       });
      
       const response2 = await axios.post(url2,{
-          "orderId": `testpp2-${zayavka1.id}`,
+          "orderId": `testpp3-${zayavka1.id}`,
           "term": "12",
           "oferta":true,
           "contractPdf": contractPdf
