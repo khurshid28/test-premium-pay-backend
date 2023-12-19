@@ -153,6 +153,7 @@ class App {
         orderId: "testpp-" + zayavka.id,
         amount: max_amount,
         duration: "12",
+        term :'12',
         passSeria: zayavka.passport.substring(0, 2),
         passNumber: zayavka.passport.substring(2),
         birthDate: birthDate,
