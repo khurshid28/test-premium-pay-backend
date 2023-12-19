@@ -471,7 +471,7 @@ class App {
         message: "Update 7 is done , oferta is sent ",
       });
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       return next(new InternalServerError(500, error.message));
     }
   }

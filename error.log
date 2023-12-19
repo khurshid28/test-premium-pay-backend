@@ -181,3 +181,15 @@
 /api/v1/myid/image/___POST___1702563441554___InternalServerError___Invalid status code: undefined
 /api/v1/myid/image/___POST___1702564532755___InternalServerError___Request failed with status code 404
 
+/api/v1/support___POST___1702980786181___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702980816813___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702980865074___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702980866532___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702980867581___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702980902056___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702980917617___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702981414226___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702981562735___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702981578227___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702981610483___InternalServerError___Request failed with status code 400
+/api/v1/support___POST___1702981646352___InternalServerError___"" is not a function
