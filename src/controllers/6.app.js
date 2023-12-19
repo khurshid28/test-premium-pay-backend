@@ -149,19 +149,19 @@ class App {
           }
         );
       });
-      // let alldata = {
-      //   orderId: "newpptest-" + zayavka.id,
-      //   amount: max_amount,
-      //   duration: "12",
-      //   passSeria: zayavka.passport.substring(0, 2),
-      //   passNumber: zayavka.passport.substring(2),
-      //   birthDate: birthDate,
-      //   phoneNumber: zayavka.phoneNumber,
-      //   phoneNumber2: zayavka.phoneNumber2,
-      //   cardNumber: cardNumber,
-      //   inn: process.env.PREMIUM_INN,
-      //   selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
-      // };
+      let alldata = {
+        orderId: "newpptest-" + zayavka.id,
+        amount: max_amount,
+        duration: "12",
+        passSeria: zayavka.passport.substring(0, 2),
+        passNumber: zayavka.passport.substring(2),
+        birthDate: birthDate,
+        phoneNumber: zayavka.phoneNumber,
+        phoneNumber2: zayavka.phoneNumber2,
+        cardNumber: cardNumber,
+        inn: process.env.PREMIUM_INN,
+        selfie: "data:image/jpeg;base64,"+ selfie_with_passport.substring(2),
+      };
       fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
         if (err) throw {
             err,
