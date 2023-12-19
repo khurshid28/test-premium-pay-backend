@@ -8,7 +8,7 @@ module.exports = (error, req, res, next) => {
 			error.message
 		}\n`
 	);
-
+    
 	return res.status(500).json({
 		status: 500,
 		name: "InternalServerError",

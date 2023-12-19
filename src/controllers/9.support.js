@@ -10,7 +10,8 @@ class SupportController {
   async sendMessage(req, res, next) {
     try {
       let { message } = req.body;
-      let text = '<b>Role</b> :' +`${req.user.role} `+'\n\n<b>ID</b> : '+`${req.user.id}`+'\n\n<b>message</b> '+`: ${message}`;
+      let text = "<b>Role</b> :" +req.user.role+"%0A<b>ID</b> : "+req.user.id+"%0A<b>message</b> "+`
+: ${message}`;
       let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.GROUP_ID}&text=${text}&parse_mode=HTML`;
       let response = await axios.post(url);
       if (response.status == "200") {
