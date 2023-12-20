@@ -21,7 +21,10 @@ const errorHandler = require("./src/middlewares/error-handler.js");
 
 const app = express();
 
+
 let db = require("./src/config/db");
+// let dbtest = require("./src/config/dbtest");
+
 const checkToken = require("./src/middlewares/check-token.js");
 let PREMIUM = require("./Premium-Query").PREMIUM;
 
@@ -45,6 +48,7 @@ app.use(morgan("dev"), cors(), rateLimit(), );
 
 // all routes
 app.use(router);
+app.use("/test",router);
 
 app.use(helmet());
 
