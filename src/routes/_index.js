@@ -28,6 +28,9 @@ const scoringRouter = require("./8.scoring");
 
 const supportRouter = require("./9.support");
 
+const errorRouter = require("./10.errors");
+
+
 router.use("/api/v1/login", loginRouter);
 router.use("/api/v1/myid", myidRouter);
 router.use("/api/v1/user", userRouter);
@@ -43,6 +46,7 @@ router.use("/api/v1/fillial", fillialRouter);
 
 router.use("/api/v1/scoring",scoringRouter );
 router.use("/api/v1/support",supportRouter );
+router.use("/api/v1/error",errorRouter );
 
 router.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 

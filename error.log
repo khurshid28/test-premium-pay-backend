@@ -193,3 +193,6 @@
 /api/v1/support___POST___1702981578227___InternalServerError___Request failed with status code 400
 /api/v1/support___POST___1702981610483___InternalServerError___Request failed with status code 400
 /api/v1/support___POST___1702981646352___InternalServerError___"" is not a function
+/api/v1/errors/mobile___POST___1703065887436___InternalServerError___Request failed with status code 400
+/api/v1/errors/mobile___POST___1703065960149___InternalServerError___Request failed with status code 400
+/api/v1/errors/mobile___POST___1703066035238___InternalServerError___Request failed with status code 400
