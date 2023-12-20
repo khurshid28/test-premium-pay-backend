@@ -196,3 +196,5 @@
 /api/v1/errors/mobile___POST___1703065887436___InternalServerError___Request failed with status code 400
 /api/v1/errors/mobile___POST___1703065960149___InternalServerError___Request failed with status code 400
 /api/v1/errors/mobile___POST___1703066035238___InternalServerError___Request failed with status code 400
+/api/v1/error/___POST___1703074070536___InternalServerError___"" is not a function
+/api/v1/support/___POST___1703074794415___InternalServerError___Cannot read properties of undefined (reading 'role')
