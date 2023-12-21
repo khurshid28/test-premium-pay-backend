@@ -1,15 +1,14 @@
 require("./src/config/_index.js");
 
-require("./src/utils/schedule")
+require("./src/utils/schedule");
 
 var express = require("express");
-
 
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const path = require("path");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 let axios = require("axios");
 
 // all routes
@@ -22,13 +21,11 @@ const errorHandler = require("./src/middlewares/error-handler.js");
 
 const app = express();
 
-
 let db = require("./src/config/db");
 // let dbtest = require("./src/config/dbtest");
 
 const checkToken = require("./src/middlewares/check-token.js");
 let PREMIUM = require("./Premium-Query").PREMIUM;
-
 
 // PORT
 const PORT = process.env.PORT || 8090;
@@ -37,17 +34,30 @@ app.use((req, res, next) => {
   // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
   // const start = process.hrtime()
 
-  res.on('finish', () => {            
-    const durationInMilliseconds = getDurationInMilliseconds (req.duration_start)
-    console.log(`${req.method} ${req.originalUrl} ${res.statusCode} [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`)
-    if(req.errorMethod){
-      req.duration=`${durationInMilliseconds.toLocaleString()} ms`
-    let text ="<b>ERROR ON SERVER : %0A" +  req.errorMethod+" "+res.statusCode +" " +req.duration +"</b>"+ req.errorText
-    let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
-    axios.post(url);
+  res.on("finish", () => {
+    const durationInMilliseconds = getDurationInMilliseconds(
+      req.duration_start
+    );
+    console.log(
+      `${req.method} ${req.originalUrl} ${
+        res.statusCode
+      } [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`
+    );
+    if (req.errorMethod) {
+      req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
+      let text =
+        "<b>ERROR ON SERVER : %0A" +
+        req.errorMethod +
+        " " +
+        res.statusCode +
+        " " +
+        req.duration +
+        "</b>" +
+        req.errorText;
+      let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
+      axios.post(url);
     }
-      
-  })
+  });
 
   // res.on('close', () => {
   //     const durationInMilliseconds = getDurationInMilliseconds (req.duration_start)
@@ -60,26 +70,21 @@ app.use((req, res, next) => {
   //     axios.post(url);
 
   // })
- req.duration_start =  process.hrtime()
- next();
-})
-app.use(morgan("dev"),)
+  req.duration_start = process.hrtime();
+  next();
+});
+app.use(morgan("dev"));
 // middlewares
 
-app.use(express.json({limit: '10mb'}),);
-app.use(express.urlencoded({extended:false,limit: '10mb',parameterLimit : 10}));
+app.use(express.json({ limit: "10mb" }));
+app.use(
+  express.urlencoded({ extended: false, limit: "10mb", parameterLimit: 10 })
+);
 
 // app.use(bodyParser.json({limit: '10mb'}));
 // app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use( cors(), rateLimit(), );
-
-
-
-
-
-
-
+app.use(cors(), rateLimit());
 
 // all routes
 app.use(router);
@@ -91,97 +96,64 @@ app.use(helmet());
 app.use(errorHandler);
 app.use(logger);
 
-
-
 // static
-app.use( "static", express.static(path.join(__dirname, "public")));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use("static", express.static(path.join(__dirname, "public")));
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
 
-app.get("/test/delete", (req, res) =>{
-    db.query(`DELETE FROM Zayavka WHERE user_id=1`, function (err, results, fields) {
-    if (err) { 
-      return res.send({ err });
-    }
-    return res.send({ results });
-  });
-  
-
-});
-
-
-app.get("/test/droptable", (req, res) =>{
-  db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
-  if (err) { 
-    db.query(
-      PREMIUM.createZayavkaTable,
-      function (err, results, fields) {
-        console.log(err);
-        if (err) {
-          console.log({err})
-        }
-        console.log({results})
-      });
-    return res.send({ err });
-  }
-   db.query(
-    PREMIUM.createZayavkaTable,
+app.get("/test/delete", (req, res) => {
+  db.query(
+    `DELETE FROM Zayavka WHERE user_id=1`,
     function (err, results, fields) {
-      console.log(err);
       if (err) {
-        console.log({err})
+        return res.send({ err });
       }
-      console.log({results})
+      return res.send({ results });
     }
   );
-  return res.send({ results });
 });
 
-
+app.get("/test/droptable", (req, res) => {
+  db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
+    if (err) {
+      db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
+        console.log(err);
+        if (err) {
+          console.log({ err });
+        }
+        console.log({ results });
+      });
+      return res.send({ err });
+    }
+    db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
+      console.log(err);
+      if (err) {
+        console.log({ err });
+      }
+      console.log({ results });
+    });
+    return res.send({ results });
+  });
 });
-
-
-
-
-
 
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
 
   // db.query("SELECT * from Zayavka", function (err, results, fields) {
-    // for (let index = 0; index < 40; index++) {
-    //   console.log(">>>>>>>>>>>>");
-      
-    // }
+  // for (let index = 0; index < 40; index++) {
+  //   console.log(">>>>>>>>>>>>");
+
+  // }
   //   if (err) {
   //     console.log({ err });
   //   }
   //   console.log({ results });
   // });
 
-  // 
- 
-   
+  //
+
   // db.query(PREMIUM.createFillialAdminTable, function (err, results, fields) {
   //   console.log(err);
   //   if (err) {
@@ -217,7 +189,6 @@ app.listen(PORT, async () => {
   //   }
   // );
 
-
   // db.query(
   //   PREMIUM.createUserTable,
   //   function (err, results, fields) {
@@ -236,7 +207,7 @@ app.listen(PORT, async () => {
   //       console.log({err})
   //     }
   //     console.log({results})
-      
+
   //   }
   // );
   // db.query(
@@ -249,21 +220,12 @@ app.listen(PORT, async () => {
   //     console.log({results})
   //   }
   // );
-  
-  
-
-
 });
 
-
-
-
-
-
 const getDurationInMilliseconds = (start) => {
-  const NS_PER_SEC = 1e9
-  const NS_TO_MS = 1e6
-  const diff = process.hrtime(start)
+  const NS_PER_SEC = 1e9;
+  const NS_TO_MS = 1e6;
+  const diff = process.hrtime(start);
 
-  return (diff[0] * NS_PER_SEC + diff[1]) / NS_TO_MS
-}
+  return (diff[0] * NS_PER_SEC + diff[1]) / NS_TO_MS;
+};
