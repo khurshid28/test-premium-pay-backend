@@ -10,6 +10,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const path = require("path");
 const bodyParser = require('body-parser');
+let axios = require("axios");
 
 // all routes
 const router = require("./src/routes/_index.js");
@@ -32,6 +33,37 @@ let PREMIUM = require("./Premium-Query").PREMIUM;
 // PORT
 const PORT = process.env.PORT || 8090;
 
+app.use((req, res, next) => {
+  // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
+  // const start = process.hrtime()
+
+  res.on('finish', () => {            
+    const durationInMilliseconds = getDurationInMilliseconds (req.duration_start)
+    console.log(`${req.method} ${req.originalUrl} ${res.statusCode} [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`)
+    if(req.errorMethod){
+      req.duration=`${durationInMilliseconds.toLocaleString()} ms`
+    let text ="<b>ERROR ON SERVER : %0A" +  req.errorMethod+" "+res.statusCode +" " +req.duration +"</b>"+ req.errorText
+    let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
+    axios.post(url);
+    }
+      
+  })
+
+  // res.on('close', () => {
+  //     const durationInMilliseconds = getDurationInMilliseconds (req.duration_start)
+  //     console.log(`${req.method} ${req.originalUrl} [CLOSED] ${durationInMilliseconds.toLocaleString()} ms`)
+  //     req.duration=`${durationInMilliseconds.toLocaleString()} ms`
+
+  //     console.log("req.errorText >> "+req.errorText)
+  //     let text=  req.duration +  req.errorText
+  //     let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
+  //     axios.post(url);
+
+  // })
+ req.duration_start =  process.hrtime()
+ next();
+})
+app.use(morgan("dev"),)
 // middlewares
 
 app.use(express.json({limit: '10mb'}),);
@@ -40,21 +72,26 @@ app.use(express.urlencoded({extended:false,limit: '10mb',parameterLimit : 10}));
 // app.use(bodyParser.json({limit: '10mb'}));
 // app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(morgan("dev"), cors(), rateLimit(), );
+app.use( cors(), rateLimit(), );
 
 
- 
+
+
+
+
 
 
 // all routes
 app.use(router);
-app.use("/test",router);
+// app.use("/test",router);
 
 app.use(helmet());
 
 // error handling
 app.use(errorHandler);
 app.use(logger);
+
+
 
 // static
 app.use( "static", express.static(path.join(__dirname, "public")));
@@ -221,3 +258,12 @@ app.listen(PORT, async () => {
 
 
 
+
+
+const getDurationInMilliseconds = (start) => {
+  const NS_PER_SEC = 1e9
+  const NS_TO_MS = 1e6
+  const diff = process.hrtime(start)
+
+  return (diff[0] * NS_PER_SEC + diff[1]) / NS_TO_MS
+}

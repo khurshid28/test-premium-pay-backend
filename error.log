@@ -198,3 +198,34 @@
 /api/v1/errors/mobile___POST___1703066035238___InternalServerError___Request failed with status code 400
 /api/v1/error/___POST___1703074070536___InternalServerError___"" is not a function
 /api/v1/support/___POST___1703074794415___InternalServerError___Cannot read properties of undefined (reading 'role')
+/api/v1/error___POST___1703137280384___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137321542___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137434265___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137523521___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137608706___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137635946___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137754210___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137851984___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137913386___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703137989258___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138112474___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138210350___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138361259___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138402840___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138487202___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138747696___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138765331___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138826060___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138842704___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703138882637___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139058428___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139079309___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139093394___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139105878___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139120722___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139122627___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139148633___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139206514___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139321572___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703139399757___InternalServerError___message.length is not a function
+/api/v1/error___POST___1703140322962___InternalServerError___message.length is not a function
