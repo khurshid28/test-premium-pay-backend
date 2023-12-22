@@ -38,7 +38,7 @@ class Scoring {
 
             let { orderId,status,reason,summa } = req.body;
             const filePath = path.resolve(__dirname, 'scoring_data.txt')
-             fs.writeFileSync(filePath,JSON.stringify(req.body) , (err) => {
+             fs.appendFileSync(filePath,Date.now().toString +" >> "+ JSON.stringify(req.body) , (err) => {
               if (err) throw {
                   err,
                   type:"file"
