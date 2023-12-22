@@ -151,7 +151,7 @@ class App {
         );
       });
       let alldata = {
-        orderId: "pptest-" + zayavka.id,
+        orderId: "pptestnewinn-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         term :'12',
@@ -171,7 +171,7 @@ class App {
         };
        });
       const response2 = await axios.post(url2,{
-        orderId: "pptest-" + zayavka.id,
+        orderId: "pptestnewinn-" + zayavka.id,
         amount: max_amount,
         term:"12",
         duration:"12",
@@ -184,7 +184,8 @@ class App {
         // inn: process.env.PREMIUM_INN,
         // inn: "200655453",
         // inn: "303107528", elma
-        inn:"303085034", // javohir
+        // inn:"303085034", // javohir
+        inn:"305207299", // surat
         selfie: selfie_with_passport,
       },
         {
@@ -420,7 +421,7 @@ class App {
       });
      
       const response2 = await axios.post(url2,{
-          "orderId": `pptest-${zayavka1.id}`,
+          "orderId": `pptestnewinn-${zayavka1.id}`,
           "term": "12",
           "oferta":true,
           "contractPdf": contractPdf
