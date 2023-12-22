@@ -43,6 +43,7 @@ app.use((req, res, next) => {
         res.statusCode
       } [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`
     );
+    
     if (req.errorMethod) {
       req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
       let text =
