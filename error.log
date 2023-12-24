@@ -256,3 +256,6 @@
 /api/v1/myid/check___POST___1703341987842___InternalServerError___TypeError: Date(...).getFullYear is not a function
 /api/v1/myid/check___POST___1703342053403___InternalServerError___TypeError: Date(...).getTime is not a function
 /api/v1/myid/check___POST___1703342466771___InternalServerError___TypeError: Date(...).getFullYear is not a function
+/api/v1/zayavka/update/7___POST___1703418163985___InternalServerError___Error: getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/7___POST___1703418297969___InternalServerError___Error: getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/7___POST___1703418329273___InternalServerError___Error: getaddrinfo ENOTFOUND md.davrbank.uz

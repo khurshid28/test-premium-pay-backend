@@ -393,7 +393,9 @@ class App {
       let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
       let {contractPdf,id} =req.body;
-      
+      let date = new Date();
+      let singedAt = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+      console.log(singedAt);
       const response1 = await axios.post(
         url1,
         {
@@ -423,10 +425,14 @@ class App {
           }
         );
       });
-     
+      console.log({ "orderId": `aatest-${zayavka1.id}`,
+      "term": "12",
+      singedAt, 
+      "oferta":true,});
       const response2 = await axios.post(url2,{
           "orderId": `aatest-${zayavka1.id}`,
           "term": "12",
+          "singedAt" :singedAt,
           "oferta":true,
           "contractPdf": contractPdf
       },
