@@ -143,36 +143,36 @@ app.get("/test/droptable", (req, res) => {
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
-  db.query(
-    "DROP TABLE fillial",
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
-  db.query(
-    "DROP TABLE Zayavka",
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
-  db.query(
-    "DROP TABLE merchant",
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
+  // db.query(
+  //   "DROP TABLE fillial",
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+  // db.query(
+  //   "DROP TABLE Zayavka",
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+  // db.query(
+  //   "DROP TABLE merchant",
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
 
   // db.query("SELECT * from Zayavka", function (err, results, fields) {
   // for (let index = 0; index < 40; index++) {
@@ -187,27 +187,27 @@ app.listen(PORT, async () => {
 
   //
 
-  db.query(PREMIUM.createMerchantTable, function (err, results, fields) {
-    console.log(err);
-    if (err) {
-      console.log({ err });
-    }
-    console.log({ results });
-  });
-  db.query(PREMIUM.createFillialTable, function (err, results, fields) {
-    console.log(err);
-    if (err) {
-      console.log({ err });
-    }
-    console.log({ results });
-  });
-  db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
-    console.log(err);
-    if (err) {
-      console.log({ err });
-    }
-    console.log({ results });
-  });
+  // db.query(PREMIUM.createMerchantTable, function (err, results, fields) {
+  //   console.log(err);
+  //   if (err) {
+  //     console.log({ err });
+  //   }
+  //   console.log({ results });
+  // });
+  // db.query(PREMIUM.createFillialTable, function (err, results, fields) {
+  //   console.log(err);
+  //   if (err) {
+  //     console.log({ err });
+  //   }
+  //   console.log({ results });
+  // });
+  // db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
+  //   console.log(err);
+  //   if (err) {
+  //     console.log({ err });
+  //   }
+  //   console.log({ results });
+  // });
   // db.query(PREMIUM.createAccountantTable, function (err, results, fields) {
   //   console.log(err);
   //   if (err) {
