@@ -410,29 +410,33 @@ class App {
         }
       );
 
-      let zayavka1 = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT * from Zayavka WHERE id=${id}`,
-          function (err, results, fields) {
-            if (err) {
-              reject(err);
-            }
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
-      console.log({ "orderId": `aatest-${zayavka1.id}`,
-      "term": "12",
-      singedAt, 
-      "oferta":true,});
-      const response2 = await axios.post(url2,{
-          "orderId": `aatest-${zayavka1.id}`,
+      // let zayavka1 = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `SELECT * from Zayavka WHERE id=${id}`,
+      //     function (err, results, fields) {
+      //       if (err) {
+      //         reject(err);
+      //       }
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
+    //   console.log({ "orderId": `aatest-${zayavka1.id}`,
+    //   "term": "12",
+    //   singedAt, 
+    //   "oferta":true,
+    // });
+      const response2 = await axios.post(url2,
+        
+        
+        {
+          "orderId": `aatest-${id}`,
           "term": "12",
-          "singedAt" :singedAt,
+          // "singedAt" :singedAt,
           "oferta":true,
           "contractPdf": contractPdf
       },
