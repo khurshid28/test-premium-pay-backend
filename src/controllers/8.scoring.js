@@ -126,7 +126,7 @@ class Scoring {
             
             await new Promise(function (resolve, reject) {
               db.query(
-                `UPDATE Zayavka SET status = 'canceled_by_scoring',finished_time = CURRENT_TIMESTAMP,reason='Заявка была отклонена'  WHERE id = ${id};`,
+                `UPDATE Zayavka SET status = 'canceled_by_scoring',finished_time = CURRENT_TIMESTAMP,reason='Заявка была отклонена (отказ)'  WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
                      reject(err);
