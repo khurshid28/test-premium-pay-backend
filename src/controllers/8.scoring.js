@@ -35,7 +35,7 @@ class Scoring {
 
             let { orderId,status,reason,summa } = req.body;
             console.log(req.body);
-            id = `${orderId}`.split("-")[1]
+            let id = `${orderId}`.split("-")[1]
             if(reason){
               reason = reason.replaceAll("'", "ʻ")
             }
