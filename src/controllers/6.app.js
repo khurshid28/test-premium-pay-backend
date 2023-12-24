@@ -432,7 +432,7 @@ class App {
       const response2 = await axios.post(url2,{
           "orderId": `aatest-${zayavka1.id}`,
           "term": "12",
-          // "singedAt" :singedAt,
+          "singedAt" :singedAt,
           "oferta":true,
           "contractPdf": contractPdf
       },
