@@ -40,6 +40,9 @@ class Scoring {
               reason = reason.replaceAll("'", "ʻ")
             }
 
+
+
+            
             const filePath = path.resolve(__dirname, 'scoring_data.txt')
              fs.appendFileSync(filePath,`\n ${Date().toString()}` +" >> "+ JSON.stringify(req.body) , (err) => {
               if (err) throw {

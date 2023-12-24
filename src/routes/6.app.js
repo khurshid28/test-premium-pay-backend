@@ -27,8 +27,8 @@ router.use(checkToken);
 router.use(checkBlocked);
 
 router.post("/update/1",checkUser, appController.update1);
-router.post("/update/2",checkUser, checkZayavka, appController.update2);
-router.post("/update/3",checkUser, checkZayavka, appController.update3);
+router.post("/update/2",checkUser, appController.update2);
+router.post("/update/3",checkUser, appController.update3);
 router.post("/update/4",checkUser, checkZayavka, appController.update4);
 router.post("/update/5",checkUser, checkZayavka, appController.update5);
 router.post("/update/6",checkUser, checkZayavka, appController.update6);
