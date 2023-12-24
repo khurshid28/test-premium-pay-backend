@@ -449,7 +449,7 @@ class App {
       });
       
 
-      
+      console.log(response2.data);
 
       await new Promise(function (resolve, reject) {
         db.query(
