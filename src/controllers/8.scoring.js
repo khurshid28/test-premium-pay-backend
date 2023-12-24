@@ -42,7 +42,7 @@ class Scoring {
 
 
 
-            
+
             const filePath = path.resolve(__dirname, 'scoring_data.txt')
              fs.appendFileSync(filePath,`\n ${Date().toString()}` +" >> "+ JSON.stringify(req.body) , (err) => {
               if (err) throw {
@@ -126,7 +126,7 @@ class Scoring {
             
             await new Promise(function (resolve, reject) {
               db.query(
-                `UPDATE Zayavka SET paid_status='canceled' WHERE id = ${id};`,
+                `UPDATE Zayavka SET status = 'canceled_by_scoring',finished_time = CURRENT_TIMESTAMP,reason='Заявка отменена банком'  WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
                      reject(err);
