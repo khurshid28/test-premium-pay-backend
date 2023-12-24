@@ -1,6 +1,7 @@
 require("./src/config/_index.js");
-
 require("./src/utils/schedule");
+
+
 
 var express = require("express");
 
@@ -38,11 +39,11 @@ app.use((req, res, next) => {
     const durationInMilliseconds = getDurationInMilliseconds(
       req.duration_start
     );
-    console.log(
-      `${req.method} ${req.originalUrl} ${
-        res.statusCode
-      } [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`
-    );
+    // console.log(
+    //   `${req.method} ${req.originalUrl} ${
+    //     res.statusCode
+    //   } [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`
+    // );
     
     if (req.errorMethod) {
       req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
@@ -56,7 +57,7 @@ app.use((req, res, next) => {
         "</b>" +
         req.errorText;
       let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
-      axios.post(url);
+      axios.post(url).then(res =>res).catch((err) => console.log(err));
     }
   });
 
@@ -79,13 +80,16 @@ app.use(morgan("dev"));
 
 app.use(express.json({ limit: "10mb" }));
 app.use(
-  express.urlencoded({ extended: false, limit: "10mb", parameterLimit: 10 })
+  express.urlencoded({ extended: true, limit: "10mb",  })
 );
 
 // app.use(bodyParser.json({limit: '10mb'}));
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors(), rateLimit());
+
+// static
+app.use("static", express.static(path.join(__dirname, "public")));
 
 // all routes
 app.use(router);
@@ -97,8 +101,6 @@ app.use(helmet());
 app.use(errorHandler);
 app.use(logger);
 
-// static
-app.use("static", express.static(path.join(__dirname, "public")));
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
@@ -179,6 +181,17 @@ app.listen(PORT, async () => {
   //     console.log({results})
   //   }
   // );
+  // db.query(
+  //   "DROP TABLE fillial",
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
+
   // db.query(
   //   PREMIUM.createFillialTable,
   //   function (err, results, fields) {

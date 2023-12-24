@@ -15,7 +15,7 @@ class UploadImage {
             });
         } catch (error) {
             console.log(error.message)
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
 

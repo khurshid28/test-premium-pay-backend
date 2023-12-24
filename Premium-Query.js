@@ -37,7 +37,8 @@ Date.prototype.addHours = function (h) {
       passport varchar(255),
       passport_date varchar(255),
       passport_by varchar(255),
-      address varchar(255),
+      address JSON,
+      region_id int,
       status ENUM("progress","canceled_by_scoring","canceled_by_client","canceled_by_daily","finished","confirmed","uncorfirmed","paid") DEFAULT "progress",
       canceled_reason varchar(255),
       device JSON,
@@ -52,17 +53,21 @@ Date.prototype.addHours = function (h) {
       bank varchar(255) DEFAULT "Davr",
       selfie varchar(255),
       agree BOOLEAN,
-      step int DEFAULT 1
-  
-  )  ENGINE=InnoDB DEFAULT CHARSET=utf8;`;
-  
+      step int DEFAULT 1,
+      scoring_start TIMESTAMP,
+      scoring_end TIMESTAMP,
+      paid_status  ENUM("no_value","waiting","paid","canceled") DEFAULT "no_value"
+
+  )  `;
+
+  // "ENGINE=InnoDB DEFAULT CHARSET=utf8;"
   
   let createMerchantTable = `CREATE TABLE IF NOT EXISTS merchant  (
       id int PRIMARY KEY AUTO_INCREMENT,
       name varchar(255),
       work_status ENUM("working","blocked","super_blocked","deleted") default "working",
       type ENUM("MERCHANT","AGENT") default "MERCHANT",
-      percent_type ENUM("IN","OUT") default "OUT",
+      
       created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       admin_id int,
       expired_months JSON,
@@ -89,7 +94,8 @@ Date.prototype.addHours = function (h) {
       mfo varchar(255),
       inn varchar(255),
       director_name varchar(255),
-      director_phone varchar(255)
+      director_phone varchar(255),
+      percent_type ENUM("IN","OUT") default "OUT"
 
   );`;
   
@@ -300,7 +306,6 @@ Date.prototype.addHours = function (h) {
       if (key != "address" && key != "who_created") {
         value = `${value}`;
         value= value.replaceAll("'", "ʻ");
-      
         VALUES.push(`"${value}"`);
       } else {
         VALUES.push(toMyString(value));

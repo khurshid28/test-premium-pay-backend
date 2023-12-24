@@ -66,6 +66,6 @@ module.exports = async (req, res, next) => {
       return next(new InvalidTokenError(401, "Malformed token"));
     }
 
-    return next(new InternalServerError(500, error.message));
+    return next(new InternalServerError(500,  error));
   }
 };

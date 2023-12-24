@@ -35,7 +35,7 @@ class ErrorController {
       }
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
 }

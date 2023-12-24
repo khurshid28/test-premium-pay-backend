@@ -34,6 +34,8 @@ class App {
         );
       });
       req.body.merchant_id = user.merchant_id;
+      req.body.fillial_id = user.fillial_id;
+
       let id = await new Promise(function (resolve, reject) {
         db.query(update1ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
@@ -70,7 +72,7 @@ class App {
       });
     } catch (error) {
       console.log(error.message);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
   async update2(req, res, next) {
@@ -111,14 +113,15 @@ class App {
     } catch (error) {
       console.log("error");
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
   async update3(req, res, next) {
     try {
       let { id, max_amount, selfie_with_passport,cardNumber,birthDate } = req.body;
-
       
+      
+     
       let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
       const response1 = await axios.post(
@@ -151,7 +154,7 @@ class App {
         );
       });
       let alldata = {
-        orderId: "pptest1-" + zayavka.id,
+        orderId: "aatest-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         term :'12',
@@ -171,7 +174,7 @@ class App {
         };
        });
       const response2 = await axios.post(url2,{
-        orderId: "pptest1-" + zayavka.id,
+        orderId: "aatest-" + zayavka.id,
         amount: max_amount,
         term:"12",
         duration:"12",
@@ -232,7 +235,7 @@ class App {
     } catch (error) {
       console.log("update 3");
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
   async update4(req, res, next) {
@@ -269,7 +272,7 @@ class App {
       });
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
   async update5(req, res, next) {
@@ -306,7 +309,7 @@ class App {
       });
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
   async update6(req, res, next) {
@@ -343,7 +346,7 @@ class App {
       });
     } catch (error) {
       console.log(error.message);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
   async updateFinish(req, res, next) {
@@ -380,16 +383,17 @@ class App {
       });
     } catch (error) {
       console.log(error.message);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
 
   async update7(req, res, next) {
     try {
-
+    
       let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
       let {contractPdf,id} =req.body;
+      
       const response1 = await axios.post(
         url1,
         {
@@ -421,7 +425,7 @@ class App {
       });
      
       const response2 = await axios.post(url2,{
-          "orderId": `pptest1-${zayavka1.id}`,
+          "orderId": `aatest-${zayavka1.id}`,
           "term": "12",
           "oferta":true,
           "contractPdf": contractPdf
@@ -474,7 +478,7 @@ class App {
       });
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
 
@@ -516,7 +520,7 @@ class App {
       });
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
   async getPercents(req, res, next) {
@@ -671,18 +675,19 @@ class App {
 }
 
 function update1ZayavkaFunc(data) {
-  let { user_id, merchant_id, fullname, passport } = data;
+  let { user_id, merchant_id,fillial_id, fullname, passport } = data;
   fullname = `${fullname}`;
   fullname = fullname.replaceAll("'", "ʻ");
-  return `INSERT INTO Zayavka (user_id,merchant_id,fullname,passport) VALUES (${user_id},${merchant_id},'${fullname}','${passport}') ; `;
+  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}') ; `;
 }
 
 function update2ZayavkaFunc(data) {
-  let { id, phoneNumber, phoneNumber2, cardNumber,passport_by,passport_date,address } = data;
+  let { id, phoneNumber, phoneNumber2, cardNumber,passport_by,passport_date,address,region_id } = data;
   passport_by =passport_by.replaceAll("'", "ʻ");
-  address = address.replaceAll("'", "ʻ");
   
-  return `UPDATE Zayavka SET step=2,phoneNumber ='${phoneNumber}',phoneNumber2 ='${phoneNumber2}',cardNumber='${cardNumber}',passport_date='${passport_date}',passport_by='${passport_by}',address='${address}' WHERE id = ${id};`;
+  // address = address.replaceAll("'", "ʻ");
+
+  return `UPDATE Zayavka SET step=2,phoneNumber ='${phoneNumber}',phoneNumber2 ='${phoneNumber2}',cardNumber='${cardNumber}',passport_date='${passport_date}',passport_by='${passport_by}',address=${toMyString(address)},region_id='${region_id}' WHERE id = ${id};`;
 }
 
 function update3ZayavkaFunc(data) {

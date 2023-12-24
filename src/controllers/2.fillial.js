@@ -46,7 +46,8 @@ class Fillial {
                 bank_name,
                 hisob_raqam,
                 director_name,
-                director_phone
+                director_phone,
+                percent_type,
 
 
             } = req.body;
@@ -59,7 +60,7 @@ class Fillial {
                 db.query(
                   `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
                     req.user.id
-                  },"date": "${new Date().addHours(5).toISOString()}"}','${inn}','${mfo}','${bank_name}','${nds}','${hisob_raqam}','${director_name}','${director_phone}') ;`,
+                  },"date": "${new Date().toISOString()}"}','${inn}','${mfo}','${bank_name}','${nds}','${hisob_raqam}','${director_name}','${director_phone}') ;`,
                   function (err, results, fields) {
                     console.log(">>>>>>....");
                     console.log(err);
@@ -81,7 +82,7 @@ class Fillial {
                 id
             });
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500, error));
         }
     }
 
@@ -115,7 +116,7 @@ class Fillial {
             res.status(200).json({data:fillials});
         } catch (error) {
             console.log(error);
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
 

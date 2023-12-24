@@ -9,7 +9,7 @@ const router = Router();
 // router.use(checkToken);
 // router.use(checkBlocked);
 
-router.get("/result", scoringController.get);
+// router.get("/result", scoringController.get);
 router.post("/result", scoringController.post);
 
 

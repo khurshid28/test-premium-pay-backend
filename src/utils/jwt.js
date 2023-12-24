@@ -8,7 +8,7 @@ module.exports = {
 				expiresIn: process.env.JWT_EXPIRATION_TIME,
 			});
 		} catch (error) {
-			return new InternalServerError(500, error.message);
+			return new InternalServerError(500,  error);
 		}
 	},
 

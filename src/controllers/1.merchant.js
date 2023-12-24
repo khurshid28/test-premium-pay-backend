@@ -51,7 +51,7 @@ class Merchant {
         db.query(
           `INSERT INTO merchant (name,type,percent_type,expired_months,who_created) VALUES('${name}','${type}','${percent_type}',${expired_monthsString},'{"role":"SuperAdmin","id":${
             req.user.id
-          },"date": "${new Date().addHours(5).toISOString()}"}') ;`,
+          },"date": "${new Date().toISOString()}"}') ;`,
           function (err, results, fields) {
             if (err) {
               reject(err);
@@ -71,7 +71,7 @@ class Merchant {
       admin.loginName = loginName;
       admin.loginPassword = loginPassword;
       admin.fullName = admin.fullName.replaceAll("'", "ʻ");
-
+ 
       let admin_id = await new Promise(function (resolve, reject) {
         db.query(
           `INSERT INTO Admin (loginName,loginPassword,fullName,phoneNumber,merchant_id) VALUES('${loginName}','${loginPassword}','${admin.fullName}',${admin.phoneNumber},${id}) ;`,
@@ -177,8 +177,8 @@ class Merchant {
       // }
 
     } catch (error) {
-      console.log(error.message);
-      return next(new InternalServerError(500, error.message));
+      console.log(error);
+      return next(new InternalServerError(500,  error));
     }
   }
 
@@ -220,7 +220,7 @@ class Merchant {
       return res.status(200).json({data:merchants});
     } catch (error) {
       console.log(error.message);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
 
@@ -260,7 +260,7 @@ class Merchant {
 
     } catch (error) {
       console.log(error.message);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
 }

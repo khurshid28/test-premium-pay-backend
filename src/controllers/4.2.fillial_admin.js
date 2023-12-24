@@ -90,7 +90,7 @@ class FillialAdmin {
             return res.status(201).json({ data:user,message:"Fillial Admin is created successfully" });
         } catch (error) {
             console.log(error.message)
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
 
@@ -133,7 +133,7 @@ class FillialAdmin {
             return res.status(200).json({ data: FillialAdmins });
         } catch (error) {
             console.log(error.message)
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
    

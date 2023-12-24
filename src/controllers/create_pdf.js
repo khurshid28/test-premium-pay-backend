@@ -26,7 +26,7 @@ class CreatePDF {
                 "doc_url": PdfUrl
             });
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
 

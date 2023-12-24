@@ -229,3 +229,30 @@
 /api/v1/error___POST___1703139321572___InternalServerError___message.length is not a function
 /api/v1/error___POST___1703139399757___InternalServerError___message.length is not a function
 /api/v1/error___POST___1703140322962___InternalServerError___message.length is not a function
+/api/v1/merchant/create/___POST___1703330525926___InternalServerError___Cannot read properties of undefined (reading 'forEach')
+/api/v1/merchant/create/___POST___1703330559163___InternalServerError___Cannot read properties of undefined (reading 'forEach')
+/api/v1/merchant/create/___POST___1703330589748___InternalServerError___Cannot read properties of undefined (reading 'forEach')
+/api/v1/merchant/create/___POST___1703330651230___InternalServerError___Cannot read properties of undefined (reading 'forEach')
+/api/v1/merchant/create/___POST___1703330783415___InternalServerError___Cannot read properties of undefined (reading 'replaceAll')
+/api/v1/merchant/create/___POST___1703330857481___InternalServerError___Cannot set properties of undefined (setting 'loginName')
+/api/v1/merchant/create/___POST___1703330922910___InternalServerError___Cannot set properties of undefined (setting 'loginName')
+/api/v1/merchant/create/___POST___1703331009333___InternalServerError___Unknown column 'undefined' in 'field list'
+/api/v1/fillial/create/___POST___1703331150754___InternalServerError___Cannot read properties of undefined (reading 'replaceAll')
+/api/v1/fillial/create/___POST___1703331185976___InternalServerError___TypeError: Cannot read properties of undefined (reading 'replaceAll')
+/api/v1/zayavka/update/2___POST___1703332447808___InternalServerError___address.replaceAll is not a function
+/api/v1/zayavka/update/2___POST___1703332517060___InternalServerError___Invalid JSON text: "Invalid value." at position 1 in value for column 'Zayavka.address'.
+/api/v1/zayavka/update/2___POST___1703332635357___InternalServerError___You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{"region":"Toshkent","city":"Chilonzor","home":"test home"}'' WHERE id = 1' at line 1
+/api/v1/zayavka/update/3___POST___1703332698498___InternalServerError___getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/3___POST___1703332748091___InternalServerError___getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/3___POST___1703333178082___InternalServerError___getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/3___POST___1703333253566___InternalServerError___getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/7___POST___1703333495851___InternalServerError___getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/7___POST___1703333525556___InternalServerError___getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/7___POST___1703333527601___InternalServerError___getaddrinfo ENOTFOUND md.davrbank.uz
+/api/v1/zayavka/update/finish___POST___1703333768655___MulterError___Unexpected field
+/api/v1/zayavka/update/finish___POST___1703333872039___MulterError___Unexpected field
+/api/v1/myid/check___POST___1703341810092___InternalServerError___TypeError: Date.now(...).getTime is not a function
+/api/v1/myid/check___POST___1703341945996___InternalServerError___TypeError: Date.now(...).getFullYear is not a function
+/api/v1/myid/check___POST___1703341987842___InternalServerError___TypeError: Date(...).getFullYear is not a function
+/api/v1/myid/check___POST___1703342053403___InternalServerError___TypeError: Date(...).getTime is not a function
+/api/v1/myid/check___POST___1703342466771___InternalServerError___TypeError: Date(...).getFullYear is not a function

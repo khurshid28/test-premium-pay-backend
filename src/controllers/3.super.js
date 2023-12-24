@@ -24,7 +24,7 @@ class SuperAdmin {
             const supers = await Super.find({ work_status: { $not: "deleted" } });
             return res.status(200).send(supers);
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async getSuper(req, res, next) {
@@ -40,7 +40,7 @@ class SuperAdmin {
             const superr = await Super.findById(req.params.id);
             return res.status(200).send(superr);
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async createSuper(req, res, next) {
@@ -124,7 +124,7 @@ class SuperAdmin {
             return res.status(201).json({ data:user,message:"SuperAdmin is created successfully" });
         } catch (error) {
             console.log(error.message)
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async updateSuper(req, res, next) {
@@ -168,7 +168,7 @@ class SuperAdmin {
                 .status(200)
                 .send({ message: "Successfully updated", data: superr });
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async deleteUser(req, res, next) {
@@ -191,7 +191,7 @@ class SuperAdmin {
 
             return res.status(200).send({ message: "Super deleted" });
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
 }

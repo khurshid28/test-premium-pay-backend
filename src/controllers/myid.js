@@ -119,15 +119,32 @@ class Myid {
       // }
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message)); 
+      return next(new InternalServerError(500, error)); 
     }
   }
 
 
   async check(req, res, next) {
     try {
-      let { passport } = req.body;
+      let { passport,gender,date } = req.body;
+      
+      
+      console.log(((new Date()).getFullYear() -(`${date}`.split(".")[2]))," yil");
+      let age = ((new Date()).getFullYear() - (`${date}`.split(".")[2]));
       console.log(req.body);
+      if(gender == "ERKAK" && (age <20 || age > 58)){
+        return res.status(200).json({
+          message: "Возраст клиента указан неверно.",
+          status: false,
+        });
+      }else{
+        if(age <20 || age > 53){
+          return res.status(200).json({
+            message: "Возраст клиента указан неверно.",
+            status: false,
+          });
+        }
+      }
       let zayavka2 = await new Promise(function (resolve, reject) {
         db.query(
           `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring' ORDER BY id DESC`,
@@ -137,7 +154,6 @@ class Myid {
             if (err) {
               reject(err);
             }
-            console.log("++++", results.length + "ta topildi");
             if (results.length != 0) {
               resolve(results[0]);
             } else {
@@ -165,7 +181,7 @@ class Myid {
             if (err) {
               reject(err);
             }
-            console.log("++++", results.length + "ta topildi");
+            
             if (results.length != 0) {
               resolve(results[0]);
             } else {
@@ -197,7 +213,7 @@ class Myid {
     } catch (error) {
       console.log(">>>>>>>>>. ERROR >>>>>>>>>>");
       console.log(error);
-      return next(new InternalServerError(500, error.message));
+      return next(new InternalServerError(500,  error));
     }
   }
 
@@ -332,7 +348,7 @@ class Myid {
      
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500, error.message)); 
+      return next(new InternalServerError(500,  error)); 
     }
   }
 }

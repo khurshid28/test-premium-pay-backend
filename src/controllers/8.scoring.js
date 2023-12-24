@@ -13,7 +13,7 @@ const {
     ForbiddenError
 } = require("../utils/errors.js");
 const jwt = require("../utils/jwt.js");
-// const { mockUser, mockSuper } = require("../../mock.js");
+
 
 let db =require("../config/db")
 
@@ -23,12 +23,9 @@ class Scoring {
             return res
             .status(200)
             .json({  message: "Here is result" });
-        
-
-          
         } catch (error) {
             console.log(error.message)
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async post(req, res, next) {
@@ -37,17 +34,42 @@ class Scoring {
 
 
             let { orderId,status,reason,summa } = req.body;
+            console.log(req.body);
+            id = `${orderId}`.split("-")[1]
+            if(reason){
+              reason = reason.replaceAll("'", "ʻ")
+            }
+
             const filePath = path.resolve(__dirname, 'scoring_data.txt')
-             fs.appendFileSync(filePath,`\n\n ${Date()}` +" >> "+ JSON.stringify(req.body) , (err) => {
+             fs.appendFileSync(filePath,`\n ${Date().toString()}` +" >> "+ JSON.stringify(req.body) , (err) => {
               if (err) throw {
                   err,
                   type:"file"
               };
              });
-           if (status == "3") {
-            await new Promise(function (resolve, reject) {
+           if (status == "1") {
+              await new Promise(function (resolve, reject) {
+                  db.query(
+                    `UPDATE Zayavka SET scoring_start = CURRENT_TIMESTAMP WHERE id = ${id};`,
+                    function (err, results, fields) {
+                      if (err) {
+                         reject(err);
+                      }
+                      if (results) {
+                        resolve(results);
+                      } else {
+                        reject(err);
+                      }
+                    }
+                  );
+                });
+             }
+
+           else if (status == "3") {
+           
+              await new Promise(function (resolve, reject) {
                 db.query(
-                    cancelByScoringZayavkaFunc({id:orderId,reason:reason}),
+                  `UPDATE Zayavka SET scoring_end = CURRENT_TIMESTAMP,status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${reason}' WHERE id = ${id};`,
                   function (err, results, fields) {
                     if (err) {
                        reject(err);
@@ -61,9 +83,47 @@ class Scoring {
                 );
               });
            }else if (status == "4") {
+           
             await new Promise(function (resolve, reject) {
               db.query(
-                  update4ZayavkaFunc({id:orderId}),
+                `UPDATE Zayavka SET step=4,paid_status='waiting',scoring_end = CURRENT_TIMESTAMP WHERE id = ${id};`,
+                function (err, results, fields) {
+                  if (err) {
+                     reject(err);
+                  }
+                  if (results) {
+                    resolve(results);
+                  } else {
+                     reject(err);
+                  }
+                }
+              );
+            });
+           
+           }
+           else if (status == "7") {
+            
+            await new Promise(function (resolve, reject) {
+              db.query(
+                `UPDATE Zayavka SET paid_status='paid' WHERE id = ${id};`,
+                function (err, results, fields) {
+                  if (err) {
+                     reject(err);
+                  }
+                  if (results) {
+                    resolve(results);
+                  } else {
+                     reject(err);
+                  }
+                }
+              );
+            });
+           }
+           else if (status == "8") {
+            
+            await new Promise(function (resolve, reject) {
+              db.query(
+                `UPDATE Zayavka SET paid_status='canceled' WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
                      reject(err);
@@ -88,24 +148,13 @@ class Scoring {
 
         } catch (error) {
           console.log(error);
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
    
 }
 
 
-function cancelByScoringZayavkaFunc(data) {
-    let { id,reason } = data;
-    id = `${id}`.split("-")[1]
-    reason = reason.replaceAll("'", "ʻ")
-    return `UPDATE Zayavka SET status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${reason}' WHERE id = ${id}`;
-  }
-  function update4ZayavkaFunc(data) {
-    let { id } = data;
-    console.log(id);
-    id = `${id}`.split("-")[1]
-    return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
-  }
+
 
 module.exports = new Scoring();

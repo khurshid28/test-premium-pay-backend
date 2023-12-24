@@ -21,7 +21,7 @@ class Users {
             const users = await User.find({ merchant_id, work_status: { $not: "deleted" } });
             return res.status(200).send(users);
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async getUser(req, res, next) {
@@ -37,7 +37,7 @@ class Users {
             const user = await User.findById(req.params.id);
             return res.status(200).send(user);
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async createUser(req, res, next) {
@@ -193,7 +193,7 @@ class Users {
         );
         } catch (error) {
             console.log(error.message)
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async updateUser(req, res, next) {
@@ -235,7 +235,7 @@ class Users {
                 .status(200)
                 .send({ message: "Successfully updated", data: user });
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
     async deleteUser(req, res, next) {
@@ -258,7 +258,7 @@ class Users {
 
             return res.status(200).send({ message: "User deleted" });
         } catch (error) {
-            return next(new InternalServerError(500, error.message));
+            return next(new InternalServerError(500,  error));
         }
     }
 }

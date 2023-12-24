@@ -11,7 +11,7 @@ const imageRender = (req, res, next) => {
 		}
 		res.sendFile(filePath);
 	} catch (error) {
-		return next(new InternalServerError(500, error.message));
+		return next(new InternalServerError(500,  error));
 	}
 };
 

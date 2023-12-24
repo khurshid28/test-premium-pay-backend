@@ -24,6 +24,6 @@ module.exports = async(req, res, next) => {
     } catch (error) {
       console.log("check user >>");
         console.log(error);
-        return next(new InternalServerError(500, error.message));
+        return next(new InternalServerError(500,  error));
     }
 };
