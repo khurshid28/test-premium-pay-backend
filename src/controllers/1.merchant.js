@@ -33,7 +33,7 @@ class Merchant {
       let {
         name,
         type,
-        percent_type,
+        // percent_type,
         expired_months,
         admin,
       } = req.body;
@@ -49,7 +49,7 @@ class Merchant {
       name = name.replaceAll("'", "ʻ");
       let id = await new Promise(function (resolve, reject) {
         db.query(
-          `INSERT INTO merchant (name,type,percent_type,expired_months,who_created) VALUES('${name}','${type}','${percent_type}',${expired_monthsString},'{"role":"SuperAdmin","id":${
+          `INSERT INTO merchant (name,type,expired_months,who_created) VALUES('${name}','${type}',${expired_monthsString},'{"role":"SuperAdmin","id":${
             req.user.id
           },"date": "${new Date().toISOString()}"}') ;`,
           function (err, results, fields) {
