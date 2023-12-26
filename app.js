@@ -1,8 +1,6 @@
 require("./src/config/_index.js");
 require("./src/utils/schedule");
 
-
-
 var express = require("express");
 
 const cors = require("cors");
@@ -44,7 +42,7 @@ app.use((req, res, next) => {
     //     res.statusCode
     //   } [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`
     // );
-    
+
     if (req.errorMethod) {
       req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
       let text =
@@ -57,7 +55,10 @@ app.use((req, res, next) => {
         "</b>" +
         req.errorText;
       let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
-      axios.post(url).then(res =>res).catch((err) => console.log(err));
+      axios
+        .post(url)
+        .then((res) => res)
+        .catch((err) => console.log(err));
     }
   });
 
@@ -79,9 +80,7 @@ app.use(morgan("dev"));
 // middlewares
 
 app.use(express.json({ limit: "10mb" }));
-app.use(
-  express.urlencoded({ extended: true, limit: "10mb",  })
-);
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // app.use(bodyParser.json({limit: '10mb'}));
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -100,7 +99,6 @@ app.use(helmet());
 // error handling
 app.use(errorHandler);
 app.use(logger);
-
 
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
@@ -125,17 +123,18 @@ app.get("/test/droptable", (req, res) => {
         if (err) {
           console.log({ err });
         }
+        db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
+          console.log(err);
+          if (err) {
+            console.log({ err });
+          }
+          console.log({ results });
+        });
         console.log({ results });
       });
       return res.send({ err });
     }
-    db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({ err });
-      }
-      console.log({ results });
-    });
+
     return res.send({ results });
   });
 });

@@ -56,7 +56,8 @@ Date.prototype.addHours = function (h) {
       step int DEFAULT 1,
       scoring_start TIMESTAMP NULL,
       scoring_end TIMESTAMP NULL,
-      paid_status  ENUM("no_value","waiting","paid","canceled") DEFAULT "no_value"
+      paid_status  ENUM("no_value","waiting","paid","canceled") DEFAULT "no_value",
+      term JSON
 
   )  `;
 
