@@ -33,7 +33,7 @@ class Scoring {
         try {
 
 
-            let { orderId,status,reason,summa } = req.body;
+            let { orderId,status,reason,summa,term } = req.body;
             console.log(req.body);
             let id = `${orderId}`.split("-")[1]
             if(reason){
@@ -89,7 +89,7 @@ class Scoring {
            
             await new Promise(function (resolve, reject) {
               db.query(
-                `UPDATE Zayavka SET step=4,paid_status='waiting',scoring_end = CURRENT_TIMESTAMP WHERE id = ${id};`,
+                `UPDATE Zayavka SET step=4,paid_status='waiting',term=${term},scoring_end = CURRENT_TIMESTAMP WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
                      reject(err);
