@@ -163,16 +163,16 @@ app.listen(PORT, async () => {
   //     console.log({results})
   //   }
   // );
-  db.query(
-    "DROP TABLE merchant",
-    function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({err})
-      }
-      console.log({results})
-    }
-  );
+  // db.query(
+  //   "DROP TABLE merchant",
+  //   function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({err})
+  //     }
+  //     console.log({results})
+  //   }
+  // );
 
   // db.query("SELECT * from Zayavka", function (err, results, fields) {
   // for (let index = 0; index < 40; index++) {
