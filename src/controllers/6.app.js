@@ -118,26 +118,7 @@ class App {
   }
   async update3(req, res, next) {
     try {
-      let { id, max_amount, selfie_with_passport,cardNumber,birthDate } = req.body;
-      
-      
-     
-      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
-      const response1 = await axios.post(
-        url1,
-        {
-          username: process.env.DAVR_USERNAME,
-          password: process.env.DAVR_PASSWORD, 
-        },
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
+      let { id, max_amount, selfie_with_passport,cardNumber,birthDate,IdentificationVideoBase64 } = req.body;
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
@@ -165,7 +146,7 @@ class App {
         phoneNumber2: zayavka.phoneNumber2,
         cardNumber: cardNumber,
         inn: process.env.PREMIUM_INN,
-        selfie: "data:image/jpeg;base64,"+ selfie_with_passport.substring(2),
+        selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
       };
       fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
         if (err) throw {
@@ -173,6 +154,26 @@ class App {
             type:"file"
         };
        });
+     
+      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
+      const response1 = await axios.post(
+        url1,
+        {
+          username: process.env.DAVR_USERNAME,
+          password: process.env.DAVR_PASSWORD, 
+        },
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+     
+      
+      
       const response2 = await axios.post(url2,{
         orderId: "PremiumTest-" + zayavka.id,
         amount: max_amount,
@@ -190,6 +191,7 @@ class App {
         // inn:"303085034", // javohir
         inn:"305207299", // surat
         selfie: selfie_with_passport,
+        IdentificationVideoBase64 :IdentificationVideoBase64
       },
         {
           headers: {
@@ -489,7 +491,6 @@ class App {
       return next(new InternalServerError(500,  error));
     }
   }
-
 
   async cancel_by_client(req,res,next){
     try {
