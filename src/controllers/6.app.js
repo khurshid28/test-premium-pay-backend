@@ -534,11 +534,11 @@ class App {
   }
   async getPercents(req, res, next) {
     try {
-      let { merchant_id } = req.params;
+      let { fillial_id } = req.params;
 
       let merchant = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from merchant WHERE id=${merchant_id}`,
+          `SELECT * from fillial WHERE id=${fillial_id}`,
           function (err, results, fields) {
             if (err) {
               reject(err);
@@ -552,7 +552,8 @@ class App {
       });
 
       return res.status(200).json({
-        data: merchant.expired_months,
+        data: fillial_id.expired_months,
+        type : fillial_id.percent_type
       });
     } catch (error) {
       console.log(error);

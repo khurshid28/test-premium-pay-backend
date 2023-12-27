@@ -41,7 +41,7 @@ router.post("/cancel_by_client/",checkUser, appController.cancel_by_client);
 router.get("/getAll/", appController.getAll);
 
 
-router.get("/percents/:merchant_id",checkUser, appController.getPercents);
+router.get("/percents/:fillial_id",checkUser, appController.getPercents);
 
 
 
