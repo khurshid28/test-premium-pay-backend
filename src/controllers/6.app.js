@@ -436,7 +436,7 @@ class App {
         
         {
           "orderId": `PPtest-${id}`,
-          "term": "9",
+          "term": "6",
           "oferta":true,
           "contractPdf": contractPdf
       },
