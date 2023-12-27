@@ -139,14 +139,14 @@ app.get("/test/droptable", (req, res) => {
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
-  db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
-    console.log(err);
-    if (err) {
-      console.log({ err });
-    }
+  // db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
+  //   console.log(err);
+  //   if (err) {
+  //     console.log({ err });
+  //   }
     
-    console.log({ results });
-  });
+  //   console.log({ results });
+  // });
   // db.query(
   //   "DROP TABLE fillial",
   //   function (err, results, fields) {

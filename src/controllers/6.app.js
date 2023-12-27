@@ -155,8 +155,8 @@ class App {
         };
        });
      
-      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
+      let url1 = process.env.DAVR__TEST_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR__TEST_BASE_URL + process.env.DAVR_SCORING;
       const response1 = await axios.post(
         url1,
         {
@@ -392,8 +392,8 @@ class App {
   async update7(req, res, next) {
     try {
     
-      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
+      let url1 = process.env.DAVR__TEST_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR__TEST_BASE_URL + process.env.DAVR_AGREEMENT;
       let {contractPdf,id} =req.body;
       let date = new Date();
       let singedAt = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`

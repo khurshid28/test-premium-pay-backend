@@ -71,7 +71,7 @@ Date.prototype.addHours = function (h) {
       
       created_time TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
       admin_id int,
-      expired_months JSON,
+      
       who_created JSON,
       who_edited JSON,
       who_deleted JSON
@@ -96,7 +96,8 @@ Date.prototype.addHours = function (h) {
       inn varchar(255),
       director_name varchar(255),
       director_phone varchar(255),
-      percent_type ENUM("IN","OUT") default "OUT"
+      percent_type ENUM("IN","OUT") default "OUT",
+      expired_months JSON
 
   );`;
   
