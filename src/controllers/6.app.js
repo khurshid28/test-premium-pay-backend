@@ -135,7 +135,7 @@ class App {
         );
       });
       let alldata = {
-        orderId: "PPtest-" + zayavka.id,
+        orderId: "PremiumPay-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         term :'12',
@@ -155,8 +155,8 @@ class App {
         };
        });
      
-      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_SCORING;
+      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
       const response1 = await axios.post(
         url1,
         {
@@ -175,7 +175,7 @@ class App {
       
       
       const response2 = await axios.post(url2,{
-        orderId: "PPtest-" + zayavka.id,
+        orderId: "PremiumPay-" + zayavka.id,
         amount: max_amount,
         term:"12",
         duration:"12",
@@ -392,8 +392,8 @@ class App {
   async update7(req, res, next) {
     try {
     
-      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_AGREEMENT;
+      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
       let {contractPdf,id} =req.body;
       let date = new Date();
       let singedAt = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
@@ -401,8 +401,8 @@ class App {
       const response1 = await axios.post(
         url1,
         {
-          username: process.env.DAVR_TEST_USERNAME,
-          password: process.env.DAVR_TEST_PASSWORD, 
+          username: process.env.DAVR_USERNAME,
+          password: process.env.DAVR_USERNAME, 
         },
 
         {
@@ -427,7 +427,7 @@ class App {
       //     }
       //   );
       // });
-    //   console.log({ "orderId": `PPtest-${zayavka1.id}`,
+    //   console.log({ "orderId": `PremiumPay-${zayavka1.id}`,
     //   "term": "12",
     //   singedAt, 
     //   "oferta":true,
@@ -435,8 +435,8 @@ class App {
       const response2 = await axios.post(url2,
         
         {
-          "orderId": `PPtest-${id}`,
-          "term": "6",
+          "orderId": `PremiumPay-${id}`,
+          "term": "9",
           "oferta":true,
           "contractPdf": contractPdf
       },
