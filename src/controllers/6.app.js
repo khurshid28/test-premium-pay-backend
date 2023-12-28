@@ -119,14 +119,7 @@ class App {
   async update3(req, res, next) {
     try {
       let { id, max_amount, selfie_with_passport,cardNumber,birthDate,IdentificationVideoBase64 } = req.body;
-      await new Promise(function (resolve, reject) {
-        db.query(update3ZayavkaFunc(req.body), function (err, results, fields) {
-          if (err) {
-            return reject(err);
-          }
-          resolve(results);
-        });
-      });
+     
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
