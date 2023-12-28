@@ -135,7 +135,7 @@ class App {
         );
       });
       let alldata = {
-        orderId: "PremiumPay-" + zayavka.id,
+        orderId: "PremiumPayDavr-" + zayavka.id,
         amount: max_amount,
         duration: "12",
         term :'12',
@@ -175,7 +175,7 @@ class App {
       
       
       const response2 = await axios.post(url2,{
-        orderId: "PremiumPay-" + zayavka.id,
+        orderId: "PremiumPayDavr-" + zayavka.id,
         amount: max_amount,
         term:"12",
         duration:"12",
@@ -427,7 +427,7 @@ class App {
       //     }
       //   );
       // });
-    //   console.log({ "orderId": `PremiumPay-${zayavka1.id}`,
+    //   console.log({ "orderId": `PremiumPayDavr-${zayavka1.id}`,
     //   "term": "12",
     //   singedAt, 
     //   "oferta":true,
@@ -435,7 +435,7 @@ class App {
       const response2 = await axios.post(url2,
         
         {
-          "orderId": `PremiumPay-${id}`,
+          "orderId": `PremiumPayDavr-${id}`,
           "term": "9",
           "oferta":true,
           "contractPdf": contractPdf
