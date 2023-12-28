@@ -402,7 +402,7 @@ class App {
         url1,
         {
           username: process.env.DAVR_USERNAME,
-          password: process.env.DAVR_USERNAME, 
+          password: process.env.DAVR_PASSWORD, 
         },
 
         {
