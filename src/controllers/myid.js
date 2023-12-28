@@ -163,49 +163,51 @@ class Myid {
         );
       });
 
-      if (zayavka2) {
-        if (
-          Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) <= 30
-        ) {
-          return res.status(200).json({
-            message: "Пользователю не предоставлено разрешение",
-            status: false,
-          });
-        }
-      }
 
-      let zayavka = await new Promise(function (resolve, reject) {
-        db.query(
-          `Select * from Zayavka WHERE passport='${passport}' AND status='finished' ORDER BY id DESC `,
-          function (err, results, fields) {
-            if (err) {
-              reject(err);
-            }
+          //  esdan chiqmasin
+      // if (zayavka2) {
+      //   if (
+      //     Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) <= 30
+      //   ) {
+      //     return res.status(200).json({
+      //       message: "Пользователю не предоставлено разрешение",
+      //       status: false,
+      //     });
+      //   }
+      // }
+
+      // let zayavka = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `Select * from Zayavka WHERE passport='${passport}' AND status='finished' ORDER BY id DESC `,
+      //     function (err, results, fields) {
+      //       if (err) {
+      //         reject(err);
+      //       }
             
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
 
-      if (!zayavka) {
-        return res.status(200).json({
-          message: "Пользователю предоставлено разрешение",
-          status: true,
-        });
-      } else {
-        if (
-          Date.daysBetween(Date.parse(zayavka.finished_time), Date.now()) < 60
-        ) {
-          return res.status(200).json({
-            message: "Пользователю не предоставлено разрешение",
-            status: false,
-          });
-        }
-      }
+      // if (!zayavka) {
+      //   return res.status(200).json({
+      //     message: "Пользователю предоставлено разрешение",
+      //     status: true,
+      //   });
+      // } else {
+      //   if (
+      //     Date.daysBetween(Date.parse(zayavka.finished_time), Date.now()) < 60
+      //   ) {
+      //     return res.status(200).json({
+      //       message: "Пользователю не предоставлено разрешение",
+      //       status: false,
+      //     });
+      //   }
+      // }
       return res.status(200).json({
         message: "Пользователю предоставлено разрешение",
         status: true,
