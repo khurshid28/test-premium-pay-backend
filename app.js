@@ -143,7 +143,6 @@ app.listen(PORT, async () => {
   db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
     if (err) {
       
-      return res.send({ err });
     }
     db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
       console.log(err);
@@ -153,14 +152,12 @@ app.listen(PORT, async () => {
       
       console.log({ results });
     });
-    return res.send({ results });
   });
 
 
   db.query(`DROP TABLE merchant;`, function (err, results, fields) {
     if (err) {
       
-      return res.send({ err });
     }
     db.query(PREMIUM.createMerchantTable, function (err, results, fields) {
       console.log(err);
@@ -170,14 +167,12 @@ app.listen(PORT, async () => {
       
       console.log({ results });
     });
-    return res.send({ results });
   });
 
 
   db.query(`DROP TABLE fillial;`, function (err, results, fields) {
     if (err) {
       
-      return res.send({ err });
     }
     db.query(PREMIUM.createFillialTable, function (err, results, fields) {
       console.log(err);
@@ -187,7 +182,6 @@ app.listen(PORT, async () => {
       
       console.log({ results });
     });
-    return res.send({ results });
   });
 
 
@@ -196,7 +190,6 @@ app.listen(PORT, async () => {
   db.query(`DROP TABLE FillialAdmin;`, function (err, results, fields) {
     if (err) {
       
-      return res.send({ err });
     }
     db.query(PREMIUM.createFillialAdminTable, function (err, results, fields) {
       console.log(err);
@@ -206,7 +199,6 @@ app.listen(PORT, async () => {
       
       console.log({ results });
     });
-    return res.send({ results });
   });
 
 
