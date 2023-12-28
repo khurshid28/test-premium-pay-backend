@@ -34,22 +34,22 @@ class Merchant {
         name,
         type,
         // percent_type,
-        expired_months,
+        // expired_months,
         admin,
       } = req.body;
 
-      let expired_monthsString = `'[`;
-      expired_months.forEach((expired_month) => {
-        expired_monthsString += toMyString(expired_month).slice(1, -1);
-        expired_monthsString += `,`;
-      });
-      expired_monthsString = expired_monthsString.slice(0, -1);
-      expired_monthsString += "]'";
+      //  expired_months.forEach((expired_month) => {
+      //   expired_monthsString += toMyString(expired_month).slice(1, -1);
+      //   expired_monthsString += `,`;
+      // });
+      // expired_monthsString = expired_monthsString.slice(0, -1);
+      // expired_monthsString += "]'"; let expired_monthsString = `'[`;
+    
 
       name = name.replaceAll("'", "ʻ");
       let id = await new Promise(function (resolve, reject) {
         db.query(
-          `INSERT INTO merchant (name,type,expired_months,who_created) VALUES('${name}','${type}',${expired_monthsString},'{"role":"SuperAdmin","id":${
+          `INSERT INTO merchant (name,type,who_created) VALUES('${name}','${type}','{"role":"SuperAdmin","id":${
             req.user.id
           },"date": "${new Date().toISOString()}"}') ;`,
           function (err, results, fields) {

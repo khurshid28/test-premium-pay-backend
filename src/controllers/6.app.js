@@ -119,6 +119,14 @@ class App {
   async update3(req, res, next) {
     try {
       let { id, max_amount, selfie_with_passport,cardNumber,birthDate,IdentificationVideoBase64 } = req.body;
+      await new Promise(function (resolve, reject) {
+        db.query(update3ZayavkaFunc(req.body), function (err, results, fields) {
+          if (err) {
+            return reject(err);
+          }
+          resolve(results);
+        });
+      });
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
@@ -536,7 +544,7 @@ class App {
     try {
       let { fillial_id } = req.params;
 
-      let merchant = await new Promise(function (resolve, reject) {
+      let fillial = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * from fillial WHERE id=${fillial_id}`,
           function (err, results, fields) {
@@ -552,8 +560,8 @@ class App {
       });
 
       return res.status(200).json({
-        data: fillial_id.expired_months,
-        type : fillial_id.percent_type
+        data: fillial.expired_months,
+        type : fillial.percent_type
       });
     } catch (error) {
       console.log(error);
