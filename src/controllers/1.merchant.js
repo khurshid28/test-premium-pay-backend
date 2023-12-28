@@ -38,13 +38,9 @@ class Merchant {
         admin,
       } = req.body;
 
-      //  expired_months.forEach((expired_month) => {
-      //   expired_monthsString += toMyString(expired_month).slice(1, -1);
-      //   expired_monthsString += `,`;
-      // });
-      // expired_monthsString = expired_monthsString.slice(0, -1);
-      // expired_monthsString += "]'"; let expired_monthsString = `'[`;
+      
     
+
 
       name = name.replaceAll("'", "ʻ");
       let id = await new Promise(function (resolve, reject) {

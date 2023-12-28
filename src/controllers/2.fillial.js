@@ -48,19 +48,28 @@ class Fillial {
                 director_name,
                 director_phone,
                 percent_type,
+        expired_months,
 
 
             } = req.body;
             name = name.replaceAll("'", "ʻ");
             director_name = director_name.replaceAll("'", "ʻ");
             bank_name = bank_name.replaceAll("'", "ʻ");
+            let expired_monthsString = `'[`;
+             expired_months.forEach((expired_month) => {
+        expired_monthsString += toMyString(expired_month).slice(1, -1);
+        expired_monthsString += `,`;
+      });
+      expired_monthsString = expired_monthsString.slice(0, -1);
+      expired_monthsString += "]'"; 
+      // let expired_monthsString = `'[`;
             
            
             let id = await new Promise(function (resolve, reject) {
                 db.query(
-                  `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
+                  `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone,percent_type,expired_months) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
                     req.user.id
-                  },"date": "${new Date().toISOString()}"}','${inn}','${mfo}','${bank_name}','${nds}','${hisob_raqam}','${director_name}','${director_phone}') ;`,
+                  },"date": "${new Date().toISOString()}"}','${inn}','${mfo}','${bank_name}','${nds}','${hisob_raqam}','${director_name}','${director_phone}','${percent_type}',${expired_monthsString}) ;`,
                   function (err, results, fields) {
                     console.log(">>>>>>....");
                     console.log(err);
