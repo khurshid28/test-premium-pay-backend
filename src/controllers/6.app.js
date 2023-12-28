@@ -204,8 +204,6 @@ class App {
 
       console.log(response2.data);
 
-
-
       await new Promise(function (resolve, reject) {
         db.query(update3ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
@@ -214,6 +212,7 @@ class App {
           resolve(results);
         });
       });
+
 
       let zayavkaUpdated = await new Promise(function (resolve, reject) {
         db.query(
