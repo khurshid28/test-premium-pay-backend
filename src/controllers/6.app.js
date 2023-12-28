@@ -436,7 +436,7 @@ class App {
         
         {
           "orderId": `PremiumPayDavr-${id}`,
-          "term": "12",
+          "term": "9",
           "oferta":true,
           "contractPdf": contractPdf
       },
