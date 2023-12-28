@@ -140,66 +140,66 @@ app.get("/test/droptable", (req, res) => {
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
 
-  db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
-    if (err) {
+  // db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
+  //   if (err) {
       
-    }
-    db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({ err });
-      }
+  //   }
+  //   db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({ err });
+  //     }
       
-      console.log({ results });
-    });
-  });
+  //     console.log({ results });
+  //   });
+  // });
 
 
-  db.query(`DROP TABLE merchant;`, function (err, results, fields) {
-    if (err) {
+  // db.query(`DROP TABLE merchant;`, function (err, results, fields) {
+  //   if (err) {
       
-    }
-    db.query(PREMIUM.createMerchantTable, function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({ err });
-      }
+  //   }
+  //   db.query(PREMIUM.createMerchantTable, function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({ err });
+  //     }
       
-      console.log({ results });
-    });
-  });
+  //     console.log({ results });
+  //   });
+  // });
 
 
-  db.query(`DROP TABLE fillial;`, function (err, results, fields) {
-    if (err) {
+  // db.query(`DROP TABLE fillial;`, function (err, results, fields) {
+  //   if (err) {
       
-    }
-    db.query(PREMIUM.createFillialTable, function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({ err });
-      }
+  //   }
+  //   db.query(PREMIUM.createFillialTable, function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({ err });
+  //     }
       
-      console.log({ results });
-    });
-  });
+  //     console.log({ results });
+  //   });
+  // });
 
 
 
  
-  db.query(`DROP TABLE FillialAdmin;`, function (err, results, fields) {
-    if (err) {
+  // db.query(`DROP TABLE FillialAdmin;`, function (err, results, fields) {
+  //   if (err) {
       
-    }
-    db.query(PREMIUM.createFillialAdminTable, function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({ err });
-      }
+  //   }
+  //   db.query(PREMIUM.createFillialAdminTable, function (err, results, fields) {
+  //     console.log(err);
+  //     if (err) {
+  //       console.log({ err });
+  //     }
       
-      console.log({ results });
-    });
-  });
+  //     console.log({ results });
+  //   });
+  // });
 
 
 
