@@ -412,21 +412,21 @@ class App {
         }
       );
 
-      // let zayavka1 = await new Promise(function (resolve, reject) {
-      //   db.query(
-      //     `SELECT * from Zayavka WHERE id=${id}`,
-      //     function (err, results, fields) {
-      //       if (err) {
-      //         reject(err);
-      //       }
-      //       if (results.length != 0) {
-      //         resolve(results[0]);
-      //       } else {
-      //         resolve(null);
-      //       }
-      //     }
-      //   );
-      // });
+      let zayavka1 = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from Zayavka WHERE id=${id}`,
+          function (err, results, fields) {
+            if (err) {
+              reject(err);
+            }
+            if (results.length != 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
     //   console.log({ "orderId": `PremiumPayDavr-${zayavka1.id}`,
     //   "term": "12",
     //   singedAt, 
@@ -436,9 +436,9 @@ class App {
         
         {
           "orderId": `PremiumPayDavr-${id}`,
-          "term": "9",
+          "term": `${zayavka1.expired_month}`,
           "oferta":true,
-          "contractPdf": contractPdf
+          "contractPdf": contractPdf,
       },
       {
           headers: {
@@ -446,6 +446,7 @@ class App {
               "Content-Type": "application/json",
 
           }
+
       });
       
 
