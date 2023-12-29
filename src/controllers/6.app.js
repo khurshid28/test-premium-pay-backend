@@ -147,7 +147,7 @@ class App {
         phoneNumber2: zayavka.phoneNumber2,
         cardNumber: cardNumber,
         inn: process.env.PREMIUM_INN,
-        selfie: "data:image/jpeg;base64,"+ selfie_with_passport,
+        selfie:  selfie_with_passport,
       };
       fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
         if (err) throw {
@@ -164,7 +164,6 @@ class App {
           username: process.env.DAVR_USERNAME,
           password: process.env.DAVR_PASSWORD, 
         },
-
         {
           headers: {
             "Content-Type": "application/json",
@@ -173,7 +172,9 @@ class App {
       );
 
      
-      
+      console.log("IdentificationVideoBase64 : "+ IdentificationVideoBase64);
+
+
       
       const response2 = await axios.post(url2,{
         orderId: "PremiumPayDavr-" + zayavka.id,
