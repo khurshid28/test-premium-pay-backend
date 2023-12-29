@@ -192,8 +192,9 @@ class App {
         // inn: "303107528", elma
         // inn:"303085034", // javohir
         inn:"305207299", // surat
+        
+        IdentificationVideoBase64 : IdentificationVideoBase64,
         selfie: selfie_with_passport,
-        IdentificationVideoBase64 :IdentificationVideoBase64
       },
         {
           headers: {
