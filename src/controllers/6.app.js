@@ -193,7 +193,7 @@ class App {
         // inn:"303085034", // javohir
         inn:"305207299", // surat
         
-        IdentificationVideoBase64 : IdentificationVideoBase64,
+        identificationVideoBase64 : IdentificationVideoBase64,
         selfie: selfie_with_passport,
       },
         {
