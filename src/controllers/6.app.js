@@ -135,9 +135,51 @@ class App {
           }
         );
       });
+      let fillial = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from fillial WHERE id=${zayavka.fillial_id}`,
+          function (err, results, fields) {
+            if (err) {
+              reject(err);
+            }
+            if (results.length != 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
+     console.log(fillial)
+
+    //  fillial.expired_months =[
+    //   {
+    //       "month" :12,
+    //       "percent" :41,
+    //   },
+    //    {
+    //       "month" :9,
+    //       "percent" :34,
+    //   },
+    //    {
+    //       "month" :6,
+    //       "percent" :30,
+    //   },
+    //   ];
+      let arr= fillial.expired_months.map(obj => {
+        return obj["month"]
+      })
+      
+      var largest = Math.max.apply(0, arr);
+      
+      
+      let val =fillial.expired_months[arr.indexOf(largest)]
+
+      
+
       let alldata = {
         orderId: "PremiumPayDavr-" + zayavka.id,
-        amount: max_amount,
+        amount: Math.floor(max_amount * (100+val["percent"])/100) ,
         duration: "12",
         term :'12',
         passSeria: zayavka.passport.substring(0, 2),
@@ -147,14 +189,19 @@ class App {
         phoneNumber2: zayavka.phoneNumber2,
         cardNumber: cardNumber,
         inn: process.env.PREMIUM_INN,
-        selfie:  selfie_with_passport,
+        selfie:  selfie_with_passport.substring(0,30),
+        identificationVideoBase64 : IdentificationVideoBase64.substring(0,30),
+
       };
-      fs.writeFileSync(path.join(__dirname, 'output.txt'),JSON.stringify(alldata) , (err) => {
+
+
+      fs.appendFile(path.join(__dirname, 'output.txt'), `\n ${Date().toString()}` +" >> "+  JSON.stringify(alldata) , (err) => {
         if (err) throw {
             err,
             type:"file"
         };
        });
+      
      
       let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
@@ -175,10 +222,9 @@ class App {
       console.log("IdentificationVideoBase64 : "+ IdentificationVideoBase64);
 
 
-      
       const response2 = await axios.post(url2,{
         orderId: "PremiumPayDavr-" + zayavka.id,
-        amount: max_amount,
+        amount: Math.floor(max_amount * (100+val["percent"])/100) ,
         term:"12",
         duration:"12",
         passSeria: zayavka.passport.substring(0,2),

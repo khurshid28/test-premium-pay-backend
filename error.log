@@ -273,3 +273,6 @@
 /api/v1/zayavka/update/3/___POST___1703739886364___InternalServerError___Error: getaddrinfo ENOTFOUND testmd.davrbank.uz
 /api/v1/zayavka/percents/1___GET___1703740137780___InternalServerError___TypeError: Cannot read properties of null (reading 'expired_months')
 /api/v1/merchant/create/___POST___1703740394698___InternalServerError___TypeError: Cannot read properties of undefined (reading 'forEach')
+/api/v1/zayavka/update/3___POST___1703927708882___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
+/api/v1/zayavka/update/3___POST___1703927741649___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
+/api/v1/zayavka/update/3___POST___1703927769755___InternalServerError___TypeError: Cannot read properties of null (reading 'map')

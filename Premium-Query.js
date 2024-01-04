@@ -308,7 +308,8 @@ Date.prototype.addHours = function (h) {
       if (key != "address" && key != "who_created") {
         value = `${value}`;
         value= value.replaceAll("'", "ʻ");
-        VALUES.push(`"${value}"`);
+        // VALUES.push(`"${value}"`);
+        VALUES.push(value)
       } else {
         VALUES.push(toMyString(value));
       }
@@ -317,7 +318,9 @@ Date.prototype.addHours = function (h) {
     console.log(KEYS.join());
     console.log(">>>>");
     console.log(VALUES.join());
-    return `INSERT INTO User (${KEYS.join()}) VALUES (${VALUES.join()} ) `;
+    return `INSERT INTO User (${KEYS.join()}) VALUES (${VALUES.map(function (val, index) {
+      return "?";
+  }) }`,[...VALUES];
   }
   
   

@@ -78,7 +78,9 @@ class Users {
                 
                
                   db.query(
+
                     PREMIUM.insertUserFunc(req.body),
+                    
                     function (err, results, fields) {
                       if (err) {
                          reject(err);
