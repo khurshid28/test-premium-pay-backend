@@ -297,14 +297,14 @@ function toMyString(ob) {
     for (let [key, value] of Object.entries(ob)) {
       value = `${value}`;
       value= value.replaceAll("'", "ʻ");
-      li.push(`'${key}':'${value}'`);
+      li.push(`"${key}":"${value}"`);
     }
     result += li.join();
     if (ob.role) {
-      result += `,"date": '${new Date().addHours(5).toISOString()}'`;
+      result += `,"date": "${new Date().addHours(5).toISOString()}"`;
     }
     result = result + `}`;
-    return result;
+    // return result;
     return JSON.parse(result);
   }
 module.exports = new Users();
