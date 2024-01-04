@@ -221,7 +221,7 @@ class Users {
             }, 
         );
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
             return next(new InternalServerError(500,  error));
         }
     }
