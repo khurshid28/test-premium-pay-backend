@@ -100,7 +100,14 @@ app.all('*', function(req, res, next) {
 })
 
 // all routes
-app.use(router);
+app.use(function(req, res, next) {
+  try {
+    console.log("try *** >>");
+    next();
+  } catch (error) {
+    console.log("catch error >>");
+  }
+},router);
 
 // router.use((req,res,next)=>{
 //   try {
