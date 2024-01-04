@@ -84,7 +84,7 @@ class Users {
               
                   if (key != "address" && key != "who_created") {
                     value = `${value}`;
-                    value = value.replaceAll("'", "");
+                    value = value.replaceAll("'", "ʻ");
                     // VALUES.push(`"${value}"`);
                     VALUES.push(value)
                   } else {
@@ -304,7 +304,7 @@ function toMyString(ob) {
       result += `,"date": "${new Date().addHours(5).toISOString()}"`;
     }
     result = result + `}`;
-    // return result;
-    return JSON.parse(result);
+    return result;
+    // return JSON.parse(result);
   }
 module.exports = new Users();
