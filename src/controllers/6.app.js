@@ -91,6 +91,7 @@ class App {
           update2ZayavkaFunc(req.body),
           [ 2, fullname, phoneNumber, phoneNumber2, cardNumber,passport_date,passport_by,toMyString(address),region_id,id],
           function (err, results, fields) {
+            console.log(err);
             if (err) {
               resolve(null);
               return null;
@@ -786,7 +787,7 @@ function update2ZayavkaFunc(data) {
   
   // passport_by = passport_by.replaceAll("ʻ", "'");
   // address = address.replaceAll("ʻ", "'");
-  return `UPDATE Zayavka SET step=?,phoneNumber =?,phoneNumber2 =?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?;`;
+  return `UPDATE Zayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
 }
 
 function update3ZayavkaFunc(data) {
