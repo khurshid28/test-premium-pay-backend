@@ -7,7 +7,7 @@ router.use((req,res,next)=>{
         console.log("try >>>>");
       next();
     } catch (error) {
-      console.log("catch error");
+      console.log("catch error ",`${error}`.substring(0,30));
     }
   });
 
