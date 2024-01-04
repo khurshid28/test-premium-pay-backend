@@ -81,13 +81,14 @@ class App {
   }
   async update2(req, res, next) {
     try {
-      let { id, fullname, phoneNumber, phoneNumber2, cardNumber } = req.body;
+      let { id, fullname, phoneNumber, phoneNumber2, cardNumber,passport_date,passport_by,address,region_id } = req.body;
       fullname = `${fullname}`;
       fullname = fullname.replaceAll("ʻ", "'");
+      passport_by = passport_by.replaceAll("ʻ", "'");
       await new Promise(function (resolve, reject) {
         db.query(
           update2ZayavkaFunc(req.body),
-          [fullname, phoneNumber, phoneNumber2, cardNumber],
+          [fullname, phoneNumber, phoneNumber2, cardNumber,passport_date,passport_by,toMyString(address),region_id],
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -784,9 +785,7 @@ function update2ZayavkaFunc(data) {
   
   passport_by = passport_by.replaceAll("ʻ", "'");
   // address = address.replaceAll("ʻ", "'");
-  return `UPDATE Zayavka SET step=2,phoneNumber ='${phoneNumber}',phoneNumber2 ='${phoneNumber2}',cardNumber='${cardNumber}',passport_date='${passport_date}',passport_by='${passport_by}',address=${toMyString(
-    address
-  )},region_id='${region_id}' WHERE id = ${id};`;
+  return `UPDATE Zayavka SET step=2,phoneNumber =?,phoneNumber2 =?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ${id};`;
 }
 
 function update3ZayavkaFunc(data) {
