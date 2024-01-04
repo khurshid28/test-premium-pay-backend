@@ -307,7 +307,7 @@ Date.prototype.addHours = function (h) {
   
       if (key != "address" && key != "who_created") {
         value = `${value}`;
-        value= value.replaceAll("'", "ʻ");
+        value = value.replaceAll("'", "ʻ");
         // VALUES.push(`"${value}"`);
         VALUES.push(value)
       } else {
@@ -320,7 +320,7 @@ Date.prototype.addHours = function (h) {
     console.log(VALUES.join());
     return `INSERT INTO User (${KEYS.join()}) VALUES (${VALUES.map(function (val, index) {
       return "?";
-  }) }`,[...VALUES];
+  }).join() }`,[...VALUES];
   }
   
   
