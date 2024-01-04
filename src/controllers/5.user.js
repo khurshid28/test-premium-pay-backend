@@ -105,7 +105,7 @@ class Users {
                     // PREMIUM.insertUserFunc(req.body),[],
                     `INSERT INTO User (${KEYS.join()}) VALUES (${VALUES.map(function (val, index) {
                         return "?";
-                    }).join(",") }`,VALUES,
+                    }).join(",") })`,VALUES,
 
                     function (err, results, fields) {
                         console.log(err);
