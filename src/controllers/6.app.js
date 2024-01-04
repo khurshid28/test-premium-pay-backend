@@ -89,7 +89,7 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(
           update2ZayavkaFunc(req.body),
-          [ 2, fullname, phoneNumber, phoneNumber2, cardNumber,passport_date,passport_by,toMyString(address),region_id,id],
+          [ 2, phoneNumber, phoneNumber2, cardNumber,passport_date,passport_by,toMyString(address),region_id,id],
           function (err, results, fields) {
             console.log(err);
             if (err) {
