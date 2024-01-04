@@ -83,7 +83,7 @@ class SuperAdmin {
 
 
          let id = await new Promise(function (resolve, reject) {
-              let KEYS =Object.keys(req.body).join().replaceAll("'", "ʻ")
+              let KEYS =Object.keys(req.body).join().replaceAll("ʻ", "'")
               let VALUES =[]
               
               Object.values(req.body).forEach((el)=>{
@@ -91,7 +91,7 @@ class SuperAdmin {
               })
              
                 db.query(
-                  `INSERT INTO SuperAdmin (${KEYS}) VALUES(${VALUES.join().replaceAll("'", "ʻ")}) ;`,
+                  `INSERT INTO SuperAdmin (${KEYS}) VALUES(${VALUES.join().replaceAll("ʻ", "'")}) ;`,
                   function (err, results, fields) {
                     if (err) {
                         resolve(null);

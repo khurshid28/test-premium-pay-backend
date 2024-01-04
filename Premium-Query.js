@@ -220,8 +220,8 @@ Date.prototype.addHours = function (h) {
   function update2ZayavkaFunc(data) {
     let { id, fullname, phoneNumber, phoneNumber2, cardNumber } = data;
     fullname =`${fullname}`
-    fullname =fullname.replaceAll("'", "ʻ")
-    return `UPDATE Zayavka SET step=2,fullname='${fullname}',phoneNumber ='${phoneNumber}',phoneNumber2 ='${phoneNumber2}',cardNumber='${cardNumber}' WHERE id = ${id};`;
+    fullname =fullname.replaceAll("ʻ", "'")
+    return `UPDATE Zayavka SET step=2,fullname=?,phoneNumber =?,phoneNumber2 =?,cardNumber=? WHERE id = ${id};`;
   }
   
   function update3ZayavkaFunc(data) {
@@ -307,7 +307,7 @@ Date.prototype.addHours = function (h) {
   
       if (key != "address" && key != "who_created") {
         value = `${value}`;
-        value = value.replaceAll("'", "ʻ");
+        value = value.replaceAll("ʻ", "'");
         // VALUES.push(`"${value}"`);
         VALUES.push(value)
       } else {
@@ -400,7 +400,7 @@ Date.prototype.addHours = function (h) {
     let li = [];
     for (let [key, value] of Object.entries(ob)) {
       value = `${value}`;
-      value= value.replaceAll("'", "ʻ");
+      value= value.replaceAll("ʻ", "'");
       li.push(`"${key}":"${value}"`);
     }
     result += li.join();

@@ -47,7 +47,7 @@ class FillialAdmin {
         req.body.merchant_id = fillial.merchant_id
           
          let id = await new Promise(function (resolve, reject) {
-              let KEYS =Object.keys(req.body).join().replaceAll("'", "ʻ")
+              let KEYS =Object.keys(req.body).join().replaceAll("ʻ", "'")
               let VALUES =[]
               
               Object.values(req.body).forEach((el)=>{
@@ -56,7 +56,7 @@ class FillialAdmin {
               console.log(KEYS);
               console.log(VALUES);
                 db.query(
-                  `INSERT INTO FillialAdmin (${KEYS}) VALUES(${VALUES.join().replaceAll("'", "ʻ")}) ;`,
+                  `INSERT INTO FillialAdmin (${KEYS}) VALUES(${VALUES.join().replaceAll("ʻ", "'")}) ;`,
                   function (err, results, fields) {
                     if (err) {
                         resolve(null);

@@ -12,7 +12,7 @@ function toMyString(ob) {
     let li = [];
     for (let [key, value] of Object.entries(ob)) {
       value = `${value}`;
-      value = value.replaceAll("'", "ʻ");
+      value = value.replaceAll("ʻ", "'");
       li.push(`"${key}":"${value}"`);
     }
     result += li.join();
@@ -52,9 +52,9 @@ class Fillial {
 
 
             } = req.body;
-            name = name.replaceAll("'", "ʻ");
-            director_name = director_name.replaceAll("'", "ʻ");
-            bank_name = bank_name.replaceAll("'", "ʻ");
+            name = name.replaceAll("ʻ", "'");
+            director_name = director_name.replaceAll("ʻ", "'");
+            bank_name = bank_name.replaceAll("ʻ", "'");
             let expired_monthsString = `'[`;
              expired_months.forEach((expired_month) => {
         expired_monthsString += toMyString(expired_month).slice(1, -1);

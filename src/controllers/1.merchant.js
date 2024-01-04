@@ -12,7 +12,7 @@ function toMyString(ob) {
   let li = [];
   for (let [key, value] of Object.entries(ob)) {
     value = `${value}`;
-    value = value.replaceAll("'", "ʻ");
+    value = value.replaceAll("ʻ", "'");
     li.push(`"${key}":"${value}"`);
   }
   result += li.join();
@@ -41,7 +41,7 @@ class Merchant {
         admin,
       } = req.body;
 
-      name = name.replaceAll("'", "ʻ");
+      name = name.replaceAll("ʻ", "'");
       let id = await new Promise(function (resolve, reject) {
         db.query(
           `INSERT INTO merchant (name,type,who_created) VALUES('${name}','${type}','{"role":"SuperAdmin","id":${
@@ -67,7 +67,7 @@ class Merchant {
       let loginPassword = cryptoRandomString({ length: 15 });
       admin.loginName = loginName;
       admin.loginPassword = loginPassword;
-      admin.fullName = admin.fullName.replaceAll("'", "ʻ");
+      admin.fullName = admin.fullName.replaceAll("ʻ", "'");
 
       let admin_id = await new Promise(function (resolve, reject) {
         db.query(

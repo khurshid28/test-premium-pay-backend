@@ -303,7 +303,7 @@ function toMyString(ob) {
     let li = [];
     for (let [key, value] of Object.entries(ob)) {
       value = `${value}`;
-      value= value.replaceAll("'", "ʻ");
+      value= value.replaceAll("ʻ", "'");
       li.push(`"${key}":"${value}"`);
     }
     result += li.join();
