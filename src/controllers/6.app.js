@@ -85,6 +85,7 @@ class App {
       fullname = `${fullname}`;
       fullname = fullname.replaceAll("ʻ", "'");
       passport_by = passport_by.replaceAll("ʻ", "'");
+      console.log(req.body);
       await new Promise(function (resolve, reject) {
         db.query(
           update2ZayavkaFunc(req.body),
