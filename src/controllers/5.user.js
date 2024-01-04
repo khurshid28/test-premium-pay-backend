@@ -110,13 +110,14 @@ class Users {
                     function (err, results, fields) {
                         console.log(err);
                       if (err) {
-                        resolve(undefined);
+                        resolve(null);
+                        return null;
                       }
                       console.log("++++", results);
                       if (results.insertId) {
                         resolve(results.insertId);
                       } else {
-                         resolve(undefined);
+                         resolve(null);
                       }
                     }
                   );
