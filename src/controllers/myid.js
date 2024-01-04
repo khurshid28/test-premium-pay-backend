@@ -145,24 +145,24 @@ class Myid {
           });
         }
       }
-      let zayavka2 = await new Promise(function (resolve, reject) {
-        db.query(
-          `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring' ORDER BY id DESC`,
-          function (err, results, fields) {
-            // console.log("here");
-            // console.log(err);
-            if (err) {
-               resolve(null);
-                        return null;;
-            }
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
+      // let zayavka2 = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring' ORDER BY id DESC`,
+      //     function (err, results, fields) {
+      //       // console.log("here");
+      //       // console.log(err);
+      //       if (err) {
+      //          resolve(null);
+      //                   return null;;
+      //       }
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
 
 
           //  esdan chiqmasin
@@ -183,7 +183,7 @@ class Myid {
       //     function (err, results, fields) {
       //       if (err) {
       //          resolve(null);
-                        return null;;
+                        // return null;
       //       }
             
       //       if (results.length != 0) {
