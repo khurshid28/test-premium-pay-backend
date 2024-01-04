@@ -90,14 +90,14 @@ app.use(cors(), rateLimit());
 // static
 app.use("static", express.static(path.join(__dirname, "public")));
 
-app.all('*', function(req, res, next) {
-  try {
-    console.log("try *** >>");
-    next();
-  } catch (error) {
-    console.log("catch error >>");
-  }
-})
+// app.all('*', function(req, res, next) {
+//   try {
+//     console.log("try *** >>");
+//     next();
+//   } catch (error) {
+//     console.log("catch error >>");
+//   }
+// })
 
 // all routes
 app.use(function(req, res, next) {

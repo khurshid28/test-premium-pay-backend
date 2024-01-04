@@ -110,13 +110,13 @@ class Users {
                     function (err, results, fields) {
                         console.log(err);
                       if (err) {
-                         reject(err);
+                        resolve(undefined);
                       }
                       console.log("++++", results);
                       if (results.insertId) {
                         resolve(results.insertId);
                       } else {
-                         reject(err);
+                         resolve(undefined);
                       }
                     }
                   );
@@ -199,6 +199,10 @@ class Users {
             //     "who_created": req.user.id,
             //     work_status,
             // });
+
+            if(!id){
+                return next(new BadRequestError(400,  error)); 
+            }
             let  user = await new Promise(function (resolve, reject) {
                 db.query(
                   `SELECT * from User WHERE id=${id}`,
