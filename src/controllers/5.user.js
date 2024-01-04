@@ -84,7 +84,7 @@ class Users {
               
                   if (key != "address" && key != "who_created") {
                     value = `${value}`;
-                    value = value.replaceAll("'", "ʻ");
+                    value = value.replaceAll("'", "");
                     // VALUES.push(`"${value}"`);
                     VALUES.push(value)
                   } else {
