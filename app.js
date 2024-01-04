@@ -93,11 +93,12 @@ app.use("static", express.static(path.join(__dirname, "public")));
 // all routes
 app.use((req,res,next)=>{
   try {
-    router(req,res,next);
+    next();
   } catch (error) {
     console.log("catch error");
   }
 });
+app.use(router);
 // app.use("/test",router);
 
 app.use(helmet());
