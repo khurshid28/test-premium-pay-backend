@@ -2,15 +2,14 @@ const { Router } = require("express");
 const swaggerUi = require("swagger-ui-express");
 
 const router = Router();
-router.use((req,res,next)=>{
-    try {
-        console.log("try >>>>");
-      next();
-    } catch (error) {
-      console.log("catch error ",`${error}`.substring(0,30));
-    }
-  });
-
+// router.use((req, res, next) => {
+//   try {
+//     console.log("try >>>>");
+//     next();
+//   } catch (error) {
+//     console.log("catch error >>", `${error}`.substring(0, 30));
+//   }
+// });
 
 const myidRouter = require("./myid.js");
 
@@ -25,7 +24,7 @@ const appRouter = require("./6.app.js");
 const merchantRouter = require("./1.merchant.js");
 
 const fillialAdminRouter = require("./4.2.fillial_admin.js");
-const fillialRouter =  require("./2.fillial");
+const fillialRouter = require("./2.fillial");
 
 const extraRouter = require("./extra.js");
 
@@ -39,7 +38,6 @@ const supportRouter = require("./9.support");
 
 const errorRouter = require("./10.errors");
 
-
 router.use("/api/v1/login", loginRouter);
 router.use("/api/v1/myid", myidRouter);
 router.use("/api/v1/user", userRouter);
@@ -52,10 +50,9 @@ router.use("/api/v1/zayavka", appRouter);
 router.use("/api/v1/merchant", merchantRouter);
 router.use("/api/v1/fillial", fillialRouter);
 
-
-router.use("/api/v1/scoring",scoringRouter );
-router.use("/api/v1/support",supportRouter );
-router.use("/api/v1/error",errorRouter );
+router.use("/api/v1/scoring", scoringRouter);
+router.use("/api/v1/support", supportRouter);
+router.use("/api/v1/error", errorRouter);
 
 router.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
