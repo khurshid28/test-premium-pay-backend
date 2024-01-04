@@ -91,7 +91,13 @@ app.use(cors(), rateLimit());
 app.use("static", express.static(path.join(__dirname, "public")));
 
 // all routes
-app.use(router);
+app.use((req,res,next)=>{
+  try {
+    next(router)
+  } catch (error) {
+    console.log("catch error");
+  }
+});
 // app.use("/test",router);
 
 app.use(helmet());
