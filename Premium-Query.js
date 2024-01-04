@@ -315,12 +315,12 @@ Date.prototype.addHours = function (h) {
       }
     }
     console.log(">>>>");
-    console.log(KEYS.join());
+    // console.log(KEYS.join());
     console.log(">>>>");
-    console.log(VALUES.join());
+    console.log(VALUES);
     return `INSERT INTO User (${KEYS.join()}) VALUES (${VALUES.map(function (val, index) {
       return "?";
-  }).join() }`,[...VALUES];
+  }).join(",") }`,[...(VALUES)];
   }
   
   

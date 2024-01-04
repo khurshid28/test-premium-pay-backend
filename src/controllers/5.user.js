@@ -76,11 +76,37 @@ class Users {
        
             let id = await new Promise(function (resolve, reject) {
                 
-               
+                let KEYS = [];
+                let VALUES = [];
+                console.log(VALUES);
+                for (let [key, value] of Object.entries(data)) {
+                  KEYS.push(`${key}`);
+              
+                  if (key != "address" && key != "who_created") {
+                    value = `${value}`;
+                    value = value.replaceAll("'", "ʻ");
+                    // VALUES.push(`"${value}"`);
+                    VALUES.push(value)
+                  } else {
+                    VALUES.push(toMyString(value));
+                  }
+                }
+                console.log(">>>>");
+                // console.log(KEYS.join());
+                console.log(">>>>");
+                console.log(VALUES);
+                 `INSERT INTO User (${KEYS.join()}) VALUES (${VALUES.map(function (val, index) {
+                  return "?";
+              }).join(",") }`,[...(VALUES)];
+
+
                   db.query(
 
-                    PREMIUM.insertUserFunc(req.body),
-                    
+                    // PREMIUM.insertUserFunc(req.body),[],
+                    `INSERT INTO User (${KEYS.join()}) VALUES (${VALUES.map(function (val, index) {
+                        return "?";
+                    }).join(",") }`,VALUES,
+
                     function (err, results, fields) {
                       if (err) {
                          reject(err);
