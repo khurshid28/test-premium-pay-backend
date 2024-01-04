@@ -71,7 +71,7 @@ class Users {
             const loginPassword = cryptoRandomString({ length: 15 });
             req.body.loginName= loginName
             req.body.loginPassword= loginPassword
-            req.body.who_created= {"role":req.user.role,"id":req.user.id }
+            // req.body.who_created= {"role":req.user.role,"id":req.user.id }
 
        
             let id = await new Promise(function (resolve, reject) {
