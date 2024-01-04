@@ -31,7 +31,8 @@ class FillialAdmin {
                   `SELECT * from Fillial WHERE id=${req.body.fillial_id}`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     if (results.length != 0) {
                       resolve(results[0]);
@@ -58,14 +59,16 @@ class FillialAdmin {
                   `INSERT INTO FillialAdmin (${KEYS}) VALUES(${VALUES.join().replaceAll("'", "ʻ")}) ;`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     console.log(err);
                     console.log("++++", results);
                     if (results.insertId) {
                       resolve(results.insertId);
                     } else {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                   }
                 );
@@ -76,7 +79,8 @@ class FillialAdmin {
                   `SELECT * from FillialAdmin WHERE id=${id}`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     if (results.length != 0) {
                       resolve(results[0]);
@@ -112,7 +116,8 @@ class FillialAdmin {
                   `SELECT * from FillialAdmin`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     if (results.length != 0) {
                       resolve(results[0]);

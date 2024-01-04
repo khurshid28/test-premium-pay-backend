@@ -94,13 +94,15 @@ class SuperAdmin {
                   `INSERT INTO SuperAdmin (${KEYS}) VALUES(${VALUES.join().replaceAll("'", "ʻ")}) ;`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     console.log("++++", results);
                     if (results.insertId) {
                       resolve(results.insertId);
                     } else {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                   }
                 );
@@ -110,7 +112,8 @@ class SuperAdmin {
                   `SELECT * from SuperAdmin WHERE id=${id}`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     if (results.length != 0) {
                       resolve(results[0]);

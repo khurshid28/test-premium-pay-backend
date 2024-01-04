@@ -22,7 +22,8 @@ module.exports = async (req, res, next) => {
         `Select * from Zayavka WHERE id='${req.body.id}'`,
         function (err, results, fields) {
           if (err) {
-            reject(err);
+             resolve(null);
+                        return null;;
           }
           // console.log("++++", results);
           if (results.length != 0) {
@@ -41,7 +42,8 @@ module.exports = async (req, res, next) => {
         `Select * from Zayavka WHERE passport='${Myzayavka.passport}' AND id != '${req.body.id}' AND status='progress' `,
         function (err, results, fields) {
           if (err) {
-            reject(err);
+             resolve(null);
+                        return null;;
           }
           if (results.length != 0) {
             resolve(results[0]);

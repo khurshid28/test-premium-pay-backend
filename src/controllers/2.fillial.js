@@ -74,13 +74,15 @@ class Fillial {
                     console.log(">>>>>>....");
                     console.log(err);
                     if (err) {
-                      reject(err);
+                       resolve(null);
+                        return null;;
                     }
                     console.log("++++", results);
                     if (results.insertId) {
                       resolve(results.insertId);
                     } else {
-                      reject(err);
+                       resolve(null);
+                        return null;;
                     }
                   }
                 );
@@ -111,7 +113,8 @@ class Fillial {
                 `SELECT * FROM merchant;`,
                 function (err, results, fields) {
                   if (err) {
-                    reject(err);
+                     resolve(null);
+                        return null;;
                   }
                   console.log("++++", results);
                   if (results.length != 0) {

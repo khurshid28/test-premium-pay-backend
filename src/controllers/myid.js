@@ -152,7 +152,8 @@ class Myid {
             // console.log("here");
             // console.log(err);
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -181,7 +182,8 @@ class Myid {
       //     `Select * from Zayavka WHERE passport='${passport}' AND status='finished' ORDER BY id DESC `,
       //     function (err, results, fields) {
       //       if (err) {
-      //         reject(err);
+      //          resolve(null);
+                        return null;;
       //       }
             
       //       if (results.length != 0) {

@@ -23,7 +23,8 @@ class App {
           `Select * from User WHERE id=${req.user.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -39,13 +40,15 @@ class App {
       let id = await new Promise(function (resolve, reject) {
         db.query(update1ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
-            reject(err);
+             resolve(null);
+                        return null;;
           }
           console.log();
           if (results.insertId) {
             resolve(results.insertId);
           } else {
-            reject(err);
+             resolve(null);
+                        return null;;
           }
         });
       });
@@ -55,7 +58,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -80,7 +84,8 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(update2ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
-            return reject(err);
+            return  resolve(null);
+                        return null;;
           }
 
           resolve(results);
@@ -92,7 +97,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -125,7 +131,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -140,7 +147,8 @@ class App {
           `SELECT * from fillial WHERE id=${zayavka.fillial_id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -255,7 +263,8 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(update3ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
-            return reject(err);
+            return  resolve(null);
+                        return null;;
           }
           resolve(results);
         });
@@ -267,7 +276,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -293,7 +303,8 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(update4ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
-            return reject(err);
+            return  resolve(null);
+                        return null;;
           }
 
           resolve(results);
@@ -305,7 +316,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -330,7 +342,8 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(update5ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
-            return reject(err);
+            return  resolve(null);
+                        return null;;
           }
 
           resolve(results);
@@ -342,7 +355,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -367,7 +381,8 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(update6ZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
-            return reject(err);
+            return  resolve(null);
+                        return null;;
           }
 
           resolve(results);
@@ -379,7 +394,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -404,7 +420,8 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(updateFinishZayavkaFunc(req.body), function (err, results, fields) {
           if (err) {
-            return reject(err);
+            return  resolve(null);
+                        return null;;
           }
 
           resolve(results);
@@ -416,7 +433,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -465,7 +483,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -505,7 +524,8 @@ class App {
           update7ZayavkaFunc(req.body),
           function (err, results, fields) {
             if (err) {
-              return reject(err);
+              return  resolve(null);
+                        return null;;
             }
 
             resolve(results);
@@ -520,7 +540,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -548,7 +569,8 @@ class App {
           cancelByClientZayavkaFunc(req.body),
           function (err, results, fields) {
             if (err) {
-              return reject(err);
+              return  resolve(null);
+                        return null;;
             }
 
             resolve(results);
@@ -561,7 +583,8 @@ class App {
           `SELECT * from Zayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -590,7 +613,8 @@ class App {
           `SELECT * from fillial WHERE id=${fillial_id}`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+               resolve(null);
+                        return null;;
             } else if (results.length != 0) {
               return resolve(results[0]);
             } else {
@@ -619,7 +643,8 @@ class App {
             `SELECT * from Zayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
             function (err, results, fields) {
               if (err) {
-                reject(err);
+                 resolve(null);
+                        return null;;
               }
               return resolve(results);
             }
@@ -631,7 +656,8 @@ class App {
             `SELECT * from Zayavka ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
-                reject(err);
+                 resolve(null);
+                        return null;;
               }
               return resolve(results);
             }
@@ -644,7 +670,8 @@ class App {
             `SELECT * from FillialAdmin WHERE id=${req.user.id}`,
             function (err, results, fields) {
               if (err) {
-                 reject(err);
+                  resolve(null);
+                        return null;;
               }
               if (results.length != 0) {
                 resolve(results[0]);
@@ -660,7 +687,8 @@ class App {
             `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
             function (err, results, fields) {
               if (err) {
-                reject(err);
+                 resolve(null);
+                        return null;;
               }
               return resolve(results);
             }
@@ -675,7 +703,8 @@ class App {
             `SELECT *  from Admin WHERE id=${req.user.id} ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
-                reject(err);
+                 resolve(null);
+                        return null;;
               }
               return resolve(results[0]);
             }
@@ -689,7 +718,8 @@ class App {
         //     `SELECT * from User WHERE merchant_id=${user.merchant_id}`,
         //     function (err, results, fields) {
         //       if (err) {
-        //         reject(err);
+        //          resolve(null);
+                        return null;;
         //       }
         //       return resolve(results);
         //     }
@@ -712,7 +742,8 @@ class App {
             `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
-                reject(err);
+                 resolve(null);
+                        return null;;
               }
               return resolve(results);
             }

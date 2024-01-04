@@ -209,12 +209,14 @@ class Users {
                   `SELECT * from User WHERE id=${id}`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     if (results) {
                       resolve(results[0]);
                     } else {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                   }
                 );

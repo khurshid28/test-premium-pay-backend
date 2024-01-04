@@ -1,6 +1,9 @@
-let { InternalServerError, BadRequestError, ForbiddenError } = require("../utils/errors.js");
+let {
+  InternalServerError,
+  BadRequestError,
+  ForbiddenError,
+} = require("../utils/errors.js");
 let cryptoRandomString = require("secure-random-string");
-
 
 let db = require("../config/db");
 
@@ -38,10 +41,6 @@ class Merchant {
         admin,
       } = req.body;
 
-      
-    
-
-
       name = name.replaceAll("'", "ʻ");
       let id = await new Promise(function (resolve, reject) {
         db.query(
@@ -50,13 +49,15 @@ class Merchant {
           },"date": "${new Date().toISOString()}"}') ;`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+              resolve(null);
+              return null;
             }
             console.log("++++", results);
             if (results) {
               resolve(results.insertId);
             } else {
-              reject(err);
+              resolve(null);
+              return null;
             }
           }
         );
@@ -67,69 +68,73 @@ class Merchant {
       admin.loginName = loginName;
       admin.loginPassword = loginPassword;
       admin.fullName = admin.fullName.replaceAll("'", "ʻ");
- 
+
       let admin_id = await new Promise(function (resolve, reject) {
         db.query(
           `INSERT INTO Admin (loginName,loginPassword,fullName,phoneNumber,merchant_id) VALUES('${loginName}','${loginPassword}','${admin.fullName}',${admin.phoneNumber},${id}) ;`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+              resolve(null);
+              return null;
             }
             console.log("++++", results);
             if (results) {
               resolve(results.insertId);
             } else {
-              reject(err);
+              resolve(null);
+              return null;
             }
           }
         );
       });
       console.log("merchant created", id);
-        // let adminUser = await new Promise(function (resolve, reject) {
-        //   db.query(
-        //       `SELECT * from Admin WHERE id=${admin_id};`,
-        //       function (err, results, fields) {
-        //         if (err) {
-        //            reject(err);
-        //         }
-        //         console.log("++++", results);
-        //         if (results) {
-        //           resolve(results[0]);
-        //         } else {
-        //            reject(err);
-        //         }
-        //       }
-        //     );
-        //   });
+      // let adminUser = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //       `SELECT * from Admin WHERE id=${admin_id};`,
+      //       function (err, results, fields) {
+      //         if (err) {
+      //             resolve(null);
+      return null;
+      //         }
+      //         console.log("++++", results);
+      //         if (results) {
+      //           resolve(results[0]);
+      //         } else {
+      //             resolve(null);
+      return null;
+      //         }
+      //       }
+      //     );
+      //   });
 
-        // console.log(adminUser);
+      // console.log(adminUser);
 
-
-        let result = await new Promise(function (resolve, reject) {
-            db.query(
-                `UPDATE merchant SET admin_id =${admin_id} WHERE id = ${id};`,
-                function (err, results, fields) {
-                  if (err) {
-                     reject(err);
-                  }
-                  console.log("99999", results);
-                  if (!results.warningStatus) {
-                    resolve("success");
-                  } else {
-                     reject(err);
-                  }
-                }
-              );
-            });
-      if (result =="success") {
-              return   res.status(201).json({
-              "message": "Merchant and Admin is created successfully",
-              "merchant_id":id,
-               admin_id
-             
-          });
+      let result = await new Promise(function (resolve, reject) {
+        db.query(
+          `UPDATE merchant SET admin_id =${admin_id} WHERE id = ${id};`,
+          function (err, results, fields) {
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            console.log("99999", results);
+            if (!results.warningStatus) {
+              resolve("success");
+            } else {
+              resolve(null);
+              return null;
+            }
+          }
+        );
+      });
+      if (result == "success") {
+        return res.status(201).json({
+          message: "Merchant and Admin is created successfully",
+          merchant_id: id,
+          admin_id,
+        });
       } else {
-          return next(new BadRequestError(400, "Admin isnot created"));
+        return next(new BadRequestError(400, "Admin isnot created"));
       }
       // admin_id = null
 
@@ -171,17 +176,15 @@ class Merchant {
       // } else {
       //     return next(new BadRequestError(400, "Admin isnot created"));
       // }
-
     } catch (error) {
       console.log(error);
-      return next(new InternalServerError(500,  error));
+      return next(new InternalServerError(500, error));
     }
   }
 
   async getAll(req, res, next) {
     console.log("getAll ");
     try {
-     
       if (req.user.role != "SuperAdmin") {
         return next(
           new ForbiddenError(
@@ -190,37 +193,33 @@ class Merchant {
           )
         );
       }
-     
-      let merchants = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT * FROM merchant;`,
-          function (err, results, fields) {
-            console.log(err);
-            if (err) {
-              reject(err);
-            }
-            // console.log(">>>>>>>..");
-            // console.log("++++", results);
-            console.log(err);
 
-            if (results) {
-              resolve(results);
-            } else {
-              resolve([]);
-            }
+      let merchants = await new Promise(function (resolve, reject) {
+        db.query(`SELECT * FROM merchant;`, function (err, results, fields) {
+          console.log(err);
+          if (err) {
+            resolve(null);
+            return null;
           }
-        );
+          // console.log(">>>>>>>..");
+          // console.log("++++", results);
+          console.log(err);
+
+          if (results) {
+            resolve(results);
+          } else {
+            resolve([]);
+          }
+        });
       });
 
       console.log(merchants);
-      return res.status(200).json({data:merchants});
+      return res.status(200).json({ data: merchants });
     } catch (error) {
       console.log(error.message);
-      return next(new InternalServerError(500,  error));
+      return next(new InternalServerError(500, error));
     }
   }
-
-
 
   async get(req, res, next) {
     try {
@@ -232,16 +231,17 @@ class Merchant {
       //     )
       //   );
       // }
-     
+
       let merchant = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT * FROM merchant WHERE id ='${req.params.id}';`,
           function (err, results, fields) {
             if (err) {
-              reject(err);
+              resolve(null);
+              return null;
             }
             console.log("++++", results);
-            
+
             if (results.length != 0) {
               resolve(results[0]);
             } else {
@@ -251,13 +251,10 @@ class Merchant {
         );
       });
 
-     
-      return res.status(200).json({data:merchant});
-
-
+      return res.status(200).json({ data: merchant });
     } catch (error) {
       console.log(error.message);
-      return next(new InternalServerError(500,  error));
+      return next(new InternalServerError(500, error));
     }
   }
 }

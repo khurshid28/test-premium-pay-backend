@@ -29,7 +29,8 @@ class Login {
           `SELECT * from SuperAdmin WHERE loginName ='${loginName}' AND loginPassword ='${loginPassword}'`,
           function (err, results, fields) {
             if (err) {
-               reject(err);
+                resolve(null);
+                        return null;;
             }
             console.log("++++", results);
             console.log("SuperAdmin");
@@ -49,7 +50,8 @@ class Login {
             `SELECT * from Admin WHERE loginName='${loginName}' AND loginPassword='${loginPassword}'`,
             function (err, results, fields) {
               if (err) {
-                return reject(err);
+                return  resolve(null);
+                        return null;;
               }
               console.log("++++", results);
               if (results.length != 0) {
@@ -66,7 +68,8 @@ class Login {
             `SELECT * from User WHERE loginName='${loginName}' AND loginPassword='${loginPassword}'`,
             function (err, results, fields) {
               if (err) {
-                return reject(err);
+                return  resolve(null);
+                        return null;;
               }
               console.log("++++", results);
               if (results.length != 0) {
@@ -86,7 +89,8 @@ class Login {
             `SELECT * from FillialAdmin WHERE loginName='${loginName}' AND loginPassword='${loginPassword}'`,
             function (err, results, fields) {
               if (err) {
-                return reject(err);
+                return  resolve(null);
+                        return null;;
               }
               console.log("++++", results);
               if (results.length != 0) {

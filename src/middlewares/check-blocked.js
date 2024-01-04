@@ -17,7 +17,8 @@ module.exports = async(req, res, next) => {
               `SELECT * from ${req.user.role} WHERE id='${req.user.id}'`,
               function (err, results, fields) {
                 if (err) {
-                   reject(err);
+                    resolve(null);
+                        return null;;
                 }
                 if (results.length != 0) {
                   resolve(results[0]);
@@ -44,7 +45,8 @@ module.exports = async(req, res, next) => {
               `SELECT * from MERCHANT WHERE admin_id='${req.user.id}'`,
               function (err, results, fields) {
                 if (err) {
-                   reject(err);
+                    resolve(null);
+                        return null;;
                 }
                 if (results.length != 0) {
                   resolve(results[0]);

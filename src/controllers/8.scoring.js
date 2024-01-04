@@ -56,12 +56,14 @@ class Scoring {
                     `UPDATE Zayavka SET scoring_start = CURRENT_TIMESTAMP WHERE id = ${id};`,
                     function (err, results, fields) {
                       if (err) {
-                         reject(err);
+                          resolve(null);
+                        return null;;
                       }
                       if (results) {
                         resolve(results);
                       } else {
-                        reject(err);
+                         resolve(null);
+                        return null;;
                       }
                     }
                   );
@@ -75,12 +77,14 @@ class Scoring {
                   `UPDATE Zayavka SET scoring_end = CURRENT_TIMESTAMP,status = 'canceled_by_scoring', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${reason}' WHERE id = ${id};`,
                   function (err, results, fields) {
                     if (err) {
-                       reject(err);
+                        resolve(null);
+                        return null;;
                     }
                     if (results) {
                       resolve(results);
                     } else {
-                      reject(err);
+                       resolve(null);
+                        return null;;
                     }
                   }
                 );
@@ -92,12 +96,14 @@ class Scoring {
                 `UPDATE Zayavka SET step=4,paid_status='waiting',term='${term}',scoring_end = CURRENT_TIMESTAMP WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
-                     reject(err);
+                      resolve(null);
+                        return null;;
                   }
                   if (results) {
                     resolve(results);
                   } else {
-                     reject(err);
+                      resolve(null);
+                        return null;;
                   }
                 }
               );
@@ -111,12 +117,14 @@ class Scoring {
                 `UPDATE Zayavka SET paid_status='paid' WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
-                     reject(err);
+                      resolve(null);
+                        return null;;
                   }
                   if (results) {
                     resolve(results);
                   } else {
-                     reject(err);
+                      resolve(null);
+                        return null;;
                   }
                 }
               );
@@ -129,12 +137,14 @@ class Scoring {
                 `UPDATE Zayavka SET status = 'canceled_by_scoring',finished_time = CURRENT_TIMESTAMP,canceled_reason='Заявка была отклонена (отказ)'  WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
-                     reject(err);
+                      resolve(null);
+                        return null;;
                   }
                   if (results) {
                     resolve(results);
                   } else {
-                     reject(err);
+                      resolve(null);
+                        return null;;
                   }
                 }
               );
