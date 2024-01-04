@@ -108,6 +108,7 @@ class Users {
                     }).join(",") }`,VALUES,
 
                     function (err, results, fields) {
+                        console.log(err);
                       if (err) {
                          reject(err);
                       }
