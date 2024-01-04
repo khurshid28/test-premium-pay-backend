@@ -93,13 +93,13 @@ app.use("static", express.static(path.join(__dirname, "public")));
 // all routes
 app.use(router);
 
-router.use((req,res,next)=>{
-  try {
-    next();
-  } catch (error) {
-    console.log("catch error");
-  }
-});
+// router.use((req,res,next)=>{
+//   try {
+//     next();
+//   } catch (error) {
+//     console.log("catch error");
+//   }
+// });
 
 // app.use("/test",router);
 
