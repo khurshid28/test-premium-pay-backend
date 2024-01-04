@@ -75,7 +75,7 @@ class Users {
 
        
             let id = await new Promise(function (resolve, reject) {
-                
+                let data = req.body;
                 let KEYS = [];
                 let VALUES = [];
                 console.log(VALUES);
