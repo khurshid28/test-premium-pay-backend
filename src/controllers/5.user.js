@@ -292,7 +292,7 @@ class Users {
     }
 }
 function toMyString(ob) {
-    let result = `{`;
+    let result = `'{`;
     let li = [];
     for (let [key, value] of Object.entries(ob)) {
       value = `${value}`;
@@ -303,7 +303,7 @@ function toMyString(ob) {
     if (ob.role) {
       result += `,"date": "${new Date().addHours(5).toISOString()}"`;
     }
-    result = result + `}`;
+    result = result + `}'`;
     return result;
   }
 module.exports = new Users();
