@@ -194,7 +194,7 @@ class App {
 
       var largest = Math.max.apply(0, arr);
       console.log(largest);
-      let val = fillial.expired_months[arr.indexOf(largest)];
+      let val = fillial.expired_months[arr.indexOf(`${largest}`)];
       console.log(val);
 
       let alldata = {
