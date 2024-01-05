@@ -99,7 +99,7 @@ class Fillial {
     
     async getbyId(req, res, next) {
       try {
-          if (!(req.user.role == "SuperAdmin" || req.user.role == "Admin")) {
+          if (req.user.role == "SuperAdmin" || req.user.role == "Admin") {
               return next(
                   new ForbiddenError(
                       403,
