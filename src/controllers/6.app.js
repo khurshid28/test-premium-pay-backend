@@ -195,7 +195,8 @@ class App {
       var largest = Math.max.apply(0, arr);
 
       let val = fillial.expired_months[arr.indexOf(largest)];
-
+      console.log(val);
+      
       let alldata = {
         orderId: "PremiumPayDavr-" + zayavka.id,
         amount: Math.floor((max_amount * (100 + val["percent"])) / 100),
