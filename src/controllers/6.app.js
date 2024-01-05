@@ -189,14 +189,14 @@ class App {
       //   },
       //   ];
       let arr = fillial.expired_months.map((obj) => {
-        return obj["month"];
+        return obj.month;
       });
 
       var largest = Math.max.apply(0, arr);
-
+      console.log(largest);
       let val = fillial.expired_months[arr.indexOf(largest)];
       console.log(val);
-      
+
       let alldata = {
         orderId: "PremiumPayDavr-" + zayavka.id,
         amount: Math.floor((max_amount * (100 + val["percent"])) / 100),
