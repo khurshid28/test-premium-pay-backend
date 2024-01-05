@@ -96,7 +96,41 @@ class Fillial {
             return next(new InternalServerError(500, error));
         }
     }
-
+    
+    async getbyId(req, res, next) {
+      try {
+          if (!(req.user.role == "SuperAdmin" || req.user.role == "Admin")) {
+              return next(
+                  new ForbiddenError(
+                      403,
+                      "You do not have permission to access this resource"
+                  )
+              );
+          }
+          
+          let fillial = await new Promise(function (resolve, reject) {
+            db.query(
+              `SELECT * FROM fillial WHERE id=${req.params.id};`,
+              function (err, results, fields) {
+                if (err) {
+                   resolve(null);
+                  return null;
+                }
+                console.log("++++", results);
+                if (results.length != 0) {
+                  resolve(results[0]);
+                } else {
+                  resolve(null);
+                }
+              }
+            );
+          });
+          res.status(200).json({data:fillial});
+      } catch (error) {
+          console.log(error);
+          return next(new InternalServerError(500,  error));
+      }
+  }
     async getAll(req, res, next) {
         try {
             if (!(req.user.role == "SuperAdmin" || req.user.role == "Admin")) {
