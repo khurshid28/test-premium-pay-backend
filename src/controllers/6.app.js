@@ -197,12 +197,14 @@ class App {
       let val = fillial.expired_months[arr.indexOf(`${largest}`)];
       for (let index = 0; index < 20; index++) {
         console.log(">>>>>>>>>>>>>>>");
+        console.log( Math.floor((max_amount * (100 + val["percent"])) / 100));
+
       }
       console.log(val);
 
       let alldata = {
         orderId: "PremiumPayDavr-" + zayavka.id,
-        amount: Math.floor((max_amount * (100 + val["percent"])) / 100),
+        amount: Math.floor((max_amount * (100 + val["percent"]))/ 100),
         duration: "12",
         term: "12",
         passSeria: zayavka.passport.substring(0, 2),
@@ -228,6 +230,7 @@ class App {
             };
         }
       );
+
       return next(new InternalServerError(500, error));
       let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
