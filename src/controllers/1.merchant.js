@@ -115,14 +115,14 @@ class Merchant {
           function (err, results, fields) {
             if (err) {
               resolve(null);
-              return null;
+              // return null;
             }
             console.log("99999", results);
             if (!results.warningStatus) {
               resolve("success");
             } else {
               resolve(null);
-              return null;
+              // return null;
             }
           }
         );
