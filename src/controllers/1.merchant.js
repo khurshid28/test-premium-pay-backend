@@ -50,14 +50,14 @@ class Merchant {
           function (err, results, fields) {
             if (err) {
               resolve(null);
-              return null;
+              // return null;
             }
             console.log("++++", results);
             if (results) {
               resolve(results.insertId);
             } else {
               resolve(null);
-              return null;
+              // return null;
             }
           }
         );
@@ -81,7 +81,7 @@ class Merchant {
             if (results) {
               resolve(results.insertId);
             } else {
-              resolve(null);
+              // resolve(null);
               return null;
             }
           }
@@ -94,14 +94,14 @@ class Merchant {
       //       function (err, results, fields) {
       //         if (err) {
       //             resolve(null);
-      return null;
+      // return null;
       //         }
       //         console.log("++++", results);
       //         if (results) {
       //           resolve(results[0]);
       //         } else {
       //             resolve(null);
-      return null;
+      // return null;
       //         }
       //       }
       //     );
