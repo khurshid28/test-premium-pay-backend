@@ -79,7 +79,7 @@ class Fillial {
             director_name,
             director_phone,
             percent_type,
-            expired_months,
+            JSON.stringify( expired_months,)
           ],
           function (err, results, fields) {
             console.log(">>>>>>....");
