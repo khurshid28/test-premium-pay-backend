@@ -102,7 +102,7 @@ app.use("static", express.static(path.join(__dirname, "public")));
 // all routes
 app.use(function(req, res, next) {
   try {
-    console.log("try *** >>");
+    // console.log("try *** >>");
     next();
   } catch (error) {
     console.log("catch error >>");

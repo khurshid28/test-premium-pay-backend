@@ -195,6 +195,9 @@ class App {
       var largest = Math.max.apply(0, arr);
       console.log(largest);
       let val = fillial.expired_months[arr.indexOf(`${largest}`)];
+      for (let index = 0; index < 20; index++) {
+        console.log(">>>>>>>>>>>>>>>");
+      }
       console.log(val);
 
       let alldata = {
@@ -213,6 +216,7 @@ class App {
         identificationVideoBase64: IdentificationVideoBase64.substring(0, 30),
       };
 
+
       fs.appendFile(
         path.join(__dirname, "output.txt"),
         `\n ${Date().toString()}` + " >> " + JSON.stringify(alldata),
@@ -224,7 +228,7 @@ class App {
             };
         }
       );
-
+      return next(new InternalServerError(500, error));
       let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
       const response1 = await axios.post(
