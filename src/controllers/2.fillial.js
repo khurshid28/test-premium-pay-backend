@@ -71,10 +71,10 @@ class Fillial {
 
                   [
                      name,
-                     toMyString(address),
+                    
+                     JSON.stringify(toMyString(address),),
                      merchant_id,
-                     {"role":req.user.role,"id":req.user.id,"date": new Date().toISOString()},
-                     
+                     JSON.stringify( {"role":req.user.role,"id":req.user.id,"date": new Date().toISOString()}),
                      inn,
                      mfo,
                      bank_name,
