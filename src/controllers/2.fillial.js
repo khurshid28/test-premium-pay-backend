@@ -67,9 +67,35 @@ class Fillial {
            
             let id = await new Promise(function (resolve, reject) {
                 db.query(
-                  `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone,percent_type,expired_months) VALUES('${name}',${toMyString(address)},'${merchant_id}','{"role":"${req.user.role}","id":${
+                  `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone,percent_type,expired_months) VALUES(?,?,?,'{"role":?,"id":${
                     req.user.id
-                  },"date": "${new Date().toISOString()}"}','${inn}','${mfo}','${bank_name}','${nds}','${hisob_raqam}','${director_name}','${director_phone}','${percent_type}',${expired_monthsString}) ;`,
+                  },"date": "${new Date().toISOString()}"}',?,?,?,?,?,?,?,?,?) ;`,
+
+                  [
+                     name,
+                     toMyString(address),
+                     merchant_id,
+                     req.user.role,
+                     inn,
+                     mfo,
+                     bank_name,
+                     nds,
+                     hisob_raqam,
+                     director_name,
+                     director_phone,
+                     percent_type,
+                     expired_monthsString
+
+
+
+
+
+
+
+
+
+
+                  ],
                   function (err, results, fields) {
                     console.log(">>>>>>....");
                     console.log(err);
