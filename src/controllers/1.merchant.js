@@ -71,7 +71,8 @@ class Merchant {
 
       let admin_id = await new Promise(function (resolve, reject) {
         db.query(
-          `INSERT INTO Admin (loginName,loginPassword,fullName,phoneNumber,merchant_id) VALUES('${loginName}','${loginPassword}','${admin.fullName}',${admin.phoneNumber},${id}) ;`,
+          `INSERT INTO Admin (loginName,loginPassword,fullName,phoneNumber,merchant_id) VALUES(?,?,?,?,?) ;`,
+          [loginName, loginPassword, admin.fullName, admin.phoneNumber, id],
           function (err, results, fields) {
             console.log(err);
             if (err) {
