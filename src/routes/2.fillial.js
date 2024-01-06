@@ -8,8 +8,9 @@ const router = Router();
 router.use(checkToken);
 router.use(checkBlocked);
 router.post("/create", fillialController.create);
-router.get("/:id", fillialController.getbyId);
 router.get("/getAll", fillialController.getAll);
+router.get("/:id", fillialController.getbyId);
+
 
 
 module.exports = router;
