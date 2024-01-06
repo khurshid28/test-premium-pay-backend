@@ -204,7 +204,7 @@ class App {
 
       let alldata = {
         orderId: "PremiumPayDavr-" + zayavka.id,
-        amount: Math.floor((max_amount * (1 + val["percent"]/100))),
+        amount:Math.floor((max_amount * (1 + val["percent"]/100))),
         duration: "12",
         term: "12",
         passSeria: zayavka.passport.substring(0, 2),
@@ -231,7 +231,7 @@ class App {
         }
       );
 
-      return next(new InternalServerError(500, error));
+      // return next(new InternalServerError(500, error));
       let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
       const response1 = await axios.post(
@@ -253,7 +253,7 @@ class App {
         url2,
         {
           orderId: "PremiumPayDavr-" + zayavka.id,
-          amount: Math.floor((max_amount * (100 + val["percent"])) / 100),
+          amount: Math.floor((max_amount * (1 + val["percent"]/100))),
           term: "12",
           duration: "12",
           passSeria: zayavka.passport.substring(0, 2),
