@@ -22,7 +22,7 @@ const superRouter = require("./3.super.js");
 const appRouter = require("./6.app.js");
 
 const merchantRouter = require("./1.merchant.js");
-
+const adminRouter = require("./4.1.admin");
 const fillialAdminRouter = require("./4.2.fillial_admin.js");
 const fillialRouter = require("./2.fillial");
 
@@ -42,6 +42,7 @@ router.use("/api/v1/login", loginRouter);
 router.use("/api/v1/myid", myidRouter);
 router.use("/api/v1/user", userRouter);
 router.use("/api/v1/super", superRouter);
+router.use("/api/v1/admin", adminRouter);
 router.use("/api/v1/fillial-admin", fillialAdminRouter);
 router.use("/api", extraRouter);
 router.use("/create-pdf", pdfRouter);
