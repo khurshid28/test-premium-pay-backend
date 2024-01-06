@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 let axios = require("axios");
 
 // all routes
-const router = require("./src/routes/_index.js");
+let router = require("./src/routes/_index.js");
 
 // built in middlewares
 const logger = require("./src/middlewares/logger.js");
@@ -100,14 +100,7 @@ app.use("static", express.static(path.join(__dirname, "public")));
 // })
 
 // all routes
-app.use(function(req, res, next) {
-  try {
-    // console.log("try *** >>");
-    next();
-  } catch (error) {
-    console.log("catch error >>");
-  }
-},router);
+app.use(router);
 
 // router.use((req,res,next)=>{
 //   try {
