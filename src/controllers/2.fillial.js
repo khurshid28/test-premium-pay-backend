@@ -144,7 +144,7 @@ class Fillial {
            
             let fillials = await new Promise(function (resolve, reject) {
               db.query(
-                `SELECT * FROM merchant;`,
+                `SELECT * FROM fillial;`,
                 function (err, results, fields) {
                   if (err) {
                      resolve(null);
