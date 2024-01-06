@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const adminController = require("../controllers/4.admin");
+const adminController = require("../controllers/4.admin.js");
 const checkToken = require("../middlewares/check-token.js");
 const checkBlocked = require("../middlewares/check-blocked.js");
 

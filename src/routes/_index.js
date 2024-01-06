@@ -22,7 +22,7 @@ const superRouter = require("./3.super.js");
 const appRouter = require("./6.app.js");
 
 const merchantRouter = require("./1.merchant.js");
-const adminRouter = require("./4.1.admin");
+const adminRouter = require("./4.1.admin.js");
 const fillialAdminRouter = require("./4.2.fillial_admin.js");
 const fillialRouter = require("./2.fillial");
 

@@ -2,7 +2,6 @@ const {
     InternalServerError, ForbiddenError,
 } = require("../utils/errors.js");
 
-// const FillialModel = require("../models/Fillial.js");
 
 let db =require("../config/db")
 
