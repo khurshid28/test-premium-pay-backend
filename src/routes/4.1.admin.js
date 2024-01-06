@@ -10,3 +10,6 @@ router.use(checkBlocked);
 // router.post("/create", adminController.create);
 // router.get("/getAll", merchantController.getAll);
 router.get("/:id", adminController.getbyId);
+
+
+module.exports = router;

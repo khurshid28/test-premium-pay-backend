@@ -42,19 +42,27 @@ router.use("/api/v1/login", loginRouter);
 router.use("/api/v1/myid", myidRouter);
 router.use("/api/v1/user", userRouter);
 router.use("/api/v1/super", superRouter);
-router.use("/api/v1/admin", adminRouter);
+
+
+
+
 router.use("/api/v1/fillial-admin", fillialAdminRouter);
 router.use("/api", extraRouter);
 router.use("/create-pdf", pdfRouter);
 router.use("/upload-image", uploadRouter);
 router.use("/api/v1/zayavka", appRouter);
 router.use("/api/v1/merchant", merchantRouter);
+
+router.use("/api/v1/admin", adminRouter);
+
 router.use("/api/v1/fillial", fillialRouter);
+
 
 router.use("/api/v1/scoring", scoringRouter);
 router.use("/api/v1/support", supportRouter);
 router.use("/api/v1/error", errorRouter);
 
 router.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
 
 module.exports = router;

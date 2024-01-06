@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 let axios = require("axios");
 
 // all routes
-let router = require("./src/routes/_index.js");
+let router = require("./src/routes/_index");
 
 // built in middlewares
 const logger = require("./src/middlewares/logger.js");
