@@ -109,7 +109,7 @@ class Admin {
           
           let admin = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT * FROM admin WHERE id=${req.params.id};`,
+              `SELECT * FROM Admin WHERE id=${req.params.id};`,
               function (err, results, fields) {
                 if (err) {
                    resolve(null);
