@@ -189,7 +189,7 @@ class App {
       //   },
       //   ];
       let arr = fillial.expired_months.map((obj) => {
-        return obj.month;
+        return `${obj.month}`;
       });
 
       var largest = Math.max.apply(0, arr);
