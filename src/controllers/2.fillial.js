@@ -23,14 +23,14 @@ function toMyString(ob) {
 class Fillial {
   async create(req, res, next) {
     try {
-      // if (req.user.role === "user") {
-      //   return next(
-      //     new ForbiddenError(
-      //       403,
-      //       "You do not have permission to access this resource"
-      //     )
-      //   );
-      // }
+      if (req.user.role === "user") {
+        return next(
+          new ForbiddenError(
+            403,
+            "You do not have permission to access this resource"
+          )
+        );
+      }
       let {
         merchant_id,
         address,
@@ -110,14 +110,14 @@ class Fillial {
 
   async getbyId(req, res, next) {
     try {
-      if (req.user.role == "SuperAdmin" || req.user.role == "Admin") {
-        return next(
-          new ForbiddenError(
-            403,
-            "You do not have permission to access this resource"
-          )
-        );
-      }
+      // if (req.user.role == "SuperAdmin" || req.user.role == "Admin") {
+      //   return next(
+      //     new ForbiddenError(
+      //       403,
+      //       "You do not have permission to access this resource"
+      //     )
+      //   );
+      // }
 
       let fillial = await new Promise(function (resolve, reject) {
         db.query(
