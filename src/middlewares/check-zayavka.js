@@ -43,7 +43,7 @@ module.exports = async (req, res, next) => {
         function (err, results, fields) {
           if (err) {
              resolve(null);
-                        return null;;
+                        return null;
           }
           if (results.length != 0) {
             resolve(results[0]);

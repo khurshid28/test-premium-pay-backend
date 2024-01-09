@@ -203,7 +203,7 @@ class App {
       console.log(val);
 
       let alldata = {
-        orderId: "PremiumPayDavr-" + zayavka.id,
+        orderId: "PPD-" + zayavka.id,
         amount:Math.floor((max_amount * (1 + val["percent"]/100))),
         duration: "12",
         term: "12",
@@ -252,7 +252,7 @@ class App {
       const response2 = await axios.post(
         url2,
         {
-          orderId: "PremiumPayDavr-" + zayavka.id,
+          orderId: "PPD-" + zayavka.id,
           amount: Math.floor((max_amount * (1 + val["percent"]/100))),
           term: "12",
           duration: "12",
@@ -518,7 +518,7 @@ class App {
           }
         );
       });
-      //   console.log({ "orderId": `PremiumPayDavr-${zayavka1.id}`,
+      //   console.log({ "orderId": `PPD-${zayavka1.id}`,
       //   "term": "12",
       //   singedAt,
       //   "oferta":true,
@@ -527,7 +527,7 @@ class App {
         url2,
 
         {
-          orderId: `PremiumPayDavr-${id}`,
+          orderId: `PPD-${id}`,
           term: `${zayavka1.expired_month}`,
           oferta: true,
           contractPdf: contractPdf,
