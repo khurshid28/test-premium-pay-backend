@@ -525,7 +525,6 @@ class App {
       // });
       const response2 = await axios.post(
         url2,
-
         {
           orderId: `PPD-${id}`,
           term: `${zayavka1.expired_month}`,
