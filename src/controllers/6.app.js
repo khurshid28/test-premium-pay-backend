@@ -711,9 +711,11 @@ class App {
           );
         });
       } else if (req.user.role === "Accountant") {
+       
+    
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,fillial.* from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id ORDER BY Zayavka.id DESC`,
+            `SELECT Zayavka.*,fillial.name as fillial_name,fillial.work_status as fillial_work_status,fillial.created_time as fillial_created_time,fillial.address as fillial_address,fillial.admin_id,fillial.nds as fillial_nds,fillial.hisob_raqam as fillial_hisob_raqam,fillial.bank_name as fillial_bank_name,fillial.mfo as fillial_mfo,fillial.inn as fillial_inn,fillial.director_name as fillial_director_name,fillial.director_phone as fillial_director_phone,fillial.percent_type as fillial_percent_type,fillial.expired_months as fillial_expired_months from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id ORDER BY Zayavka.id DESC`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
