@@ -723,7 +723,7 @@ class App {
             }
           );
         });
-        console.log(user);
+        // console.log(user);
         // zayavkalar = await new Promise(function (resolve, reject) {
         //   db.query(
         //     `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
