@@ -710,7 +710,35 @@ class App {
             }
           );
         });
-      } else {
+      } else if (req.user.role === "Accountant") {
+        zayavkalar = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT Zayavka.*,fillial.* from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              resolve(results);
+            }
+          );
+        });
+        console.log(user);
+        // zayavkalar = await new Promise(function (resolve, reject) {
+        //   db.query(
+        //     `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+        //     function (err, results, fields) {
+        //       if (err) {
+        //         resolve(null);
+        //         return null;
+        //       }
+        //       return resolve(results);
+        //     }
+        //   );
+        // });
+      } 
+      
+      else {
         console.log("keldi >>");
         let user = await new Promise(function (resolve, reject) {
           db.query(
@@ -733,7 +761,7 @@ class App {
         //     function (err, results, fields) {
         //       if (err) {
         //          resolve(null);
-        return null;
+        // return null;
         //       }
         //       return resolve(results);
         //     }
