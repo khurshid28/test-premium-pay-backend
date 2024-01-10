@@ -15,10 +15,9 @@ class Accountant {
     async create(req, res, next) {
         try {
 
-            const {
+            let {
                 fullName,
                 phoneNumber,
-                
             } = req.body;
            
 
@@ -59,7 +58,7 @@ class Accountant {
                   function (err, results, fields) {
                     if (err) {
                         resolve(null);
-                        return null;;
+                        return null;
                     }
                     console.log("++++", results);
                     if (results.insertId) {
@@ -75,6 +74,8 @@ class Accountant {
                 db.query(
                   `SELECT * from Accountant WHERE id=${id}`,
                   function (err, results, fields) {
+                    console.log(err);
+                    console.log(results);
                     if (err) {
                         resolve(null);
                         return null;
@@ -87,7 +88,7 @@ class Accountant {
                   }
                 );
               });
-
+            
             return res.status(201).json({ data:accountant,message:"Accountant is created successfully" });
         } catch (error) {
             console.log(error.message)
