@@ -56,6 +56,8 @@ class Accountant {
                   `INSERT INTO Accountant (loginName,loginPassword,fullName,phoneNumber) VALUES(?,?,?,?}) ;`,
                   [loginName,loginPassword,fullName,phoneNumber],
                   function (err, results, fields) {
+                    console.log(err);
+                    console.log(results);
                     if (err) {
                         resolve(null);
                         return null;
