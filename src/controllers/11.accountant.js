@@ -53,7 +53,7 @@ class Accountant {
              
              
                 db.query(
-                  `INSERT INTO Accountant (loginName,loginPassword,fullName,phoneNumber) VALUES(?,?,?,?}) ;`,
+                  `INSERT INTO Accountant (loginName,loginPassword,fullName,phoneNumber) VALUES(?,?,?,?) ;`,
                   [loginName,loginPassword,fullName,phoneNumber],
                   function (err, results, fields) {
                     console.log(err);
