@@ -713,7 +713,7 @@ class App {
       } else if (req.user.role === "Accountant") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,fillial.* from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id ORDER BY id DESC`,
+            `SELECT Zayavka.*,fillial.* from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id ORDER BY Zayavka.id DESC`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
