@@ -715,6 +715,7 @@ class App {
           db.query(
             `SELECT Zayavka.*,fillial.* from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id ORDER BY id DESC`,
             function (err, results, fields) {
+              console.log(err);
               if (err) {
                 resolve(null);
                 return null;
