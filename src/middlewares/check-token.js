@@ -52,12 +52,12 @@ module.exports = async(req, res, next) => {
             return next(new AuthorizationError(401, "Invalid token"));
         }
        
-        const reqAgent = req.headers["user-agent"];
-        if (agent !== reqAgent) {
-            return next(
-                new ForbiddenError(403, "You can't log in different devices")
-            );
-        }
+        // const reqAgent = req.headers["user-agent"];
+        // if (agent !== reqAgent) {
+        //     return next(
+        //         new ForbiddenError(403, "You can't log in different devices")
+        //     );
+        // }
 
         req.user = {
             id: user["id"],
