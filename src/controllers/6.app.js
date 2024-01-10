@@ -713,7 +713,7 @@ class App {
       } else if (req.user.role === "Accountant") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,fillial.* from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id`,
+            `SELECT Zayavka.*,fillial.* from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -755,6 +755,7 @@ class App {
         if (!user) {
           return next(new NotFoundError(404, "Admin Not Found"));
         }
+
         // let users = await new Promise(function (resolve, reject) {
         //   db.query(
         //     `SELECT * from User WHERE merchant_id=${user.merchant_id}`,
@@ -777,6 +778,7 @@ class App {
         //   condition.push(`user_id=${u.id}`);
         // });
         // condition = condition.join(` OR `);
+
 
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
