@@ -95,7 +95,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `uspeshna : ${finished_zayavkalar} \notkaz Zavkalar : ${conceled_zayavkalar} \n pul ko'chirilgan : ${paid_zayavkalar} \n scoring orkaz : ${zayavkalar2}`
+        `uspeshna : ${finished_zayavkalar} \notkaz Zavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring orkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     }
   }
