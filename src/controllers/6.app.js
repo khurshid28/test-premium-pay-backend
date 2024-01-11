@@ -715,7 +715,7 @@ class App {
     
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial from Zayavka,fillial WHERE status="finished" and Zayavka.fillial_id=fillial.id ORDER BY Zayavka.id DESC`,
+            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial from Zayavka,fillial WHERE (status="finished" or status="paid") and Zayavka.fillial_id=fillial.id ORDER BY Zayavka.id DESC`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
