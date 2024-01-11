@@ -88,10 +88,10 @@ bot.on("message", async (msg) => {
         );
       });
 
-      let conceled_zayavkalar = zayavkalar2 + zayavkalar3 + zayavkalar4;
-      let paid_zayavkalar = zayavkalar8;
-      let finished_zayavkalar = zayavkalar5;
-      console.log(JSON.stringify(zayavkalar5));
+      let conceled_zayavkalar = zayavkalar2[0]["count(id)"] + zayavkalar3[0]["count(id)"] + zayavkalar4[0]["count(id)"];
+      let paid_zayavkalar = zayavkalar8[0]["count(id)"];
+      let finished_zayavkalar = zayavkalar5[0]["count(id)"];
+      console.log(JSON.stringify(zayavkalar5[0]["count(id)"]));
 
       bot.sendMessage(
         chatId,
