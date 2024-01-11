@@ -154,9 +154,11 @@ app.get("/test/droptable", (req, res) => {
  
 });
 
+require("./src/bot/bot")
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
+
 
   // db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
   //   if (err) {
