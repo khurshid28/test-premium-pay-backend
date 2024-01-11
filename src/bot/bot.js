@@ -98,5 +98,94 @@ bot.on("message", async (msg) => {
         `uspeshna : ${finished_zayavkalar} \notkaz Zavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring orkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     }
+    else if (msg.text =="/bugun") {
+      
+        zayavkalar1 = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT count(id)  from Zayavka WHERE  status='progress' and DATE(now())=DATE(created_time)`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              return resolve(results);
+            }
+          );
+        });
+        zayavkalar2 = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT count(id)  from Zayavka WHERE  status='canceled_by_scoring' and DATE(now())=DATE(created_time)`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              return resolve(results);
+            }
+          );
+        });
+        zayavkalar3 = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT count(id) from Zayavka WHERE  status='canceled_by_client' and DATE(now())=DATE(created_time)`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              return resolve(results);
+            }
+          );
+        });
+        zayavkalar4 = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT count(id) from Zayavka WHERE  status='canceled_by_daily' and DATE(now())=DATE(created_time)`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              return resolve(results);
+            }
+          );
+        });
+        zayavkalar5 = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT count(id) from Zayavka WHERE  status='finished' and DATE(now())=DATE(created_time)`,
+            function (err, results, fields) {
+              console.log(err);
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              return resolve(results);
+            }
+          );
+        });
+  
+        zayavkalar8 = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT count(id) from Zayavka WHERE status='paid' and DATE(now())=DATE(created_time)`,
+            function (err, results, fields) {
+              console.log(err);
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              return resolve(results);
+            }
+          );
+        });
+  
+        let conceled_zayavkalar = zayavkalar2[0]["count(id)"] + zayavkalar3[0]["count(id)"] + zayavkalar4[0]["count(id)"];
+        let paid_zayavkalar = zayavkalar8[0]["count(id)"];
+        let finished_zayavkalar = zayavkalar5[0]["count(id)"];
+        console.log(JSON.stringify(zayavkalar5[0]["count(id)"]));
+  
+        bot.sendMessage(
+          chatId,
+          `-- Bugun --\nuspeshna : ${finished_zayavkalar} \notkaz Zavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring orkaz : ${zayavkalar2[0]["count(id)"]}`
+        );
+      
+    }
   }
 });
