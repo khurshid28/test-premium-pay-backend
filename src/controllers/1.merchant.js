@@ -64,90 +64,119 @@ class Merchant {
       });
 
       if (type == "AGENT") {
-        let loginName = cryptoRandomString({ length: 10 });
-        let loginPassword = cryptoRandomString({ length: 15 });
-        admin.loginName = loginName;
-        admin.loginPassword = loginPassword;
-        admin.fullName = admin.fullName.replaceAll("ʻ", "'");
-  
-        let admin_id = await new Promise(function (resolve, reject) {
-          db.query(
-            `INSERT INTO Admin (loginName,loginPassword,fullName,phoneNumber,merchant_id) VALUES(?,?,?,?,?) ;`,
-            [loginName, loginPassword, admin.fullName, admin.phoneNumber, id],
-            function (err, results, fields) {
-              console.log(err);
-              if (err) {
-                resolve(null);
-                // return null;
+        if (req.body.admin_id) {
+          let result = await new Promise(function (resolve, reject) {
+            db.query(
+              `UPDATE merchant SET admin_id=${req.body.admin_id} WHERE id = ${id};`,
+              function (err, results, fields) {
+                if (err) {
+                  resolve(null);
+                  // return null;
+                }
+                console.log("99999", results);
+                if (!results.warningStatus) {
+                  resolve("success");
+                } else {
+                  resolve(null);
+                  // return null;
+                }
               }
-              console.log("++++", results);
-              if (results) {
-                resolve(results.insertId);
-              } else {
-                // resolve(null);
-                // return null;
-              }
-            }
-          );
-        });
-        console.log("merchant created", id);
-        console.log("admin created", admin_id);
-        // let adminUser = await new Promise(function (resolve, reject) {
-        //   db.query(
-        //       `SELECT * from Admin WHERE id=${admin_id};`,
-        //       function (err, results, fields) {
-        //         if (err) {
-        //             resolve(null);
-        // return null;
-        //         }
-        //         console.log("++++", results);
-        //         if (results) {
-        //           resolve(results[0]);
-        //         } else {
-        //             resolve(null);
-        // return null;
-        //         }
-        //       }
-        //     );
-        //   });
-  
-        // console.log(adminUser);
-  
-        let result = await new Promise(function (resolve, reject) {
-          db.query(
-            `UPDATE merchant SET admin_id=${admin_id} WHERE id = ${id};`,
-            function (err, results, fields) {
-              if (err) {
-                resolve(null);
-                // return null;
-              }
-              console.log("99999", results);
-              if (!results.warningStatus) {
-                resolve("success");
-              } else {
-                resolve(null);
-                // return null;
-              }
-            }
-          );
-        });
-  
-        if (result == "success") {
-          return res.status(201).json({
-            message: "Merchant and Admin is created successfully",
-            merchant_id: id,
-            admin_id,
+            );
           });
+          if (result == "success") {
+            return res.status(201).json({
+              message: "Merchant is created successfully",
+              merchant_id: id,
+              admin_id: req.body.admin_id,
+            });
+          } else {
+            return next(new BadRequestError(400, "Admin isnot created"));
+          }
         } else {
-          return next(new BadRequestError(400, "Admin isnot created"));
+          let loginName = cryptoRandomString({ length: 10 });
+          let loginPassword = cryptoRandomString({ length: 15 });
+          admin.loginName = loginName;
+          admin.loginPassword = loginPassword;
+          admin.fullName = admin.fullName.replaceAll("ʻ", "'");
+
+          let admin_id = await new Promise(function (resolve, reject) {
+            db.query(
+              `INSERT INTO Admin (loginName,loginPassword,fullName,phoneNumber,merchant_id) VALUES(?,?,?,?,?) ;`,
+              [loginName, loginPassword, admin.fullName, admin.phoneNumber, id],
+              function (err, results, fields) {
+                console.log(err);
+                if (err) {
+                  resolve(null);
+                  // return null;
+                }
+                console.log("++++", results);
+                if (results) {
+                  resolve(results.insertId);
+                } else {
+                  // resolve(null);
+                  // return null;
+                }
+              }
+            );
+          });
+          console.log("merchant created", id);
+          console.log("admin created", admin_id);
+          // let adminUser = await new Promise(function (resolve, reject) {
+          //   db.query(
+          //       `SELECT * from Admin WHERE id=${admin_id};`,
+          //       function (err, results, fields) {
+          //         if (err) {
+          //             resolve(null);
+          // return null;
+          //         }
+          //         console.log("++++", results);
+          //         if (results) {
+          //           resolve(results[0]);
+          //         } else {
+          //             resolve(null);
+          // return null;
+          //         }
+          //       }
+          //     );
+          //   });
+
+          // console.log(adminUser);
+
+          let result = await new Promise(function (resolve, reject) {
+            db.query(
+              `UPDATE merchant SET admin_id=${admin_id} WHERE id = ${id};`,
+              function (err, results, fields) {
+                if (err) {
+                  resolve(null);
+                  // return null;
+                }
+                console.log("99999", results);
+                if (!results.warningStatus) {
+                  resolve("success");
+                } else {
+                  resolve(null);
+                  // return null;
+                }
+              }
+            );
+          });
+
+          if (result == "success") {
+            return res.status(201).json({
+              message: "Merchant and Admin is created successfully",
+              merchant_id: id,
+              admin_id,
+            });
+          } else {
+            return next(new BadRequestError(400, "Admin isnot created"));
+          }
         }
       } else {
-       return res.status(201).json({
-                  "message": "Merchant is created successfully",
-                  merchant_id:id
-              });
+        return res.status(201).json({
+          message: "Merchant is created successfully",
+          merchant_id: id,
+        });
       }
-
 
       // admin_id = null
 
