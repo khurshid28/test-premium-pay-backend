@@ -23,7 +23,7 @@ function toMyString(ob) {
 class Fillial {
   async create(req, res, next) {
     try {
-      if (req.user.role === "user") {
+      if (req.user.role != "SuperAdmin") {
         return next(
           new ForbiddenError(
             403,
@@ -56,10 +56,27 @@ class Fillial {
       // expired_monthsString = expired_monthsString.slice(0, -1);
       // expired_monthsString += "]'";
       // let expired_monthsString = `'[`;
-
+      let merchant = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * FROM merchant WHERE id=${merchant_id};`,
+          function (err, results, fields) {
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            console.log("++++", results);
+            if (results.length != 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
+      
       let id = await new Promise(function (resolve, reject) {
         db.query(
-          `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone,percent_type,expired_months) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) ;`,
+          `INSERT INTO fillial (name,address,merchant_id,who_created,inn,mfo,bank_name,nds,hisob_raqam,director_name,director_phone,percent_type,expired_months,admin_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?) ;`,
 
           [
             name,
@@ -79,7 +96,8 @@ class Fillial {
             director_name,
             director_phone,
             percent_type,
-            JSON.stringify( expired_months,)
+            JSON.stringify( expired_months,),
+            merchant.admin_id
           ],
           function (err, results, fields) {
             console.log(">>>>>>....");
