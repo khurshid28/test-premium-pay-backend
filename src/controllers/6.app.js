@@ -319,45 +319,45 @@ class App {
       return next(new InternalServerError(500, error));
     }
   }
-  async update4(req, res, next) {
-    try {
-      await new Promise(function (resolve, reject) {
-        db.query(update4ZayavkaFunc(req.body), function (err, results, fields) {
-          if (err) {
-            return resolve(null);
-            return null;
-          }
+  // async update4(req, res, next) {
+  //   try {
+  //     await new Promise(function (resolve, reject) {
+  //       db.query(update4ZayavkaFunc(req.body), function (err, results, fields) {
+  //         if (err) {
+  //           return resolve(null);
+  //           return null;
+  //         }
 
-          resolve(results);
-        });
-      });
+  //         resolve(results);
+  //       });
+  //     });
 
-      let zayavkaUpdated = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
-          function (err, results, fields) {
-            if (err) {
-              resolve(null);
-              return null;
-            }
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
+  //     let zayavkaUpdated = await new Promise(function (resolve, reject) {
+  //       db.query(
+  //         `SELECT * from Zayavka WHERE id=${req.body.id}`,
+  //         function (err, results, fields) {
+  //           if (err) {
+  //             resolve(null);
+  //             return null;
+  //           }
+  //           if (results.length != 0) {
+  //             resolve(results[0]);
+  //           } else {
+  //             resolve(null);
+  //           }
+  //         }
+  //       );
+  //     });
 
-      return res.status(200).json({
-        data: zayavkaUpdated,
-        message: "Update 4 is done",
-      });
-    } catch (error) {
-      console.log(error);
-      return next(new InternalServerError(500, error));
-    }
-  }
+  //     return res.status(200).json({
+  //       data: zayavkaUpdated,
+  //       message: "Update 4 is done",
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     return next(new InternalServerError(500, error));
+  //   }
+  // }
   async update5(req, res, next) {
     try {
       await new Promise(function (resolve, reject) {
@@ -836,10 +836,10 @@ function update3ZayavkaFunc(data) {
   return `UPDATE Zayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
 }
 
-function update4ZayavkaFunc(data) {
-  let { id } = data;
-  return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
-}
+// function update4ZayavkaFunc(data) {
+//   let { id } = data;
+//   return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
+// }
 
 function update5ZayavkaFunc(data) {
   let { id, products, location, device, amount } = data;

@@ -10,6 +10,7 @@ const router = Router();
 // router.use(checkBlocked);
 
 // router.get("/result", scoringController.get);
+
 router.post("/result", scoringController.post);
 
 

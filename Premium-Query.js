@@ -200,7 +200,7 @@ Date.prototype.addHours = function (h) {
   let update1Zayavka = `INSERT INTO Zayavka (user_id) VALUES (17) ; `; // passport and birthdate page
   let update2Zayavka = `UPDATE Zayavka SET step=2,fullname='Xurshid Ismoilov 2',phoneNumber ='+998950642827',phoneNumber2 ='+998950642827',cardNumber='986014******0006' WHERE id = 1;`; // my id data page
   let update3Zayavka = `UPDATE Zayavka SET step=3 WHERE id = 1;`; // to bank for scoring  // selfie with passport
-  let update4Zayavka = `UPDATE Zayavka SET step=4 WHERE id = 1;`; // from bank [yes,no] // loading page
+  // let update4Zayavka = `UPDATE Zayavka SET step=4 WHERE id = 1;`; // from bank [yes,no] // loading page
   let update5Zayavka = `UPDATE Zayavka SET step=5,agree = TRUE WHERE id = 1;`; //  oferta page
   let update6Zayavka = `UPDATE Zayavka SET step=6,products ='[{"name":"iphone 12","price":4100000},{"name":"iphone 12","price":4780000}]',location='{"lat":41.20499,"long":69.11922}',device='{"id":"1223","model":"SAMSUNG 21s"}' WHERE id = 1;`; // products page
   let update7Zayavka = `UPDATE Zayavka SET step=7,amount=1000000,payment_amount=1410000,expired_month = 12 WHERE id = 1;`; // to bank in last request,for oformeleniya  // grafik page
@@ -229,10 +229,10 @@ Date.prototype.addHours = function (h) {
     return `UPDATE Zayavka SET step=3 WHERE id = ${id};`;
   }
   
-  function update4ZayavkaFunc(data) {
-    let { id } = data;
-    return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
-  }
+  // function update4ZayavkaFunc(data) {
+  //   let { id } = data;
+  //   return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
+  // }
   
   function update5ZayavkaFunc(data) {
     let { id } = data;
@@ -381,7 +381,7 @@ Date.prototype.addHours = function (h) {
     update1ZayavkaFunc,
     update2ZayavkaFunc,
     update3ZayavkaFunc,
-    update4ZayavkaFunc,
+    // update4ZayavkaFunc,
     update5ZayavkaFunc,
     update6ZayavkaFunc,
     update7ZayavkaFunc,

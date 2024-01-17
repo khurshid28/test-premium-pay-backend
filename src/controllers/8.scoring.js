@@ -50,6 +50,7 @@ class Scoring {
                   type:"file"
               };
              });
+             
            if (status == "1") {
               await new Promise(function (resolve, reject) {
                   db.query(
