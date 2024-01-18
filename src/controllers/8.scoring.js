@@ -50,7 +50,7 @@ class Scoring {
                   type:"file"
               };
              });
-             
+
            if (status == "1") {
               await new Promise(function (resolve, reject) {
                   db.query(
@@ -91,14 +91,13 @@ class Scoring {
                 );
               });
            }else if (status == "4") {
-           
             await new Promise(function (resolve, reject) {
               db.query(
                 `UPDATE Zayavka SET step=4,paid_status='waiting',term='${term}',scoring_end = CURRENT_TIMESTAMP WHERE id = ${id};`,
                 function (err, results, fields) {
                   if (err) {
                       resolve(null);
-                        return null;;
+                      return null;
                   }
                   if (results) {
                     resolve(results);
@@ -109,8 +108,8 @@ class Scoring {
                 }
               );
             });
-           
            }
+           
            else if (status == "7") {
             
             await new Promise(function (resolve, reject) {
@@ -152,6 +151,7 @@ class Scoring {
             });
            }
 
+  
            return res
            .status(200)
            .json({
