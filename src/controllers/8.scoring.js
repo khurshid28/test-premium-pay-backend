@@ -142,7 +142,7 @@ class Scoring {
 
       try {
         //vaqtincha
-
+        
         let zayavka = await new Promise(function (resolve, reject) {
           db.query(
             `SELECT Zayavka.*,fillial.name from Zayavka,fillial WHERE id=${req.body.id} and fillial.id=Zayavka.fillial_id`,
@@ -159,6 +159,9 @@ class Scoring {
             }
           );
         });
+        console.log(zayavka);
+        console.log(">>>>>>>");
+        console.log(text);
         let text =
           "<b>ID : " +
           orderId +
@@ -175,7 +178,7 @@ class Scoring {
           "Dokon :" +
           zayavka.name +
           "</b>";
-        console.log(text);
+        
         // let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=6001596917&text=${text}&parse_mode=HTML`;
         // axios
         //   .post(url)
