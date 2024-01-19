@@ -16,7 +16,7 @@ const path = require("path");
 class App {
   async update1(req, res, next) {
     try {
-      let { fullname, passport } = req.body;
+      let { fullname, passport,pinfl } = req.body;
       req.body.user_id = req.user.id;
       let user = await new Promise(function (resolve, reject) {
         db.query(
@@ -808,10 +808,10 @@ class App {
 }
 
 function update1ZayavkaFunc(data) {
-  let { user_id, merchant_id, fillial_id, fullname, passport } = data;
+  let { user_id, merchant_id, fillial_id, fullname, passport,pinfl } = data;
   fullname = `${fullname}`;
   fullname = fullname.replaceAll("ʻ", "'");
-  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}') ; `;
+  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${pinfl}') ; `;
 }
 
 function update2ZayavkaFunc(data) {
