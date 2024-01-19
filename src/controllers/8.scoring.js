@@ -4,6 +4,8 @@ const User = require("../models/User.js");
 const Merchant = require("../models/Merchant.js");
 const fs = require("fs");
 let path = require("path");
+let axios = require("axios");
+
 
 const {
   InternalServerError,
