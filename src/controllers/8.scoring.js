@@ -145,7 +145,7 @@ class Scoring {
         
         let zayavka = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,fillial.name from Zayavka,fillial WHERE id=${req.body.id} and fillial.id=Zayavka.fillial_id`,
+            `SELECT Zayavka.*,fillial.name from Zayavka,fillial WHERE id=${id} and fillial.id=Zayavka.fillial_id`,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -171,7 +171,7 @@ class Scoring {
           summa +
           "%0A" +
           "FULLNAME :" +
-          zayavka.fullname +
+          zayavka.fullName +
           "%0A" +
           "Dokon :" +
           zayavka.name +
