@@ -175,23 +175,23 @@ class Scoring {
           "Dokon :" +
           zayavka.name +
           "</b>";
-
-        let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=6001596917&text=${text}&parse_mode=HTML`;
-        axios
-          .post(url)
-          .then((res) => res)
-          .catch((err) => console.log(err));
+        console.log(text);
+        // let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=6001596917&text=${text}&parse_mode=HTML`;
+        // axios
+        //   .post(url)
+        //   .then((res) => res)
+        //   .catch((err) => console.log(err));
         let url1 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=2053690211&text=${text}&parse_mode=HTML`;
         axios
           .post(url1)
           .then((res) => res)
           .catch((err) => console.log(err));
 
-        let url2 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=702623697&text=${text}&parse_mode=HTML`;
-        axios
-          .post(url2)
-          .then((res) => res)
-          .catch((err) => console.log(err));
+        // let url2 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=702623697&text=${text}&parse_mode=HTML`;
+        // axios
+        //   .post(url2)
+        //   .then((res) => res)
+        //   .catch((err) => console.log(err));
       } catch (error) {}
 
       
