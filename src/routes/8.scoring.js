@@ -11,6 +11,7 @@ const router = Router();
 
 // router.get("/result", scoringController.get);
 
+
 router.post("/result", scoringController.post);
 
 
