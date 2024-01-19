@@ -159,9 +159,7 @@ class Scoring {
             }
           );
         });
-        console.log(zayavka);
-        console.log(">>>>>>>");
-        console.log(text);
+       
         let text =
           "<b>ID : " +
           orderId +
@@ -178,6 +176,9 @@ class Scoring {
           "Dokon :" +
           zayavka.name +
           "</b>";
+          console.log(zayavka);
+          console.log(">>>>>>>");
+          console.log(text);
         
         // let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=6001596917&text=${text}&parse_mode=HTML`;
         // axios
@@ -185,7 +186,7 @@ class Scoring {
         //   .then((res) => res)
         //   .catch((err) => console.log(err));
         let url1 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=2053690211&text=${text}&parse_mode=HTML`;
-        axios
+        await axios
           .post(url1)
           .then((res) => res)
           .catch((err) => console.log(err));
@@ -195,7 +196,9 @@ class Scoring {
         //   .post(url2)
         //   .then((res) => res)
         //   .catch((err) => console.log(err));
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
 
       
       return res.status(200).json({
