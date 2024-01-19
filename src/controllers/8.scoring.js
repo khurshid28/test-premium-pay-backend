@@ -171,7 +171,7 @@ class Scoring {
           summa +
           "%0A" +
           "FULLNAME :" +
-          zayavka.fullName +
+          zayavka.fullname +
           "%0A" +
           "Dokon :" +
           zayavka.name +
