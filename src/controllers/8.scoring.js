@@ -167,16 +167,20 @@ class Scoring {
           "<b>ID : " +
           orderId +
           "%0A" +
-          "STATUS :" +
+          "STATUS : " +
           status +
           "%0A" +
-          "SUMMA :" +
-          summa +
+          "SUMMA : " +
+          summa + ( 
+            reason ?  
+            "%0A" + "SUMMA : " +
+            reason  : ""
+          )
           "%0A" +
           "FULLNAME :" +
           zayavka.fullname +
           "%0A" +
-          "Dokon :" +
+          "Dokon : " +
           zayavka.name +
           "</b>";
           console.log(zayavka);
