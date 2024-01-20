@@ -173,7 +173,7 @@ class Scoring {
           "SUMMA : " +
           summa + ( 
             reason ?  
-            "%0A" + "SUMMA : " +
+            "%0A" + "Причина : " +
             reason  : ""
           )
           "%0A" +
