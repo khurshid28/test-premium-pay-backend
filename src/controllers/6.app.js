@@ -811,7 +811,7 @@ function update1ZayavkaFunc(data) {
   let { user_id, merchant_id, fillial_id, fullname, passport,pinfl } = data;
   fullname = `${fullname}`;
   fullname = fullname.replaceAll("ʻ", "'");
-  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${pinfl}') ; `;
+  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${pinfl ?? ""}') ; `;
 }
 
 function update2ZayavkaFunc(data) {
