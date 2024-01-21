@@ -171,11 +171,13 @@ class Scoring {
           status +
           "%0A" +
           "SUMMA : " +
-          summa + ( 
-            reason ?  
-            "%0A" + "Причина : " +
-            reason.toString().replaceAll("."," ")  : ""
-          )
+          summa +
+          
+          // ( 
+          //   reason ?  
+          //   "%0A" + "Причина : " +
+          //   reason.toString().replaceAll("."," ")  : ""
+          // )
           "%0A" +
           "FULLNAME :" +
           zayavka.fullname +
