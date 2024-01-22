@@ -283,7 +283,9 @@ class App {
       console.log(response2.data);
 
       await new Promise(function (resolve, reject) {
-        db.query(update3ZayavkaFunc(req.body), function (err, results, fields) {
+        db.query(update3ZayavkaFunc({...req.body,
+          payment_amount:Math.floor((max_amount * (1 + val["percent"]/100))),
+      }), function (err, results, fields) {
           if (err) {
             return resolve(null);
             return null;
@@ -831,10 +833,12 @@ function update2ZayavkaFunc(data) {
   return `UPDATE Zayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
 }
 
+
 function update3ZayavkaFunc(data) {
-  let { id, max_amount } = data;
-  return `UPDATE Zayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
+  let { id, max_amount,payment_amount } = data;
+  return `UPDATE Zayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}',payment_amount='${payment_amount}' WHERE id = ${id};`;
 }
+
 
 // function update4ZayavkaFunc(data) {
 //   let { id } = data;

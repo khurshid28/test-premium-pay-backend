@@ -172,21 +172,20 @@ class Scoring {
           "%0A" +
           "SUMMA : " +
           summa +
-       
+          
+          // ( 
+          //   reason ?  
+          //   "%0A" + "Причина : " +
+          //   reason.toString().replaceAll("."," ")  : ""
+          // )
           "%0A" +
           "FULLNAME :" +
           zayavka.fullname +
           "%0A" +
           "Dokon : " +
           zayavka.name.replaceAll("-"," ").replaceAll("'"," ").replaceAll("ʻ", "").replaceAll('"', "") +
-            
           
-         
-          
-
-          "</b>" +" "+   reason ?  
-            "%0A" + "Причина : " +
-            `${reason ?? ""}`.replaceAll("."," ")  : "" ;
+          "</b>";
           console.log(zayavka);
           console.log(">>>>>>>");
           console.log(text);
