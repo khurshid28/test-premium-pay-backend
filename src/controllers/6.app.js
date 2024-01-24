@@ -856,7 +856,7 @@ function update5ZayavkaFunc(data) {
   productsString = productsString.slice(0, -1);
   productsString += "]'";
   console.log(productsString);
-  return `UPDATE Zayavka SET step=5,amount=${amount},products=${productsString},location=${toMyString(
+  return `UPDATE Zayavka SET step=5,amount=${amount},products=${productsString ?? ""},location=${toMyString(
     location
   )},device=${toMyString(device)} WHERE id = ${id};`;
 }
@@ -882,6 +882,9 @@ function cancelByClientZayavkaFunc(data) {
 }
 
 function toMyString(ob) {
+  if(!ob){
+      return null;
+  }
   let result = `'{`;
   let li = [];
   for (let [key, value] of Object.entries(ob)) {
