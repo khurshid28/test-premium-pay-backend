@@ -364,6 +364,7 @@ class App {
     try {
       await new Promise(function (resolve, reject) {
         db.query(update5ZayavkaFunc(req.body), function (err, results, fields) {
+          console.log(err);
           if (err) {
             return resolve(null);
             return null;
