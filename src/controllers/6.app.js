@@ -883,7 +883,7 @@ function cancelByClientZayavkaFunc(data) {
 
 function toMyString(ob) {
   if(!ob){
-      return "";
+      return "null";
   }
   let result = `'{`;
   let li = [];
