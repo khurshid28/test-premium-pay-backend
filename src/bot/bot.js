@@ -192,7 +192,7 @@ bot.on("message", async (msg) => {
       
       zayavkalar1 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id)  from Zayavka WHERE  status='progress' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time)`,
+          `SELECT count(id)  from Zayavka WHERE  status='progress' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR)`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -204,7 +204,7 @@ bot.on("message", async (msg) => {
       });
       zayavkalar2 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id)  from Zayavka WHERE  status='canceled_by_scoring' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time)`,
+          `SELECT count(id)  from Zayavka WHERE  status='canceled_by_scoring' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR)`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -216,7 +216,7 @@ bot.on("message", async (msg) => {
       });
       zayavkalar3 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE  status='canceled_by_client' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time)`,
+          `SELECT count(id) from Zayavka WHERE  status='canceled_by_client' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR)`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -228,7 +228,7 @@ bot.on("message", async (msg) => {
       });
       zayavkalar4 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE  status='canceled_by_daily' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time)`,
+          `SELECT count(id) from Zayavka WHERE  status='canceled_by_daily' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR)`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -240,7 +240,7 @@ bot.on("message", async (msg) => {
       });
       zayavkalar5 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE  status='finished' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time)`,
+          `SELECT count(id) from Zayavka WHERE  status='finished' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR)`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -254,7 +254,7 @@ bot.on("message", async (msg) => {
 
       zayavkalar8 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE paid_status='paid' and  DATE(now() - INTERVAL 5 HOUR) - 1 < DATE(created_time - INTERVAL 5 HOUR )`,
+          `SELECT count(id) from Zayavka WHERE paid_status='paid' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR )`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -273,7 +273,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Kecha --\nuspeshna : ${finished_zayavkalar} \notkaz Zavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring orkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Kecha --\nuspeshna : ${finished_zayavkalar} \notkaz Zayavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     
   }
