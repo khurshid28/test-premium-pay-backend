@@ -250,12 +250,16 @@ class App {
       if (!IdentificationVideoBase64 || IdentificationVideoBase64 ==null) {
         return next(new InternalServerError(500, "IdentificationVideoBase64 error"));
       }
-      // var filePath = path.join(__dirname,"..","..","public","myid",`${zayavka.passport}.png`)
-      // console.log(filePath)
-      // var bitmap = fs.readFileSync(filePath);
-      // const encoded = Buffer(bitmap).toString("base64");
-      // IdentificationVideoBase64 = `data:image/jpeg;base64,${encoded}`
-      // console.log("IdentificationVideoBase64 : " + IdentificationVideoBase64);
+     var filePath = path.join(__dirname,"..","..","public","myid",`${zayavka.passport}.png`)
+      if (fs.existsSync(filePath)) { 
+         console.log(filePath)
+      var bitmap = fs.readFileSync(filePath);
+      const encoded = Buffer(bitmap).toString("base64");
+      IdentificationVideoBase64 = `data:image/jpeg;base64,${encoded}`
+      console.log("IdentificationVideoBase64 : " + IdentificationVideoBase64);
+      }
+      
+     
 
       const response2 = await axios.post(
         url2,
