@@ -16,7 +16,7 @@ const path = require("path");
 class App {
   async update1(req, res, next) {
     try {
-      let { fullname, passport,pinfl } = req.body;
+      let { fullname, passport, pinfl } = req.body;
       req.body.user_id = req.user.id;
       let user = await new Promise(function (resolve, reject) {
         db.query(
@@ -81,7 +81,17 @@ class App {
   }
   async update2(req, res, next) {
     try {
-      let { id, fullname, phoneNumber, phoneNumber2, cardNumber,passport_date,passport_by,address,region_id } = req.body;
+      let {
+        id,
+        fullname,
+        phoneNumber,
+        phoneNumber2,
+        cardNumber,
+        passport_date,
+        passport_by,
+        address,
+        region_id,
+      } = req.body;
       fullname = `${fullname}`;
       fullname = fullname.replaceAll("ʻ", "'");
       passport_by = passport_by.replaceAll("ʻ", "'");
@@ -89,7 +99,17 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(
           update2ZayavkaFunc(req.body),
-          [ 2, phoneNumber, phoneNumber2, cardNumber,passport_date,passport_by,JSON.stringify(address),region_id,id],
+          [
+            2,
+            phoneNumber,
+            phoneNumber2,
+            cardNumber,
+            passport_date,
+            passport_by,
+            JSON.stringify(address),
+            region_id,
+            id,
+          ],
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -197,14 +217,13 @@ class App {
       let val = fillial.expired_months[arr.indexOf(`${largest}`)];
       for (let index = 0; index < 20; index++) {
         console.log(">>>>>>>>>>>>>>>");
-        console.log(Math.floor((max_amount * (1 + val["percent"]/100))));
-
+        console.log(Math.floor(max_amount * (1 + val["percent"] / 100)));
       }
       console.log(val);
 
       let alldata = {
         orderId: "PPD-" + zayavka.id,
-        amount:Math.floor((max_amount * (1 + val["percent"]/100))),
+        amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
         duration: "12",
         term: "12",
         passSeria: zayavka.passport.substring(0, 2),
@@ -217,7 +236,6 @@ class App {
         selfie: selfie_with_passport.substring(0, 30),
         identificationVideoBase64: IdentificationVideoBase64.substring(0, 30),
       };
-
 
       fs.appendFile(
         path.join(__dirname, "output.txt"),
@@ -246,26 +264,34 @@ class App {
           },
         }
       );
-
-      if (!IdentificationVideoBase64 || IdentificationVideoBase64 ==null) {
-        return next(new InternalServerError(500, "IdentificationVideoBase64 error"));
-      }
-     var filePath = path.join(__dirname,"..","..","public","myid",`${zayavka.passport}.png`)
-      if (fs.existsSync(filePath)) { 
-         console.log(filePath)
-      var bitmap = fs.readFileSync(filePath);
-      const encoded = Buffer(bitmap).toString("base64");
-      IdentificationVideoBase64 = `data:image/jpeg;base64,${encoded}`
-      console.log("IdentificationVideoBase64 : " + IdentificationVideoBase64);
+      var filePath = path.join(
+        __dirname,
+        "..",
+        "..",
+        "public",
+        "myid",
+        `${zayavka.passport}.png`
+      );
+      if (fs.existsSync(filePath)) {
+        console.log(filePath);
+        var bitmap = fs.readFileSync(filePath);
+        const encoded = Buffer(bitmap).toString("base64");
+        IdentificationVideoBase64 = `data:image/jpeg;base64,${encoded}`;
+        console.log("IdentificationVideoBase64 : " + IdentificationVideoBase64);
       }
       
-     
+      if (!IdentificationVideoBase64 || IdentificationVideoBase64 == null) {
+        return next(
+          new InternalServerError(500, "IdentificationVideoBase64 error")
+        );
+      }
+    
 
       const response2 = await axios.post(
         url2,
         {
           orderId: "PPD-" + zayavka.id,
-          amount: Math.floor((max_amount * (1 + val["percent"]/100))),
+          amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
           term: "12",
           duration: "12",
           passSeria: zayavka.passport.substring(0, 2),
@@ -279,7 +305,7 @@ class App {
           // inn: "303107528", elma
           // inn:"303085034", // javohir
           // inn: "305207299", // surat
-          inn : "310187940",
+          inn: "310187940",
 
           identificationVideoBase64: IdentificationVideoBase64,
           selfie: selfie_with_passport,
@@ -295,15 +321,19 @@ class App {
       console.log(response2.data);
 
       await new Promise(function (resolve, reject) {
-        db.query(update3ZayavkaFunc({...req.body,
-          payment_amount:Math.floor((max_amount * (1 + val["percent"]/100))),
-      }), function (err, results, fields) {
-          if (err) {
-            return resolve(null);
-            return null;
+        db.query(
+          update3ZayavkaFunc({
+            ...req.body,
+            payment_amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
+          }),
+          function (err, results, fields) {
+            if (err) {
+              return resolve(null);
+              return null;
+            }
+            resolve(results);
           }
-          resolve(results);
-        });
+        );
       });
 
       let zayavkaUpdated = await new Promise(function (resolve, reject) {
@@ -727,8 +757,6 @@ class App {
           );
         });
       } else if (req.user.role === "Accountant") {
-       
-    
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE (status="finished" or status="paid") and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
@@ -755,9 +783,7 @@ class App {
         //     }
         //   );
         // });
-      } 
-      
-      else {
+      } else {
         console.log("keldi >>");
         let user = await new Promise(function (resolve, reject) {
           db.query(
@@ -798,7 +824,6 @@ class App {
         // });
         // condition = condition.join(` OR `);
 
-
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
             `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
@@ -823,10 +848,12 @@ class App {
 }
 
 function update1ZayavkaFunc(data) {
-  let { user_id, merchant_id, fillial_id, fullname, passport,pinfl } = data;
+  let { user_id, merchant_id, fillial_id, fullname, passport, pinfl } = data;
   fullname = `${fullname}`;
   fullname = fullname.replaceAll("ʻ", "'");
-  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${pinfl ?? ""}') ; `;
+  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${
+    pinfl ?? ""
+  }') ; `;
 }
 
 function update2ZayavkaFunc(data) {
@@ -840,18 +867,16 @@ function update2ZayavkaFunc(data) {
     address,
     region_id,
   } = data;
-  
+
   // passport_by = passport_by.replaceAll("ʻ", "'");
   // address = address.replaceAll("ʻ", "'");
   return `UPDATE Zayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
 }
 
-
 function update3ZayavkaFunc(data) {
-  let { id, max_amount,payment_amount } = data;
+  let { id, max_amount, payment_amount } = data;
   return `UPDATE Zayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}',payment_amount='${payment_amount}' WHERE id = ${id};`;
 }
-
 
 // function update4ZayavkaFunc(data) {
 //   let { id } = data;
@@ -868,9 +893,11 @@ function update5ZayavkaFunc(data) {
   productsString = productsString.slice(0, -1);
   productsString += "]'";
   console.log(productsString);
-  return `UPDATE Zayavka SET step=5,amount=${amount},products=${productsString ?? ""},location=${toMyString(
-    location
-  )},device=${toMyString(device)} WHERE id = ${id};`;
+  return `UPDATE Zayavka SET step=5,amount=${amount},products=${
+    productsString ?? ""
+  },location=${toMyString(location)},device=${toMyString(
+    device
+  )} WHERE id = ${id};`;
 }
 
 function update6ZayavkaFunc(data) {
@@ -894,8 +921,8 @@ function cancelByClientZayavkaFunc(data) {
 }
 
 function toMyString(ob) {
-  if(!ob){
-      return "null";
+  if (!ob) {
+    return "null";
   }
   let result = `'{`;
   let li = [];
