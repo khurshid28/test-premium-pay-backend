@@ -1,5 +1,9 @@
 const TelegramBot = require("node-telegram-bot-api");
+const path = require("path")
+const fs = require("fs")
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+// const bot = new TelegramBot("6127817859:AAEEyYfmwioNbXSCVQ5BwlBRNR_z3IqcQSc", { polling: true });
+
 let db = require("../config/db");
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
@@ -276,6 +280,26 @@ bot.on("message", async (msg) => {
         `-- Kecha --\nuspeshna : ${finished_zayavkalar} \notkaz Zayavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     
+  }else{
+    var filePath = path.join(
+      __dirname,
+      "..",
+      "..",
+      "public",
+      "myid",
+      `${msg.text}.png`
+    );
+    if (fs.existsSync(filePath)) {
+      console.log("File is exist");
+      bot.sendPhoto(chatId,filePath)
+      
+    }else{
+      bot.sendMessage(chatId,"Not Found")
+    }
+
   }
   }
+  
+
+
 });
