@@ -292,6 +292,15 @@ bot.on("message", async (msg) => {
     if (fs.existsSync(filePath)) {
       console.log("File is exist");
       bot.sendPhoto(chatId,filePath)
+      bot.sendPhoto(chatId,path.join(
+        __dirname,
+        "..",
+        "..",
+        "public",
+        "images",
+        `zayavka192.jpg`
+      ))
+
       
     }else{
       bot.sendMessage(chatId,"Not Found")
