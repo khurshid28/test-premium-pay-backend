@@ -276,3 +276,51 @@
 /api/v1/zayavka/update/3___POST___1703927708882___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
 /api/v1/zayavka/update/3___POST___1703927741649___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
 /api/v1/zayavka/update/3___POST___1703927769755___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
+/api/v1/myid___POST___1706253601269___InternalServerError___error
+/api/v1/myid___POST___1706253790303___InternalServerError___ReferenceError: birthDate is not defined
+/api/v1/myid___POST___1706254137309___InternalServerError___AxiosError: Request failed with status code 404
+/api/v1/myid___POST___1706254198179___InternalServerError___Error: connect ECONNREFUSED 185.8.213.29:443
+/api/v1/myid___POST___1706254355851___InternalServerError___AxiosError: Request failed with status code 400
+/api/v1/myid___POST___1706254379566___InternalServerError___AxiosError: Request failed with status code 400
+/api/v1/myid___POST___1706254646935___InternalServerError___AxiosError: Request failed with status code 400
+/api/v1/myid___POST___1706254902479___InternalServerError___Error: connect ECONNREFUSED 185.8.213.29:443
+/api/v1/myid___POST___1706255006642___InternalServerError___Error: connect ECONNREFUSED 185.8.213.29:443
+/api/v1/myid___POST___1706255128180___InternalServerError___AxiosError: Request failed with status code 404
+/api/v1/myid___POST___1706255378964___InternalServerError___Error: connect ECONNREFUSED ::1:80
+/api/v1/myid___POST___1706255399533___InternalServerError___Error: connect ECONNREFUSED ::1:80
+/api/v1/myid___POST___1706255463252___InternalServerError___AxiosError: Request failed with status code 400
+/api/v1/myid___POST___1706255531650___InternalServerError___AxiosError: Request failed with status code 400
+/api/v1/myid___POST___1706256104500___InternalServerError___TypeError [ERR_INVALID_ARG_TYPE]: The "cb" argument must be of type function. Received undefined
+/api/v1/myid___POST___1706256158592___InternalServerError___TypeError [ERR_INVALID_ARG_TYPE]: The "cb" argument must be of type function. Received undefined
+/api/v1/myid___POST___1706256356966___InternalServerError___AxiosError: Request failed with status code 422
+/api/v1/myid___POST___1706256599226___InternalServerError___AxiosError: Request failed with status code 422
+/api/v1/myid___POST___1706256645839___InternalServerError___Error: connect ECONNREFUSED 91.212.89.136:443
+/api/v1/myid___POST___1706257219146___InternalServerError___TypeError [ERR_INVALID_ARG_TYPE]: The "cb" argument must be of type function. Received undefined
+/api/v1/myid___POST___1706257277282___InternalServerError___TypeError [ERR_INVALID_ARG_TYPE]: The "cb" argument must be of type function. Received undefined
+/api/v1/myid___POST___1706257379969___InternalServerError___TypeError [ERR_INVALID_ARG_TYPE]: The "cb" argument must be of type function. Received undefined
+/api/v1/myid___POST___1706257412526___InternalServerError___TypeError [ERR_INVALID_ARG_TYPE]: The "cb" argument must be of type function. Received undefined
+/api/v1/myid___POST___1706258422650___InternalServerError___ReferenceError: print is not defined
+/api/v1/myid___POST___1706258577396___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706258597181___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706259029210___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706259277377___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706259307394___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706259355498___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706259407628___InternalServerError___TypeError: path.join is not a constructor
+/api/v1/myid___POST___1706259425537___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706259703885___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706259842793___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\public\image.png'
+/api/v1/myid___POST___1706259949277___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706260083005___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\image.png'
+/api/v1/myid___POST___1706260484717___InternalServerError___Error: connect ECONNREFUSED 91.212.89.136:443
+/api/v1/myid___POST___1706260533540___InternalServerError___Error: connect ECONNREFUSED 91.212.89.136:443
+/api/v1/myid___POST___1706260618300___InternalServerError___Не удалось подтвердить жизненность
+/api/v1/myid___POST___1706261020148___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\AB6935244 Fri Jan 26 2024 14:23:40 GMT+0500 (Uzbekistan Standard Time).png'
+/api/v1/myid___POST___1706261089887___InternalServerError___TypeError: (intermediate value).toDate is not a function
+/api/v1/myid___POST___1706261349382___InternalServerError___Не удалось подтвердить жизненность
+/api/v1/myid___POST___1706261366914___InternalServerError___Не удалось подтвердить жизненность
+/api/v1/myid___POST___1706261468998___InternalServerError___Не удалось подтвердить жизненность
+/api/v1/myid___POST___1706261502007___InternalServerError___Не удалось подтвердить жизненность
+/api/v1/myid___POST___1706261593072___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\AB6935244 2024-01-26 09:33:1.png'
+/api/v1/myid___POST___1706261654092___InternalServerError___Не удалось подтвердить жизненность
+/api/v1/myid___POST___1706261763968___InternalServerError___Не удалось подтвердить жизненность
