@@ -16,6 +16,29 @@ bot.on("message", async (msg) => {
     chatId === 2053690211 || chatId === 2907182
     
   ) {
+    if (msg.text=="/get") {
+      let zayavkalar = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT id,fullname,status,Date(created_time -interval 5 hour) as date from Zayavka where status in("finished","paid","progress") and id>55;`,
+          function (err, results, fields) {
+            if (err) {
+              resolve(null); 
+              return null;
+            }
+            return resolve(results);
+          }
+        );
+      });
+      for (let index = 0; index < zayavkalar.length; index++) {
+        console.log(zayavkalar.length);
+        const element = zayavkalar[index];
+        await bot.sendMessage(
+          chatId,
+          `-- Bugun --\nID : ${element.id} \nFULLNAME : ${element.fullname} \nDATE : ${element.date}`
+        );
+      }
+
+    }
     if (msg.text == "/data") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
         db.query(
@@ -307,6 +330,7 @@ bot.on("message", async (msg) => {
     }
 
   }
+
   }
   
 
