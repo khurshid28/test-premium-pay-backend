@@ -29,12 +29,12 @@ bot.on("message", async (msg) => {
           }
         );
       });
+      console.log(zayavkalar.length);
       for (let index = 0; index < zayavkalar.length; index++) {
-        console.log(zayavkalar.length);
         const element = zayavkalar[index];
         await bot.sendMessage(
           chatId,
-          `-- Bugun --\nID : ${element.id} \nFULLNAME : ${element.fullname} \nDATE : ${element.date}`
+          `ID : ${element.id} \nFULLNAME : ${element.fullname} \nDATE : ${element.date}`
         );
       }
 
