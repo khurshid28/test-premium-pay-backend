@@ -34,7 +34,7 @@ bot.on("message", async (msg) => {
         const element = zayavkalar[index];
         await bot.sendMessage(
           chatId,
-          `ID : ${element.id} \nFULLNAME : ${element.fullname} \nDATE : ${element.date}`
+          `ID : ${element.id} \nFULLNAME : ${element.fullname} \nSTATUS : ${element.status}\nDATE : ${element.date}`
         );
       }
 
