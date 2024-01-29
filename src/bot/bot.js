@@ -19,7 +19,7 @@ bot.on("message", async (msg) => {
     if (msg.text=="/get") {
       let zayavkalar = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT id,fullname,status,Date(created_time -interval 5 hour) as date from Zayavka where status in("finished","paid","progress") and id>55;`,
+          `SELECT id,fullname,status,Date(created_time -interval 5 hour) as date from Zayavka where status in("finished","paid","progress","canceled_by_scoring") and id>55;`,
           function (err, results, fields) {
             if (err) {
               resolve(null); 
