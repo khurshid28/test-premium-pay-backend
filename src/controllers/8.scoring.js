@@ -189,7 +189,10 @@ class Scoring {
           console.log(zayavka);
           console.log(">>>>>>>");
           console.log(text);
+         
+          
         
+
         let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=6001596917&text=${text}&parse_mode=HTML`;
         axios
           .post(url)
@@ -206,6 +209,18 @@ class Scoring {
           .post(url2)
           .then((res) => res)
           .catch((err) => console.log(err));
+
+          let url3 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=1955031743&text=${text}&parse_mode=HTML`;
+          axios
+           .post(url3)
+           .then((res) => res)
+           .catch((err) => console.log(err));
+ 
+         let url4 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=2907182&text=${text}&parse_mode=HTML`;
+         axios
+           .post(url4)
+           .then((res) => res)
+           .catch((err) => console.log(err));
       } catch (error) {
         console.log(error)
       }
