@@ -60,14 +60,14 @@ dw
                       resolve(results.insertId);
                     } else {
                         resolve(null);
-                        return null;;
+                        return null;
                     }
                   }
                 );
               });
         
             
-            return res.status(201).json({message:"it is paid successfully" });
+            return res.status(200).json({ message:"it is paid successfully" });
         } catch (error) {
             console.log(error.message)
             return next(new InternalServerError(500,  error));
