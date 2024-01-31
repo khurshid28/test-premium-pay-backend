@@ -178,7 +178,7 @@ bot.on("message", async (msg) => {
         });
         zayavkalar5 = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT count(id) from Zayavka WHERE  status='finished' or status='paid' and DATE(now() - INTERVAL 5 HOUR)=DATE(created_time - INTERVAL 5 HOUR);`,
+            `SELECT count(id) from Zayavka WHERE  (status='finished' or status='paid') and DATE(now() - INTERVAL 5 HOUR)=DATE(created_time - INTERVAL 5 HOUR);`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
@@ -267,7 +267,7 @@ bot.on("message", async (msg) => {
       });
       zayavkalar5 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE  status='finished' or status='paid' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR)`,
+          `SELECT count(id) from Zayavka WHERE (status='finished' or status='paid') and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR)`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
