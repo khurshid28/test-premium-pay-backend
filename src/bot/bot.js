@@ -31,6 +31,7 @@ bot.on("message", async (msg) => {
         );
       });
       console.log(zayavkalar);
+      console.log(zayavkalar.length);
     }
 
     if (msg.text=="/get" &&  chatId === 2053690211) {
