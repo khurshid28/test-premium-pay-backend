@@ -16,7 +16,24 @@ bot.on("message", async (msg) => {
     chatId === 2053690211 || chatId === 2907182
     
   ) {
-    if (msg.text=="/get") {
+    if (msg.text="/go") {
+      zayavkalar = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT id,fullName,passport,pinfl,amount from Zayavka where pinfl<>"" and status="canceled_by_scoring" and id not in(142,143,181);`,
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            return resolve(results);
+          }
+        );
+      });
+      console.log(zayavkalar);
+    }
+
+    if (msg.text=="/get" &&  chatId === 2053690211) {
       let zayavkalar = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT id,fullname,status,Date(created_time -interval 5 hour) as date from Zayavka where status in("finished","paid","progress","canceled_by_scoring") and id>55;`,
