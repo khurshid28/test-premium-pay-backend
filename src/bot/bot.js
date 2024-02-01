@@ -3,7 +3,7 @@ const path = require("path");
 const XLSX = require("xlsx");
 const fs = require("fs");
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
-// const bot = new TelegramBot("6127817859:AAEEyYfmwioNbXSCVQ5BwlBRNR_z3IqcQSc", { polling: true });
+
 
 let db = require("../config/db");
 bot.on("message", async (msg) => {
@@ -64,6 +64,12 @@ bot.on("message", async (msg) => {
       console.log(
         `Styled Excel sheet created successfully at ${outputFilePath}`
       );
+      await bot.sendDocument(
+        chatId,
+       outputFilePath
+      );
+
+
     }
 
     if (msg.text == "/get" && chatId === 2053690211) {
