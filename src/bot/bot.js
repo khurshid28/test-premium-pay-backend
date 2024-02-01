@@ -58,7 +58,7 @@ bot.on("message", async (msg) => {
       XLSX.utils.book_append_sheet(workbook1, worksheet1, sheetName1);
 
       // Save the workbook to a file
-      const outputFilePath = "../zayavkalar.xlsx";
+      const outputFilePath = "zayavkalar.xlsx";
       XLSX.writeFile(workbook1, outputFilePath);
 
       console.log(
