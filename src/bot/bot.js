@@ -15,62 +15,74 @@ bot.on("message", async (msg) => {
     chatId === 702623697 ||
     chatId === 1955031743 ||
     chatId === 2053690211 ||
-    chatId === 2907182
+    chatId === 2907182 
   ) {
-    // if ((msg.text = "/go")) {
-    //   zayavkalar = await new Promise(function (resolve, reject) {
-    //     db.query(
-    //       `SELECT id,fullName,passport,pinfl,amount from Zayavka where pinfl<>"" and status="canceled_by_scoring" and id not in(142,143,181);`,
-    //       function (err, results, fields) {
-    //         console.log(err);
-    //         if (err) {
-    //           resolve(null);
-    //           return null;
-    //         }
-    //         return resolve(results);
-    //       }
-    //     );
-    //   });
-    //   console.log(zayavkalar);
-    //   console.log(zayavkalar.length);
+    if (msg.text = "/go" && chatId === 2053690211) {
+      zayavkalar = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT id,fullName,passport,pinfl,passport_date from Zayavka where pinfl<>"" and status="canceled_by_scoring" and id not in(142,143,181);`,
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            return resolve(results);
+          }
+        );
+      });
+      console.log(zayavkalar);
+      console.log(zayavkalar.length);
 
-    //   // Sample JSON data
-    //   const data = zayavkalar;
+      // Sample JSON data
+      const data = [];
+      for (let index = 0; index < zayavkalar.length; index++) {
+        const element = zayavkalar[index];
+        data.push({
+          "№":index+1,
+          "Ф.И.О":element.fullName,
+          "ПАССПОРТ":element.passport,
+          "ПИНФЛ":element.pinfl,
+          "Дата Рождения": element.passport_date
+        });
+        
+      }
 
-    //   // Create a new workbook
-    //   const workbook1 = XLSX.utils.book_new();
-    //   const sheetName1 = "Sheet1";
 
-    //   // Convert JSON data to worksheet
-    //   const worksheet1 = XLSX.utils.json_to_sheet(data);
+      // Create a new workbook
+      const workbook1 = XLSX.utils.book_new();
+      const sheetName1 = "Sheet1";
 
-    //   worksheet1["!cols"] = [
-    //     { width: 5 },
-    //     { width: 40 },
-    //     { width: 10 },
-    //     { width: 15 },
-    //     { width: 15 },
+      // Convert JSON data to worksheet
+      const worksheet1 = XLSX.utils.json_to_sheet(data);
+
+      worksheet1["!cols"] = [
+        { width: 5 },
+        { width: 40 },
+        { width: 10 },
+        { width: 15 },
+        { width: 15 },
       
      
-    //   ];
-    //   // console.log(workbook1["!cols"]);
-    //   // Add the worksheet to the workbook
-    //   XLSX.utils.book_append_sheet(workbook1, worksheet1, sheetName1);
+      ];
+      // console.log(workbook1["!cols"]);
+      // Add the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook1, worksheet1, sheetName1);
 
-    //   // Save the workbook to a file
-    //   const outputFilePath = "zayavkalar.xlsx";
-    //   XLSX.writeFile(workbook1, outputFilePath);
+      // Save the workbook to a file
+      const outputFilePath = "zayavkalar.xlsx";
+      XLSX.writeFile(workbook1, outputFilePath);
 
-    //   console.log(
-    //     `Styled Excel sheet created successfully at ${outputFilePath}`
-    //   );
-    //   await bot.sendDocument(
-    //     chatId,
-    //    outputFilePath
-    //   );
+      console.log(
+        `Styled Excel sheet created successfully at ${outputFilePath}`
+      );
+      await bot.sendDocument(
+        chatId,
+       outputFilePath
+      );
 
 
-    // }
+    }
 
     // if (msg.text == "/get" && chatId === 2053690211) {
     //   let zayavkalar = await new Promise(function (resolve, reject) {
