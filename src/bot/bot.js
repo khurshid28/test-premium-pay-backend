@@ -17,83 +17,84 @@ bot.on("message", async (msg) => {
     chatId === 2053690211 ||
     chatId === 2907182
   ) {
-    if ((msg.text = "/go")) {
-      zayavkalar = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT id,fullName,passport,pinfl,amount from Zayavka where pinfl<>"" and status="canceled_by_scoring" and id not in(142,143,181);`,
-          function (err, results, fields) {
-            console.log(err);
-            if (err) {
-              resolve(null);
-              return null;
-            }
-            return resolve(results);
-          }
-        );
-      });
-      console.log(zayavkalar);
-      console.log(zayavkalar.length);
+    // if ((msg.text = "/go")) {
+    //   zayavkalar = await new Promise(function (resolve, reject) {
+    //     db.query(
+    //       `SELECT id,fullName,passport,pinfl,amount from Zayavka where pinfl<>"" and status="canceled_by_scoring" and id not in(142,143,181);`,
+    //       function (err, results, fields) {
+    //         console.log(err);
+    //         if (err) {
+    //           resolve(null);
+    //           return null;
+    //         }
+    //         return resolve(results);
+    //       }
+    //     );
+    //   });
+    //   console.log(zayavkalar);
+    //   console.log(zayavkalar.length);
 
-      // Sample JSON data
-      const data = zayavkalar;
+    //   // Sample JSON data
+    //   const data = zayavkalar;
 
-      // Create a new workbook
-      const workbook1 = XLSX.utils.book_new();
-      const sheetName1 = "Sheet1";
+    //   // Create a new workbook
+    //   const workbook1 = XLSX.utils.book_new();
+    //   const sheetName1 = "Sheet1";
 
-      // Convert JSON data to worksheet
-      const worksheet1 = XLSX.utils.json_to_sheet(data);
+    //   // Convert JSON data to worksheet
+    //   const worksheet1 = XLSX.utils.json_to_sheet(data);
 
-      worksheet1["!cols"] = [
-        { width: 5 },
-        { width: 40 },
-        { width: 10 },
-        { width: 15 },
-        { width: 15 },
+    //   worksheet1["!cols"] = [
+    //     { width: 5 },
+    //     { width: 40 },
+    //     { width: 10 },
+    //     { width: 15 },
+    //     { width: 15 },
       
      
-      ];
-      // console.log(workbook1["!cols"]);
-      // Add the worksheet to the workbook
-      XLSX.utils.book_append_sheet(workbook1, worksheet1, sheetName1);
+    //   ];
+    //   // console.log(workbook1["!cols"]);
+    //   // Add the worksheet to the workbook
+    //   XLSX.utils.book_append_sheet(workbook1, worksheet1, sheetName1);
 
-      // Save the workbook to a file
-      const outputFilePath = "zayavkalar.xlsx";
-      XLSX.writeFile(workbook1, outputFilePath);
+    //   // Save the workbook to a file
+    //   const outputFilePath = "zayavkalar.xlsx";
+    //   XLSX.writeFile(workbook1, outputFilePath);
 
-      console.log(
-        `Styled Excel sheet created successfully at ${outputFilePath}`
-      );
-      await bot.sendDocument(
-        chatId,
-       outputFilePath
-      );
+    //   console.log(
+    //     `Styled Excel sheet created successfully at ${outputFilePath}`
+    //   );
+    //   await bot.sendDocument(
+    //     chatId,
+    //    outputFilePath
+    //   );
 
 
-    }
+    // }
 
-    if (msg.text == "/get" && chatId === 2053690211) {
-      let zayavkalar = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT id,fullname,status,Date(created_time -interval 5 hour) as date from Zayavka where status in("finished","paid","progress","canceled_by_scoring") and id>55;`,
-          function (err, results, fields) {
-            if (err) {
-              resolve(null);
-              return null;
-            }
-            return resolve(results);
-          }
-        );
-      });
-      console.log(zayavkalar.length);
-      for (let index = 0; index < zayavkalar.length; index++) {
-        const element = zayavkalar[index];
-        await bot.sendMessage(
-          chatId,
-          `ID : ${element.id} \nFULLNAME : ${element.fullname} \nSTATUS : ${element.status}\nDATE : ${element.date}`
-        );
-      }
-    }
+    // if (msg.text == "/get" && chatId === 2053690211) {
+    //   let zayavkalar = await new Promise(function (resolve, reject) {
+    //     db.query(
+    //       `SELECT id,fullname,status,Date(created_time -interval 5 hour) as date from Zayavka where status in("finished","paid","progress","canceled_by_scoring") and id>55;`,
+    //       function (err, results, fields) {
+    //         if (err) {
+    //           resolve(null);
+    //           return null;
+    //         }
+    //         return resolve(results);
+    //       }
+    //     );
+    //   });
+    //   console.log(zayavkalar.length);
+    //   for (let index = 0; index < zayavkalar.length; index++) {
+    //     const element = zayavkalar[index];
+    //     await bot.sendMessage(
+    //       chatId,
+    //       `ID : ${element.id} \nFULLNAME : ${element.fullname} \nSTATUS : ${element.status}\nDATE : ${element.date}`
+    //     );
+    //   }
+    // }
+
     if (msg.text == "/data") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
         db.query(
