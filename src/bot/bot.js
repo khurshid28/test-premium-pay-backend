@@ -194,7 +194,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `uspeshna : ${finished_zayavkalar} \notkaz Zavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring orkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Umumiy Zayavkalar --\nuspeshna : ${finished_zayavkalar} \notkaz Zayavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/bugun") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -283,7 +283,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Bugun --\nuspeshna : ${finished_zayavkalar} \notkaz Zavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring orkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Bugun --\nuspeshna : ${finished_zayavkalar} \notkaz Zayavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/kecha") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -398,5 +398,6 @@ bot.on("message", async (msg) => {
         bot.sendMessage(chatId, "Not Found");
       }
     }
+
   }
 });
