@@ -183,6 +183,19 @@ bot.on("message", async (msg) => {
           }
         );
       });
+      zayavkalar9 = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT count(id) from Zayavka`,
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            return resolve(results);
+          }
+        );
+      });
 
       let conceled_zayavkalar =
         zayavkalar2[0]["count(id)"] +
@@ -194,7 +207,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Umumiy Zayavkalar --\nuspeshna : ${finished_zayavkalar} \notkaz Zayavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `Umumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/bugun") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -272,6 +285,19 @@ bot.on("message", async (msg) => {
           }
         );
       });
+      zayavkalar9 = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT count(id) from Zayavka WHERE DATE(now() - INTERVAL 5 HOUR)=DATE(created_time - INTERVAL 5 HOUR);`,
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            return resolve(results);
+          }
+        );
+      });
 
       let conceled_zayavkalar =
         zayavkalar2[0]["count(id)"] +
@@ -283,7 +309,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Bugun --\nuspeshna : ${finished_zayavkalar} \notkaz Zayavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Bugun --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/kecha") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -362,6 +388,20 @@ bot.on("message", async (msg) => {
         );
       });
 
+      zayavkalar9 = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT count(id) from Zayavka  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR )`,
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            return resolve(results);
+          }
+        );
+      });
+
       let conceled_zayavkalar =
         zayavkalar2[0]["count(id)"] +
         zayavkalar3[0]["count(id)"] +
@@ -372,7 +412,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Kecha --\nuspeshna : ${finished_zayavkalar} \notkaz Zayavkalar : ${conceled_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Kecha --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else {
       var filePath = path.join(
