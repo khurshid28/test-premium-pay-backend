@@ -390,7 +390,7 @@ bot.on("message", async (msg) => {
 
       zayavkalar9 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR )`,
+          `SELECT count(id) from Zayavka where DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR )`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -412,7 +412,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Kecha --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Kecha --\nUmumiy Zayavkalar : ${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else {
       var filePath = path.join(
