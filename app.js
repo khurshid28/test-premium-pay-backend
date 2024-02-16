@@ -155,6 +155,7 @@ app.get("/test/droptable", (req, res) => {
 });
 
 require("./src/bot/bot")
+require("./src/bot/register_bot")
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
