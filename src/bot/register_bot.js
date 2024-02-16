@@ -467,7 +467,7 @@ bot.on("callback_query", async (query) => {
           userData[userId].currentState = "canceled";
           bot.sendMessage(
             userId,
-            `❌❌❌Hurmati Mijoz , siz keltirgan malumotlarga asosan biz siz bilan hozircha shartnoma tuza olmaymiz,Agar sizda qandaydir savollar bo'lsa biz bilan bog'lanishingiz mumkin !`
+            `❌❌❌Hurmati Mijoz , siz keltirgan malumotlarga asosan biz siz bilan hozircha shartnoma tuza olmaymiz,Agar sizda qandaydir savollar bo'lsa biz bilan bog'lanishingiz mumkin ! \n @sardor1802`
           );
           bot.sendMessage(
             49825747,
