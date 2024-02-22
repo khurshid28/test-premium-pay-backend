@@ -4,7 +4,6 @@ const XLSX = require("xlsx");
 const fs = require("fs");
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
-
 let db = require("../config/db");
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
@@ -15,7 +14,9 @@ bot.on("message", async (msg) => {
     chatId === 702623697 ||
     chatId === 1955031743 ||
     chatId === 2053690211 ||
-    chatId === 2907182 
+    chatId === 2907182 ||
+    chatId === 1136321790 ||
+    chatId === 49825747
   ) {
     // if (msg.text = "/go" && chatId === 2053690211) {
     //   zayavkalar = await new Promise(function (resolve, reject) {
@@ -45,9 +46,8 @@ bot.on("message", async (msg) => {
     //       "ПИНФЛ":element.pinfl,
     //       "Дата Рождения": element.passport_date
     //     });
-        
-    //   }
 
+    //   }
 
     //   // Create a new workbook
     //   const workbook1 = XLSX.utils.book_new();
@@ -62,8 +62,7 @@ bot.on("message", async (msg) => {
     //     { width: 10 },
     //     { width: 15 },
     //     { width: 15 },
-      
-     
+
     //   ];
     //   // console.log(workbook1["!cols"]);
     //   // Add the worksheet to the workbook
@@ -80,7 +79,6 @@ bot.on("message", async (msg) => {
     //     chatId,
     //    outputFilePath
     //   );
-
 
     // }
 
@@ -205,10 +203,14 @@ bot.on("message", async (msg) => {
       let summa = zayavkalar8[0]["sum(payment_amount)"];
       let finished_zayavkalar = zayavkalar5[0]["count(id)"];
       console.log(JSON.stringify(zayavkalar5[0]["count(id)"]));
-     
+
       bot.sendMessage(
         chatId,
-        `Umumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar}  ^ ${toMoney(Math.floor(summa))}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `Umumiy Zayavkalar :${
+          zayavkalar9[0]["count(id)"]
+        }\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar}  ^ ${toMoney(
+          Math.floor(summa)
+        )}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/bugun") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -311,7 +313,11 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Bugun --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} ^ ${toMoney(Math.floor(summa))} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Bugun --\nUmumiy Zayavkalar :${
+          zayavkalar9[0]["count(id)"]
+        }\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} ^ ${toMoney(
+          Math.floor(summa)
+        )} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/kecha") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -415,7 +421,11 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Kecha --\nUmumiy Zayavkalar : ${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar}  ^ ${toMoney(Math.floor(summa))}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Kecha --\nUmumiy Zayavkalar : ${
+          zayavkalar9[0]["count(id)"]
+        }\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar}  ^ ${toMoney(
+          Math.floor(summa)
+        )}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else {
       var filePath = path.join(
@@ -441,10 +451,8 @@ bot.on("message", async (msg) => {
         bot.sendMessage(chatId, "Not Found");
       }
     }
-
   }
 });
-
 
 function toMoney(number) {
   if (!number) {

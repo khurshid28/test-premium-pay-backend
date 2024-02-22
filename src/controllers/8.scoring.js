@@ -221,6 +221,21 @@ class Scoring {
            .post(url4)
            .then((res) => res)
            .catch((err) => console.log(err));
+           let url5 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=1136321790&text=${text}&parse_mode=HTML`;
+        
+           axios
+           .post(url5)
+           .then((res) => res)
+           .catch((err) => console.log(err));
+
+           let url6 = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=49825747&text=${text}&parse_mode=HTML`;
+        
+           axios
+           .post(url6)
+           .then((res) => res)
+           .catch((err) => console.log(err));
+           
+           
       } catch (error) {
         console.log(error)
       }
