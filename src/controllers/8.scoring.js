@@ -171,7 +171,7 @@ class Scoring {
           status +
           "%0A" +
           "SUMMA : " +
-          summa +
+          toMoney(summa) +
           
           // ( 
           //   reason ?  
@@ -235,6 +235,21 @@ class Scoring {
       return next(new InternalServerError(500, error));
     }
   }
+}
+
+
+function toMoney(number) {
+  if (!number) {
+    return "0";
+  }
+  let result = "";
+  for (let i = 0; i < number.toString().length; i++) {
+    result += number.toString()[i];
+    if ((number.toString().length - i) % 3 == 1) {
+      result += " ";
+    }
+  }
+  return result;
 }
 
 module.exports = new Scoring();

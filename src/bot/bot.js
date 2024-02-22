@@ -204,7 +204,7 @@ bot.on("message", async (msg) => {
       let paid_zayavkalar = zayavkalar8[0]["count(id)"];
       let finished_zayavkalar = zayavkalar5[0]["count(id)"];
       console.log(JSON.stringify(zayavkalar5[0]["count(id)"]));
-
+     
       bot.sendMessage(
         chatId,
         `Umumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
