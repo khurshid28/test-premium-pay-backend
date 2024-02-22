@@ -208,7 +208,7 @@ bot.on("message", async (msg) => {
      
       bot.sendMessage(
         chatId,
-        `Umumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar}  | ${summa}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `Umumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar}  #${toMoney(Math.floor(summa))}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/bugun") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -311,7 +311,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Bugun --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} | ${summa} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Bugun --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} #${toMoney(Math.floor(summa))} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/kecha") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -415,7 +415,7 @@ bot.on("message", async (msg) => {
 
       bot.sendMessage(
         chatId,
-        `-- Kecha --\nUmumiy Zayavkalar : ${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar}  | ${summa}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Kecha --\nUmumiy Zayavkalar : ${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar}  #${toMoney(Math.floor(summa))}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else {
       var filePath = path.join(
@@ -444,3 +444,18 @@ bot.on("message", async (msg) => {
 
   }
 });
+
+
+function toMoney(number) {
+  if (!number) {
+    return "0";
+  }
+  let result = "";
+  for (let i = 0; i < number.toString().length; i++) {
+    result += number.toString()[i];
+    if ((number.toString().length - i) % 3 == 1) {
+      result += " ";
+    }
+  }
+  return result;
+}
