@@ -171,7 +171,7 @@ class Scoring {
           status +
           "%0A" +
           "SUMMA : " +
-          toMoney(summa) +
+          toMoney(Math.floor(summa)) +
           
           // ( 
           //   reason ?  
