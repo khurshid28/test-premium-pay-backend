@@ -172,7 +172,7 @@ bot.on("message", async (msg) => {
 
       zayavkalar8 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE paid_status='paid'`,
+          `SELECT count(id),sum(payment_amount) from Zayavka WHERE paid_status='paid' `,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -202,12 +202,13 @@ bot.on("message", async (msg) => {
         zayavkalar3[0]["count(id)"] +
         zayavkalar4[0]["count(id)"];
       let paid_zayavkalar = zayavkalar8[0]["count(id)"];
+      let summa = zayavkalar8[0]["sum(payment_amount)"];
       let finished_zayavkalar = zayavkalar5[0]["count(id)"];
       console.log(JSON.stringify(zayavkalar5[0]["count(id)"]));
      
       bot.sendMessage(
         chatId,
-        `Umumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `Umumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar}\npul ko'chirilgan : ${paid_zayavkalar}  | ${summa}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/bugun") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -274,7 +275,7 @@ bot.on("message", async (msg) => {
 
       zayavkalar8 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE paid_status='paid' and DATE(now() - INTERVAL 5 HOUR)=DATE(created_time - INTERVAL 5 HOUR);`,
+          `SELECT count(id),sum(payment_amount) from Zayavka WHERE paid_status='paid' and DATE(now() - INTERVAL 5 HOUR)=DATE(created_time - INTERVAL 5 HOUR);`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -304,12 +305,13 @@ bot.on("message", async (msg) => {
         zayavkalar3[0]["count(id)"] +
         zayavkalar4[0]["count(id)"];
       let paid_zayavkalar = zayavkalar8[0]["count(id)"];
+      let summa = zayavkalar8[0]["sum(payment_amount)"];
       let finished_zayavkalar = zayavkalar5[0]["count(id)"];
       console.log(JSON.stringify(zayavkalar5[0]["count(id)"]));
 
       bot.sendMessage(
         chatId,
-        `-- Bugun --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Bugun --\nUmumiy Zayavkalar :${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} | ${summa} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else if (msg.text == "/kecha") {
       zayavkalar1 = await new Promise(function (resolve, reject) {
@@ -376,7 +378,7 @@ bot.on("message", async (msg) => {
 
       zayavkalar8 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT count(id) from Zayavka WHERE paid_status='paid' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR )`,
+          `SELECT count(id),sum(payment_amount) from Zayavka WHERE paid_status='paid' and  DATE(now() - INTERVAL 5 HOUR) - 1 = DATE(created_time - INTERVAL 5 HOUR )`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -407,12 +409,13 @@ bot.on("message", async (msg) => {
         zayavkalar3[0]["count(id)"] +
         zayavkalar4[0]["count(id)"];
       let paid_zayavkalar = zayavkalar8[0]["count(id)"];
+      let summa = zayavkalar8[0]["sum(payment_amount)"];
       let finished_zayavkalar = zayavkalar5[0]["count(id)"];
       console.log(JSON.stringify(zayavkalar5[0]["count(id)"]));
 
       bot.sendMessage(
         chatId,
-        `-- Kecha --\nUmumiy Zayavkalar : ${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar} \nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
+        `-- Kecha --\nUmumiy Zayavkalar : ${zayavkalar9[0]["count(id)"]}\nuspeshna : ${finished_zayavkalar} \npul ko'chirilgan : ${paid_zayavkalar}  | ${summa}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     } else {
       var filePath = path.join(
