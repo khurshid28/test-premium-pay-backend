@@ -214,10 +214,10 @@ class Myid {
           //  esdan chiqmasin
       if (zayavka2) {
         if (
-          Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) <= 30
+          Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) <= 15
         ) {
           return res.status(200).json({
-            message: "Пользователю не предоставлено разрешение",
+            message: "Недавно клиент получил отказ, теперь он(она) может проверить через 15 дней.",
             status: false,
           });
         }
@@ -251,7 +251,7 @@ class Myid {
           Date.daysBetween(Date.parse(zayavka.finished_time), Date.now()) < 4
         ) {
           return res.status(200).json({
-            message: "Пользователю не предоставлено разрешение",
+            message: "Клиент недавно получил товар",
             status: false,
           });
         }
