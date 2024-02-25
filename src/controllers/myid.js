@@ -50,11 +50,16 @@ class Myid {
         console.log(response2.data);
         return res.status(200).json(response2.data);
       } else if (base64) {
-
-
-        var filePath = path.join(__dirname,"..","..","public","myid",`${req.body.passport}.png`)
-        console.log(filePath)
-        base64_decode(base64,filePath);
+        var filePath = path.join(
+          __dirname,
+          "..",
+          "..",
+          "public",
+          "myid",
+          `${req.body.passport}.png`
+        );
+        console.log(filePath);
+        base64_decode(base64, filePath);
         let url1 = process.env.FACE_URL + "oauth2/access-token";
         let url2 =
           process.env.FACE_URL +
@@ -92,7 +97,7 @@ class Myid {
                 front: base64,
               },
               agreed_on_terms: true,
-              client_id: process.env.FACE_CLIENT_ID_2
+              client_id: process.env.FACE_CLIENT_ID_2,
               // liveness: true
             },
 
@@ -156,12 +161,13 @@ class Myid {
             });
         }
         console.log(response3.data);
-        if (response3.data.profile !=null && response3.data.result_code!=3) {
+        if (response3.data.profile != null && response3.data.result_code != 3) {
           return res.status(response3.status).json(response3.data);
-        }else{
-          return next(new InternalServerError(500, response3.data.result_note ?? "error"));
+        } else {
+          return next(
+            new InternalServerError(500, response3.data.result_note ?? "error")
+          );
         }
-        
       }
 
       return next(new InternalServerError(500, "error"));
@@ -199,8 +205,8 @@ class Myid {
             // console.log("here");
             // console.log(err);
             if (err) {
-               resolve(null);
-                        return null;
+              resolve(null);
+              return null;
             }
             if (results.length != 0) {
               resolve(results[0]);
@@ -211,13 +217,14 @@ class Myid {
         );
       });
 
-          //  esdan chiqmasin
+      //  esdan chiqmasin
       if (zayavka2) {
         if (
           Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) <= 15
         ) {
           return res.status(200).json({
-            message: "Недавно клиент получил отказ, теперь он(она) может проверить через 15 дней.",
+            message:
+              "Недавно клиент получил отказ, теперь он(она) может проверить через 15 дней.",
             status: false,
           });
         }
@@ -228,8 +235,8 @@ class Myid {
           `Select * from Zayavka WHERE passport='${passport}' AND step>6  ORDER BY id DESC `,
           function (err, results, fields) {
             if (err) {
-               resolve(null);
-               return null;
+              resolve(null);
+              return null;
             }
 
             if (results.length != 0) {
@@ -256,6 +263,8 @@ class Myid {
           });
         }
       }
+      db.query(
+        `UPDATE Zayavka SET status="canceled_by_client",canceled_reason="- - -"  WHERE passport='${passport}' AND step<7 AND status="progress" `,function (err, results, fields) {});
 
       return res.status(200).json({
         message: "Пользователю предоставлено разрешение",
@@ -412,13 +421,11 @@ Date.daysBetween = function (date1, date2) {
 };
 
 function base64_decode(base64str, filePath) {
+  let base64Image = base64str.split(";base64,")[1];
+  var bitmap = Buffer.from(base64Image.toString(), "base64");
 
-
-let base64Image = base64str.split(';base64,')[1];
-var bitmap =  Buffer.from(base64Image.toString(), 'base64');
-
-fs.writeFileSync(filePath, bitmap);
-console.log('******** File created from base64 encoded string ********');
+  fs.writeFileSync(filePath, bitmap);
+  console.log("******** File created from base64 encoded string ********");
 }
 
 module.exports = new Myid();
