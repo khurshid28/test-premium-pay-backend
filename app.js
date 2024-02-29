@@ -100,7 +100,9 @@ app.use("static", express.static(path.join(__dirname, "public")));
 // })
 
 // all routes
-app.use(router);
+app.use("/api/v1",router);
+
+app.use("/api/v2",router);
 
 // router.use((req,res,next)=>{
 //   try {

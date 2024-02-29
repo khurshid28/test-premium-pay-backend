@@ -41,32 +41,32 @@ const errorRouter = require("./10.errors");
 const accountantRouter = require("./11.accountant");
 
 
-router.use("/api/v1/login", loginRouter);
-router.use("/api/v1/myid", myidRouter);
-router.use("/api/v1/user", userRouter);
-router.use("/api/v1/super", superRouter);
+router.use("/login", loginRouter);
+router.use("/myid", myidRouter);
+router.use("/user", userRouter);
+router.use("/super", superRouter);
 
 
 
 
-router.use("/api/v1/fillial-admin", fillialAdminRouter);
-router.use("/api", extraRouter);
-router.use("/create-pdf", pdfRouter);
-router.use("/upload-image", uploadRouter);
-router.use("/api/v1/zayavka", appRouter);
-router.use("/api/v1/merchant", merchantRouter);
+router.use("/fillial-admin", fillialAdminRouter);
+// router.use("/api", extraRouter);
+// router.use("/create-pdf", pdfRouter);
+// router.use("/upload-image", uploadRouter);
+router.use("/zayavka", appRouter);
+router.use("/merchant", merchantRouter);
 
-router.use("/api/v1/admin", adminRouter);
+router.use("/admin", adminRouter);
 
-router.use("/api/v1/fillial", fillialRouter);
+router.use("/fillial", fillialRouter);
 
 
-router.use("/api/v1/scoring", scoringRouter);
-router.use("/api/v1/support", supportRouter);
-router.use("/api/v1/error", errorRouter);
-router.use("/api/v1/accountant", accountantRouter);
+router.use("/scoring", scoringRouter);
+router.use("/support", supportRouter);
+router.use("/error", errorRouter);
+router.use("/accountant", accountantRouter);
 
-router.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 
 module.exports = router;
