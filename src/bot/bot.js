@@ -106,21 +106,23 @@ bot.on("message", async (msg) => {
               finished: !check ? 1 : 0,
             },
           ];
-          for (let i = 1; i < results.length; i++) {
-            if (results[i].date == res[res.lastIndexOf].date) {
-              res[res.lastIndexOf].fullname += ("\n"+ results[i].fullname);
-            } else {
-              res.push(results[i]);
-            }
+          
+          // for (let i = 1; i < results.length; i++) {
+          //   if (results[i].date == res[res.lastIndexOf].date) {
+          //     res[res.lastIndexOf].fullname += ("\n"+ results[i].fullname);
+          //   } else {
+          //     res.push(results[i]);
+          //   }
       
-            check = results[i].status == "canceled_by_scoring";
-            res[res.lastIndexOf] = {
-              ...res[res.lastIndexOf],
-              canceled: (check ? 1 : 0) + res[res.lastIndexOf].canceled,
-              finished: (!check ? 1 : 0) + res[res.lastIndexOf].finished,
-            };
-          }
+          //   check = results[i].status == "canceled_by_scoring";
+          //   res[res.lastIndexOf] = {
+          //     ...res[res.lastIndexOf],
+          //     canceled: (check ? 1 : 0) + res[res.lastIndexOf].canceled,
+          //     finished: (!check ? 1 : 0) + res[res.lastIndexOf].finished,
+          //   };
+          // }
           console.log(res);
+          console.log(res[res.lastIndexOf]);
         }
         
       });
