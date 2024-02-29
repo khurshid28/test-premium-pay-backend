@@ -1,7 +1,7 @@
 const schedule = require("node-schedule");
 let db = require("../config/db");
 
-schedule.scheduleJob({ hour: 0, minute: 0 }, () => {
+schedule.scheduleJob({ hour: 5, minute: 0 }, () => {
   let date = new Date(Date.now());
   console.log("Job runs every day at = " + date.toString());
 
