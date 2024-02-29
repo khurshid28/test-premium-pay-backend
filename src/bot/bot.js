@@ -107,22 +107,22 @@ bot.on("message", async (msg) => {
             },
           ];
           
-          // for (let i = 1; i < results.length; i++) {
-          //   if (results[i].date == res[-1].date) {
-          //     res[-1].fullname += ("\n"+ results[i].fullname);
-          //   } else {
-          //     res.push(results[i]);
-          //   }
+          for (let i = 1; i < results.length; i++) {
+            if (results[i].date == res[res.length - 1].date) {
+              res[res.length - 1].fullname += ("\n"+ results[i].fullname);
+            } else {
+              res.push(results[i]);
+            }
       
-          //   check = results[i].status == "canceled_by_scoring";
-          //   res[-1] = {
-          //     ...res[-1],
-          //     canceled: (check ? 1 : 0) + res[-1].canceled,
-          //     finished: (!check ? 1 : 0) + res[-1].finished,
-          //   };
-          // }
+            check = results[i].status == "canceled_by_scoring";
+            res[res.length - 1] = {
+              ...res[res.length - 1],
+              canceled: (check ? 1 : 0) + res[res.length - 1].canceled,
+              finished: (!check ? 1 : 0) + res[res.length - 1].finished,
+            };
+          }
           console.log(res);
-          console.log(res[-1]);
+          console.log(res[res.length - 1]);
         }
         
       });
