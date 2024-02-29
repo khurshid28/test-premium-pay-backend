@@ -122,7 +122,7 @@ bot.on("message", async (msg) => {
             };
           }
           // console.log(res);
-          console.log(res[res.length - 1]);
+          console.log(res);
         }
         
       });
