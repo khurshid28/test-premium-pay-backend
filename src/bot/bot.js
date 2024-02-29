@@ -117,11 +117,11 @@ bot.on("message", async (msg) => {
             check = results[i].status == "canceled_by_scoring";
             res[res.length - 1] = {
               ...res[res.length - 1],
-              canceled: (check ? 1 : 0) + res[res.length - 1].canceled,
-              finished: (!check ? 1 : 0) + res[res.length - 1].finished,
+              canceled: (check ? 1 : 0) + (res[res.length - 1].canceled ?? 0),
+              finished: (!check ? 1 : 0) + (res[res.length - 1].finished ?? 0),
             };
           }
-          console.log(res);
+          // console.log(res);
           console.log(res[res.length - 1]);
         }
         
