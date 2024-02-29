@@ -107,7 +107,7 @@ bot.on("message", async (msg) => {
             },
           ];
           for (let i = 1; i < results.length; i++) {
-            if (data[i].date == res[res.lastIndexOf].date) {
+            if (results[i].date == res[res.lastIndexOf].date) {
               res[res.lastIndexOf].fullname += ("\n"+ results[i].fullname);
             } else {
               res.push(results[i]);
