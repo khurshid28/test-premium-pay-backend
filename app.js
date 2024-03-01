@@ -88,7 +88,7 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 app.use(cors(), rateLimit());
 
 // static
-app.use("static", express.static(path.join(__dirname, "public")));
+app.use("/static", express.static(path.join(__dirname, "public")));
 
 // app.all('*', function(req, res, next) {
 //   try {
