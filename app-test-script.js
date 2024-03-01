@@ -38,7 +38,7 @@ data
           toFormattedDate(results[i].date) ==
           toFormattedDate(res[res.length - 1].date)
         ) {
-          res[res.length - 1].fullname += ('\r\n' + results[i].fullname);
+          res[res.length - 1].fullname += "\r\n" + results[i].fullname;
         } else {
           res.push(results[i]);
         }
@@ -62,11 +62,11 @@ data
       for (let index = 0; index < res.length; index++) {
         const element = res[index];
         data.push({
-          "Sana":toFormattedDate(element.date),
+          Sana: toFormattedDate(element.date),
           "Ф.И.О": element.fullname,
-          "Atkaz": element.canceled,
-          "Uspeshno": element.finished,
-          "Umumiy": element.canceled + element.finished,
+          Atkaz: element.canceled,
+          Uspeshno: element.finished,
+          Umumiy: element.canceled + element.finished,
         });
       }
 
@@ -75,7 +75,12 @@ data
       const sheetName1 = "Sheet1";
 
       // Convert JSON data to worksheet
-      const worksheet1 = XLSX.utils.json_to_sheet(data,{ alignment: { wrapText: true}});
+      const worksheet1 = XLSX.utils.json_to_sheet(data, {
+        alignment: { wrapText: true },
+        header: 1,
+        defval: "",
+        blankrows: true,
+      });
 
       worksheet1["!cols"] = [
         { width: 5 },
@@ -99,6 +104,3 @@ data
     }
   })
   .catch((err) => console.log(err));
-
-
-
