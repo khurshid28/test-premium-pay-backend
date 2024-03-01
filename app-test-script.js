@@ -42,7 +42,10 @@ data
           res[res.length - 1].fullname += "\r\n" + results[i].fullname;
           res[res.length - 1].id += "\r\nPPD-" + results[i].id;
         } else {
-          res.push(results[i]);
+          res.push({
+            ...results[i],
+            id:"PPD-"+results[i].id,
+          });
         }
 
         check = results[i].status == "canceled_by_scoring";
@@ -50,7 +53,7 @@ data
 
         res[res.length - 1] = {
           ...res[res.length - 1],
-          id:"PPD-"+res[res.length - 1].id,
+          
           date: res[res.length - 1].date,
           canceled: (check ? 1 : 0) + (res[res.length - 1].canceled ?? 0),
           finished: (!check ? 1 : 0) + (res[res.length - 1].finished ?? 0),
