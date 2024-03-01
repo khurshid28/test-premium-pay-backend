@@ -50,8 +50,8 @@ data
 
         res[res.length - 1] = {
           ...res[res.length - 1],
-          id:"PPD-"+results[i].id,
-          date: results[i].date,
+          id:"PPD-"+res[res.length - 1].id,
+          date: res[res.length - 1].date,
           canceled: (check ? 1 : 0) + (res[res.length - 1].canceled ?? 0),
           finished: (!check ? 1 : 0) + (res[res.length - 1].finished ?? 0),
         };
