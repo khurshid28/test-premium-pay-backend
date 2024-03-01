@@ -53,7 +53,7 @@ data
         check = results[i].status == "canceled_by_scoring";
         check ? canceledCount++ : finishedCount++;
         check ? canceledAmount+= results[i].payment_amount: finishedAmount+= results[i].payment_amount ;
-        if(!check) console.log(">> "+ toMoney(Math.floor(results[i].payment_amount)));
+        if(!check) console.log(toFormattedDate(results[i].date)+ ">>>>" +results[i].fullname + " >> "+ toMoney(Math.floor(results[i].payment_amount)));
 
         res[res.length - 1] = {
           ...res[res.length - 1],
