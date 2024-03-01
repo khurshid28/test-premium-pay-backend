@@ -28,7 +28,7 @@ data
       let res = [
         {
           ...results[0],
-          id:"PPD-"+results[0],
+          id:"PPD-"+results[0].id,
           canceled: check ? 1 : 0,
           finished: !check ? 1 : 0,
         },
