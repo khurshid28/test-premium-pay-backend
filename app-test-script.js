@@ -14,10 +14,12 @@ let data = new Promise(function (resolve, reject) {
   });
   
  toFormattedDate = (d) => d.toISOString().slice(0, 10)
-
+ let finishedCount =0;
+ let canceledCount =0;
   data.then(function (results) {
     if (results && results.length) {
       let check = results[0].status == "canceled_by_scoring";
+      check  ? canceledCount++ : finishedCount++;
       let res = [
         {
           ...results[0],
@@ -35,6 +37,7 @@ let data = new Promise(function (resolve, reject) {
         }
   
         check = results[i].status == "canceled_by_scoring";
+        check  ? canceledCount++ : finishedCount++;
 
         res[res.length - 1] = {
           ...res[res.length - 1],
@@ -43,7 +46,10 @@ let data = new Promise(function (resolve, reject) {
         };
       }
       console.log(res);
-    //   console.log(res[res.length-1].date.toISOString().slice(0, 10));
+      console.log(finishedCount);
+      console.log(canceledCount);
+
+    
     }
     
     
