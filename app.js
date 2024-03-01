@@ -123,39 +123,6 @@ app.use(logger);
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
 
-app.get("/test/delete", (req, res) => {
-  db.query(
-    `DELETE FROM Zayavka WHERE user_id=1`,
-    function (err, results, fields) {
-      if (err) {
-        return res.send({ err });
-      }
-      return res.send({ results });
-    }
-  );
-});
-
-app.get("/test/droptable", (req, res) => {
-  
-  db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {
-    if (err) {
-      
-      return res.send({ err });
-    }
-    db.query(PREMIUM.createZayavkaTable, function (err, results, fields) {
-      console.log(err);
-      if (err) {
-        console.log({ err });
-      }
-      
-      console.log({ results });
-    });
-    return res.send({ results });
-  });
-  
- 
-});
-
 require("./src/bot/bot")
 require("./src/bot/register_bot")
 // starting server
