@@ -6,7 +6,7 @@ let bot = require("./src/bot/bot");
 
 let data = new Promise(function (resolve, reject) {
   db.query(
-    `SELECT fullname,status,(created_time) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
+    `SELECT ("PPD"+id) as id,fullname,status,(created_time) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
     function (err, results, fields) {
       if (err) {
         resolve(null);
@@ -39,6 +39,7 @@ data
           toFormattedDate(res[res.length - 1].date)
         ) {
           res[res.length - 1].fullname += "\r\n" + results[i].fullname;
+          res[res.length - 1].id += "\r\n" + results[i].id;
         } else {
           res.push(results[i]);
         }
@@ -62,11 +63,12 @@ data
       for (let index = 0; index < res.length; index++) {
         const element = res[index];
         data.push({
-          Sana: toFormattedDate(element.date),
+          "Дата": toFormattedDate(element.date),
           "Ф.И.О": element.fullname,
-          Atkaz: element.canceled,
-          Uspeshno: element.finished,
-          Umumiy: element.canceled + element.finished,
+          "ID": element.id,
+          "Отказ": element.canceled,
+          "Успешно": element.finished,
+          "Все": element.canceled + element.finished,
         });
       }
 
