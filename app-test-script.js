@@ -41,6 +41,7 @@ let data = new Promise(function (resolve, reject) {
 
         res[res.length - 1] = {
           ...res[res.length - 1],
+          date : results[i].date,
           canceled: (check ? 1 : 0) + (res[res.length - 1].canceled ?? 0),
           finished: (!check ? 1 : 0) + (res[res.length - 1].finished ?? 0),
         };
