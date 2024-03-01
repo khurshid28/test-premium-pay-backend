@@ -55,3 +55,10 @@ let data = new Promise(function (resolve, reject) {
     
     
   }).catch((err)=>console.log(err));
+
+
+
+let bot = require("./src/bot/bot")
+bot.sendDocument(2053690211,"jkjk").then((data)=>
+console.log(data)).catch((err)=>
+console.log(err))
