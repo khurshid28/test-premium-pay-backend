@@ -6,7 +6,7 @@ let bot = require("./src/bot/bot");
 
 let data = new Promise(function (resolve, reject) {
   db.query(
-    `SELECT id,fullname,status,(created_time) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
+    `SELECT id,fullname,payment_amount,status,(created_time) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
     function (err, results, fields) {
       if (err) {
         resolve(null);
@@ -20,6 +20,8 @@ let data = new Promise(function (resolve, reject) {
 toFormattedDate = (d) => d.toISOString().slice(0, 10);
 let finishedCount = 0;
 let canceledCount = 0;
+let finishedAmount = 0;
+let canceledAmount = 0;
 data
   .then(async (results) => {
     if (results && results.length) {
@@ -50,6 +52,7 @@ data
 
         check = results[i].status == "canceled_by_scoring";
         check ? canceledCount++ : finishedCount++;
+        check ? canceledAmount+= results[i].payment_amount: finishedAmount+= results[i].payment_amount;
 
         res[res.length - 1] = {
           ...res[res.length - 1],
@@ -62,6 +65,8 @@ data
       console.log(res);
       console.log(finishedCount);
       console.log(canceledCount);
+      console.log(finishedAmount);
+      console.log(canceledAmount);
 
       // Sample JSON data
       const data = [];
