@@ -75,7 +75,7 @@ data
       const sheetName1 = "Sheet1";
 
       // Convert JSON data to worksheet
-      const worksheet1 = XLSX.utils.json_to_sheet(data);
+      const worksheet1 = XLSX.utils.json_to_sheet(data,{ alignment: { wrapText: true}});
 
       worksheet1["!cols"] = [
         { width: 5 },
