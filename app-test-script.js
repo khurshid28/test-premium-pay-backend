@@ -77,7 +77,6 @@ data
       // Convert JSON data to worksheet
       const worksheet1 = XLSX.utils.json_to_sheet(data, {
         alignment: { wrapText: true },
-        header: 1,
         defval: "",
         blankrows: true,
       });
