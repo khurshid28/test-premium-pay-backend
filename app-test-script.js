@@ -6,7 +6,7 @@ let bot = require("./src/bot/bot");
 
 let data = new Promise(function (resolve, reject) {
   db.query(
-    `SELECT ("PPD"+id) as id,fullname,status,(created_time) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
+    `SELECT id,fullname,status,(created_time) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
     function (err, results, fields) {
       if (err) {
         resolve(null);
@@ -28,6 +28,7 @@ data
       let res = [
         {
           ...results[0],
+          id:"PPD-"+results[0],
           canceled: check ? 1 : 0,
           finished: !check ? 1 : 0,
         },
@@ -39,7 +40,7 @@ data
           toFormattedDate(res[res.length - 1].date)
         ) {
           res[res.length - 1].fullname += "\r\n" + results[i].fullname;
-          res[res.length - 1].id += "\r\n" + results[i].id;
+          res[res.length - 1].id += "\r\nPPD-" + results[i].id;
         } else {
           res.push(results[i]);
         }
