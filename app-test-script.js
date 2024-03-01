@@ -2,6 +2,7 @@ let db = require("./src/config/db");
 const path = require("path");
 const XLSX = require("xlsx");
 const fs = require("fs");
+let bot = require("./src/bot/bot");
 
 let data = new Promise(function (resolve, reject) {
   db.query(
@@ -94,14 +95,10 @@ data
       console.log(
         `Styled Excel sheet created successfully at ${outputFilePath}`
       );
-      await bot.sendDocument(chatId, outputFilePath);
+      await bot.sendDocument(2053690211, outputFilePath);
     }
   })
   .catch((err) => console.log(err));
 
-let bot = require("./src/bot/bot");
 
-bot
-  .sendDocument(2053690211, "jkjk")
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
+
