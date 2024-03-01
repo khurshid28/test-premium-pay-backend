@@ -38,7 +38,7 @@ data
           toFormattedDate(results[i].date) ==
           toFormattedDate(res[res.length - 1].date)
         ) {
-          res[res.length - 1].fullname += ('\n' + results[i].fullname);
+          res[res.length - 1].fullname += ('\r\n' + results[i].fullname);
         } else {
           res.push(results[i]);
         }
