@@ -39,7 +39,7 @@ let data = new Promise(function (resolve, reject) {
         };
       }
       // console.log(res);
-      console.log(res);
+      console.log(res[res.length-1].date.toISOString().slice(0, 10));
     }
     
     
