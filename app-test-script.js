@@ -2,7 +2,7 @@ let db = require("./src/config/db");
 
 let data = new Promise(function (resolve, reject) {
     db.query(
-      `SELECT id,fullname,status,Date(created_time - interval 5 hour) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
+      `SELECT id,fullname,status,(created_time - interval 5 hour) as date  from Zayavka WHERE  status in ('canceled_by_scoring','finished','paid') and  ('2024-01-31' < Date(created_time - interval 5 hour) and Date(created_time - interval 5 hour) < '2024-03-01')`,
       function (err, results, fields) {
         if (err) {
           resolve(null);
@@ -30,6 +30,7 @@ let data = new Promise(function (resolve, reject) {
         if (toFormattedDate(results[i].date)  == toFormattedDate(res[res.length - 1].date)  ) {
           res[res.length - 1].fullname += ("\n"+ results[i].fullname);
         } else {
+
           res.push(results[i]);
         }
   
