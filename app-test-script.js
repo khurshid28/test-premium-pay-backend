@@ -52,7 +52,8 @@ data
 
         check = results[i].status == "canceled_by_scoring";
         check ? canceledCount++ : finishedCount++;
-        check ? canceledAmount+= results[i].payment_amount: finishedAmount+= results[i].payment_amount;
+        check ? canceledAmount+= results[i].payment_amount: finishedAmount+= results[i].payment_amount ;
+        if(!check) console.log(">> "+ toMoney(Math.floor(results[i].payment_amount)));
 
         res[res.length - 1] = {
           ...res[res.length - 1],
@@ -115,3 +116,18 @@ data
     }
   })
   .catch((err) => console.log(err));
+
+
+  function toMoney(number) {
+    if (!number) {
+      return "0";
+    }
+    let result = "";
+    for (let i = 0; i < number.toString().length; i++) {
+      result += number.toString()[i];
+      if ((number.toString().length - i) % 3 == 1) {
+        result += " ";
+      }
+    }
+    return result;
+  }
