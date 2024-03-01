@@ -13,6 +13,8 @@ let data = new Promise(function (resolve, reject) {
     );
   });
   
+ toFormattedDate = (d) => d.toISOString().slice(0, 10)
+
   data.then(function (results) {
     if (results && results.length) {
       let check = results[0].status == "canceled_by_scoring";
@@ -25,21 +27,22 @@ let data = new Promise(function (resolve, reject) {
       ];
       
       for (let i = 1; i < results.length; i++) {
-        if (results[i].date == res[res.length - 1].date) {
+        if (toFormattedDate(results[i].date)  == toFormattedDate(res[res.length - 1].date)  ) {
           res[res.length - 1].fullname += ("\n"+ results[i].fullname);
         } else {
           res.push(results[i]);
         }
   
         check = results[i].status == "canceled_by_scoring";
+
         res[res.length - 1] = {
           ...res[res.length - 1],
           canceled: (check ? 1 : 0) + (res[res.length - 1].canceled ?? 0),
           finished: (!check ? 1 : 0) + (res[res.length - 1].finished ?? 0),
         };
       }
-      // console.log(res);
-      console.log(res[res.length-1].date.toISOString().slice(0, 10));
+      console.log(res);
+    //   console.log(res[res.length-1].date.toISOString().slice(0, 10));
     }
     
     
