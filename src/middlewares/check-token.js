@@ -21,7 +21,7 @@ module.exports = async(req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
         const queryTOKEN = req.query.authorization;
-        const token = authHeader && authHeader.split(" ")[1];
+        let token = authHeader && authHeader.split(" ")[1];
         if (!token) {
              token = queryTOKEN
         }
