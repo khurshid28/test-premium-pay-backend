@@ -23,7 +23,7 @@ module.exports = async(req, res, next) => {
         const paramsHeader = req.params.authorization;
         const token = authHeader && authHeader.split(" ")[1];
         if (!token) {
-             token = paramsHeader && paramsHeader.split(" ")[1];
+             token = paramsHeader 
         }
 
         if (!token) {
