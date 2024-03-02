@@ -20,7 +20,11 @@ let db= require("../config/db")
 module.exports = async(req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
+        const paramsHeader = req.params.authorization;
         const token = authHeader && authHeader.split(" ")[1];
+        if (!token) {
+             token = paramsHeader && paramsHeader.split(" ")[1];
+        }
 
         if (!token) {
             return next(new AuthorizationError(401, "No token provided"));
