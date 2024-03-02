@@ -20,10 +20,10 @@ let db= require("../config/db")
 module.exports = async(req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
-        const paramsHeader = req.params.authorization;
+        const queryHeader = req.query.authorization;
         const token = authHeader && authHeader.split(" ")[1];
         if (!token) {
-             token = paramsHeader 
+             token = queryHeader 
         }
 
         if (!token) {
