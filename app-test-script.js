@@ -146,7 +146,7 @@ let data2 = new Promise(function (resolve, reject) {
 });
 
 
-data
+data2
   .then(async (results) => {
 
 
@@ -172,7 +172,7 @@ data
       console.log(element);
     }
     console.log(data[0]);
-    console.log(data[element.length -1]);
+    console.log(data[data.length -1]);
 
     // Create a new workbook
     const workbook1 = XLSX.utils.book_new();
