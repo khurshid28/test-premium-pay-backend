@@ -155,8 +155,8 @@ data
 
 
     const data = [];
-    for (let index = 0; index < res.length; index++) {
-      const element = res[index];
+    for (let index = 0; index < results.length; index++) {
+      const element = results[index];
       data.push({
         "Дата": toFormattedDate(element.date),
         "Ф.И.О": element.fullname,
