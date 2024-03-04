@@ -134,7 +134,7 @@ let canceledAmount = 0;
 
 let data2 = new Promise(function (resolve, reject) {
   db.query(
-    `SELECT Zayavka.id,Zayavka.fullname,Zayavka.canceled_reason,Zayavka.payment_amount,Zayavka.status,(Zayavka.created_time) as date,(fillial.name as shopname)  from Zayavka,fillial WHERE Zayavka.fillial_id=fillial.id and  Zayavka.status in ('canceled_by_scoring','finished','paid') and  ('2024-02-25' < Date(Zayavka.created_time - interval 5 hour) and Date(Zayavka.created_time - interval 5 hour) < '2024-03-05') ORDER BY id DESC`,
+    `SELECT Zayavka.id,Zayavka.fullname,Zayavka.canceled_reason,Zayavka.payment_amount,Zayavka.status,Zayavka.created_time as date,fillial.name as shopname  from Zayavka,fillial WHERE Zayavka.fillial_id=fillial.id and  Zayavka.status in ('canceled_by_scoring','finished','paid') and  ('2024-02-25' < Date(Zayavka.created_time - interval 5 hour) and Date(Zayavka.created_time - interval 5 hour) < '2024-03-05') ORDER BY id DESC`,
     function (err, results, fields) {
       if (err) {
         resolve(null);
