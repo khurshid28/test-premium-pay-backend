@@ -184,11 +184,14 @@ class Myid {
       console.log(new Date().getFullYear() - `${date}`.split(".")[2], " yil");
       let age = new Date().getFullYear() - `${date}`.split(".")[2];
       console.log(req.body);
-      if (gender == "ERKAK" && (age < 20 || age > 58)) {
-        return res.status(200).json({
-          message: "Возраст клиента указан неверно.",
-          status: false,
-        });
+      if (gender == "ERKAK" ) {
+        if( (age < 20 || age > 58)){
+          return res.status(200).json({
+            message: "Возраст клиента указан неверно.",
+            status: false,
+          });
+        }
+       
       } else {
         if (age < 20 || age > 53) {
           return res.status(200).json({
