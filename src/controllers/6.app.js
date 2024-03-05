@@ -385,7 +385,7 @@ class App {
           }
         }
         clearTimeout(t1);
-      }, 15 * 1000);
+      }, 5 * 1000);
 
       return res.status(200).json({
         data: zayavkaUpdated,
