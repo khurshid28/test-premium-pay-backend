@@ -172,7 +172,7 @@ class Fillial {
       }
 
       let fillials = await new Promise(function (resolve, reject) {
-        db.query(`SELECT * FROM fillial;`, function (err, results, fields) {
+        db.query(`SELECT f.*,(select count(id) from Zayavka where fillial_id=f.id) as count  FROM fillial as f where f.work_status="working" order by count desc;`, function (err, results, fields) {
           if (err) {
             resolve(null);
             return null;
