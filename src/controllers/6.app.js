@@ -373,8 +373,8 @@ class App {
           if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
             try {
               bot.sendMessage(
-                2053690211,
-                `<b> -- PPD-${id} --\nFULLNAME :${Updatedzayavka.fullname}\nMESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi</b>`,
+                "-4009277227",
+                `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME :${Updatedzayavka.fullname}\n</b>`,
                 {
                   parse_mode: "HTML",
                 }
@@ -385,7 +385,7 @@ class App {
           }
         }
         clearTimeout(t1);
-      }, 5 * 1000);
+      }, 240 * 1000);
 
       return res.status(200).json({
         data: zayavkaUpdated,
