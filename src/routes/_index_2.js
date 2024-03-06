@@ -2,14 +2,7 @@ const { Router } = require("express");
 const swaggerUi = require("swagger-ui-express");
 
 const router = Router();
-// router.use((req, res, next) => {
-//   try {
-//     console.log("try >>>>");
-//     next();
-//   } catch (error) {
-//     console.log("catch error >>", `${error}`.substring(0, 30));
-//   }
-// });
+
 
 const myidRouter = require("./myid.js");
 
