@@ -219,19 +219,19 @@ let db = require("./src/config/db");
             statistics: {
               success: {
                 percent: percentUspeshna,
-                count: zayavkalarUspeshna,
+                count: zayavkalarUspeshna[0]["count(id)"],
               },
               scoring_otkaz: {
                 percent: percentScoring,
-                count: zayavkalarScoringOtkaz,
+                count: zayavkalarScoringOtkaz[0]["count(id)"],
               },
               client_otkaz: {
                 percent: percentClient,
-                count: zayavkalarClienttOtkaz,
+                count: zayavkalarClienttOtkaz[0]["count(id)"],
               },
               time_otkaz: {
                 percent: percentTime,
-                count: zayavkalarTimeOtkaz,
+                count: zayavkalarTimeOtkaz[0]["count(id)"],
               },
             },
           });
