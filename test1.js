@@ -233,3 +233,5 @@ let db = require("./src/config/db");
   }
 
 
+getStatistics();
+
