@@ -39,7 +39,7 @@ router.post("/cancel_by_client/",checkUser, appController.cancel_by_client);
 // router.post("/upload", appController.upload);
 // router.get("/get/:id",checkUser, appController.get);
 router.get("/getAll/", appController.getAll);
-router.get("/getStatistics/", appController.getStatistics);
+router.get("/statistics/", appController.getStatistics);
 
 
 router.get("/percents/:fillial_id",checkUser, appController.getPercents);
