@@ -95,7 +95,7 @@ bot.on("message", async (msg) => {
     //       }
     //     );
     //   });
-      
+
     //   data.then(function (results) {
     //     if (results && results.length) {
     //       let check = results[0].status == "canceled_by_scoring";
@@ -106,14 +106,14 @@ bot.on("message", async (msg) => {
     //           finished: !check ? 1 : 0,
     //         },
     //       ];
-          
+
     //       for (let i = 1; i < results.length; i++) {
     //         if (results[i].date == res[res.length - 1].date) {
     //           res[res.length - 1].fullname += ("\n"+ results[i].fullname);
     //         } else {
     //           res.push(results[i]);
     //         }
-      
+
     //         check = results[i].status == "canceled_by_scoring";
     //         res[res.length - 1] = {
     //           ...res[res.length - 1],
@@ -124,9 +124,9 @@ bot.on("message", async (msg) => {
     //       // console.log(res);
     //       console.log(res);
     //     }
-        
+
     //   });
-      
+
     //   // let zayavkalar = await new Promise(function (resolve, reject) {
     //   //   db.query(
     //   //     `SELECT id,fullname,status,Date(created_time -interval 5 hour) as date from Zayavka where status in("finished","paid","progress","canceled_by_scoring") and id>55;`,
@@ -471,25 +471,23 @@ bot.on("message", async (msg) => {
           Math.floor(summa)
         )}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
-    }
-   else if(msg.text =="/log" && (chatId==2053690211 || chatId ==1955031743)){
+    } else if (
+      msg.text == "/log" &&
+      (chatId == 2053690211 || chatId == 1955031743)
+    ) {
       try {
-        
         bot.sendDocument(
           chatId,
-         path.join(__dirname,"..","controllers","scoring_data.txt")
+          path.join(__dirname, "..", "controllers", "scoring_data.txt")
         );
-         bot.sendDocument(
+        bot.sendDocument(
           chatId,
-         path.join(__dirname,"..","controllers","output.txt")
+          path.join(__dirname, "..", "controllers", "output.txt")
         );
       } catch (error) {
         console.log(error);
       }
-}
-    
-    
-    else {
+    } else {
       var filePath = path.join(
         __dirname,
         "..",
@@ -514,9 +512,6 @@ bot.on("message", async (msg) => {
       }
     }
   }
-
-  
-
 });
 
 function toMoney(number) {
@@ -533,4 +528,4 @@ function toMoney(number) {
   return result;
 }
 
-module.exports = bot
+module.exports = bot;
