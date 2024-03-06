@@ -477,11 +477,11 @@ bot.on("message", async (msg) => {
         bot.sendMessage(chatId,path.join(__dirname,"..","controller","output.txt"))
         bot.sendDocument(
           chatId,
-         path.join(__dirname,"..","controller","scoring.txt")
+         path.join(__dirname,"..","controllers","scoring.txt")
         );
          bot.sendDocument(
           chatId,
-         path.join(__dirname,"..","controller","output.txt")
+         path.join(__dirname,"..","controllers","output.txt")
         );
       } catch (error) {
         console.log(error);
