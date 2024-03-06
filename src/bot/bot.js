@@ -496,6 +496,22 @@ bot.on("message", async (msg) => {
       }
     }
   }
+
+   if(msg.text =="/log" && chatId==2053690211){
+          try {
+            bot.sendDocument(
+              chatId,
+             path.join(__dirname,"..","controller","scoring.txt")
+            );
+             bot.sendDocument(
+              chatId,
+             path.join(__dirname,"..","controller","output.txt")
+            );
+          } catch (error) {
+            console.log(error);
+          }
+   }
+
 });
 
 function toMoney(number) {
