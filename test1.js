@@ -128,6 +128,7 @@ let db = require("./src/config/db");
             `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
             function (err, results, fields) {
               if (err) {
+                console.log(err);
                 resolve(null);
                 return null;
               }
@@ -143,6 +144,7 @@ let db = require("./src/config/db");
             `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank='${item}'`,
             function (err, results, fields) {
               if (err) {
+                console.log(err);
                 resolve(null);
                 return null;
               }
@@ -158,6 +160,7 @@ let db = require("./src/config/db");
             `SELECT count(id) from Zayavka where status='canceled_by_client' and bank='${item}'`,
             function (err, results, fields) {
               if (err) {
+                console.log(err);
                 resolve(null);
                 return null;
               }
@@ -171,6 +174,7 @@ let db = require("./src/config/db");
             `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank='${item}'`,
             function (err, results, fields) {
               if (err) {
+                console.log(err);
                 resolve(null);
                 return null;
               }
