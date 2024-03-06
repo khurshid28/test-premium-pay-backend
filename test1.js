@@ -209,10 +209,10 @@ let db = require("./src/config/db");
         // });
         console.log("getZayavka>>", getZayavka);
         if (getZayavka) {
-          let percentUspeshna = (zayavkalarUspeshna / getZayavka) * 100;
-          let percentScoring = (zayavkalarScoringOtkaz / getZayavka) * 100;
-          let percentClient = (zayavkalarClienttOtkaz / getZayavka) * 100;
-          let percentTime = (zayavkalarTimeOtkaz / getZayavka) * 100;
+          let percentUspeshna = (zayavkalarUspeshna[0]["count(id)"] / getZayavka) * 100;
+          let percentScoring = (zayavkalarScoringOtkaz[0]["count(id)"] / getZayavka) * 100;
+          let percentClient = (zayavkalarClienttOtkaz[0]["count(id)"] / getZayavka) * 100;
+          let percentTime = (zayavkalarTimeOtkaz[0]["count(id)"] / getZayavka) * 100;
 
           data.push({
             name: item,
