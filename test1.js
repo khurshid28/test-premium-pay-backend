@@ -130,9 +130,9 @@ let db = require("./src/config/db");
               if (err) {
                 console.log(err);
                 resolve(null);
-                return null;
+                
               }
-              return resolve(results);
+               resolve(results);
             }
           );
         });
@@ -146,9 +146,9 @@ let db = require("./src/config/db");
               if (err) {
                 console.log(err);
                 resolve(null);
-                return null;
+                 null;
               }
-              return resolve(results);
+               resolve(results);
             }
           );
         });
@@ -162,9 +162,9 @@ let db = require("./src/config/db");
               if (err) {
                 console.log(err);
                 resolve(null);
-                return null;
+          
               }
-              return resolve(results);
+               resolve(results);
             }
           );
         });
@@ -176,9 +176,9 @@ let db = require("./src/config/db");
               if (err) {
                 console.log(err);
                 resolve(null);
-                return null;
+               
               }
-              return resolve(results);
+               resolve(results);
             }
           );
         });
