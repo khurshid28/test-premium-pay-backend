@@ -248,10 +248,7 @@ let db = require("./src/config/db");
                 percent: percentTime,
                 count: zayavkalarTimeOtkaz[0]["count(id)"],
               },
-            },scoring :{
-                "in_minut": 13,
-                "count": 2
-            }
+            },scoring : zayavkalarScoring[0]
 
           });
         } else {
