@@ -137,7 +137,7 @@ let db = require("./src/config/db");
             }
           );
         });
-
+        
         let zayavkalarScoringOtkaz = await new Promise(function (
           resolve,
           reject
@@ -185,16 +185,16 @@ let db = require("./src/config/db");
           );
         });
 
-        console.log(zayavkalarUspeshna);
-        console.log(zayavkalarClienttOtkaz);
-        console.log(zayavkalarScoringOtkaz);
-        console.log(zayavkalarTimeOtkaz);
+        console.log(zayavkalarUspeshna[0]["count(id)"]);
+        console.log(zayavkalarClienttOtkaz[0]["count(id)"]);
+        console.log(zayavkalarScoringOtkaz[0]["count(id)"]);
+        console.log(zayavkalarTimeOtkaz[0]["count(id)"]);
 
         let getZayavka =
-          zayavkalarUspeshna["count(id)"] +
-          zayavkalarClienttOtkaz["count(id)"] +
-          zayavkalarScoringOtkaz["count(id)"] +
-          zayavkalarTimeOtkaz["count(id)"];
+          zayavkalarUspeshna[0]["count(id)"] +
+          zayavkalarClienttOtkaz[0]["count(id)"] +
+          zayavkalarScoringOtkaz[0]["count(id)"] +
+          zayavkalarTimeOtkaz[0]["count(id)"];
         //  await new Promise(function (resolve, reject) {
         //   db.query(
         //     `SELECT count(id) from Zayavka where bank='${item}' `,
