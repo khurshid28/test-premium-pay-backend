@@ -12,6 +12,7 @@ let axios = require("axios");
 
 // all routes
 let router = require("./src/routes/_index");
+let router2 = require("./src/routes/_index_2");
 
 // built in middlewares
 const logger = require("./src/middlewares/logger.js");
@@ -102,7 +103,7 @@ app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 // all routes
 app.use("/api/v1",router);
 
-app.use("/api/v2",router);
+app.use("/api/v2",router2);
 
 // router.use((req,res,next)=>{
 //   try {
