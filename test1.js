@@ -195,6 +195,21 @@ let db = require("./src/config/db");
           zayavkalarClienttOtkaz[0]["count(id)"] +
           zayavkalarScoringOtkaz[0]["count(id)"] +
           zayavkalarTimeOtkaz[0]["count(id)"];
+
+
+          let zayavkalarScoring = await new Promise(function (resolve, reject) {
+            db.query(
+              `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from Zayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
+              function (err, results, fields) {
+                if (err) {
+                  console.log(err);
+                  resolve(null);
+                 
+                }
+                 resolve(results);
+              }
+            );
+          });
         //  await new Promise(function (resolve, reject) {
         //   db.query(
         //     `SELECT count(id) from Zayavka where bank='${item}' `,
@@ -213,7 +228,7 @@ let db = require("./src/config/db");
           let percentScoring = (zayavkalarScoringOtkaz[0]["count(id)"] / getZayavka) * 100;
           let percentClient = (zayavkalarClienttOtkaz[0]["count(id)"] / getZayavka) * 100;
           let percentTime = (zayavkalarTimeOtkaz[0]["count(id)"] / getZayavka) * 100;
-
+          
           data.push({
             name: item,
             statistics: {
@@ -233,12 +248,17 @@ let db = require("./src/config/db");
                 percent: percentTime,
                 count: zayavkalarTimeOtkaz[0]["count(id)"],
               },
-            },
+            },scoring :{
+                "in_minut": 13,
+                "count": 2
+            }
+
           });
         } else {
           data.push({
             name: item,
             statistics: null,
+            scoring: null
           });
         }
       }
