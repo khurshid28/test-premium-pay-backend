@@ -4,11 +4,12 @@ let db = require("./src/config/db");
       let data = [];
       let banks = ["Davr", "Hamkor", "Asaka", "QQB"];
       () => {
-        banks.forEach(async (index, item) => {
+        banks.forEach(async (item, index) => {
           let zayavkalarUspeshna = await new Promise(function (
             resolve,
             reject
           ) {
+
             db.query(
               `SELECT count(id) from Zayavka where step=8  and bank='${item}'`,
               function (err, results, fields) {
@@ -21,6 +22,8 @@ let db = require("./src/config/db");
               }
             );
           });
+
+
           let zayavkalarScoringOtkaz = await new Promise(function (
             resolve,
             reject
