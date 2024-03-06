@@ -18,6 +18,7 @@ let db = require("./src/config/db");
                   resolve(null);
                   return null;
                 }
+                console.log(results);
                 return resolve(results);
               }
             );
