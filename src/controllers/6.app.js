@@ -882,38 +882,43 @@ class App {
     }
   }
   async getStatistics(req, res, next) {
-    if (req.user.role === "SuperAdmin") {
-      let data = [];
-      let banks = ["Davr", "Hamkor", "Asaka", "QQB"];
-      () => {
-        banks.forEach(async (index, item) => {
-          let zayavkalarUspeshna = await new Promise(function (
-            resolve,
-            reject
-          ) {
+    try {
+      if (req.user.role === "SuperAdmin") {
+      
+    
+        let data = [];
+        let banks = ["Davr", "Hamkor", "Asaka", "QQB"];
+    
+  
+        for await (let item of banks) {
+         
+          let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT count(id) from Zayavka where step=8  and name=${item}`,
+              `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
+                  console.log(err);
                   resolve(null);
-                  return null;
+                  
                 }
-                return resolve(results);
+                 resolve(results);
               }
             );
           });
+          
           let zayavkalarScoringOtkaz = await new Promise(function (
             resolve,
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_scoring' and name=${item}`,
+              `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
+                  console.log(err);
                   resolve(null);
-                  return null;
+                   null;
                 }
-                return resolve(results);
+                 resolve(results);
               }
             );
           });
@@ -922,197 +927,107 @@ class App {
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_client' and name=${item}`,
+              `SELECT count(id) from Zayavka where status='canceled_by_client' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
+                  console.log(err);
                   resolve(null);
-                  return null;
+            
                 }
-                return resolve(results);
+                 resolve(results);
               }
             );
           });
-
-          let zayavkalarTimeOtkaz = await new Promise(function (
-            resolve,
-            reject
-          ) {
+  
+          let zayavkalarTimeOtkaz = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_daily' and name=${item}`,
+              `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
+                  console.log(err);
                   resolve(null);
-                  return null;
+                 
                 }
-                return resolve(results);
+                 resolve(results);
               }
             );
           });
-          let getZayavka = await new Promise(function (resolve, reject) {
-            db.query(
-              `SELECT count(id) from Zayavka where name=${item}  status not in("progress")`,
-              function (err, results, fields) {
-                if (err) {
-                  resolve(null);
-                  return null;
+  
+          console.log(zayavkalarUspeshna[0]["count(id)"]);
+          console.log(zayavkalarClienttOtkaz[0]["count(id)"]);
+          console.log(zayavkalarScoringOtkaz[0]["count(id)"]);
+          console.log(zayavkalarTimeOtkaz[0]["count(id)"]);
+  
+          let getZayavka =
+            zayavkalarUspeshna[0]["count(id)"] +
+            zayavkalarClienttOtkaz[0]["count(id)"] +
+            zayavkalarScoringOtkaz[0]["count(id)"] +
+            zayavkalarTimeOtkaz[0]["count(id)"];
+  
+  
+            let zayavkalarScoring = await new Promise(function (resolve, reject) {
+              db.query(
+                `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from Zayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
+                function (err, results, fields) {
+                  if (err) {
+                    console.log(err);
+                    resolve(null);
+                   
+                  }
+                   resolve(results);
                 }
-                return resolve(results);
-              }
-            );
-          });
+              );
+            });
+       
+          console.log("getZayavka>>", getZayavka);
           if (getZayavka) {
-            let percentUspeshna = (zayavkalarUspeshna / getZayavka) * 100;
-            let percentScoring = (zayavkalarScoringOtkaz / getZayavka) * 100;
-            let percentClient = (zayavkalarClienttOtkaz / getZayavka) * 100;
-            let percentTime = (zayavkalarTimeOtkaz / getZayavka) * 100;
+            let percentUspeshna = (zayavkalarUspeshna[0]["count(id)"] / getZayavka) * 100;
+            let percentScoring = (zayavkalarScoringOtkaz[0]["count(id)"] / getZayavka) * 100;
+            let percentClient = (zayavkalarClienttOtkaz[0]["count(id)"] / getZayavka) * 100;
+            let percentTime = (zayavkalarTimeOtkaz[0]["count(id)"] / getZayavka) * 100;
+            
             data.push({
               name: item,
-              statistika: {
+              statistics: {
                 success: {
                   percent: percentUspeshna,
-                  count: zayavkalarUspeshna,
+                  count: zayavkalarUspeshna[0]["count(id)"],
                 },
                 scoring_otkaz: {
                   percent: percentScoring,
-                  count: zayavkalarScoringOtkaz,
+                  count: zayavkalarScoringOtkaz[0]["count(id)"],
                 },
                 client_otkaz: {
                   percent: percentClient,
-                  count: zayavkalarClienttOtkaz,
+                  count: zayavkalarClienttOtkaz[0]["count(id)"],
                 },
                 time_otkaz: {
                   percent: percentTime,
-                  count: zayavkalarTimeOtkaz,
+                  count: zayavkalarTimeOtkaz[0]["count(id)"],
                 },
-              },
+              },scoring : zayavkalarScoring[0]
+  
             });
           } else {
             data.push({
               name: item,
-              statistika: null,
+              statistics: null,
+              scoring: null
             });
           }
-        });
-      };
-
-      for await (let item of banks) {
-        let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
-          db.query(
-            `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
-            function (err, results, fields) {
-              if (err) {
-                resolve(null);
-                return null;
-              }
-              return resolve(results);
-            }
-          );
-        });
-        let zayavkalarScoringOtkaz = await new Promise(function (
-          resolve,
-          reject
-        ) {
-          db.query(
-            `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank='${item}'`,
-            function (err, results, fields) {
-              if (err) {
-                resolve(null);
-                return null;
-              }
-              return resolve(results);
-            }
-          );
-        });
-        let zayavkalarClienttOtkaz = await new Promise(function (
-          resolve,
-          reject
-        ) {
-          db.query(
-            `SELECT count(id) from Zayavka where status='canceled_by_client' and bank='${item}'`,
-            function (err, results, fields) {
-              if (err) {
-                resolve(null);
-                return null;
-              }
-              return resolve(results);
-            }
-          );
-        });
-
-        let zayavkalarTimeOtkaz = await new Promise(function (resolve, reject) {
-          db.query(
-            `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank='${item}'`,
-            function (err, results, fields) {
-              if (err) {
-                resolve(null);
-                return null;
-              }
-              return resolve(results);
-            }
-          );
-        });
-
-        console.log(zayavkalarUspeshna["count(id)"]);
-        console.log(zayavkalarClienttOtkaz["count(id)"]);
-        console.log(zayavkalarScoringOtkaz["count(id)"]);
-        console.log(zayavkalarTimeOtkaz["count(id)"]);
-
-        let getZayavka =
-          zayavkalarUspeshna["count(id)"] +
-          zayavkalarClienttOtkaz["count(id)"] +
-          zayavkalarScoringOtkaz["count(id)"] +
-          zayavkalarTimeOtkaz["count(id)"];
-        //  await new Promise(function (resolve, reject) {
-        //   db.query(
-        //     `SELECT count(id) from Zayavka where bank='${item}' `,
-        //     function (err, results, fields) {
-        //       if (err) {
-        //         resolve(null);
-        //         return null;
-        //       }
-        //       return resolve(results);
-        //     }
-        //   );
-        // });
-        console.log("getZayavka>>", getZayavka);
-        if (getZayavka) {
-          let percentUspeshna = (zayavkalarUspeshna / getZayavka) * 100;
-          let percentScoring = (zayavkalarScoringOtkaz / getZayavka) * 100;
-          let percentClient = (zayavkalarClienttOtkaz / getZayavka) * 100;
-          let percentTime = (zayavkalarTimeOtkaz / getZayavka) * 100;
-
-          data.push({
-            name: item,
-            statistics: {
-              success: {
-                percent: percentUspeshna,
-                count: zayavkalarUspeshna,
-              },
-              scoring_otkaz: {
-                percent: percentScoring,
-                count: zayavkalarScoringOtkaz,
-              },
-              client_otkaz: {
-                percent: percentClient,
-                count: zayavkalarClienttOtkaz,
-              },
-              time_otkaz: {
-                percent: percentTime,
-                count: zayavkalarTimeOtkaz,
-              },
-            },
-          });
-        } else {
-          data.push({
-            name: item,
-            statistics: null,
-          });
         }
-      }
-
-      return res.status(200).json({
-        data: data,
-      });
+  
+        console.log(JSON.stringify(data));
+      
+        return res.status(200).json({
+          data
+        });
+    }else{
+      return next(new AuthorizationError(401, "No token provided"));
+    }
+    } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
     }
   }
 }
