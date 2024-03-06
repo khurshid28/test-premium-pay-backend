@@ -243,7 +243,7 @@ let db = require("./src/config/db");
         }
       }
 
-      console.log(data[0]["statistics"]);
+      console.log(JSON.stringify(data));
     
   }
 
