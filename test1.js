@@ -10,7 +10,7 @@ let db = require("./src/config/db");
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where step=8  and bank=${item}`,
+              `SELECT count(id) from Zayavka where step=8  and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                     console.log(err);
