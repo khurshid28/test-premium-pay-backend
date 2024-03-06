@@ -472,7 +472,7 @@ bot.on("message", async (msg) => {
         )}\nscoring otkaz : ${zayavkalar2[0]["count(id)"]}`
       );
     }
-   else if(msg.text =="/log" && chatId==2053690211){
+   else if(msg.text =="/log" && (chatId==2053690211 || chatId ==1955031743)){
       try {
         
         bot.sendDocument(
