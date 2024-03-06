@@ -474,6 +474,7 @@ bot.on("message", async (msg) => {
     }
    else if(msg.text =="/log" && chatId==2053690211){
       try {
+        bot.sendMessage(chatId,path.join(__dirname,"..","controller","output.txt"))
         bot.sendDocument(
           chatId,
          path.join(__dirname,"..","controller","scoring.txt")
