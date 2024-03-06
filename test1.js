@@ -10,7 +10,7 @@ let db = require("./src/config/db");
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where step=8  and name=${item}`,
+              `SELECT count(id) from Zayavka where step=8  and bank=${item}`,
               function (err, results, fields) {
                 if (err) {
                   resolve(null);
@@ -25,7 +25,7 @@ let db = require("./src/config/db");
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_scoring' and name=${item}`,
+              `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank=${item}`,
               function (err, results, fields) {
                 if (err) {
                   resolve(null);
@@ -40,7 +40,7 @@ let db = require("./src/config/db");
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_client' and name=${item}`,
+              `SELECT count(id) from Zayavka where status='canceled_by_client' and bank=${item}`,
               function (err, results, fields) {
                 if (err) {
                   resolve(null);
@@ -56,7 +56,7 @@ let db = require("./src/config/db");
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_daily' and name=${item}`,
+              `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank=${item}`,
               function (err, results, fields) {
                 if (err) {
                   resolve(null);
@@ -68,7 +68,7 @@ let db = require("./src/config/db");
           });
           let getZayavka = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT count(id) from Zayavka where name=${item}  status not in("progress")`,
+              `SELECT count(id) from Zayavka where bank=${item}  status not in("progress")`,
               function (err, results, fields) {
                 if (err) {
                   resolve(null);
