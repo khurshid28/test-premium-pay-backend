@@ -123,6 +123,7 @@ let db = require("./src/config/db");
     //   };
 
       for await (let item of banks) {
+        console.log(item);
         let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
           db.query(
             `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
