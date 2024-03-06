@@ -123,7 +123,7 @@ let db = require("./src/config/db");
     //   };
 
       for await (let item of banks) {
-        console.log(item);
+       
         let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
           db.query(
             `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
@@ -137,6 +137,7 @@ let db = require("./src/config/db");
             }
           );
         });
+
         let zayavkalarScoringOtkaz = await new Promise(function (
           resolve,
           reject
@@ -184,10 +185,10 @@ let db = require("./src/config/db");
           );
         });
 
-        console.log(zayavkalarUspeshna["count(id)"]);
-        console.log(zayavkalarClienttOtkaz["count(id)"]);
-        console.log(zayavkalarScoringOtkaz["count(id)"]);
-        console.log(zayavkalarTimeOtkaz["count(id)"]);
+        console.log(zayavkalarUspeshna);
+        console.log(zayavkalarClienttOtkaz);
+        console.log(zayavkalarScoringOtkaz);
+        console.log(zayavkalarTimeOtkaz);
 
         let getZayavka =
           zayavkalarUspeshna["count(id)"] +
