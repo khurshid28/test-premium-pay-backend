@@ -127,7 +127,7 @@ getStatistics = async () => {
 };
 
 addresstoBot = async () => {
-  let data = await Promise(function (resolve, reject) {
+  let data = await new Promise(function (resolve, reject) {
     db.query(
       `SELECT id,address,passport,fullname,payment_amount,status,(created_time) as date  from Zayavka WHERE  id=567;`,
       function (err, results, fields) {
