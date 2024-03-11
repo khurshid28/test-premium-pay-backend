@@ -13,7 +13,7 @@ let db = require("../config/db")
 class SuperAdmin {
     async getAllSuper(req, res, next) {
         try {
-            if (req.user.role !== "super_admin") {
+            if (req.user.role !== "SuperAdmin") {
                 return next(
                     new ForbiddenError(
                         403,
@@ -29,7 +29,7 @@ class SuperAdmin {
     }
     async getSuper(req, res, next) {
         try {
-            if (req.user.role !== "super_admin") {
+            if (req.user.role !== "SuperAdmin") {
                 return next(
                     new ForbiddenError(
                         403,
@@ -72,7 +72,7 @@ class SuperAdmin {
             //     );
             // }
 
-            // let super_admin = await Super.create({
+            // let SuperAdmin = await Super.create({
             //     loginName,
             //     loginPassword,
             //     fullName,
@@ -132,7 +132,7 @@ class SuperAdmin {
     }
     async updateSuper(req, res, next) {
         try {
-            if (req.superr.role !== "super_admin") {
+            if (req.superr.role !== "SuperAdmin") {
                 return next(
                     new ForbiddenError(
                         403,
@@ -176,7 +176,7 @@ class SuperAdmin {
     }
     async deleteUser(req, res, next) {
         try {
-            if (req.user.role !== "super_admin") {
+            if (req.user.role !== "SuperAdmin") {
                 return next(
                     new ForbiddenError(
                         403,
