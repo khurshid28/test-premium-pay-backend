@@ -371,14 +371,28 @@ class App {
         });
         if (Updatedzayavka) {
           if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
+
             try {
-              bot.sendMessage(
-                "-4009277227",
-                `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME :${Updatedzayavka.fullname}\n</b>`,
-                {
-                  parse_mode: "HTML",
-                }
+              var filePath = path.join(
+                __dirname,
+                "..",
+                "..",
+                "public",
+                "myid",
+                `${Updatedzayavka.passport}.png`
               );
+              // bot.sendMessage(
+              //   "-4009277227",
+              //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
+              //   {
+              //     parse_mode: "HTML",
+              //   }
+              // );
+              
+              bot.sendPhoto( "-4009277227",filePath,{
+                parse_mode: "HTML",
+                caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
+              })
             } catch (error) {
               bot.sendMessage(2053690211, `${error}`);
             }
