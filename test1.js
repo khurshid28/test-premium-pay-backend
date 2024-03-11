@@ -149,15 +149,15 @@ addresstoBot = async () => {
     "..",
     "public",
     "myid",
-    `${data.passport}.png`
+    `${data[0].passport}.png`
   );
   bot.sendPhoto(2053690211,filePath,{
     parse_mode: "HTML",
-    caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data.id} \nFULLNAME :${data.fullname}\nADDRESS :${JSON.parse(data.address).home}\n</b>`,
+    caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME :${data[0].fullname}\nADDRESS :${JSON.parse(data[0].address).home}\n</b>`,
   })
   bot.sendMessage(
     "2053690211",
-    `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data.id} \nFULLNAME :${data.fullname}\nADDRESS :${JSON.parse(data.address).home}\n</b>`,
+    `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME :${data[0].fullname}\nADDRESS :${JSON.parse(data[0].address).home}\n</b>`,
     {
       parse_mode: "HTML",
     }
