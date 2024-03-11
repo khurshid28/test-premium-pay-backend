@@ -155,13 +155,13 @@ addresstoBot = async () => {
     parse_mode: "HTML",
     caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME: ${data[0].fullname}\nADDRESS: ${data[0].address.home}\n</b>`,
   })
-  bot.sendMessage(
-    "2053690211",
-    `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME :${data[0].fullname}\nADDRESS: ${data[0].address.home}\n</b>`,
-    {
-      parse_mode: "HTML",
-    }
-  );
+  // bot.sendMessage(
+  //   "2053690211",
+  //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME :${data[0].fullname}\nADDRESS: ${data[0].address.home}\n</b>`,
+  //   {
+  //     parse_mode: "HTML",
+  //   }
+  // );
 };
 
 // getStatistics();
