@@ -151,6 +151,7 @@ addresstoBot = async () => {
     "myid",
     `${data[0].passport}.png`
   );
+  console.log(filePath);
   bot.sendPhoto(2053690211,filePath)
   bot.sendMessage(
     "2053690211",
