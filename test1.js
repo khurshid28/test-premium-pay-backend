@@ -145,17 +145,19 @@ addresstoBot = async () => {
   console.log(data);
   var filePath = path.join(
     __dirname,
-    "..",
-    "..",
+    // "..",
+    // "..",
     "public",
     "myid",
     `${data[0].passport}.png`
   );
-  console.log(filePath);
-  bot.sendPhoto(2053690211,filePath)
+  bot.sendPhoto(2053690211,filePath,{
+    parse_mode: "HTML",
+    caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME: ${data[0].fullname}\nADDRESS: ${data[0].address.home}\n</b>`,
+  })
   bot.sendMessage(
     "2053690211",
-    `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME:${data[0].fullname}\nADDRESS: ${data[0].address.home}\n</b>`,
+    `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${data[0].id} \nFULLNAME :${data[0].fullname}\nADDRESS: ${data[0].address.home}\n</b>`,
     {
       parse_mode: "HTML",
     }
