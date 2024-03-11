@@ -1,7 +1,8 @@
 let db = require("./src/config/db");
 const path = require("path");
-const XLSX = require("xlsx");
 const fs = require("fs");
+const XLSX = require("xlsx");
+
 let bot = require("./src/bot/bot");
 
 let data = new Promise(function (resolve, reject) {

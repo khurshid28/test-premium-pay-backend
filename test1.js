@@ -1,5 +1,7 @@
 let db = require("./src/config/db");
 let bot = require("./src/bot/bot");
+const path = require("path");
+const fs = require("fs");
 getStatistics = async () => {
   let data = [];
   let banks = ["Davr", "Hamkor", "Asaka", "QQB"];
