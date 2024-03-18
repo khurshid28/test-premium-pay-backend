@@ -13,6 +13,7 @@ const userRouter = require("./5.user.js");
 const superRouter = require("./3.super.js");
 
 const appRouter = require("./6.app.js");
+const appTestRouter = require("./6.app.test.js");
 
 const merchantRouter = require("./1.merchant.js");
 const adminRouter = require("./4.1.admin.js");
@@ -47,6 +48,7 @@ router.use("/fillial-admin", fillialAdminRouter);
 // router.use("/create-pdf", pdfRouter);
 // router.use("/upload-image", uploadRouter);
 router.use("/zayavka", appRouter);
+router.use("/zayavka-test", appTestRouter);
 router.use("/merchant", merchantRouter);
 
 router.use("/admin", adminRouter);

@@ -129,6 +129,14 @@ require("./src/bot/register_bot")
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
+  db.query(PREMIUM.createTestZayavkaTable, function (err, results, fields) {
+    console.log(err);
+    if (err) {
+      console.log({ err });
+    }
+    
+    console.log({ results });
+  });
 
 
   // db.query(`DROP TABLE Zayavka;`, function (err, results, fields) {

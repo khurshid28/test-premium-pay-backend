@@ -211,14 +211,7 @@ app.listen(1212, async () => {
 
 
 
-  // db.query(PREMIUM.createAccountantTable, function (err, results, fields) {
-  //   console.log(err);
-  //   if (err) {
-  //     console.log({ err });
-  //   }
-    
-  //   console.log({ results });
-  // });
+  
   // db.query(
   //   "DROP TABLE fillial",
   //   function (err, results, fields) {

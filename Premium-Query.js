@@ -61,6 +61,41 @@ Date.prototype.addHours = function (h) {
 
   )  `;
 
+  let createTestZayavkaTable = `CREATE TABLE IF NOT EXISTS TestZayavka  (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    merchant_id int,
+    fillial_id int,
+    user_id int,
+    fullname varchar(255),
+    phoneNumber varchar(255),
+    phoneNumber2 varchar(255),
+    cardNumber varchar(255),
+    passport varchar(255),
+    passport_date varchar(255),
+    passport_by varchar(255),
+    address JSON,
+    region_id int,
+    status ENUM("progress","canceled_by_scoring","canceled_by_client","canceled_by_daily","finished","confirmed","uncorfirmed","paid") DEFAULT "progress",
+    canceled_reason varchar(255),
+    device JSON,
+    location JSON,
+    products JSON,
+    amount DOUBLE(10,2),
+    max_amount DOUBLE(10,2),
+    payment_amount DOUBLE(10,2),
+    expired_month int,
+    created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    finished_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    bank varchar(255) DEFAULT "Davr",
+    selfie varchar(255),
+    agree BOOLEAN,
+    step int DEFAULT 1,
+    scoring_start TIMESTAMP NULL,
+    scoring_end TIMESTAMP NULL,
+    paid_status  ENUM("no_value","waiting","paid","canceled") DEFAULT "no_value",
+    term JSON
+
+)  `;
   // "ENGINE=InnoDB DEFAULT CHARSET=utf8;"
   
   let createMerchantTable = `CREATE TABLE IF NOT EXISTS merchant  (
@@ -344,6 +379,7 @@ Date.prototype.addHours = function (h) {
     createCallCenterTable,
     createAccountantTable,
     createZayavkaTable,
+    createTestZayavkaTable,
     createMerchantTable,
     createFillialTable,
   
