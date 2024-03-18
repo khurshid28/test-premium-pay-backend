@@ -177,23 +177,23 @@ const {
             }
           );
         });
-        let fillial = await new Promise(function (resolve, reject) {
-          db.query(
-            `SELECT * from fillial WHERE id=${zayavka.fillial_id}`,
-            function (err, results, fields) {
-              if (err) {
-                resolve(null);
-                return null;
-              }
-              if (results.length != 0) {
-                resolve(results[0]);
-              } else {
-                resolve(null);
-              }
-            }
-          );
-        });
-        console.log(fillial);
+        // let fillial = await new Promise(function (resolve, reject) {
+        //   db.query(
+        //     `SELECT * from fillial WHERE id=${zayavka.fillial_id}`,
+        //     function (err, results, fields) {
+        //       if (err) {
+        //         resolve(null);
+        //         return null;
+        //       }
+        //       if (results.length != 0) {
+        //         resolve(results[0]);
+        //       } else {
+        //         resolve(null);
+        //       }
+        //     }
+        //   );
+        // });
+        // console.log(fillial);
   
         //  fillial.expired_months =[
         //   {
@@ -209,18 +209,18 @@ const {
         //       "percent" :30,
         //   },
         //   ];
-        let arr = fillial.expired_months.map((obj) => {
-          return `${obj.month}`;
-        });
+        // let arr = fillial.expired_months.map((obj) => {
+        //   return `${obj.month}`;
+        // });
   
-        var largest = Math.max.apply(0, arr);
-        console.log(largest);
-        let val = fillial.expired_months[arr.indexOf(`${largest}`)];
-        for (let index = 0; index < 20; index++) {
-          console.log(">>>>>>>>>>>>>>>");
-          console.log(Math.floor(max_amount * (1 + val["percent"] / 100)));
-        }
-        console.log(val);
+        // var largest = Math.max.apply(0, arr);
+        // console.log(largest);
+        // let val = fillial.expired_months[arr.indexOf(`${largest}`)];
+        // for (let index = 0; index < 20; index++) {
+        //   console.log(">>>>>>>>>>>>>>>");
+        //   console.log(Math.floor(max_amount * (1 + val["percent"] / 100)));
+        // }
+        // console.log(val);
   
         let alldata = {
           orderId: "PPDTEST-" + zayavka.id,
@@ -500,7 +500,6 @@ const {
               return resolve(null);
               return null;
             }
-  
             resolve(results);
           });
         });
@@ -531,11 +530,11 @@ const {
         return next(new InternalServerError(500, error));
       }
     }
-    async updateFinish(req, res, next) {
+    async update7(req, res, next) {
       try {
         await new Promise(function (resolve, reject) {
           db.query(
-            updateFinishZayavkaFunc(req.body),
+            update7ZayavkaFunc(req.body),
             function (err, results, fields) {
               if (err) {
                 return resolve(null);
@@ -566,7 +565,7 @@ const {
   
         return res.status(200).json({
           data: zayavka,
-          message: "Update is finished Successfully",
+          message: "Update 7 is done Successfully",
         });
       } catch (error) {
         console.log(error.message);
@@ -574,11 +573,11 @@ const {
       }
     }
   
-    async update7(req, res, next) {
+    async updateFinish(req, res, next) {
       try {
         let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
         let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
-        let { contractPdf, id } = req.body;
+        let { contractPdf, id,term } = req.body;
         let date = new Date();
         let singedAt = `${date.getFullYear()}-${
           date.getMonth() + 1
@@ -626,6 +625,7 @@ const {
             term: `${zayavka1.expired_month}`,
             oferta: true,
             contractPdf: contractPdf,
+            
           },
           {
             headers: {
@@ -638,7 +638,7 @@ const {
         console.log(response2.data);
   
         await new Promise(function (resolve, reject) {
-          db.query(update7ZayavkaFunc(req.body), function (err, results, fields) {
+          db.query(updateFinishZayavkaFunc(req.body), function (err, results, fields) {
             if (err) {
               return resolve(null);
               return null;
@@ -667,7 +667,7 @@ const {
   
         return res.status(200).json({
           data: zayavka,
-          message: "Update 7 is done , oferta is sent ",
+          message: "Update  is Finished , oferta is sent ",
         });
       } catch (error) {
         console.log(error);
@@ -1106,12 +1106,12 @@ const {
     return `UPDATE TestZayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
   }
   
-  function update7ZayavkaFunc(data) {
+  function updateFinishZayavkaFunc(data) {
     let { id } = data;
     return `UPDATE TestZayavka SET step=7,agree = TRUE WHERE id = ${id};`;
   }
   
-  function updateFinishZayavkaFunc(data) {
+  function update7ZayavkaFunc(data) {
     let { id } = data;
     return `UPDATE TestZayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP  WHERE id = ${id};`;
   }
