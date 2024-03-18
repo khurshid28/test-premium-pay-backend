@@ -292,7 +292,8 @@ const {
           url2,
           {
             orderId: "PPDTEST-" + zayavka.id,
-            amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
+            // amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
+            amount:40000000,
             term: "12",
             duration: "12",
             passSeria: zayavka.passport.substring(0, 2),
@@ -325,7 +326,7 @@ const {
           db.query(
             update3ZayavkaFunc({
               ...req.body,
-              payment_amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
+            //   payment_amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
             }),
             function (err, results, fields) {
               if (err) {
@@ -1075,7 +1076,7 @@ const {
   
   function update3ZayavkaFunc(data) {
     let { id, max_amount, payment_amount } = data;
-    return `UPDATE TestZayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}',payment_amount='${payment_amount}' WHERE id = ${id};`;
+    return `UPDATE TestZayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}' WHERE id = ${id};`;
   }
   
   // function update4ZayavkaFunc(data) {
