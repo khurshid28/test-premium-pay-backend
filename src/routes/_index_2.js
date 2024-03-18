@@ -48,7 +48,7 @@ router.use("/fillial-admin", fillialAdminRouter);
 // router.use("/create-pdf", pdfRouter);
 // router.use("/upload-image", uploadRouter);
 router.use("/zayavka", appRouter);
-router.use("/zayavkatest", appTestRouter);
+router.use("/zayavka-test", appTestRouter);
 router.use("/merchant", merchantRouter);
 
 router.use("/admin", adminRouter);
