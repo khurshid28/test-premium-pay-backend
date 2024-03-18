@@ -39,6 +39,7 @@ const {
   
         let id = await new Promise(function (resolve, reject) {
           db.query(update1ZayavkaFunc(req.body), function (err, results, fields) {
+            console.log(err);
             if (err) {
               resolve(null);
               return null;
