@@ -43,7 +43,7 @@ const {
               resolve(null);
               return null;
             }
-            console.log();
+            console.log(err);
             if (results.insertId) {
               resolve(results.insertId);
             } else {
