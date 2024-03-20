@@ -27,6 +27,9 @@ const pdfRouter = require("./createPDF.js");
 const uploadRouter = require("./uploadImage.js");
 
 const scoringRouter = require("./8.scoring");
+const scoringTestRouter = require("./8.scoring.test");
+
+
 
 const supportRouter = require("./9.support");
 
@@ -57,6 +60,7 @@ router.use("/fillial", fillialRouter);
 
 
 router.use("/scoring", scoringRouter);
+router.use("/scoring-test", scoringTestRouter);
 router.use("/support", supportRouter);
 router.use("/error", errorRouter);
 router.use("/accountant", accountantRouter);
