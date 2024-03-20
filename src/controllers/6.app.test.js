@@ -624,6 +624,7 @@ const {
             orderId: `PPDTEST-${id}`,
             term: `${zayavka1.expired_month}`,
             oferta: true,
+            amount: zayavka1.payment_amount,
             contractPdf: contractPdf,
             
           },
