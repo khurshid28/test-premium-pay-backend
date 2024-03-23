@@ -1109,12 +1109,12 @@ const {
   
   function updateFinishZayavkaFunc(data) {
     let { id } = data;
-    return `UPDATE TestZayavka SET step=7,agree = TRUE WHERE id = ${id};`;
+    return `UPDATE TestZayavka SET step=8,agree = TRUE,status = 'finished',finished_time = CURRENT_TIMESTAMP WHERE id = ${id};`;
   }
   
   function update7ZayavkaFunc(data) {
     let { id } = data;
-    return `UPDATE TestZayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP  WHERE id = ${id};`;
+    return `UPDATE TestZayavka SET step=7,selfie='/static/images/zayavka${id}.jpg'  WHERE id = ${id};`;
   }
   
   function cancelByClientZayavkaFunc(data) {
