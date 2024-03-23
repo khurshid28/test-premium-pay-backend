@@ -536,6 +536,7 @@ const {
           db.query(
             update7ZayavkaFunc(req.body),
             function (err, results, fields) {
+              console.log(err);
               if (err) {
                 return resolve(null);
                 return null;
@@ -563,7 +564,8 @@ const {
             }
           );
         });
-  
+       console.log(">>>> zayavka");
+       console.log(zayavka);
         return res.status(200).json({
           data: zayavka,
           message: "Update 7 is done Successfully",
