@@ -550,6 +550,7 @@ const {
           db.query(
             `SELECT * from TestZayavka WHERE id=${req.body.id}`,
             function (err, results, fields) {
+              console.log(err);
               if (err) {
                 resolve(null);
                 return null;
