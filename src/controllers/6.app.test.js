@@ -532,6 +532,7 @@ const {
     }
     async update7(req, res, next) {
       try {
+        console.log(req.body);
         await new Promise(function (resolve, reject) {
           db.query(
             update7ZayavkaFunc(req.body),
