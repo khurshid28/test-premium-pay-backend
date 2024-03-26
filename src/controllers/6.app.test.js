@@ -308,8 +308,8 @@ const {
             // inn: "303107528", elma
             // inn:"303085034", // javohir
             // inn: "305207299", // surat
-            inn: "310187940",
-  
+            // inn: "310187940",
+            inn : 200655453,
             identificationVideoBase64: IdentificationVideoBase64.substring(0, 40),
             selfie: selfie_with_passport.substring(0, 40),
           },
