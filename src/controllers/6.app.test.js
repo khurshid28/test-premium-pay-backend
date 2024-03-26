@@ -252,13 +252,14 @@ const {
         );
   
         // return next(new InternalServerError(500, error));
-        let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-        let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
+        let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+        let url2 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_SCORING;
+        
         const response1 = await axios.post(
           url1,
           {
-            username: process.env.DAVR_USERNAME,
-            password: process.env.DAVR_PASSWORD,
+            username: process.env.DAVR_TEST_USERNAME,
+            password: process.env.DAVR_TEST_PASSWORD,
           },
           {
             headers: {
@@ -354,6 +355,7 @@ const {
             }
           );
         });
+        
         let t1 = setTimeout(async function () {
           let Updatedzayavka = await new Promise(function (resolve, reject) {
             db.query(
