@@ -310,8 +310,8 @@ const {
             // inn: "305207299", // surat
             inn: "310187940",
   
-            identificationVideoBase64: IdentificationVideoBase64,
-            selfie: selfie_with_passport,
+            // identificationVideoBase64: IdentificationVideoBase64,
+            // selfie: selfie_with_passport,
           },
           {
             headers: {
