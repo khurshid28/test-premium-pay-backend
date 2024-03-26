@@ -234,7 +234,8 @@ const {
           phoneNumber: zayavka.phoneNumber,
           phoneNumber2: zayavka.phoneNumber2,
           cardNumber: cardNumber,
-          inn: process.env.PREMIUM_INN,
+          // inn: process.env.PREMIUM_INN,
+          inn : 200655453,
           selfie: selfie_with_passport.substring(0, 30),
           identificationVideoBase64: IdentificationVideoBase64.substring(0, 30),
         };
@@ -309,8 +310,8 @@ const {
             // inn:"303085034", // javohir
             // inn: "305207299", // surat
             // inn: "310187940",  // ... working
-            // inn : 200655453,
-            inn: 303085034,
+            inn : 200655453,
+            // inn: 303085034,
             identificationVideoBase64: IdentificationVideoBase64.substring(0, 40),
             selfie: selfie_with_passport.substring(0, 40),
           },
@@ -359,55 +360,55 @@ const {
           );
         });
         
-        let t1 = setTimeout(async function () {
-          let Updatedzayavka = await new Promise(function (resolve, reject) {
-            db.query(
-              `SELECT * from TestZayavka WHERE id=${id}`,
-              function (err, results, fields) {
-                if (err) {
-                  console.log(err);
-                  resolve(null);
-                  return null;
-                }
-                if (results.length != 0) {
-                  resolve(results[0]);
-                } else {
-                  resolve(null);
-                }
-              }
-            );
-          });
-          if (Updatedzayavka) {
-            if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
+        // let t1 = setTimeout(async function () {
+        //   let Updatedzayavka = await new Promise(function (resolve, reject) {
+        //     db.query(
+        //       `SELECT * from TestZayavka WHERE id=${id}`,
+        //       function (err, results, fields) {
+        //         if (err) {
+        //           console.log(err);
+        //           resolve(null);
+        //           return null;
+        //         }
+        //         if (results.length != 0) {
+        //           resolve(results[0]);
+        //         } else {
+        //           resolve(null);
+        //         }
+        //       }
+        //     );
+        //   });
+        //   if (Updatedzayavka) {
+        //     if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
   
-              try {
-                var filePath = path.join(
-                  __dirname,
-                  "..",
-                  "..",
-                  "public",
-                  "myid",
-                  `${Updatedzayavka.passport}.png`
-                );
-                // bot.sendMessage(
-                //   "-4009277227",
-                //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
-                //   {
-                //     parse_mode: "HTML",
-                //   }
-                // );
+        //       try {
+        //         var filePath = path.join(
+        //           __dirname,
+        //           "..",
+        //           "..",
+        //           "public",
+        //           "myid",
+        //           `${Updatedzayavka.passport}.png`
+        //         );
+        //         // bot.sendMessage(
+        //         //   "-4009277227",
+        //         //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
+        //         //   {
+        //         //     parse_mode: "HTML",
+        //         //   }
+        //         // );
                 
-                bot.sendPhoto( "-4009277227",filePath,{
-                  parse_mode: "HTML",
-                  caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
-                })
-              } catch (error) {
-                bot.sendMessage(2053690211, `${error}`);
-              }
-            }
-          }
-          clearTimeout(t1);
-        }, 240 * 1000);
+        //         bot.sendPhoto( "-4009277227",filePath,{
+        //           parse_mode: "HTML",
+        //           caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
+        //         })
+        //       } catch (error) {
+        //         bot.sendMessage(2053690211, `${error}`);
+        //       }
+        //     }
+        //   }
+        //   clearTimeout(t1);
+        // }, 240 * 1000);
   
         return res.status(200).json({
           data: zayavkaUpdated,
