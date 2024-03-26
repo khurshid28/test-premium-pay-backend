@@ -1086,7 +1086,7 @@ const {
   
   function update3ZayavkaFunc(data) {
     let { id, max_amount, payment_amount } = data;
-    return `UPDATE TestZayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}' WHERE id = ${id};`;
+    return `UPDATE TestZayavka SET step=3 WHERE id = ${id};`;
   }
   
   // function update4ZayavkaFunc(data) {
