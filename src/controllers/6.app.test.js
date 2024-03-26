@@ -330,6 +330,7 @@ const {
             //   payment_amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
             }),
             function (err, results, fields) {
+              console.log(err);
               if (err) {
                 return resolve(null);
                 return null;
@@ -343,6 +344,7 @@ const {
           db.query(
             `SELECT * from TestZayavka WHERE id=${id}`,
             function (err, results, fields) {
+              console.log(err);
               if (err) {
                 resolve(null);
                 return null;
@@ -362,6 +364,7 @@ const {
               `SELECT * from TestZayavka WHERE id=${id}`,
               function (err, results, fields) {
                 if (err) {
+                  console.log(err);
                   resolve(null);
                   return null;
                 }
