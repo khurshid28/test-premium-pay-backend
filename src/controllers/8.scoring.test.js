@@ -163,9 +163,9 @@ class ScoringTest {
             }
           );
         });
-
+        
         let text =
-          "<b>ID : " +
+          "<b>"+ statusIcon(status) + (statusIcon(status) ? "%0A" :"") +"ID : " +
           orderId +
           "%0A" +
           "STATUS : " +
@@ -246,6 +246,22 @@ class ScoringTest {
     }
   }
 }
+function statusIcon(status) {
+  if (status==4) {
+    return "✅";
+  }
+  if (status==3) {
+    return "🚫";
+  }
+  if (status==8) {
+    return "🚫";
+  }
+  if (status==7) {
+    return "📩";
+  }
+  return ""
+}
+
 
 function toMoney(number) {
   if (!number) {
