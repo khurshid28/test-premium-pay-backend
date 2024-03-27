@@ -12,6 +12,7 @@ let axios = require("axios");
 
 // all routes
 let router = require("./src/routes/_index");
+let router2 = require("./src/routes/_index_2");
 
 // built in middlewares
 const logger = require("./src/middlewares/logger.js");
@@ -27,7 +28,7 @@ const checkToken = require("./src/middlewares/check-token.js");
 let PREMIUM = require("./Premium-Query").PREMIUM;
 
 // PORT
-const PORT = process.env.PORT || 8090;
+const PORT = process.env.PORT || 1212;
 
 app.use((req, res, next) => {
   // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
@@ -102,7 +103,7 @@ app.use("static", express.static(path.join(__dirname, "public")));
 // all routes
 app.use("/api/v1",router);
 
-app.use("/api/v2",router);
+app.use("/api/v2",router2);
 
 // router.use((req,res,next)=>{
 //   try {
