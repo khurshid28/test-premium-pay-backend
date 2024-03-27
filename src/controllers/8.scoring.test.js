@@ -171,6 +171,8 @@ class ScoringTest {
           "STATUS : " +
           status +
           (status == 4 ? "%0A" + "LIMIT : " + toMoney(Math.floor(summa)) : "40 000 000") +
+          (status == 7 ? "%0A" + "PERIOD : " + toMoney(Math.floor(zayavka.expired_month)) : "") +
+          (status == 7 ? "%0A" + "OFORMIT SUMMA : " + toMoney(Math.floor(zayavka.payment_amount)) : "") +
           // (
           //   reason ?
           //   "%0A" + "Причина : " +
