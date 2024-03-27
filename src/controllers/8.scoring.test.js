@@ -35,6 +35,9 @@ class ScoringTest {
       if (reason) {
         reason = reason.replaceAll("ʻ", "'");
       }
+      if(summa){
+        summa = `${summa}`.replaceAll(",", ".");
+      }
 
       const filePath = path.resolve(__dirname, "scoring_test_data.txt");
       fs.appendFileSync(
