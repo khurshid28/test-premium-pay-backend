@@ -516,4 +516,4 @@ bot.on("callback_query", async (query) => {
   fs.writeFileSync(path.join(__dirname,"userData.json"), JSON.stringify(userData), "utf8");
 });
 
-bot.on("polling_error", console.log);
+// bot.on("polling_error", console.log);
