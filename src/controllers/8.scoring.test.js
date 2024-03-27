@@ -170,7 +170,7 @@ class ScoringTest {
           "%0A" +
           "STATUS : " +
           status +
-          (status == 4 ? "%0A" + "LIMIT : " + toMoney(Math.floor(summa)) : "") +
+          (status == 4 ? "%0A" + "LIMIT : " + toMoney(Math.floor(summa)) : "40 000 000") +
           // (
           //   reason ?
           //   "%0A" + "Причина : " +
