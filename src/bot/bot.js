@@ -11,7 +11,7 @@ bot.on("message", async (msg) => {
 
   if (
     chatId === 6001596917 ||
-    chatId === 702623697 ||
+    // chatId === 702623697 ||
     chatId === 1955031743 ||
     chatId === 2053690211 ||
     chatId === 2907182 ||
