@@ -41,12 +41,18 @@ module.exports = async (error, req, res, next) => {
     //   "</b>%0A" +
     //   `${JSON.stringify(error.stack)}`.substring(0, 300) +
     //   " ...";
+      let t = `${JSON.stringify(error.stack)}`.substring(0, 300)
+      t= t.replaceAll("```","")
+      t= t.replaceAll("`","")
+      t= t.replaceAll("*","")
+      t= t.replaceAll("_","")
+      t=t.replaceAll(">","}").replaceAll("<","{").replaceAll("#","$")
       
       req.errorMethod= req.method +
       " " +
       req.url 
      ;
-      req.errorText="%0A"+`${JSON.stringify(error.stack)}`.substring(0, 300) +
+      req.errorText="%0A"+t +
       " ...";
 
     
