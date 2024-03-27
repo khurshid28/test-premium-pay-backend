@@ -588,8 +588,8 @@ const {
   
     async updateFinish(req, res, next) {
       try {
-        let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-        let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
+        let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+        let url2 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_AGREEMENT;
         let { contractPdf, id,term } = req.body;
         let date = new Date();
         let singedAt = `${date.getFullYear()}-${
