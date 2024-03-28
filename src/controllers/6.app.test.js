@@ -488,7 +488,7 @@ const {
         });
         let fillial = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Fillial WHERE id=${req.body.id}`,
+            `SELECT * from Fillial WHERE id=${zayavkaOld.fillial_id}`,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -502,6 +502,8 @@ const {
             }
           );
         });
+        console.log(zayavkaOld);
+        console.log(fillial);
         await new Promise(function (resolve, reject) {
           db.query(update5ZayavkaFunc({
             ...req.body,
@@ -563,7 +565,7 @@ const {
         });
         let fillial = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Fillial WHERE id=${req.body.id}`,
+            `SELECT * from Fillial WHERE id=${zayavkaOld.fillial_id}`,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
