@@ -160,7 +160,14 @@ const {
           birthDate,
           IdentificationVideoBase64,
         } = req.body;
-  
+       console.log({
+        id,
+        max_amount,
+        // selfie_with_passport,
+        cardNumber,
+        birthDate,
+        // IdentificationVideoBase64,
+      });
         let zayavka = await new Promise(function (resolve, reject) {
           db.query(
             `SELECT * from TestZayavka WHERE id=${req.body.id}`,
@@ -225,7 +232,7 @@ const {
         let alldata = {
           orderId: "PPDTEST-" + zayavka.id,
         //   amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
-          amount: max_amount ?? 40000000,
+          amount: max_amount,
           duration: "12",
           term: "12",
           passSeria: zayavka.passport.substring(0, 2),
@@ -295,7 +302,7 @@ const {
           {
             orderId: "PPDTEST-" + zayavka.id,
             // amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
-            amount: max_amount ?? 40000000,
+            amount: max_amount,
             term: "12",
             duration: "12",
             passSeria: zayavka.passport.substring(0, 2),
