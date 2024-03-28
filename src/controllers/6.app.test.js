@@ -295,7 +295,7 @@ const {
           {
             orderId: "PPDTEST-" + zayavka.id,
             // amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
-            amount:40000000,
+            amount: max_amount ?? 40000000,
             term: "12",
             duration: "12",
             passSeria: zayavka.passport.substring(0, 2),
@@ -463,8 +463,43 @@ const {
     // }
     async update5(req, res, next) {
       try {
+        let zayavkaOld = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from TestZayavka WHERE id=${req.body.id}`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+        let fillial = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from Fillial WHERE id=${req.body.id}`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
         await new Promise(function (resolve, reject) {
-          db.query(update5ZayavkaFunc(req.body), function (err, results, fields) {
+          db.query(update5ZayavkaFunc({
+            ...req.body,
+            type: fillial.percent_type
+          }), function (err, results, fields) {
             console.log(err);
             if (err) {
               return resolve(null);
@@ -503,8 +538,43 @@ const {
     }
     async update6(req, res, next) {
       try {
+        let zayavkaOld = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from TestZayavka WHERE id=${req.body.id}`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+        let fillial = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from Fillial WHERE id=${req.body.id}`,
+            function (err, results, fields) {
+              if (err) {
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
         await new Promise(function (resolve, reject) {
-          db.query(update6ZayavkaFunc(req.body), function (err, results, fields) {
+          db.query(update6ZayavkaFunc({
+            ...req.body,
+            type: fillial.percent_type
+          }), function (err, results, fields) {
             if (err) {
               return resolve(null);
               return null;
@@ -1099,7 +1169,8 @@ const {
   // }
   
   function update5ZayavkaFunc(data) {
-    let { id, products, location, device, amount } = data;
+
+    let { id, products, location, device, amount,type } = data;
     let productsString = `'[`;
     products.forEach((product) => {
       productsString += toMyString(product).slice(1, -1);
@@ -1108,17 +1179,32 @@ const {
     productsString = productsString.slice(0, -1);
     productsString += "]'";
     console.log(productsString);
-    return `UPDATE TestZayavka SET step=5,amount=${amount},products=${
-      productsString ?? ""
-    },location=${toMyString(location)},device=${toMyString(
-      device
-    )} WHERE id = ${id};`;
+
+    if (type =="IN") {
+      return `UPDATE TestZayavka SET step=5,payment_amount=${amount},products=${
+        productsString ?? ""
+      },location=${toMyString(location)},device=${toMyString(
+        device
+      )} WHERE id = ${id};`
+    }else{
+      return `UPDATE TestZayavka SET step=5,amount=${amount},products=${
+        productsString ?? ""
+      },location=${toMyString(location)},device=${toMyString(
+        device
+      )} WHERE id = ${id};`
+    }
   }
   
   function update6ZayavkaFunc(data) {
-    let { id, payment_amount, expired_month } = data;
-    return `UPDATE TestZayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
-  }
+    let { id, payment_amount, expired_month,type } = data;
+    if (type =="IN") {
+      return `UPDATE TestZayavka SET step=6,amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+ 
+    }else{
+      return `UPDATE TestZayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+ 
+    }
+   }
   
   function updateFinishZayavkaFunc(data) {
     let { id } = data;
