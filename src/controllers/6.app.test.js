@@ -225,7 +225,7 @@ const {
         let alldata = {
           orderId: "PPDTEST-" + zayavka.id,
         //   amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
-          amount:40000000,
+          amount: max_amount ?? 40000000,
           duration: "12",
           term: "12",
           passSeria: zayavka.passport.substring(0, 2),
