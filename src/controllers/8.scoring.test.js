@@ -149,7 +149,7 @@ class ScoringTest {
 
         let zayavka = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT TestZayavka.*,fillial.name from TestZayavka,fillial WHERE TestZayavka.id=${id} and fillial.id=TestZayavka.fillial_id `,
+            `SELECT TestZayavka.*,fillial.name,fillial.percent_type from TestZayavka,fillial WHERE TestZayavka.id=${id} and fillial.id=TestZayavka.fillial_id `,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -170,7 +170,7 @@ class ScoringTest {
           "%0A" +
           "STATUS : " +
           status +  
-           (status == 4 ? "%0A" + "LIMIT : " + toMoney(Math.floor(summa)) :  (status != 7 ? "%0A"+ "SUMMA : 40 000 000":"")) +
+           (status == 4 ? "%0A" + "LIMIT : " + toMoney(Math.floor(summa)) :  (status != 7 ? "%0A"+ "SUMMA : "+(zayavka.percent_type =="IN" ? "25 000 000":"40 000 000"):"")) +
           (status == 7 ? "%0A" + "PERIOD : " + toMoney(Math.floor(zayavka.expired_month)) : "") +
           (status == 7 ? "%0A" + "OFORMIT SUMMA : " + toMoney(Math.floor(zayavka.payment_amount)) : "") +
           // (
