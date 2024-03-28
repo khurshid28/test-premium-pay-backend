@@ -488,9 +488,10 @@ const {
         });
         let fillial = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Fillial WHERE id=${zayavkaOld.fillial_id}`,
+            `SELECT * from fillial WHERE id=${zayavkaOld.fillial_id}`,
             function (err, results, fields) {
               if (err) {
+                console.log(err);
                 resolve(null);
                 return null;
               }
@@ -565,7 +566,7 @@ const {
         });
         let fillial = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Fillial WHERE id=${zayavkaOld.fillial_id}`,
+            `SELECT * from fillial WHERE id=${zayavkaOld.fillial_id}`,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
