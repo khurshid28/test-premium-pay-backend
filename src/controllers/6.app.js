@@ -1737,6 +1737,7 @@ class App {
   }
   async update7(req, res, next) {
     try {
+      console.log(">>>>> update7");
       console.log(req.body);
       await new Promise(function (resolve, reject) {
         db.query(
@@ -1745,7 +1746,7 @@ class App {
             console.log(err);
             if (err) {
               return resolve(null);
-              return null;
+              // return null;
             }
 
             resolve(results);

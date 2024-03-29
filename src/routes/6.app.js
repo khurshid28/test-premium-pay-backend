@@ -32,8 +32,8 @@ router.post("/update/3",checkUser, appController.update3);
 // router.post("/update/4",checkUser, appController.update4);
 router.post("/update/5",checkUser, appController.update5);
 router.post("/update/6",checkUser, appController.update6);
-router.post("/update/7",checkUser,  appController.update7);
-router.post("/update/finish",checkUser, upload, appController.updateFinish);
+router.post("/update/7",checkUser,upload,  appController.update7);
+router.post("/update/finish",checkUser, appController.updateFinish);
 router.post("/cancel_by_client/",checkUser, appController.cancel_by_client);
 
 // router.post("/upload", appController.upload);
