@@ -324,3 +324,6 @@
 /api/v1/myid___POST___1706261593072___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\premium-pay-backend\public\myid\AB6935244 2024-01-26 09:33:1.png'
 /api/v1/myid___POST___1706261654092___InternalServerError___Не удалось подтвердить жизненность
 /api/v1/myid___POST___1706261763968___InternalServerError___Не удалось подтвердить жизненность
+/api/v3/myid/check/___POST___1711701618236___InternalServerError___>>> ok
+/api/v3/myid/check/___POST___1711701774038___InternalServerError___>>> ok
+/api/v3/myid/check/___POST___1711701801117___InternalServerError___>>> ok

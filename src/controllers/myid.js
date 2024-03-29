@@ -1,4 +1,4 @@
-const { InternalServerError, ForbiddenError } = require("../utils/errors.js");
+const { InternalServerError, ForbiddenError, BadRequestError } = require("../utils/errors.js");
 let axios = require("axios");
 let path = require("path");
 let fs = require("fs");
@@ -203,7 +203,7 @@ class Myid {
 
       let zayavka2 = await new Promise(function (resolve, reject) {
         db.query(
-          `Select * from Zayavka WHERE passport='${passport}++' AND status='canceled_by_scoring' ORDER BY id DESC`,
+          `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring' ORDER BY id DESC`,
           function (err, results, fields) {
             // console.log("here");
             // console.log(err);
