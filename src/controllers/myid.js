@@ -180,6 +180,10 @@ class Myid {
   async check(req, res, next) {
     try {
       let { passport, gender, date } = req.body;
+      return res.status(200).json({
+        message: "Пользователю предоставлено разрешение",
+        status: true,
+      });
 
       console.log(new Date().getFullYear() - `${date}`.split(".")[2], " yil");
       let age = new Date().getFullYear() - `${date}`.split(".")[2];
@@ -203,7 +207,7 @@ class Myid {
 
       let zayavka2 = await new Promise(function (resolve, reject) {
         db.query(
-          `Select * from Zayavka WHERE passport='${passport}++++' AND status='canceled_by_scoring' ORDER BY id DESC`,
+          `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring' ORDER BY id DESC`,
           function (err, results, fields) {
             // console.log("here");
             // console.log(err);
