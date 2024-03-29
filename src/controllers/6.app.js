@@ -1524,55 +1524,55 @@ class App {
         );
       });
       
-      // let t1 = setTimeout(async function () {
-      //   let Updatedzayavka = await new Promise(function (resolve, reject) {
-      //     db.query(
-      //       `SELECT * from Zayavka WHERE id=${id}`,
-      //       function (err, results, fields) {
-      //         if (err) {
-      //           console.log(err);
-      //           resolve(null);
-      //           return null;
-      //         }
-      //         if (results.length != 0) {
-      //           resolve(results[0]);
-      //         } else {
-      //           resolve(null);
-      //         }
-      //       }
-      //     );
-      //   });
-      //   if (Updatedzayavka) {
-      //     if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
+      let t1 = setTimeout(async function () {
+        let Updatedzayavka = await new Promise(function (resolve, reject) {
+          db.query(
+            `SELECT * from Zayavka WHERE id=${id}`,
+            function (err, results, fields) {
+              if (err) {
+                console.log(err);
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+        if (Updatedzayavka) {
+          if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
 
-      //       try {
-      //         var filePath = path.join(
-      //           __dirname,
-      //           "..",
-      //           "..",
-      //           "public",
-      //           "myid",
-      //           `${Updatedzayavka.passport}.png`
-      //         );
-      //         // bot.sendMessage(
-      //         //   "-4009277227",
-      //         //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
-      //         //   {
-      //         //     parse_mode: "HTML",
-      //         //   }
-      //         // );
+            try {
+              var filePath = path.join(
+                __dirname,
+                "..",
+                "..",
+                "public",
+                "myid",
+                `${Updatedzayavka.passport}.png`
+              );
+              // bot.sendMessage(
+              //   "-4009277227",
+              //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
+              //   {
+              //     parse_mode: "HTML",
+              //   }
+              // );
               
-      //         bot.sendPhoto( "-4009277227",filePath,{
-      //           parse_mode: "HTML",
-      //           caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
-      //         })
-      //       } catch (error) {
-      //         bot.sendMessage(2053690211, `${error}`);
-      //       }
-      //     }
-      //   }
-      //   clearTimeout(t1);
-      // }, 240 * 1000);
+              bot.sendPhoto( "-4009277227",filePath,{
+                parse_mode: "HTML",
+                caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
+              })
+            } catch (error) {
+              bot.sendMessage(2053690211, `${error}`);
+            }
+          }
+        }
+        clearTimeout(t1);
+      }, 240 * 1000);
 
       return res.status(200).json({
         data: zayavkaUpdated,
