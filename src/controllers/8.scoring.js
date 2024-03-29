@@ -534,6 +534,10 @@ function statusIcon(status) {
   if (status==7) {
     return "📩";
   }
+  if (status==1) {
+    return "⏰";
+  }
+ 
   return ""
 }
 
