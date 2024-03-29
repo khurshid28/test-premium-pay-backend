@@ -241,8 +241,8 @@ const {
           phoneNumber: zayavka.phoneNumber,
           phoneNumber2: zayavka.phoneNumber2,
           cardNumber: cardNumber,
-          // inn: process.env.PREMIUM_INN,
-          inn : 200655453,
+          inn: process.env.PREMIUM_INN,
+          // inn : 200655453,
           selfie: selfie_with_passport.substring(0, 30),
           identificationVideoBase64: IdentificationVideoBase64.substring(0, 30),
         };
@@ -321,8 +321,8 @@ const {
             // inn: 303085034,
             inn :305207299,
             // inn:303085034, //surat 
-            identificationVideoBase64: IdentificationVideoBase64.substring(0, 40),
-            selfie: selfie_with_passport.substring(0, 40),
+            identificationVideoBase64: IdentificationVideoBase64,
+            selfie: selfie_with_passport,
           },
           {
             headers: {
@@ -429,45 +429,7 @@ const {
         return next(new InternalServerError(500, error));
       }
     }
-    // async update4(req, res, next) {
-    //   try {
-    //     await new Promise(function (resolve, reject) {
-    //       db.query(update4ZayavkaFunc(req.body), function (err, results, fields) {
-    //         if (err) {
-    //           return resolve(null);
-    //           return null;
-    //         }
-  
-    //         resolve(results);
-    //       });
-    //     });
-  
-    //     let zayavkaUpdated = await new Promise(function (resolve, reject) {
-    //       db.query(
-    //         `SELECT * from TestZayavka WHERE id=${req.body.id}`,
-    //         function (err, results, fields) {
-    //           if (err) {
-    //             resolve(null);
-    //             return null;
-    //           }
-    //           if (results.length != 0) {
-    //             resolve(results[0]);
-    //           } else {
-    //             resolve(null);
-    //           }
-    //         }
-    //       );
-    //     });
-  
-    //     return res.status(200).json({
-    //       data: zayavkaUpdated,
-    //       message: "Update 4 is done",
-    //     });
-    //   } catch (error) {
-    //     console.log(error);
-    //     return next(new InternalServerError(500, error));
-    //   }
-    // }
+
     async update5(req, res, next) {
       try {
         let zayavkaOld = await new Promise(function (resolve, reject) {
