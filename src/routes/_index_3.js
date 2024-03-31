@@ -36,7 +36,7 @@ const supportRouter = require("./9.support");
 const errorRouter = require("./10.errors");
 
 const accountantRouter = require("./11.accountant");
-
+const qrCodeRouter = require("./12.qrcode");
 
 router.use("/login", loginRouter);
 router.use("/myid", myidRouter);
@@ -63,6 +63,9 @@ router.use("/scoring", scoringRouter);
 router.use("/support", supportRouter);
 router.use("/error", errorRouter);
 router.use("/accountant", accountantRouter);
+
+router.use("/qr", qrCodeRouter);
+
 
 router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 

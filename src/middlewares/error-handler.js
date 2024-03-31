@@ -6,6 +6,7 @@ const {
   NotFoundError,
 } = require("../utils/errors");
 let axios = require("axios");
+const { JsonWebTokenError } = require("jsonwebtoken");
 const getDurationInMilliseconds = (start) => {
   const NS_PER_SEC = 1e9
   const NS_TO_MS = 1e6
@@ -30,7 +31,8 @@ module.exports = async (error, req, res, next) => {
       error instanceof InvalidTokenError ||
       error instanceof ValidationError ||
       error instanceof ForbiddenError ||
-      error instanceof NotFoundError
+      error instanceof NotFoundError || 
+      error instanceof JsonWebTokenError
     )
   ) {
     // let text =

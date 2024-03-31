@@ -102,7 +102,6 @@ app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
 // all routes
 // app.use("/api/v1",router);
-
 // app.use("/api/v2",router2);
 app.use("/api/v3",router3);
 

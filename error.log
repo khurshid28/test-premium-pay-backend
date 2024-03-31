@@ -327,3 +327,22 @@
 /api/v3/myid/check/___POST___1711701618236___InternalServerError___>>> ok
 /api/v3/myid/check/___POST___1711701774038___InternalServerError___>>> ok
 /api/v3/myid/check/___POST___1711701801117___InternalServerError___>>> ok
+/api/v3/qr/validate/___POST___1711885006045___InternalServerError___JsonWebTokenError: jwt malformed
+/api/v3/qr/validate/___POST___1711885147212___InternalServerError___JsonWebTokenError: jwt malformed
+/api/v3/qr/validate/___POST___1711885202878___InternalServerError___JsonWebTokenError: jwt malformed
+/api/v3/qr/validate/___POST___1711885258414___JsonWebTokenError___409
+/api/v3/qr/validate/___POST___1711885319481___JsonWebTokenError___409
+/api/v3/qr/validate/___POST___1711885342224___JsonWebTokenError___JsonWebTokenError: jwt malformed
+/api/v3/qr/validate/___POST___1711885454451___JsonWebTokenError___jwt malformed
+/api/v3/qr/validate/___POST___1711885523057___JsonWebTokenError___jwt malformed
+/api/v3/qr/validate/___POST___1711885598472___JsonWebTokenError___jwt malformed
+/api/v3/qr/validate/___POST___1711885738695___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711885790634___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711885884193___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711885941301___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711885950115___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711886010515___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711886011791___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711886058310___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711886059887___JsonWebTokenError___invalid signature
+/api/v3/qr/validate/___POST___1711886816774___InternalServerError___Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
