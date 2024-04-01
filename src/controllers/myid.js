@@ -180,16 +180,13 @@ class Myid {
   async check(req, res, next) {
     try {
       let { passport, gender, date } = req.body;
-      return res.status(200).json({
-        message: "Пользователю предоставлено разрешение",
-        status: true,
-      });
+     
 
       console.log(new Date().getFullYear() - `${date}`.split(".")[2], " yil");
       let age = new Date().getFullYear() - `${date}`.split(".")[2];
       console.log(req.body);
       if (gender == "ERKAK" ) {
-        if( (age < 20 || age > 58)){
+        if( (age < 19 || age > 58)){
           return res.status(200).json({
             message: "Возраст клиента указан неверно.",
             status: false,
@@ -197,7 +194,7 @@ class Myid {
         }
        
       } else {
-        if (age < 20 || age > 53) {
+        if (age < 19 || age > 53) {
           return res.status(200).json({
             message: "Возраст клиента указан неверно.",
             status: false,
