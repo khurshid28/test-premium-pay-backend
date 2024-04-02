@@ -44,6 +44,8 @@ class Fillial {
         director_phone,
         percent_type,
         expired_months,
+        
+
       } = req.body;
       name = name.replaceAll("ʻ", "'");
       director_name = director_name.replaceAll("ʻ", "'");

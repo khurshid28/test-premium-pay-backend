@@ -42,6 +42,7 @@ class Users {
     }
     async createUser(req, res, next) {
         try {
+
             console.log("KKK");
             console.log(req.user.role);
             if (req.user.role === "User") {
@@ -67,10 +68,18 @@ class Users {
 
 
             // Generate random login name and password
-            const loginName = cryptoRandomString({ length: 10 });
-            const loginPassword = cryptoRandomString({ length: 15 });
-            req.body.loginName= loginName
-            req.body.loginPassword= loginPassword
+            
+            if (!req.body.loginName) {
+                const loginName = cryptoRandomString({ length: 10 });
+                req.body.loginName= loginName
+            }
+            if (!req.body.loginPassword) {
+                const loginPassword = cryptoRandomString({ length: 15 });
+                req.body.loginPassword= loginPassword
+            }
+           
+            
+
             req.body.who_created= {"role":req.user.role,"id":req.user.id }
 
        
