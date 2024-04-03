@@ -13,6 +13,8 @@ const router = Router();
 
 
 router.post("/result", scoringTestController.post);
+router.post("/sendOtp", scoringTestController.sendOtp);
+router.post("/varify", scoringTestController.sendOtp);
 
 
 module.exports = router;

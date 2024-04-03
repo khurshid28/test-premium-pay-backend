@@ -35,7 +35,7 @@ class ScoringTest {
       if (reason) {
         reason = reason.replaceAll("ʻ", "'");
       }
-      if(summa){
+      if (summa) {
         summa = `${summa}`.replaceAll(",", ".");
       }
 
@@ -163,16 +163,29 @@ class ScoringTest {
             }
           );
         });
-        
+
         let text =
-          "<b>"+ statusIcon(status) + (statusIcon(status) ? "%0A" :"") +"ID : " +
+          "<b>" +
+          statusIcon(status) +
+          (statusIcon(status) ? "%0A" : "") +
+          "ID : " +
           orderId +
           "%0A" +
           "STATUS : " +
-          status +  
-           (status == 4 ? "%0A" + "LIMIT : " + toMoney(Math.floor(summa)) :  (status != 7 ? "%0A"+ "SUMMA : "+( toMoney(Math.floor(zayavka.max_amount))):"")) +
-          (status == 7 ? "%0A" + "PERIOD : " + toMoney(Math.floor(zayavka.expired_month)) : "") +
-          (status == 7 ? "%0A" + "OFORMIT SUMMA : " + toMoney(Math.floor(zayavka.payment_amount)) : "") +
+          status +
+          (status == 4
+            ? "%0A" + "LIMIT : " + toMoney(Math.floor(summa))
+            : status != 7
+            ? "%0A" + "SUMMA : " + toMoney(Math.floor(zayavka.max_amount))
+            : "") +
+          (status == 7
+            ? "%0A" + "PERIOD : " + toMoney(Math.floor(zayavka.expired_month))
+            : "") +
+          (status == 7
+            ? "%0A" +
+              "OFORMIT SUMMA : " +
+              toMoney(Math.floor(zayavka.payment_amount))
+            : "") +
           // (
           //   reason ?
           //   "%0A" + "Причина : " +
@@ -246,6 +259,69 @@ class ScoringTest {
       console.log(error);
       return next(new InternalServerError(500, error));
     }
+  }
+  async sendOtp(req, res, next) {
+    const { cardNumber, expiry } = req.body;
+    let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+    let url2 = process.env.DAVR_TEST_BASE_URL + "/sendOtp/";
+    const response1 = await axios.post(
+      url1,
+      {
+        username: process.env.DAVR_TEST_USERNAME,
+        password: process.env.DAVR_TEST_PASSWORD,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const response2 = await axios.post(
+      url2,
+      {
+        card: cardNumber,
+        expiry: expiry,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + response1.data["token"],
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response2.data);
+  }
+  async varify(req, res, next) {
+    const { cardNumber, expiry } = req.body;
+    let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+    let url2 = process.env.DAVR_TEST_BASE_URL + "/varify/";
+    const response1 = await axios.post(
+      url1,
+      {
+        username: process.env.DAVR_TEST_USERNAME,
+        password: process.env.DAVR_TEST_PASSWORD,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response1.data);
+    const response2 = await axios.post(
+      url2,
+      {
+        card: cardNumber,
+        expiry: expiry,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + response1.data["token"],
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response2.data);
   }
 }
 function statusIcon(status) {
