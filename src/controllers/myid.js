@@ -228,7 +228,7 @@ class Myid {
         ) {
           return res.status(200).json({
             message:
-              "Недавно клиент получил отказ, теперь он(она) может проверить через 15 дней.",
+              `Недавно клиент получил отказ, теперь он(она) может проверить через ${16 - Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) } дней.`,
             status: false,
           });
         }

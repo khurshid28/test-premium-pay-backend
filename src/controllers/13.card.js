@@ -1,4 +1,6 @@
- class CardController {
+let axios = require("axios");
+
+class CardController {
    async sendOtp(req, res, next) {
      const { cardNumber, expiry } = req.body;
   
