@@ -35,14 +35,7 @@ module.exports = async (error, req, res, next) => {
       error instanceof JsonWebTokenError
     )
   ) {
-    // let text =
-    //   "<b>ERROR ON SERVER</b> : %0A<b>" +
-    //   req.method +
-    //   " " +
-    //   req.url +
-    //   "</b>%0A" +
-    //   `${JSON.stringify(error.stack)}`.substring(0, 300) +
-    //   " ...";
+   
       let t = `${JSON.stringify(error.stack)}`.substring(0, 300)
       t= t.replaceAll("```","")
       t= t.replaceAll("`","")

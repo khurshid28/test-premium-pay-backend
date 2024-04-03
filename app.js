@@ -1,5 +1,5 @@
 require("./src/config/_index.js");
-require("./src/utils/schedule");
+
 
 var express = require("express");
 
@@ -10,9 +10,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 let axios = require("axios");
 
-// all routes
-// let router = require("./src/routes/_index");
-// let router2 = require("./src/routes/_index_2");
+
 let router3 = require("./src/routes/_index_3");
 // built in middlewares
 const logger = require("./src/middlewares/logger.js");
@@ -22,13 +20,13 @@ const errorHandler = require("./src/middlewares/error-handler.js");
 const app = express();
 
 let db = require("./src/config/db");
-// let dbtest = require("./src/config/dbtest");
+
 
 const checkToken = require("./src/middlewares/check-token.js");
 let PREMIUM = require("./Premium-Query").PREMIUM;
 
 // PORT
-const PORT = process.env.PORT || 8090;
+const PORT = process.env.TEST_PORT || 1212;
 
 app.use((req, res, next) => {
   // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
@@ -38,16 +36,11 @@ app.use((req, res, next) => {
     const durationInMilliseconds = getDurationInMilliseconds(
       req.duration_start
     );
-    // console.log(
-    //   `${req.method} ${req.originalUrl} ${
-    //     res.statusCode
-    //   } [FINISHED] ${durationInMilliseconds.toLocaleString()} ms`
-    // );
-
+ 
     if (req.errorMethod) {
       req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
       let text =
-        "<b>ERROR ON SERVER : %0A" +
+        "<b>ERROR ON TEST-SERVER : %0A" +
         req.errorMethod +
         " " +
         res.statusCode +
@@ -63,57 +56,27 @@ app.use((req, res, next) => {
     }
   });
 
-  // res.on('close', () => {
-  //     const durationInMilliseconds = getDurationInMilliseconds (req.duration_start)
-  //     console.log(`${req.method} ${req.originalUrl} [CLOSED] ${durationInMilliseconds.toLocaleString()} ms`)
-  //     req.duration=`${durationInMilliseconds.toLocaleString()} ms`
 
-  //     console.log("req.errorText >> "+req.errorText)
-  //     let text=  req.duration +  req.errorText
-  //     let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
-  //     axios.post(url);
-
-  // })
   req.duration_start = process.hrtime();
   next();
 });
 app.use(morgan("dev"));
-// middlewares
+
 
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
-// app.use(bodyParser.json({limit: '10mb'}));
-// app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.use(cors(), rateLimit());
 
 // static
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
-// app.all('*', function(req, res, next) {
-//   try {
-//     console.log("try *** >>");
-//     next();
-//   } catch (error) {
-//     console.log("catch error >>");
-//   }
-// })
 
-// all routes
-// app.use("/api/v1",router);
-// app.use("/api/v2",router2);
+
 app.use("/api/v3",router3);
 
-// router.use((req,res,next)=>{
-//   try {
-//     next();
-//   } catch (error) {
-//     console.log("catch error");
-//   }
-// });
-
-// app.use("/test",router);
 
 app.use(helmet());
 
@@ -124,8 +87,6 @@ app.use(logger);
 // testing server
 app.get("/", (req, res) => res.send("premium pay"));
 
-require("./src/bot/bot")
-require("./src/bot/register_bot")
 // starting server
 app.listen(PORT, async () => {
   console.log(`server ready on port:${PORT}`);
