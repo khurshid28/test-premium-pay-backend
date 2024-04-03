@@ -7,7 +7,7 @@ class CardController {
     
     
      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
-     let url2 = process.env.DAVR_TEST_BASE_URL + "/sendOtp";
+     let url2 = process.env.DAVR_TEST_BASE_URL + "/card/sendOTP";
      const response1 = await axios.post(
        url1,
        {
@@ -55,7 +55,7 @@ class CardController {
         });
       }
      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
-     let url2 = process.env.DAVR_TEST_BASE_URL + "/verify";
+     let url2 = process.env.DAVR_TEST_BASE_URL + "/card/verify";
      const response1 = await axios.post(
        url1,
        {
