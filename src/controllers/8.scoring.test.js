@@ -260,69 +260,7 @@ class ScoringTest {
       return next(new InternalServerError(500, error));
     }
   }
-  async sendOtp(req, res, next) {
-    const { cardNumber, expiry } = req.body;
-    let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
-    let url2 = process.env.DAVR_TEST_BASE_URL + "/sendOtp/";
-    const response1 = await axios.post(
-      url1,
-      {
-        username: process.env.DAVR_TEST_USERNAME,
-        password: process.env.DAVR_TEST_PASSWORD,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const response2 = await axios.post(
-      url2,
-      {
-        card: cardNumber,
-        expiry: expiry,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + response1.data["token"],
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    console.log(response2.data);
-  }
-  async varify(req, res, next) {
-    const { cardNumber, expiry } = req.body;
-    let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
-    let url2 = process.env.DAVR_TEST_BASE_URL + "/varify/";
-    const response1 = await axios.post(
-      url1,
-      {
-        username: process.env.DAVR_TEST_USERNAME,
-        password: process.env.DAVR_TEST_PASSWORD,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    console.log(response1.data);
-    const response2 = await axios.post(
-      url2,
-      {
-        card: cardNumber,
-        expiry: expiry,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + response1.data["token"],
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    console.log(response2.data);
-  }
+ 
 }
 function statusIcon(status) {
   if (status==4) {
