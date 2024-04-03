@@ -1,4 +1,9 @@
 let axios = require("axios");
+let {
+  InternalServerError,
+  BadRequestError,
+  ForbiddenError,
+} = require("../utils/errors.js");
 
 class CardController {
    async sendOtp(req, res, next) {
