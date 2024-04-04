@@ -13,10 +13,10 @@ class CardController {
       return !isNaN(num);
     }
      try {
-      if (cardNumber.length != 16 || isNumeric(cardNumber)) {
+      if (cardNumber.length != 16 || !isNumeric(cardNumber)) {
         return next( new BadRequestError(400, "Invalid card number"))
       }
-      if (expiry.length != 4 || isNumeric(expiry)) {
+      if (expiry.length != 4 || !isNumeric(expiry)) {
         return next(new BadRequestError(400, "Invalid expiration date !"));
       }
       
@@ -66,7 +66,7 @@ class CardController {
    }
    async verify(req, res, next) {
      const { id,code, type } = req.body;
-      
+
      try {
        
       let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
