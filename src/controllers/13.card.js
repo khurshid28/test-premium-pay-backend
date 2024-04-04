@@ -47,11 +47,11 @@ class CardController {
           },
         }
       );
-      console.log(response2.data);
+      // console.log(response2.data);
 
       return res.status(200).json({
         success: true,
-        data: response2.data,
+        data: response2.data["result"],
       });
     } catch (error) {
       console.log(error);
@@ -60,6 +60,9 @@ class CardController {
   }
   async verify(req, res, next) {
     const { id, code, type } = req.body;
+    if(code.length !=6){
+      return next(new BadRequestError(400, "code must consist of 6 numbers!"));
+    }
 
     try {
       let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
@@ -91,10 +94,10 @@ class CardController {
           },
         }
       );
-      console.log(response2.data);
+      // console.log(response2.data);
       return res.status(200).json({
         success: true,
-        data: response2.data,
+        data: response2.data["result"],
       });
     } catch (error) {
       console.log(error);
@@ -140,11 +143,11 @@ class CardController {
           },
         }
       );
-      console.log(response2.data);
+      // console.log(response2.data);
 
       return res.status(200).json({
         success: true,
-        data: response2.data,
+        data: response2.data['result'],
       });
     } catch (error) {
       console.log(error);
