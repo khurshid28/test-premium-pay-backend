@@ -9,18 +9,15 @@ class CardController {
    async sendOtp(req, res, next) {
      const { cardNumber, expiry } = req.body;
 
+    function isNumeric(num) {
+      return !isNaN(num);
+    }
      try {
-      if (cardNumber.length != 16) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid card number !",
-        });
+      if (cardNumber.length != 16 || isNumeric(cardNumber)) {
+        return next( new BadRequestError(400, "Invalid card number"))
       }
-      if (expiry.length != 4) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid card expiration date !",
-        });
+      if (expiry.length != 4 || isNumeric(expiry)) {
+        return next(new BadRequestError(400, "Invalid expiration date !"));
       }
       
       
@@ -69,7 +66,7 @@ class CardController {
    }
    async verify(req, res, next) {
      const { id,code, type } = req.body;
-
+      
      try {
        
       let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
