@@ -6,72 +6,62 @@ let {
 } = require("../utils/errors.js");
 
 class CardController {
-   async sendOtp(req, res, next) {
-     const { cardNumber, expiry } = req.body;
+  async sendOtp(req, res, next) {
+    const { cardNumber, expiry } = req.body;
 
-     try {
-      if (cardNumber.length != 16) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid card number !",
-        });
+    function isNumeric(num) {
+      return !isNaN(num);
+    }
+    try {
+      if (cardNumber.length != 16 || !isNumeric(cardNumber)) {
+        return next(new BadRequestError(400, "Invalid card number"));
       }
-      if (expiry.length != 4) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid card expiration date !",
-        });
+      if (expiry.length != 4 || !isNumeric(expiry)) {
+        return next(new BadRequestError(400, "Invalid expiration date !"));
       }
-      
-      
-       let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
-       let url2 = process.env.DAVR_TEST_BASE_URL + "/card/sendOTP";
-       const response1 = await axios.post(
-         url1,
-         {
-           username: process.env.DAVR_TEST_USERNAME,
-           password: process.env.DAVR_TEST_PASSWORD,
-         },
-         {
-           headers: {
-             "Content-Type": "application/json",
-           },
-         }
-       );
-       const response2 = await axios.post(
-         url2,
-         {
-           card: cardNumber,
-           expiry: expiry,
-         },
-         {
-           headers: {
-             Authorization: "Bearer " + response1.data["token"],
-             "Content-Type": "application/json",
-           },
-         }
-       );
-       console.log(response2.data);
-     
-       return res.status(200).json({
-         success: true,
-         data: response2.data,
-       });
-     
+
+      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_TEST_BASE_URL + "/card/sendOTP";
+      const response1 = await axios.post(
+        url1,
+        {
+          username: process.env.DAVR_TEST_USERNAME,
+          password: process.env.DAVR_TEST_PASSWORD,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const response2 = await axios.post(
+        url2,
+        {
+          card: cardNumber,
+          expiry: expiry,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + response1.data["token"],
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response2.data);
+
+      return res.status(200).json({
+        success: true,
+        data: response2.data,
+      });
     } catch (error) {
       console.log(error);
       return next(new InternalServerError(500, error));
     }
-   
+  }
+  async verify(req, res, next) {
+    const { id, code, type } = req.body;
 
-
-    
-   }
-   async verify(req, res, next) {
-     const { id,code, type } = req.body;
-
-     try {
-       
+    try {
       let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_TEST_BASE_URL + "/card/verify";
       const response1 = await axios.post(
@@ -90,7 +80,9 @@ class CardController {
       const response2 = await axios.post(
         url2,
         {
-         id,code, type
+          id,
+          code,
+          type,
         },
         {
           headers: {
@@ -101,16 +93,64 @@ class CardController {
       );
       console.log(response2.data);
       return res.status(200).json({
-         success: true,
-         data: response2.data
-      })
-     
+        success: true,
+        data: response2.data,
+      });
     } catch (error) {
       console.log(error);
       return next(new InternalServerError(500, error));
     }
-   
-   }
- }
+  }
+  async check(req, res, next) {
+    const { cardNumber } = req.body;
+
+    function isNumeric(num) {
+      return !isNaN(num);
+    }
+    try {
+      if (cardNumber.length != 16 || !isNumeric(cardNumber)) {
+        return next(new BadRequestError(400, "Invalid card number"));
+      }
+  
+
+      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_TEST_BASE_URL + "/card/check";
+      const response1 = await axios.post(
+        url1,
+        {
+          username: process.env.DAVR_TEST_USERNAME,
+          password: process.env.DAVR_TEST_PASSWORD,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const response2 = await axios.post(
+        url2,
+        {
+          card: cardNumber,
+          
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + response1.data["token"],
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response2.data);
+
+      return res.status(200).json({
+        success: true,
+        data: response2.data,
+      });
+    } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+    }
+  }
+}
 
  module.exports = new CardController();
