@@ -56,7 +56,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${id}`,
+//           `SELECT * from TestZayavka WHERE id=${id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -125,7 +125,7 @@
 
 //       let zayavkaUpdated = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -163,7 +163,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -338,7 +338,7 @@
 
 //       let zayavkaUpdated = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${id}`,
+//           `SELECT * from TestZayavka WHERE id=${id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -355,7 +355,7 @@
 //       let t1 = setTimeout(async function () {
 //         let Updatedzayavka = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE id=${id}`,
+//             `SELECT * from TestZayavka WHERE id=${id}`,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -426,7 +426,7 @@
 
 //   //     let zayavkaUpdated = await new Promise(function (resolve, reject) {
 //   //       db.query(
-//   //         `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//   //         `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //   //         function (err, results, fields) {
 //   //           if (err) {
 //   //             resolve(null);
@@ -466,7 +466,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -505,7 +505,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -547,7 +547,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -598,7 +598,7 @@
 
 //       let zayavka1 = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${id}`,
+//           `SELECT * from TestZayavka WHERE id=${id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -648,7 +648,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -691,7 +691,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -751,7 +751,7 @@
 //       if (req.user.role === "User") {
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
+//             `SELECT * from TestZayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -764,7 +764,7 @@
 //       } else if (req.user.role === "SuperAdmin") {
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
 //             function (err, results, fields) {
 //               console.log(err);
 //               if (err) {
@@ -795,7 +795,7 @@
 //         console.log(user);
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+//             `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -808,7 +808,7 @@
 //       } else if (req.user.role === "Accountant") {
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
 //             function (err, results, fields) {
 //               console.log(err);
 //               if (err) {
@@ -822,7 +822,7 @@
 //         // console.log(user);
 //         // zayavkalar = await new Promise(function (resolve, reject) {
 //         //   db.query(
-//         //     `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+//         //     `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
 //         //     function (err, results, fields) {
 //         //       if (err) {
 //         //         resolve(null);
@@ -876,7 +876,7 @@
 
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
+//             `SELECT * from TestZayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -908,7 +908,7 @@
          
 //           let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where step=8 and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -925,7 +925,7 @@
 //             reject
 //           ) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where status='canceled_by_scoring' and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -941,7 +941,7 @@
 //             reject
 //           ) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where status='canceled_by_client' and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where status='canceled_by_client' and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -955,7 +955,7 @@
   
 //           let zayavkalarTimeOtkaz = await new Promise(function (resolve, reject) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where status='canceled_by_daily' and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -981,7 +981,7 @@
   
 //             let zayavkalarScoring = await new Promise(function (resolve, reject) {
 //               db.query(
-//                 `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from Zayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
+//                 `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from TestZayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
 //                 function (err, results, fields) {
 //                   if (err) {
 //                     console.log(err);
@@ -1069,17 +1069,17 @@
 
 //   // passport_by = passport_by.replaceAll("ʻ", "'");
 //   // address = address.replaceAll("ʻ", "'");
-//   return `UPDATE Zayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
+//   return `update TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
 // }
 
 // function update3ZayavkaFunc(data) {
 //   let { id, max_amount, payment_amount } = data;
-//   return `UPDATE Zayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}',payment_amount='${payment_amount}' WHERE id = ${id};`;
+//   return `update TestZayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}',payment_amount='${payment_amount}' WHERE id = ${id};`;
 // }
 
 // // function update4ZayavkaFunc(data) {
 // //   let { id } = data;
-// //   return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
+// //   return `update TestZayavka SET step=4 WHERE id = ${id};`;
 // // }
 
 // function update5ZayavkaFunc(data) {
@@ -1092,7 +1092,7 @@
 //   productsString = productsString.slice(0, -1);
 //   productsString += "]'";
 //   console.log(productsString);
-//   return `UPDATE Zayavka SET step=5,amount=${amount},products=${
+//   return `update TestZayavka SET step=5,amount=${amount},products=${
 //     productsString ?? ""
 //   },location=${toMyString(location)},device=${toMyString(
 //     device
@@ -1101,22 +1101,22 @@
 
 // function update6ZayavkaFunc(data) {
 //   let { id, payment_amount, expired_month } = data;
-//   return `UPDATE Zayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+//   return `update TestZayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 // }
 
 // function update7ZayavkaFunc(data) {
 //   let { id } = data;
-//   return `UPDATE Zayavka SET step=7,agree = TRUE WHERE id = ${id};`;
+//   return `update TestZayavka SET step=7,agree = TRUE WHERE id = ${id};`;
 // }
 
 // function updateFinishZayavkaFunc(data) {
 //   let { id } = data;
-//   return `UPDATE Zayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP  WHERE id = ${id};`;
+//   return `update TestZayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP  WHERE id = ${id};`;
 // }
 
 // function cancelByClientZayavkaFunc(data) {
 //   let { id, canceled_reason } = data;
-//   return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
+//   return `update TestZayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
 // }
 
 // function toMyString(ob) {
@@ -1210,7 +1210,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${id}`,
+          `SELECT * from TestZayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1279,7 +1279,7 @@ class App {
 
       let zayavkaUpdated = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1324,7 +1324,7 @@ class App {
     });
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1508,7 +1508,7 @@ class App {
 
       let zayavkaUpdated = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${id}`,
+          `SELECT * from TestZayavka WHERE id=${id}`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -1527,7 +1527,7 @@ class App {
       // let t1 = setTimeout(async function () {
       //   let Updatedzayavka = await new Promise(function (resolve, reject) {
       //     db.query(
-      //       `SELECT * from Zayavka WHERE id=${id}`,
+      //       `SELECT * from TestZayavka WHERE id=${id}`,
       //       function (err, results, fields) {
       //         if (err) {
       //           console.log(err);
@@ -1589,7 +1589,7 @@ class App {
     try {
       let zayavkaOld = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1639,7 +1639,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1667,7 +1667,7 @@ class App {
     try {
       let zayavkaOld = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1712,7 +1712,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1757,7 +1757,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -1810,7 +1810,7 @@ class App {
 
       let zayavka1 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${id}`,
+          `SELECT * from TestZayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1862,7 +1862,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1905,7 +1905,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1965,7 +1965,7 @@ class App {
       if (req.user.role === "User") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
+            `SELECT * from TestZayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -1978,7 +1978,7 @@ class App {
       } else if (req.user.role === "SuperAdmin") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
@@ -2009,7 +2009,7 @@ class App {
         console.log(user);
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+            `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -2022,7 +2022,7 @@ class App {
       } else if (req.user.role === "Accountant") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
@@ -2036,7 +2036,7 @@ class App {
         // console.log(user);
         // zayavkalar = await new Promise(function (resolve, reject) {
         //   db.query(
-        //     `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+        //     `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
         //     function (err, results, fields) {
         //       if (err) {
         //         resolve(null);
@@ -2090,7 +2090,7 @@ class App {
 
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
+            `SELECT * from TestZayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -2122,7 +2122,7 @@ class App {
          
           let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where step=8 and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2139,7 +2139,7 @@ class App {
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where status='canceled_by_scoring' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2155,7 +2155,7 @@ class App {
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_client' and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where status='canceled_by_client' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2169,7 +2169,7 @@ class App {
   
           let zayavkalarTimeOtkaz = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where status='canceled_by_daily' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2195,7 +2195,7 @@ class App {
   
             let zayavkalarScoring = await new Promise(function (resolve, reject) {
               db.query(
-                `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from Zayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
+                `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from TestZayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
                 function (err, results, fields) {
                   if (err) {
                     console.log(err);
@@ -2283,17 +2283,17 @@ function update2ZayavkaFunc(data) {
 
   // passport_by = passport_by.replaceAll("ʻ", "'");
   // address = address.replaceAll("ʻ", "'");
-  return `UPDATE Zayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
+  return `update TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
 }
 
 function update3ZayavkaFunc(data) {
   let { id, max_amount, payment_amount } = data;
-  return `UPDATE Zayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
+  return `update TestZayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
 }
 
 // function update4ZayavkaFunc(data) {
 //   let { id } = data;
-//   return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
+//   return `update TestZayavka SET step=4 WHERE id = ${id};`;
 // }
 
 function update5ZayavkaFunc(data) {
@@ -2309,13 +2309,13 @@ function update5ZayavkaFunc(data) {
   console.log(productsString);
 
   if (type =="IN") {
-    return `UPDATE Zayavka SET step=5,payment_amount=${amount},products=${
+    return `update TestZayavka SET step=5,payment_amount=${amount},products=${
       productsString ?? ""
     },location=${toMyString(location)},device=${toMyString(
       device
     )} WHERE id = ${id};`
   }else{
-    return `UPDATE Zayavka SET step=5,amount=${amount},products=${
+    return `update TestZayavka SET step=5,amount=${amount},products=${
       productsString ?? ""
     },location=${toMyString(location)},device=${toMyString(
       device
@@ -2326,27 +2326,27 @@ function update5ZayavkaFunc(data) {
 function update6ZayavkaFunc(data) {
   let { id, payment_amount, expired_month,type } = data;
   if (type =="IN") {
-    return `UPDATE Zayavka SET step=6,amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+    return `update TestZayavka SET step=6,amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 
   }else{
-    return `UPDATE Zayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+    return `update TestZayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 
   }
  }
 
 function updateFinishZayavkaFunc(data) {
   let { id } = data;
-  return `UPDATE Zayavka SET step=8,agree = TRUE,status = 'finished',finished_time = CURRENT_TIMESTAMP WHERE id = ${id};`;
+  return `update TestZayavka SET step=8,agree = TRUE,status = 'finished',finished_time = CURRENT_TIMESTAMP WHERE id = ${id};`;
 }
 
 function update7ZayavkaFunc(data) {
   let { id } = data;
-  return `UPDATE Zayavka SET step=7,selfie='/static/images/zayavka${id}.jpg'  WHERE id = ${id};`;
+  return `update TestZayavka SET step=7,selfie='/static/images/zayavka${id}.jpg'  WHERE id = ${id};`;
 }
 
 function cancelByClientZayavkaFunc(data) {
   let { id, canceled_reason } = data;
-  return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
+  return `update TestZayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
 }
 
 function toMyString(ob) {
