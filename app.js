@@ -63,11 +63,11 @@ app.use((req, res, next) => {
 app.use(morgan("dev"));
 
 
-// app.use(express.json({ limit: "20mb" }));
+app.use(express.json());
 // app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
-app.use(bodyParser.json({ limit: "20mb" }));
-app.use(bodyParser.urlencoded({ extended: false, limit: "20mb"  })); 
+// app.use(bodyParser.json({ limit: "20mb" }));
+// app.use(bodyParser.urlencoded({ extended: true, limit: "20mb"  })); 
 
 app.use(cors(), rateLimit());
 
