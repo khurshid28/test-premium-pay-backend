@@ -1331,10 +1331,10 @@ class App {
      console.log({
       id,
       max_amount,
-      selfie_with_passport,
+      // selfie_with_passport,
       cardNumber,
       birthDate,
-      IdentificationVideoBase64,
+      // IdentificationVideoBase64,
     });
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
@@ -1408,7 +1408,7 @@ class App {
         birthDate: birthDate,
         phoneNumber: zayavka.phoneNumber,
         phoneNumber2: zayavka.phoneNumber2,
-        cardNumber: cardNumber,
+        // cardNumber: cardNumber,
         cardId: zayavka.cardId,
         inn: process.env.PREMIUM_INN,
         // inn : 200655453,
@@ -1479,7 +1479,7 @@ class App {
           birthDate: birthDate,
           phoneNumber: zayavka.phoneNumber.substring(1),
           phoneNumber2: zayavka.phoneNumber2.substring(1),
-          cardNumber: cardNumber,
+          // cardNumber: cardNumber,
           cardId: zayavka.cardId,
           // inn: process.env.PREMIUM_INN,
           // inn: "200655453",
