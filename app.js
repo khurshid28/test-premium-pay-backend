@@ -74,8 +74,8 @@ app.use(cors(), rateLimit());
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
 
-app.use(express.urlencoded({ extended: true,  })); 
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false,  })); 
+app.use(express.json());
 app.use("/api/v3",router3);
 
 
