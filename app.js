@@ -73,7 +73,7 @@ app.use(cors(), rateLimit());
 // static
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
-app.use(bodyParser.json({ limit: "20mb" }));
+app.use(bodyParser.json());
 
 app.use("/api/v3",router3);
 
