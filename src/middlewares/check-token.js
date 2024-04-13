@@ -68,6 +68,7 @@ module.exports = async (req, res, next) => {
     if (error instanceof TokenExpiredError) {
       return next(new AuthorizationError(401, "Token has expired"));
     } else if (error instanceof JsonWebTokenError) {
+      console.log(error);
       return next(new InvalidTokenError(401, "Malformed token"));
     }
 
