@@ -8,7 +8,7 @@ const {
 const { TokenExpiredError, JsonWebTokenError } = require("jsonwebtoken");
 module.exports = async (req, res, next) => {
   try {
-    console.log("req.body.data :",req.body) 
+    console.log("req.body.data :", req.body) 
     let token = req.body.data
        if (!token) {
       return next(new AuthorizationError(401, "No token provided"));

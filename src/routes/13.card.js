@@ -5,8 +5,8 @@ const checkUser = require("../middlewares/check-user.js");
 const checkToken = require("../middlewares/check-token.js");
 const router = Router();
 
-// router.use(checkToken);
-// router.use(checkUser);
+router.use(checkToken);
+router.use(checkUser);
 router.use(cardMiddlware);
 router.post("/sendOtp", CardController.sendOtp);
 router.post("/verify", CardController.verify);
