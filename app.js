@@ -75,7 +75,7 @@ app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
 
 app.use(express.urlencoded({ extended: true,  })); 
-app.use(express.json());
+// app.use(express.json());
 app.use("/api/v3",router3);
 
 
