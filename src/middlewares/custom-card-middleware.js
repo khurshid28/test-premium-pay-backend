@@ -13,9 +13,9 @@ module.exports = async (req, res, next) => {
        if (!token) {
       return next(new AuthorizationError(401, "No token provided"));
     }
-    // console.log("token :",token) 
+    console.log("token :",token) 
     let  data  = jwt.verify(token);
-    // console.log("data :",data) 
+    console.log("data :",data) 
     req.user.data = data;
 
     return next();
