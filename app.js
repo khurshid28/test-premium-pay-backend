@@ -15,9 +15,10 @@ let router3 = require("./src/routes/_index_3");
 const logger = require("./src/middlewares/logger.js");
 const rateLimit = require("./src/middlewares/rate-limit.js");
 const errorHandler = require("./src/middlewares/error-handler.js");
-api.use(bodyParser.json());
-api.use(bodyParser.urlencoded({ extended: true })); 
+
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 let db = require("./src/config/db");
 
