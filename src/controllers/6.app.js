@@ -1395,6 +1395,7 @@ class App {
         phoneNumber: zayavka.phoneNumber,
         phoneNumber2: zayavka.phoneNumber2,
         cardNumber: cardNumber,
+        cardId: zayavka.cardId,
         inn: process.env.PREMIUM_INN,
         // inn : 200655453,
         selfie: selfie_with_passport.substring(0, 30),
@@ -1465,6 +1466,7 @@ class App {
           phoneNumber: zayavka.phoneNumber.substring(1),
           phoneNumber2: zayavka.phoneNumber2.substring(1),
           cardNumber: cardNumber,
+          cardId: zayavka.cardId,
           // inn: process.env.PREMIUM_INN,
           // inn: "200655453",
           // inn: "303107528", elma
