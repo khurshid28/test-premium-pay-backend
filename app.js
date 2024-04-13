@@ -84,8 +84,8 @@ app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 //   next();
 // });
 
-// app.use(express.urlencoded({ extended: true,  limit :"50mb"})); 
-app.use(bodyParser.json({ limit:"50mb" }));
+app.use(bodyParser.urlencoded({ extended: true,  limit :"50mb"})); 
+// app.use(bodyParser.json({ limit:"50mb" }));
 
 app.use("/api/v3",router3);
 
