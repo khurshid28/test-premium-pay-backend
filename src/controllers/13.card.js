@@ -4,10 +4,11 @@ let {
   BadRequestError,
   ForbiddenError,
 } = require("../utils/errors.js");
+const jwt = require("../utils/jwt.js");
 
 class CardController {
   async sendOtp(req, res, next) {
-    const { cardNumber, expiry } = req.body;
+    const { cardNumber, expiry } = req.user.data;
 
     function isNumeric(num) {
       return !isNaN(num);
@@ -48,10 +49,19 @@ class CardController {
         }
       );
       console.log(response2.data);
+        if(response2.data["successCode"] != 0 )
+     {
+        return next(new BadRequestError(400, response2.data["error"]["message"]));
+     }
+       
+       
+       const token = jwt.sign({
+        data: response2.data["result"],
+      });
 
       return res.status(200).json({
         success: true,
-        data: response2.data,
+        data: token,
       });
     } catch (error) {
       console.log(error);
@@ -59,7 +69,10 @@ class CardController {
     }
   }
   async verify(req, res, next) {
-    const { id, code, type } = req.body;
+    const { id, code, type } = req.user.data;
+    if (code.length != 6) {
+      return next(new BadRequestError(400, "code must consist of 6 numbers!"));
+    }
 
     try {
       let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
@@ -92,9 +105,17 @@ class CardController {
         }
       );
       console.log(response2.data);
+         if(response2.data["successCode"] != 0 )
+     {
+        return next(new BadRequestError(400, response2.data["error"]["message"]));
+     }
+      const token = jwt.sign({
+        data: response2.data["result"],
+      });
+
       return res.status(200).json({
         success: true,
-        data: response2.data,
+        data: token,
       });
     } catch (error) {
       console.log(error);
@@ -102,7 +123,7 @@ class CardController {
     }
   }
   async check(req, res, next) {
-    const { cardNumber } = req.body;
+    const { cardNumber } = req.user.data;
 
     function isNumeric(num) {
       return !isNaN(num);
@@ -111,7 +132,6 @@ class CardController {
       if (cardNumber.length != 16 || !isNumeric(cardNumber)) {
         return next(new BadRequestError(400, "Invalid card number"));
       }
-  
 
       let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
       let url2 = process.env.DAVR_TEST_BASE_URL + "/card/check";
@@ -131,7 +151,6 @@ class CardController {
         url2,
         {
           card: cardNumber,
-          
         },
         {
           headers: {
@@ -141,10 +160,20 @@ class CardController {
         }
       );
       console.log(response2.data);
+        if(response2.data["successCode"] != 0 )
+     {
+        return next(new BadRequestError(400, response2.data["error"]["message"]));
+     }
 
+      const token = jwt.sign({
+        data: response2.data["result"],
+      });
+      console.log(
+        {success: true,
+        data: token,})
       return res.status(200).json({
         success: true,
-        data: response2.data,
+        data: token,
       });
     } catch (error) {
       console.log(error);
@@ -153,4 +182,4 @@ class CardController {
   }
 }
 
- module.exports = new CardController();
+module.exports = new CardController();

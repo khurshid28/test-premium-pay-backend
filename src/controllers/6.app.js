@@ -1414,36 +1414,36 @@ class App {
       );
 
       // return next(new InternalServerError(500, error));
-      // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      // let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
+      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_SCORING;
       
-      // const response1 = await axios.post(
-      //   url1,
-      //   {
-      //     username: process.env.DAVR_USERNAME,
-      //     password: process.env.DAVR_PASSWORD,
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
-      // var filePath = path.join(
-      //   __dirname,
-      //   "..",
-      //   "..",
-      //   "public",
-      //   "myid",
-      //   `${zayavka.passport}.png`
-      // );
-      // if (fs.existsSync(filePath)) {
-      //   console.log(filePath);
-      //   var bitmap = fs.readFileSync(filePath);
-      //   const encoded = Buffer(bitmap).toString("base64");
-      //   IdentificationVideoBase64 = `data:image/jpeg;base64,${encoded}`;
-      //   console.log("IdentificationVideoBase64 : " + IdentificationVideoBase64);
-      // }
+      const response1 = await axios.post(
+        url1,
+        {
+          username: process.env.DAVR_TEST_USERNAME,
+          password: process.env.DAVR_TEST_PASSWORD,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      var filePath = path.join(
+        __dirname,
+        "..",
+        "..",
+        "public",
+        "myid",
+        `${zayavka.passport}.png`
+      );
+      if (fs.existsSync(filePath)) {
+        console.log(filePath);
+        var bitmap = fs.readFileSync(filePath);
+        const encoded = Buffer(bitmap).toString("base64");
+        IdentificationVideoBase64 = `data:image/jpeg;base64,${encoded}`;
+        console.log("IdentificationVideoBase64 : " + IdentificationVideoBase64);
+      }
 
       if (!IdentificationVideoBase64 || IdentificationVideoBase64 == null) {
         return next(
@@ -1451,43 +1451,43 @@ class App {
         );
       }
 
-      // const response2 = await axios.post(
-      //   url2,
-      //   {
-      //     orderId: "PPD-" + zayavka.id,
-      //     // amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
-      //     amount: max_amount,
-      //     term: "12",
-      //     duration: "12",
-      //     passSeria: zayavka.passport.substring(0, 2),
-      //     passNumber: zayavka.passport.substring(2),
-      //     birthDate: birthDate,
-      //     phoneNumber: zayavka.phoneNumber.substring(1),
-      //     phoneNumber2: zayavka.phoneNumber2.substring(1),
-      //     cardNumber: cardNumber,
-      //     // inn: process.env.PREMIUM_INN,
-      //     // inn: "200655453",
-      //     // inn: "303107528", elma
-      //     // inn:"303085034", // javohir
-      //     // inn: "305207299", // surat
-      //     // inn: "310187940",  // ... working
-      //     // inn : 200655453,
-      //     // inn: 303085034,
-      //     // inn :305207299,
-      //     inn : 310187940,
-      //     // inn:303085034, //surat 
-      //     identificationVideoBase64: IdentificationVideoBase64,
-      //     selfie: selfie_with_passport,
-      //   },
-      //   {
-      //     headers: {
-      //       Authorization: "Bearer " + response1.data["token"],
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
+      const response2 = await axios.post(
+        url2,
+        {
+          orderId: "PPD-" + zayavka.id,
+          // amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
+          amount: max_amount,
+          term: "12",
+          duration: "12",
+          passSeria: zayavka.passport.substring(0, 2),
+          passNumber: zayavka.passport.substring(2),
+          birthDate: birthDate,
+          phoneNumber: zayavka.phoneNumber.substring(1),
+          phoneNumber2: zayavka.phoneNumber2.substring(1),
+          cardNumber: cardNumber,
+          // inn: process.env.PREMIUM_INN,
+          // inn: "200655453",
+          // inn: "303107528", elma
+          // inn:"303085034", // javohir
+          // inn: "305207299", // surat
+          // inn: "310187940",  // ... working
+          // inn : 200655453,
+          // inn: 303085034,
+          // inn :305207299,
+          inn : 310187940,
+          // inn:303085034, //surat 
+          identificationVideoBase64: IdentificationVideoBase64,
+          selfie: selfie_with_passport,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + response1.data["token"],
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      // console.log(response2.data);
+      console.log(response2.data);
 
       await new Promise(function (resolve, reject) {
         db.query(
