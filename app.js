@@ -2,7 +2,6 @@ require("./src/config/_index.js");
 
 
 var express = require("express");
-let bodyParser =require("body-parser")
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
