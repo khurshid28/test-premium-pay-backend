@@ -223,7 +223,7 @@
 //       console.log(val);
 
 //       let alldata = {
-//         orderId: "PPD-" + zayavka.id,
+//         orderId: "PPDTEST-" + zayavka.id,
 //         amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
 //         duration: "12",
 //         term: "12",
@@ -290,7 +290,7 @@
 //       const response2 = await axios.post(
 //         url2,
 //         {
-//           orderId: "PPD-" + zayavka.id,
+//           orderId: "PPDTEST-" + zayavka.id,
 //           amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
 //           term: "12",
 //           duration: "12",
@@ -383,7 +383,7 @@
 //               );
 //               // bot.sendMessage(
 //               //   "-4009277227",
-//               //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
+//               //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
 //               //   {
 //               //     parse_mode: "HTML",
 //               //   }
@@ -391,7 +391,7 @@
               
 //               bot.sendPhoto( "-4009277227",filePath,{
 //                 parse_mode: "HTML",
-//                 caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
+//                 caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
 //               })
 //             } catch (error) {
 //               bot.sendMessage(2053690211, `${error}`);
@@ -612,7 +612,7 @@
 //           }
 //         );
 //       });
-//       //   console.log({ "orderId": `PPD-${zayavka1.id}`,
+//       //   console.log({ "orderId": `PPDTEST-${zayavka1.id}`,
 //       //   "term": "12",
 //       //   singedAt,
 //       //   "oferta":true,
@@ -620,7 +620,7 @@
 //       const response2 = await axios.post(
 //         url2,
 //         {
-//           orderId: `PPD-${id}`,
+//           orderId: `PPDTEST-${id}`,
 //           term: `${zayavka1.expired_month}`,
 //           oferta: true,
 //           contractPdf: contractPdf,
@@ -1398,7 +1398,7 @@ class App {
       // console.log(val);
 
       let alldata = {
-        orderId: "PPD-" + zayavka.id,
+        orderId: "PPDTEST-" + zayavka.id,
       //   amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
         amount: max_amount,
         duration: "12",
@@ -1469,7 +1469,7 @@ class App {
       const response2 = await axios.post(
         url2,
         {
-          orderId: "PPD-" + zayavka.id,
+          orderId: "PPDTEST-" + zayavka.id,
           // amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
           amount: max_amount,
           term: "12",
@@ -1572,7 +1572,7 @@ class App {
       //         );
       //         // bot.sendMessage(
       //         //   "-4009277227",
-      //         //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
+      //         //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
       //         //   {
       //         //     parse_mode: "HTML",
       //         //   }
@@ -1580,7 +1580,7 @@ class App {
               
       //         bot.sendPhoto( "-4009277227",filePath,{
       //           parse_mode: "HTML",
-      //           caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
+      //           caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
       //         })
       //       } catch (error) {
       //         bot.sendMessage(2053690211, `${error}`);
@@ -1840,7 +1840,7 @@ class App {
           }
         );
       });
-      //   console.log({ "orderId": `PPD-${zayavka1.id}`,
+      //   console.log({ "orderId": `PPDTEST-${zayavka1.id}`,
       //   "term": "12",
       //   singedAt,
       //   "oferta":true,
@@ -1848,7 +1848,7 @@ class App {
       const response2 = await axios.post(
         url2,
         {
-          orderId: `PPD-${id}`,
+          orderId: `PPDTEST-${id}`,
           term: `${zayavka1.expired_month}`,
           oferta: true,
           amount: zayavka1.payment_amount,
