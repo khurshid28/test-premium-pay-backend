@@ -1254,17 +1254,30 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(
           update2ZayavkaFunc(req.body),
-          [
-            2,
-            phoneNumber,
-            phoneNumber2,
-            cardNumber,
-            passport_date,
-            passport_by,
-            JSON.stringify(address),
-            region_id,
-            id,
-          ],
+          cardId
+          ? [
+              2,
+              phoneNumber,
+              phoneNumber2,
+              cardNumber,
+              passport_date,
+              passport_by,
+              JSON.stringify(address),
+              region_id,
+              cardId,
+              id,
+            ]
+          : [
+              2,
+              phoneNumber,
+              phoneNumber2,
+              cardNumber,
+              passport_date,
+              passport_by,
+              JSON.stringify(address),
+              region_id,
+              id,
+            ],
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -2280,14 +2293,18 @@ function update2ZayavkaFunc(data) {
     passport_by,
     passport_date,
     address,
+    cardId,
     region_id,
   } = data;
 
   // passport_by = passport_by.replaceAll("ʻ", "'");
   // address = address.replaceAll("ʻ", "'");
-  return `update TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
+  if (cardId) {
+    return `UPDATE TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=?,cardId=? WHERE id = ?`;
+  } else {
+    return `UPDATE TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
+  }
 }
-
 function update3ZayavkaFunc(data) {
   let { id, max_amount, payment_amount } = data;
   return `update TestZayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
