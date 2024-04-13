@@ -67,7 +67,7 @@ app.use(morgan("dev"));
 // app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
 app.use(bodyParser.json({ limit: "20mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "20mb"  })); 
+app.use(bodyParser.urlencoded({ extended: false, limit: "20mb"  })); 
 
 app.use(cors(), rateLimit());
 
