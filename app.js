@@ -73,9 +73,17 @@ app.use(cors(), rateLimit());
 // static
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+      'Access-Control-Allow-headers',
+      'Origin, X-Requested-With, Content-Type, Accept',
+  );
+  next();
+});
 
-app.use(express.urlencoded({ extended: false,  })); 
-app.use(express.json());
+app.use(express.urlencoded({ extended: true,  limit :"50mb"})); 
+app.use(express.json({ limit:"50mb" }));
 app.use("/api/v3",router3);
 
 
