@@ -66,8 +66,7 @@ app.use(morgan("dev"));
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
-app.use(bodyParser.json({ limit: "20mb" }));
-app.use(bodyParser.urlencoded({ extended: true,  })); 
+
 
 app.use(cors(), rateLimit());
 
@@ -77,7 +76,8 @@ app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
 
 app.use("/api/v3",router3);
-
+app.use(bodyParser.json({ limit: "20mb" }));
+app.use(bodyParser.urlencoded({ extended: true,  })); 
 
 app.use(helmet());
 
