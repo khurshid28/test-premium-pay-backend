@@ -1246,6 +1246,7 @@ class App {
         passport_by,
         address,
         region_id,
+        cardId
       } = req.body;
       fullname = `${fullname}`;
       fullname = fullname.replaceAll("ʻ", "'");
