@@ -28,38 +28,40 @@ let PREMIUM = require("./Premium-Query").PREMIUM;
 // PORT
 const PORT = process.env.TEST_PORT || 1212;
 
-app.use((req, res, next) => {
-  // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
-  // const start = process.hrtime()
+// app.use((req, res, next) => {
+//   // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
+//   // const start = process.hrtime()
 
-  res.on("finish", () => {
-    const durationInMilliseconds = getDurationInMilliseconds(
-      req.duration_start
-    );
+//   res.on("finish", () => {
+//     const durationInMilliseconds = getDurationInMilliseconds(
+//       req.duration_start
+//     );
  
-    if (req.errorMethod) {
-      req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
-      let text =
-        "<b>ERROR ON TEST-SERVER : %0A" +
-        req.errorMethod +
-        " " +
-        res.statusCode +
-        " " +
-        req.duration +
-        "</b>" +
-        req.errorText;
-      let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
-      axios
-        .post(url)
-        .then((res) => res)
-        .catch((err) => console.log(err));
-    }
-  });
+//     if (req.errorMethod) {
+//       req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
+//       let text =
+//         "<b>ERROR ON TEST-SERVER : %0A" +
+//         req.errorMethod +
+//         " " +
+//         res.statusCode +
+//         " " +
+//         req.duration +
+//         "</b>" +
+//         req.errorText;
+//       let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
+//       axios
+//         .post(url)
+//         .then((res) => res)
+//         .catch((err) => console.log(err));
+//     }
+//   });
 
 
-  req.duration_start = process.hrtime();
-  next();
-});
+//   req.duration_start = process.hrtime();
+//   next();
+// });
+
+
 app.use(morgan("dev"));
 
 
@@ -73,17 +75,17 @@ app.use(cors(), rateLimit());
 // static
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-      'Access-Control-Allow-headers',
-      'Origin, X-Requested-With, Content-Type, Accept',
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header(
+//       'Access-Control-Allow-headers',
+//       'Origin, X-Requested-With, Content-Type, Accept',
+//   );
+//   next();
+// });
 
 // app.use(express.urlencoded({ extended: true,  limit :"50mb"})); 
-app.use(express.json({ limit:"50mb" }));
+// app.use(express.json({ limit:"50mb" }));
 
 app.use("/api/v3",router3);
 
