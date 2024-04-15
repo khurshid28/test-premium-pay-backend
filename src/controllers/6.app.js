@@ -1706,6 +1706,14 @@ class App {
           }
         );
       });
+
+      if (fillial.percent_type == "OUT") {
+        let val = fillial.expired_months[`${expired_month}`]
+
+        if (req.body.payment_amount !=  Math.floor(max_amount * (1 + val / 100))) {
+         return next(new BadRequestError(400, "Payment amount Error"));
+        } 
+      } 
       await new Promise(function (resolve, reject) {
         db.query(update6ZayavkaFunc({
           ...req.body,
