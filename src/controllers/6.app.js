@@ -1709,7 +1709,9 @@ class App {
 
       if (fillial.percent_type == "OUT") {
         let val = fillial.expired_months[`${req.body.expired_month}`]
-
+        console.log(val);
+        console.log(req.body.payment_amount);
+        console.log(Math.floor(zayavkaOld.amount * (1 + val / 100)));
         if (req.body.payment_amount !=  Math.floor(zayavkaOld.amount * (1 + val / 100))) {
          return next(new BadRequestError(400, "Payment amount Error"));
         } 
