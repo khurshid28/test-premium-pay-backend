@@ -1540,55 +1540,48 @@ class App {
         );
       });
       
-      // let t1 = setTimeout(async function () {
-      //   let Updatedzayavka = await new Promise(function (resolve, reject) {
-      //     db.query(
-      //       `SELECT * from TestZayavka WHERE id=${id}`,
-      //       function (err, results, fields) {
-      //         if (err) {
-      //           console.log(err);
-      //           resolve(null);
-      //           return null;
-      //         }
-      //         if (results.length != 0) {
-      //           resolve(results[0]);
-      //         } else {
-      //           resolve(null);
-      //         }
-      //       }
-      //     );
-      //   });
-      //   if (Updatedzayavka) {
-      //     if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
-
-      //       try {
-      //         var filePath = path.join(
-      //           __dirname,
-      //           "..",
-      //           "..",
-      //           "public",
-      //           "myid",
-      //           `${Updatedzayavka.passport}.png`
-      //         );
-      //         // bot.sendMessage(
-      //         //   "-4009277227",
-      //         //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
-      //         //   {
-      //         //     parse_mode: "HTML",
-      //         //   }
-      //         // );
-              
-      //         bot.sendPhoto( "-4009277227",filePath,{
-      //           parse_mode: "HTML",
-      //           caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
-      //         })
-      //       } catch (error) {
-      //         bot.sendMessage(2053690211, `${error}`);
-      //       }
-      //     }
-      //   }
-      //   clearTimeout(t1);
-      // }, 240 * 1000);
+      let t1 = setTimeout(async function () {
+       if (id % 2 == 0) {
+        await new Promise(function (resolve, reject) {
+          db.query(
+            `update TestZayavka set limit_summa=9000000,step=4 WHERE id=${id}`,
+            function (err, results, fields) {
+              if (err) {
+                console.log(err);
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+       }else{
+        await new Promise(function (resolve, reject) {
+          db.query(
+            `update TestZayavka set status="canceled_by_scoring",canceled_reason="тест отказ" WHERE id=${id}`,
+            function (err, results, fields) {
+              if (err) {
+                console.log(err);
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+       }
+        
+        clearTimeout(t1);
+        
+      }, 10 * 1000);
 
       return res.status(200).json({
         data: zayavkaUpdated,
