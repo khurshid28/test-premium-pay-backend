@@ -1706,10 +1706,10 @@ class App {
       
       
         console.log(val);
-        console.log(Math.floor( req.body.payment_amount / 1000));
+        console.log((Math.floor( req.body.payment_amount  +1) / 1000));
         console.log(Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
-        console.log( Math.floor( req.body.payment_amount / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
-        if ( Math.floor( req.body.payment_amount / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000)) {
+        console.log(( Math.floor( req.body.payment_amount  +1) / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
+        if ( Math.floor(( req.body.payment_amount   + 1) / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000)) {
          return next(new BadRequestError(400, "Payment amount Error"));
         } 
       } 
