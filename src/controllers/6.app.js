@@ -1708,7 +1708,7 @@ class App {
         console.log(val);
         console.log(req.body.payment_amount);
         console.log(Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)));
-        if ( Math.floor( req.body.payment_amount)  !=  Math.floor(zayavkaOld.amount * (1 + val / 100))) {
+        if ( Math.floor( req.body.payment_amount / 100000)  !=  Math.floor(zayavkaOld.amount * (1 + val / 100)/100000)) {
          return next(new BadRequestError(400, "Payment amount Error"));
         } 
       } 
