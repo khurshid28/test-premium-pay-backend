@@ -1580,7 +1580,7 @@ class App {
        }
         
         clearTimeout(t1);
-        
+
       }, 10 * 1000);
 
       return res.status(200).json({
@@ -1795,68 +1795,68 @@ class App {
 
   async updateFinish(req, res, next) {
     try {
-      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
+      // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      // let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
       let { contractPdf, id,term } = req.body;
       let date = new Date();
       let singedAt = `${date.getFullYear()}-${
         date.getMonth() + 1
       }-${date.getDate()}`;
       console.log(singedAt);
-      const response1 = await axios.post(
-        url1,
-        {
-          username: process.env.DAVR_USERNAME,
-          password: process.env.DAVR_PASSWORD,
-        },
+      // const response1 = await axios.post(
+      //   url1,
+      //   {
+      //     username: process.env.DAVR_USERNAME,
+      //     password: process.env.DAVR_PASSWORD,
+      //   },
 
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
 
-      let zayavka1 = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT * from TestZayavka WHERE id=${id}`,
-          function (err, results, fields) {
-            if (err) {
-              resolve(null);
-              return null;
-            }
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
+      // let zayavka1 = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `SELECT * from TestZayavka WHERE id=${id}`,
+      //     function (err, results, fields) {
+      //       if (err) {
+      //         resolve(null);
+      //         return null;
+      //       }
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
       //   console.log({ "orderId": `PPDTEST-${zayavka1.id}`,
       //   "term": "12",
       //   singedAt,
       //   "oferta":true,
       // });
-      const response2 = await axios.post(
-        url2,
-        {
-          orderId: `PPDTEST-${id}`,
-          term: `${zayavka1.expired_month}`,
-          oferta: true,
-          amount: zayavka1.payment_amount,
-          contractPdf: contractPdf,
+      // const response2 = await axios.post(
+      //   url2,
+      //   {
+      //     orderId: `PPDTEST-${id}`,
+      //     term: `${zayavka1.expired_month}`,
+      //     oferta: true,
+      //     amount: zayavka1.payment_amount,
+      //     contractPdf: contractPdf,
           
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + response1.data["token"],
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: "Bearer " + response1.data["token"],
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
 
-      console.log(response2.data);
+      // console.log(response2.data);
 
       await new Promise(function (resolve, reject) {
         db.query(updateFinishZayavkaFunc(req.body), function (err, results, fields) {
