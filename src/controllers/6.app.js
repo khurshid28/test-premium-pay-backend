@@ -1384,18 +1384,7 @@ class App {
       //       "percent" :30,
       //   },
       //   ];
-      // let arr = fillial.expired_months.map((obj) => {
-      //   return `${obj.month}`;
-      // });
-
-      // var largest = Math.max.apply(0, arr);
-      // console.log(largest);
-      // let val = fillial.expired_months[arr.indexOf(`${largest}`)];
-      // for (let index = 0; index < 20; index++) {
-      //   console.log(">>>>>>>>>>>>>>>");
-      //   console.log(Math.floor(max_amount * (1 + val["percent"] / 100)));
-      // }
-      // console.log(val);
+     
 
       let alldata = {
         orderId: "PPDTEST-" + zayavka.id,
@@ -1708,10 +1697,17 @@ class App {
       });
 
       if (fillial.percent_type == "OUT") {
-        let val = fillial.expired_months[`${req.body.expired_month}`]
+         let arr = fillial.expired_months.map((obj) => {
+        return `${obj.month}`;
+      });
+
+     
+      let val = fillial.expired_months[arr.indexOf(`${req.body.expired_month}`)];
+      
+      
         console.log(val);
         console.log(req.body.payment_amount);
-        console.log(Math.floor(zayavkaOld.amount * (1 + val / 100)));
+        console.log(Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)));
         if (req.body.payment_amount !=  Math.floor(zayavkaOld.amount * (1 + val / 100))) {
          return next(new BadRequestError(400, "Payment amount Error"));
         } 
