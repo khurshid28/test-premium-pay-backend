@@ -2118,6 +2118,44 @@ class App {
       return next(new InternalServerError(500, error));
     }
   }
+  async getByid
+  (req, res, next) {
+    let {id} = req.params
+     try {
+
+    let zayavka =  await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from TestZayavka WHERE id=${id}`,
+          function (err, results, fields) {
+            if (err) {
+              resolve(null);
+              return null;
+            } else if (results.length != 0) {
+              return resolve(results[0]);
+            } else {
+              return resolve(null);
+            }
+          }
+        );
+      });
+
+     
+       if (zayavka) {
+        return res.status(200).json({
+          data: zayavka
+        });
+       }else{
+        return next(new NotFoundError(404, "Zayavka Not Found"));
+       }
+
+
+     } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+     }
+  }
+
+
   async getStatistics(req, res, next) {
     try {
       if (req.user.role === "SuperAdmin") {
