@@ -1384,18 +1384,7 @@ class App {
       //       "percent" :30,
       //   },
       //   ];
-      // let arr = fillial.expired_months.map((obj) => {
-      //   return `${obj.month}`;
-      // });
-
-      // var largest = Math.max.apply(0, arr);
-      // console.log(largest);
-      // let val = fillial.expired_months[arr.indexOf(`${largest}`)];
-      // for (let index = 0; index < 20; index++) {
-      //   console.log(">>>>>>>>>>>>>>>");
-      //   console.log(Math.floor(max_amount * (1 + val["percent"] / 100)));
-      // }
-      // console.log(val);
+     
 
       let alldata = {
         orderId: "PPDTEST-" + zayavka.id,
@@ -1540,55 +1529,48 @@ class App {
         );
       });
       
-      // let t1 = setTimeout(async function () {
-      //   let Updatedzayavka = await new Promise(function (resolve, reject) {
-      //     db.query(
-      //       `SELECT * from TestZayavka WHERE id=${id}`,
-      //       function (err, results, fields) {
-      //         if (err) {
-      //           console.log(err);
-      //           resolve(null);
-      //           return null;
-      //         }
-      //         if (results.length != 0) {
-      //           resolve(results[0]);
-      //         } else {
-      //           resolve(null);
-      //         }
-      //       }
-      //     );
-      //   });
-      //   if (Updatedzayavka) {
-      //     if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
+      let t1 = setTimeout(async function () {
+       if (id % 2 == 0) {
+        await new Promise(function (resolve, reject) {
+          db.query(
+            `update TestZayavka set limit_summa=9000000,step=4 WHERE id=${id}`,
+            function (err, results, fields) {
+              if (err) {
+                console.log(err);
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+       }else{
+        await new Promise(function (resolve, reject) {
+          db.query(
+            `update TestZayavka set status="canceled_by_scoring",canceled_reason="тест отказ" WHERE id=${id}`,
+            function (err, results, fields) {
+              if (err) {
+                console.log(err);
+                resolve(null);
+                return null;
+              }
+              if (results.length != 0) {
+                resolve(results[0]);
+              } else {
+                resolve(null);
+              }
+            }
+          );
+        });
+       }
+        
+        clearTimeout(t1);
 
-      //       try {
-      //         var filePath = path.join(
-      //           __dirname,
-      //           "..",
-      //           "..",
-      //           "public",
-      //           "myid",
-      //           `${Updatedzayavka.passport}.png`
-      //         );
-      //         // bot.sendMessage(
-      //         //   "-4009277227",
-      //         //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
-      //         //   {
-      //         //     parse_mode: "HTML",
-      //         //   }
-      //         // );
-              
-      //         bot.sendPhoto( "-4009277227",filePath,{
-      //           parse_mode: "HTML",
-      //           caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
-      //         })
-      //       } catch (error) {
-      //         bot.sendMessage(2053690211, `${error}`);
-      //       }
-      //     }
-      //   }
-      //   clearTimeout(t1);
-      // }, 240 * 1000);
+      }, 10 * 1000);
 
       return res.status(200).json({
         data: zayavkaUpdated,
@@ -1713,6 +1695,24 @@ class App {
           }
         );
       });
+
+      if (fillial.percent_type == "OUT") {
+         let arr = fillial.expired_months.map((obj) => {
+        return `${obj.month}`;
+      });
+
+     
+      let val = fillial.expired_months[arr.indexOf(`${req.body.expired_month}`)];
+      
+      
+        console.log(val);
+        console.log((Math.floor( req.body.payment_amount  +1) / 1000));
+        console.log(Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
+        console.log(( Math.floor( req.body.payment_amount  +1) / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
+        if ( Math.floor(( req.body.payment_amount   + 1) / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000)) {
+         return next(new BadRequestError(400, "Payment amount Error"));
+        } 
+      } 
       await new Promise(function (resolve, reject) {
         db.query(update6ZayavkaFunc({
           ...req.body,
@@ -1802,68 +1802,68 @@ class App {
 
   async updateFinish(req, res, next) {
     try {
-      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
+      // let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
+      // let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_AGREEMENT;
       let { contractPdf, id,term } = req.body;
       let date = new Date();
       let singedAt = `${date.getFullYear()}-${
         date.getMonth() + 1
       }-${date.getDate()}`;
       console.log(singedAt);
-      const response1 = await axios.post(
-        url1,
-        {
-          username: process.env.DAVR_USERNAME,
-          password: process.env.DAVR_PASSWORD,
-        },
+      // const response1 = await axios.post(
+      //   url1,
+      //   {
+      //     username: process.env.DAVR_USERNAME,
+      //     password: process.env.DAVR_PASSWORD,
+      //   },
 
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
 
-      let zayavka1 = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT * from TestZayavka WHERE id=${id}`,
-          function (err, results, fields) {
-            if (err) {
-              resolve(null);
-              return null;
-            }
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
+      // let zayavka1 = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `SELECT * from TestZayavka WHERE id=${id}`,
+      //     function (err, results, fields) {
+      //       if (err) {
+      //         resolve(null);
+      //         return null;
+      //       }
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
       //   console.log({ "orderId": `PPDTEST-${zayavka1.id}`,
       //   "term": "12",
       //   singedAt,
       //   "oferta":true,
       // });
-      const response2 = await axios.post(
-        url2,
-        {
-          orderId: `PPDTEST-${id}`,
-          term: `${zayavka1.expired_month}`,
-          oferta: true,
-          amount: zayavka1.payment_amount,
-          contractPdf: contractPdf,
+      // const response2 = await axios.post(
+      //   url2,
+      //   {
+      //     orderId: `PPDTEST-${id}`,
+      //     term: `${zayavka1.expired_month}`,
+      //     oferta: true,
+      //     amount: zayavka1.payment_amount,
+      //     contractPdf: contractPdf,
           
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + response1.data["token"],
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: "Bearer " + response1.data["token"],
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
 
-      console.log(response2.data);
+      // console.log(response2.data);
 
       await new Promise(function (resolve, reject) {
         db.query(updateFinishZayavkaFunc(req.body), function (err, results, fields) {
@@ -2125,6 +2125,44 @@ class App {
       return next(new InternalServerError(500, error));
     }
   }
+  async getByid
+  (req, res, next) {
+    let {id} = req.params
+     try {
+
+    let zayavka =  await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from TestZayavka WHERE id=${id}`,
+          function (err, results, fields) {
+            if (err) {
+              resolve(null);
+              return null;
+            } else if (results.length != 0) {
+              return resolve(results[0]);
+            } else {
+              return resolve(null);
+            }
+          }
+        );
+      });
+
+     
+       if (zayavka) {
+        return res.status(200).json({
+          data: zayavka
+        });
+       }else{
+        return next(new NotFoundError(404, "Zayavka Not Found"));
+       }
+
+
+     } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+     }
+  }
+
+
   async getStatistics(req, res, next) {
     try {
       if (req.user.role === "SuperAdmin") {

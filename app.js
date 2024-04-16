@@ -2,7 +2,6 @@ require("./src/config/_index.js");
 
 
 var express = require("express");
-
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
@@ -19,6 +18,7 @@ const errorHandler = require("./src/middlewares/error-handler.js");
 
 const app = express();
 
+
 let db = require("./src/config/db");
 
 
@@ -28,43 +28,45 @@ let PREMIUM = require("./Premium-Query").PREMIUM;
 // PORT
 const PORT = process.env.TEST_PORT || 1212;
 
-app.use((req, res, next) => {
-  // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
-  // const start = process.hrtime()
+// app.use((req, res, next) => {
+//   // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
+//   // const start = process.hrtime()
 
-  res.on("finish", () => {
-    const durationInMilliseconds = getDurationInMilliseconds(
-      req.duration_start
-    );
+//   res.on("finish", () => {
+//     const durationInMilliseconds = getDurationInMilliseconds(
+//       req.duration_start
+//     );
  
-    if (req.errorMethod) {
-      req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
-      let text =
-        "<b>ERROR ON TEST-SERVER : %0A" +
-        req.errorMethod +
-        " " +
-        res.statusCode +
-        " " +
-        req.duration +
-        "</b>" +
-        req.errorText;
-      let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
-      axios
-        .post(url)
-        .then((res) => res)
-        .catch((err) => console.log(err));
-    }
-  });
+//     if (req.errorMethod) {
+//       req.duration = `${durationInMilliseconds.toLocaleString()} ms`;
+//       let text =
+//         "<b>ERROR ON TEST-SERVER : %0A" +
+//         req.errorMethod +
+//         " " +
+//         res.statusCode +
+//         " " +
+//         req.duration +
+//         "</b>" +
+//         req.errorText;
+//       let url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendmessage?chat_id=-${process.env.ERROR_GROUP_ID}&text=${text}&parse_mode=HTML`;
+//       axios
+//         .post(url)
+//         .then((res) => res)
+//         .catch((err) => console.log(err));
+//     }
+//   });
 
 
-  req.duration_start = process.hrtime();
-  next();
-});
+//   req.duration_start = process.hrtime();
+//   next();
+// });
+
+
 app.use(morgan("dev"));
 
 
-app.use(express.json({ limit: "20mb" }));
-app.use(express.urlencoded({ extended: true, limit: "20mb" }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
 
 
@@ -73,9 +75,29 @@ app.use(cors(), rateLimit());
 // static
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header(
+//       'Access-Control-Allow-headers',
+//       'Origin, X-Requested-With, Content-Type, Accept',
+//   );
+//   next();
+// });
+
+app.use(bodyParser.urlencoded({ extended: true,  limit :"50mb"})); 
+app.use(bodyParser.json({ limit:"50mb" }));
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+      console.error(err);
+      return res.status(400).send({ status: 400, message: err.message }); // Bad request
+  }
+  next();
+});
 
 
 app.use("/api/v3",router3);
+
+
 
 
 app.use(helmet());
