@@ -201,7 +201,11 @@ class Myid {
           });
         }
       }
-
+      return res.status(200).json({
+        message: "Пользователю предоставлено разрешение",
+        status: true,
+      });
+      
       let zayavka2 = await new Promise(function (resolve, reject) {
         db.query(
           `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring' ORDER BY id DESC`,

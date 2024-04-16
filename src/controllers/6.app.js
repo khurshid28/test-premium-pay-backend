@@ -56,7 +56,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${id}`,
+//           `SELECT * from TestZayavka WHERE id=${id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -125,7 +125,7 @@
 
 //       let zayavkaUpdated = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -163,7 +163,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -223,7 +223,7 @@
 //       console.log(val);
 
 //       let alldata = {
-//         orderId: "PPD-" + zayavka.id,
+//         orderId: "PPDTEST-" + zayavka.id,
 //         amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
 //         duration: "12",
 //         term: "12",
@@ -290,7 +290,7 @@
 //       const response2 = await axios.post(
 //         url2,
 //         {
-//           orderId: "PPD-" + zayavka.id,
+//           orderId: "PPDTEST-" + zayavka.id,
 //           amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
 //           term: "12",
 //           duration: "12",
@@ -338,7 +338,7 @@
 
 //       let zayavkaUpdated = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${id}`,
+//           `SELECT * from TestZayavka WHERE id=${id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -355,7 +355,7 @@
 //       let t1 = setTimeout(async function () {
 //         let Updatedzayavka = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE id=${id}`,
+//             `SELECT * from TestZayavka WHERE id=${id}`,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -383,7 +383,7 @@
 //               );
 //               // bot.sendMessage(
 //               //   "-4009277227",
-//               //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
+//               //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
 //               //   {
 //               //     parse_mode: "HTML",
 //               //   }
@@ -391,7 +391,7 @@
               
 //               bot.sendPhoto( "-4009277227",filePath,{
 //                 parse_mode: "HTML",
-//                 caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
+//                 caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
 //               })
 //             } catch (error) {
 //               bot.sendMessage(2053690211, `${error}`);
@@ -426,7 +426,7 @@
 
 //   //     let zayavkaUpdated = await new Promise(function (resolve, reject) {
 //   //       db.query(
-//   //         `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//   //         `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //   //         function (err, results, fields) {
 //   //           if (err) {
 //   //             resolve(null);
@@ -466,7 +466,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -505,7 +505,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -547,7 +547,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -598,7 +598,7 @@
 
 //       let zayavka1 = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${id}`,
+//           `SELECT * from TestZayavka WHERE id=${id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -612,7 +612,7 @@
 //           }
 //         );
 //       });
-//       //   console.log({ "orderId": `PPD-${zayavka1.id}`,
+//       //   console.log({ "orderId": `PPDTEST-${zayavka1.id}`,
 //       //   "term": "12",
 //       //   singedAt,
 //       //   "oferta":true,
@@ -620,7 +620,7 @@
 //       const response2 = await axios.post(
 //         url2,
 //         {
-//           orderId: `PPD-${id}`,
+//           orderId: `PPDTEST-${id}`,
 //           term: `${zayavka1.expired_month}`,
 //           oferta: true,
 //           contractPdf: contractPdf,
@@ -648,7 +648,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -691,7 +691,7 @@
 
 //       let zayavka = await new Promise(function (resolve, reject) {
 //         db.query(
-//           `SELECT * from Zayavka WHERE id=${req.body.id}`,
+//           `SELECT * from TestZayavka WHERE id=${req.body.id}`,
 //           function (err, results, fields) {
 //             if (err) {
 //               resolve(null);
@@ -751,7 +751,7 @@
 //       if (req.user.role === "User") {
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
+//             `SELECT * from TestZayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -764,7 +764,7 @@
 //       } else if (req.user.role === "SuperAdmin") {
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
 //             function (err, results, fields) {
 //               console.log(err);
 //               if (err) {
@@ -795,7 +795,7 @@
 //         console.log(user);
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+//             `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -808,7 +808,7 @@
 //       } else if (req.user.role === "Accountant") {
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+//             `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
 //             function (err, results, fields) {
 //               console.log(err);
 //               if (err) {
@@ -822,7 +822,7 @@
 //         // console.log(user);
 //         // zayavkalar = await new Promise(function (resolve, reject) {
 //         //   db.query(
-//         //     `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+//         //     `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
 //         //     function (err, results, fields) {
 //         //       if (err) {
 //         //         resolve(null);
@@ -876,7 +876,7 @@
 
 //         zayavkalar = await new Promise(function (resolve, reject) {
 //           db.query(
-//             `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
+//             `SELECT * from TestZayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
 //             function (err, results, fields) {
 //               if (err) {
 //                 resolve(null);
@@ -908,7 +908,7 @@
          
 //           let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where step=8 and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -925,7 +925,7 @@
 //             reject
 //           ) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where status='canceled_by_scoring' and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -941,7 +941,7 @@
 //             reject
 //           ) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where status='canceled_by_client' and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where status='canceled_by_client' and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -955,7 +955,7 @@
   
 //           let zayavkalarTimeOtkaz = await new Promise(function (resolve, reject) {
 //             db.query(
-//               `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank='${item}'`,
+//               `SELECT count(id) from TestZayavka where status='canceled_by_daily' and bank='${item}'`,
 //               function (err, results, fields) {
 //                 if (err) {
 //                   console.log(err);
@@ -981,7 +981,7 @@
   
 //             let zayavkalarScoring = await new Promise(function (resolve, reject) {
 //               db.query(
-//                 `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from Zayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
+//                 `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from TestZayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
 //                 function (err, results, fields) {
 //                   if (err) {
 //                     console.log(err);
@@ -1069,17 +1069,17 @@
 
 //   // passport_by = passport_by.replaceAll("ʻ", "'");
 //   // address = address.replaceAll("ʻ", "'");
-//   return `UPDATE Zayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
+//   return `update TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
 // }
 
 // function update3ZayavkaFunc(data) {
 //   let { id, max_amount, payment_amount } = data;
-//   return `UPDATE Zayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}',payment_amount='${payment_amount}' WHERE id = ${id};`;
+//   return `update TestZayavka SET step=3,max_amount='${max_amount}',amount='${max_amount}',payment_amount='${payment_amount}' WHERE id = ${id};`;
 // }
 
 // // function update4ZayavkaFunc(data) {
 // //   let { id } = data;
-// //   return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
+// //   return `update TestZayavka SET step=4 WHERE id = ${id};`;
 // // }
 
 // function update5ZayavkaFunc(data) {
@@ -1092,7 +1092,7 @@
 //   productsString = productsString.slice(0, -1);
 //   productsString += "]'";
 //   console.log(productsString);
-//   return `UPDATE Zayavka SET step=5,amount=${amount},products=${
+//   return `update TestZayavka SET step=5,amount=${amount},products=${
 //     productsString ?? ""
 //   },location=${toMyString(location)},device=${toMyString(
 //     device
@@ -1101,22 +1101,22 @@
 
 // function update6ZayavkaFunc(data) {
 //   let { id, payment_amount, expired_month } = data;
-//   return `UPDATE Zayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+//   return `update TestZayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 // }
 
 // function update7ZayavkaFunc(data) {
 //   let { id } = data;
-//   return `UPDATE Zayavka SET step=7,agree = TRUE WHERE id = ${id};`;
+//   return `update TestZayavka SET step=7,agree = TRUE WHERE id = ${id};`;
 // }
 
 // function updateFinishZayavkaFunc(data) {
 //   let { id } = data;
-//   return `UPDATE Zayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP  WHERE id = ${id};`;
+//   return `update TestZayavka SET step=8,selfie='/static/images/zayavka${id}.jpg',status = 'finished',finished_time = CURRENT_TIMESTAMP  WHERE id = ${id};`;
 // }
 
 // function cancelByClientZayavkaFunc(data) {
 //   let { id, canceled_reason } = data;
-//   return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
+//   return `update TestZayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
 // }
 
 // function toMyString(ob) {
@@ -1210,7 +1210,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${id}`,
+          `SELECT * from TestZayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1246,6 +1246,7 @@ class App {
         passport_by,
         address,
         region_id,
+        cardId
       } = req.body;
       fullname = `${fullname}`;
       fullname = fullname.replaceAll("ʻ", "'");
@@ -1254,17 +1255,30 @@ class App {
       await new Promise(function (resolve, reject) {
         db.query(
           update2ZayavkaFunc(req.body),
-          [
-            2,
-            phoneNumber,
-            phoneNumber2,
-            cardNumber,
-            passport_date,
-            passport_by,
-            JSON.stringify(address),
-            region_id,
-            id,
-          ],
+          cardId
+          ? [
+              2,
+              phoneNumber,
+              phoneNumber2,
+              cardNumber,
+              passport_date,
+              passport_by,
+              JSON.stringify(address),
+              region_id,
+              cardId,
+              id,
+            ]
+          : [
+              2,
+              phoneNumber,
+              phoneNumber2,
+              cardNumber,
+              passport_date,
+              passport_by,
+              JSON.stringify(address),
+              region_id,
+              id,
+            ],
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -1279,7 +1293,7 @@ class App {
 
       let zayavkaUpdated = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1324,7 +1338,7 @@ class App {
     });
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1384,7 +1398,7 @@ class App {
       // console.log(val);
 
       let alldata = {
-        orderId: "PPD-" + zayavka.id,
+        orderId: "PPDTEST-" + zayavka.id,
       //   amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
         amount: max_amount,
         duration: "12",
@@ -1394,7 +1408,8 @@ class App {
         birthDate: birthDate,
         phoneNumber: zayavka.phoneNumber,
         phoneNumber2: zayavka.phoneNumber2,
-        cardNumber: cardNumber,
+        // cardNumber: cardNumber,
+        cardId: zayavka.cardId,
         inn: process.env.PREMIUM_INN,
         // inn : 200655453,
         selfie: selfie_with_passport.substring(0, 30),
@@ -1414,14 +1429,14 @@ class App {
       );
 
       // return next(new InternalServerError(500, error));
-      let url1 = process.env.DAVR_BASE_URL + process.env.DAVR_LOGIN;
-      let url2 = process.env.DAVR_BASE_URL + process.env.DAVR_SCORING;
+      let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
+      let url2 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_SCORING;
       
       const response1 = await axios.post(
         url1,
         {
-          username: process.env.DAVR_USERNAME,
-          password: process.env.DAVR_PASSWORD,
+          username: process.env.DAVR_TEST_USERNAME,
+          password: process.env.DAVR_TEST_PASSWORD,
         },
         {
           headers: {
@@ -1454,7 +1469,7 @@ class App {
       const response2 = await axios.post(
         url2,
         {
-          orderId: "PPD-" + zayavka.id,
+          orderId: "PPDTEST-" + zayavka.id,
           // amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
           amount: max_amount,
           term: "12",
@@ -1464,7 +1479,8 @@ class App {
           birthDate: birthDate,
           phoneNumber: zayavka.phoneNumber.substring(1),
           phoneNumber2: zayavka.phoneNumber2.substring(1),
-          cardNumber: cardNumber,
+          // cardNumber: cardNumber,
+          cardId: zayavka.cardId,
           // inn: process.env.PREMIUM_INN,
           // inn: "200655453",
           // inn: "303107528", elma
@@ -1508,7 +1524,7 @@ class App {
 
       let zayavkaUpdated = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${id}`,
+          `SELECT * from TestZayavka WHERE id=${id}`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -1524,55 +1540,55 @@ class App {
         );
       });
       
-      let t1 = setTimeout(async function () {
-        let Updatedzayavka = await new Promise(function (resolve, reject) {
-          db.query(
-            `SELECT * from Zayavka WHERE id=${id}`,
-            function (err, results, fields) {
-              if (err) {
-                console.log(err);
-                resolve(null);
-                return null;
-              }
-              if (results.length != 0) {
-                resolve(results[0]);
-              } else {
-                resolve(null);
-              }
-            }
-          );
-        });
-        if (Updatedzayavka) {
-          if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
+      // let t1 = setTimeout(async function () {
+      //   let Updatedzayavka = await new Promise(function (resolve, reject) {
+      //     db.query(
+      //       `SELECT * from TestZayavka WHERE id=${id}`,
+      //       function (err, results, fields) {
+      //         if (err) {
+      //           console.log(err);
+      //           resolve(null);
+      //           return null;
+      //         }
+      //         if (results.length != 0) {
+      //           resolve(results[0]);
+      //         } else {
+      //           resolve(null);
+      //         }
+      //       }
+      //     );
+      //   });
+      //   if (Updatedzayavka) {
+      //     if (Updatedzayavka.status == "progress" && Updatedzayavka.step == 3) {
 
-            try {
-              var filePath = path.join(
-                __dirname,
-                "..",
-                "..",
-                "public",
-                "myid",
-                `${Updatedzayavka.passport}.png`
-              );
-              // bot.sendMessage(
-              //   "-4009277227",
-              //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
-              //   {
-              //     parse_mode: "HTML",
-              //   }
-              // );
+      //       try {
+      //         var filePath = path.join(
+      //           __dirname,
+      //           "..",
+      //           "..",
+      //           "public",
+      //           "myid",
+      //           `${Updatedzayavka.passport}.png`
+      //         );
+      //         // bot.sendMessage(
+      //         //   "-4009277227",
+      //         //   `<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${id} \nFULLNAME: ${Updatedzayavka.fullname}\n</b>`,
+      //         //   {
+      //         //     parse_mode: "HTML",
+      //         //   }
+      //         // );
               
-              bot.sendPhoto( "-4009277227",filePath,{
-                parse_mode: "HTML",
-                caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPD-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
-              })
-            } catch (error) {
-              bot.sendMessage(2053690211, `${error}`);
-            }
-          }
-        }
-        clearTimeout(t1);
-      }, 240 * 1000);
+      //         bot.sendPhoto( "-4009277227",filePath,{
+      //           parse_mode: "HTML",
+      //           caption:`<b>MESSAGE : ⚠️ KUTISH VAQTI 4 daqiqadan oshdi\nID: PPDTEST-${Updatedzayavka.id} \nFULLNAME: ${Updatedzayavka.fullname}\nADDRESS: ${Updatedzayavka.address.home}\n</b>`,
+      //         })
+      //       } catch (error) {
+      //         bot.sendMessage(2053690211, `${error}`);
+      //       }
+      //     }
+      //   }
+      //   clearTimeout(t1);
+      // }, 240 * 1000);
 
       return res.status(200).json({
         data: zayavkaUpdated,
@@ -1589,7 +1605,7 @@ class App {
     try {
       let zayavkaOld = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1639,7 +1655,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1667,7 +1683,7 @@ class App {
     try {
       let zayavkaOld = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1712,7 +1728,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1757,7 +1773,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             console.log(err);
             if (err) {
@@ -1810,7 +1826,7 @@ class App {
 
       let zayavka1 = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${id}`,
+          `SELECT * from TestZayavka WHERE id=${id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1824,7 +1840,7 @@ class App {
           }
         );
       });
-      //   console.log({ "orderId": `PPD-${zayavka1.id}`,
+      //   console.log({ "orderId": `PPDTEST-${zayavka1.id}`,
       //   "term": "12",
       //   singedAt,
       //   "oferta":true,
@@ -1832,7 +1848,7 @@ class App {
       const response2 = await axios.post(
         url2,
         {
-          orderId: `PPD-${id}`,
+          orderId: `PPDTEST-${id}`,
           term: `${zayavka1.expired_month}`,
           oferta: true,
           amount: zayavka1.payment_amount,
@@ -1862,7 +1878,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1905,7 +1921,7 @@ class App {
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from Zayavka WHERE id=${req.body.id}`,
+          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
           function (err, results, fields) {
             if (err) {
               resolve(null);
@@ -1965,7 +1981,7 @@ class App {
       if (req.user.role === "User") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
+            `SELECT * from TestZayavka WHERE user_id=${req.user.id} AND step > 0 ORDER BY id DESC `,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -1978,7 +1994,7 @@ class App {
       } else if (req.user.role === "SuperAdmin") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE  Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
@@ -2009,7 +2025,7 @@ class App {
         console.log(user);
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+            `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -2022,7 +2038,7 @@ class App {
       } else if (req.user.role === "Accountant") {
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from Zayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
+            `SELECT Zayavka.*,json_object("name",fillial.name,"work_status",fillial.work_status,"created_time",fillial.created_time,"address",fillial.address,"admin_id",fillial.admin_id,"nds",fillial.nds,"hisob_raqam",fillial.hisob_raqam,"bank_name",fillial.bank_name,"mfo",fillial.mfo,"inn",fillial.inn,"director_name",fillial.director_name,"director_phone",fillial.director_phone,"percent_type",fillial.percent_type,"expired_months",fillial.expired_months) as fillial,(case when fillial.admin_id is null then null else json_object("fullName",Admin.fullName,"phoneNumber",Admin.phoneNumber) end) as admin from TestZayavka,fillial,Admin WHERE (status="finished" or status="paid" ) and Zayavka.fillial_id=fillial.id and (case when fillial.admin_id is null then Admin.id=1 else fillial.admin_id=Admin.id end ) ORDER BY Zayavka.id DESC`,
             function (err, results, fields) {
               console.log(err);
               if (err) {
@@ -2036,7 +2052,7 @@ class App {
         // console.log(user);
         // zayavkalar = await new Promise(function (resolve, reject) {
         //   db.query(
-        //     `SELECT * from Zayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
+        //     `SELECT * from TestZayavka WHERE fillial_id='${user.fillial_id}' ORDER BY id DESC `,
         //     function (err, results, fields) {
         //       if (err) {
         //         resolve(null);
@@ -2090,7 +2106,7 @@ class App {
 
         zayavkalar = await new Promise(function (resolve, reject) {
           db.query(
-            `SELECT * from Zayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
+            `SELECT * from TestZayavka WHERE merchant_id=${user.merchant_id} ORDER BY id DESC`,
             function (err, results, fields) {
               if (err) {
                 resolve(null);
@@ -2122,7 +2138,7 @@ class App {
          
           let zayavkalarUspeshna = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT count(id) from Zayavka where step=8 and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where step=8 and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2139,7 +2155,7 @@ class App {
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_scoring' and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where status='canceled_by_scoring' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2155,7 +2171,7 @@ class App {
             reject
           ) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_client' and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where status='canceled_by_client' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2169,7 +2185,7 @@ class App {
   
           let zayavkalarTimeOtkaz = await new Promise(function (resolve, reject) {
             db.query(
-              `SELECT count(id) from Zayavka where status='canceled_by_daily' and bank='${item}'`,
+              `SELECT count(id) from TestZayavka where status='canceled_by_daily' and bank='${item}'`,
               function (err, results, fields) {
                 if (err) {
                   console.log(err);
@@ -2195,7 +2211,7 @@ class App {
   
             let zayavkalarScoring = await new Promise(function (resolve, reject) {
               db.query(
-                `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from Zayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
+                `SELECT avg(scoring_end - scoring_start)/(60*1000) as avg,count(id) as count from TestZayavka where scoring_start is not null and scoring_end is not null and bank='${item}'`,
                 function (err, results, fields) {
                   if (err) {
                     console.log(err);
@@ -2258,13 +2274,16 @@ class App {
       return next(new InternalServerError(500, error));
     }
   }
+
+  
+
 }
 
 function update1ZayavkaFunc(data) {
   let { user_id, merchant_id, fillial_id, fullname, passport, pinfl } = data;
   fullname = `${fullname}`;
   fullname = fullname.replaceAll("ʻ", "'");
-  return `INSERT INTO Zayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${
+  return `INSERT INTO TestZayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${
     pinfl ?? ""
   }') ; `;
 }
@@ -2278,22 +2297,26 @@ function update2ZayavkaFunc(data) {
     passport_by,
     passport_date,
     address,
+    cardId,
     region_id,
   } = data;
 
   // passport_by = passport_by.replaceAll("ʻ", "'");
   // address = address.replaceAll("ʻ", "'");
-  return `UPDATE Zayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
+  if (cardId) {
+    return `UPDATE TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=?,cardId=? WHERE id = ?`;
+  } else {
+    return `UPDATE TestZayavka SET step=?,phoneNumber=?,phoneNumber2=?,cardNumber=?,passport_date=?,passport_by=?,address=?,region_id=? WHERE id = ?`;
+  }
 }
-
 function update3ZayavkaFunc(data) {
   let { id, max_amount, payment_amount } = data;
-  return `UPDATE Zayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
+  return `update TestZayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
 }
 
 // function update4ZayavkaFunc(data) {
 //   let { id } = data;
-//   return `UPDATE Zayavka SET step=4 WHERE id = ${id};`;
+//   return `update TestZayavka SET step=4 WHERE id = ${id};`;
 // }
 
 function update5ZayavkaFunc(data) {
@@ -2309,13 +2332,13 @@ function update5ZayavkaFunc(data) {
   console.log(productsString);
 
   if (type =="IN") {
-    return `UPDATE Zayavka SET step=5,payment_amount=${amount},products=${
+    return `update TestZayavka SET step=5,payment_amount=${amount},products=${
       productsString ?? ""
     },location=${toMyString(location)},device=${toMyString(
       device
     )} WHERE id = ${id};`
   }else{
-    return `UPDATE Zayavka SET step=5,amount=${amount},products=${
+    return `update TestZayavka SET step=5,amount=${amount},products=${
       productsString ?? ""
     },location=${toMyString(location)},device=${toMyString(
       device
@@ -2326,27 +2349,27 @@ function update5ZayavkaFunc(data) {
 function update6ZayavkaFunc(data) {
   let { id, payment_amount, expired_month,type } = data;
   if (type =="IN") {
-    return `UPDATE Zayavka SET step=6,amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+    return `update TestZayavka SET step=6,amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 
   }else{
-    return `UPDATE Zayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
+    return `update TestZayavka SET step=6,payment_amount=${payment_amount},expired_month = ${expired_month} WHERE id = ${id};`;
 
   }
  }
 
 function updateFinishZayavkaFunc(data) {
   let { id } = data;
-  return `UPDATE Zayavka SET step=8,agree = TRUE,status = 'finished',finished_time = CURRENT_TIMESTAMP WHERE id = ${id};`;
+  return `update TestZayavka SET step=8,agree = TRUE,status = 'finished',finished_time = CURRENT_TIMESTAMP WHERE id = ${id};`;
 }
 
 function update7ZayavkaFunc(data) {
   let { id } = data;
-  return `UPDATE Zayavka SET step=7,selfie='/static/images/zayavka${id}.jpg'  WHERE id = ${id};`;
+  return `update TestZayavka SET step=7,selfie='/static/images/zayavka${id}.jpg'  WHERE id = ${id};`;
 }
 
 function cancelByClientZayavkaFunc(data) {
   let { id, canceled_reason } = data;
-  return `UPDATE Zayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
+  return `update TestZayavka SET status = 'canceled_by_client', finished_time = CURRENT_TIMESTAMP ,canceled_reason='${canceled_reason}' WHERE id = ${id}`;
 }
 
 function toMyString(ob) {
