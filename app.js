@@ -73,6 +73,21 @@ app.use(morgan("dev"));
 app.use(cors(), rateLimit());
 
 // static
+
+const mime = require("mime-types");
+app.get('/graph',checkToken, (req, res) => {
+  var fpath = path.join(
+    __dirname,
+    "public",
+    "graphs",
+    `graph-${req.orderId}.pdf`
+  );
+  const contentType = mime.lookup(fpath);
+  const pdfData = fs.readFileSync(fpath);
+  res.setHeader("Content-Type", contentType);
+  res.setHeader("Content-Disposition", `attachment; filename=graph-${req.orderId}-${ Date.now()}.pdf`);
+  return res.send(pdfData);
+});
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
 // app.use((req, res, next) => {
@@ -96,8 +111,6 @@ app.use((err, req, res, next) => {
 
 
 app.use("/api/v3",router3);
-
-
 
 
 app.use(helmet());

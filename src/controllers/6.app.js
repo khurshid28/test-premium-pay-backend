@@ -1703,8 +1703,6 @@ class App {
 
      
       let val = fillial.expired_months[arr.indexOf(`${req.body.expired_month}`)];
-      
-      
         console.log(val);
         console.log((Math.floor( req.body.payment_amount  +1) / 1000));
         console.log(Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
@@ -2315,7 +2313,90 @@ class App {
 
   
 
+
+  async graph(req, res, next) {
+    let id = req.params.id;
+    console.log(id);
+
+    try {
+      let Zayavka = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from TestZayavka where id='${id}'`,
+          function (err, results, fields) {
+            if (err) {
+              console.log(err);
+              reject(err);
+              return null;
+            }
+            if (results.length > 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
+
+      
+      if (!Zayavka) {
+        return next(new NotFoundError(404, "Zayavka not found"));
+      }
+
+      if (Zayavka.status == "finished" || Zayavka.status == "paid") {
+        console.log(Zayavka);
+        var fpath = path.join(
+          __dirname,
+          "..",
+          "..",
+          "public",
+          "graphs",
+          `graph-${id}.pdf`
+        );
+        if (!fs.existsSync(fpath)) {
+           console.log("generating pdf > ID:" + Zayavka.id);
+           await new Promise((resolve, reject) => {
+            exec(
+              `cd ./script/my_generator && dart run --define=data="""${JSON.stringify(Zayavka)}"""`,
+              (error, stdout, stderr) => {
+                if (error) {
+                  console.log(`error: ${error.message}`);
+                  reject(error)
+                  return;
+                }
+                if (stderr) {
+                    console.log(`error: ${stderr.message}`);
+                    reject(stderr)
+                    return;
+                  }
+                if (stdout) {
+                  console.log(`${stdout}`);
+                  resolve(stdout)
+                  return;
+                }
+              }
+            );
+          });
+
+          console.log("finished generating pdf > ID:" + Zayavka.id);
+        }
+
+
+        const contentType = mime.lookup(fpath);
+        const pdfData = fs.readFileSync(fpath);
+        res.setHeader("Content-Type", contentType);
+        res.setHeader("Content-Disposition", `attachment; filename=TestZayavka${new Date()}.pdf`);
+
+        return res.send(pdfData);
+      } else {
+        return next(new BadRequestError(400, "Zayavka isnot finished"));
+      }
+    } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+    }
+  }
 }
+
 
 function update1ZayavkaFunc(data) {
   let { user_id, merchant_id, fillial_id, fullname, passport, pinfl } = data;
