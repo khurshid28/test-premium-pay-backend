@@ -27,7 +27,7 @@ const checkToken = require("./src/middlewares/check-token.js");
 let PREMIUM = require("./Premium-Query").PREMIUM;
 
 // PORT
-const PORT = 1213;
+const PORT = 1212;
 // app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 // app.use(bodyParser.json({ limit: "50mb" }));
 
