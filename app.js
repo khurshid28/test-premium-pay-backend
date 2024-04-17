@@ -123,7 +123,7 @@ app.get('/graph',checkToken, (req, res,next) => {
      `graph-${req.orderId}.pdf`
    );
    console.log(fpath);
-   const contentType = mime.contentType(fpath);
+   const contentType = mime.lookup(fpath);
    let pdfData =  fs.readFileSync(fpath);
   //  console.log(contentType);
   //  console.log(pdfData);
