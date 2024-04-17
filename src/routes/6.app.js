@@ -45,6 +45,7 @@ router.get("/statistics/", appController.getStatistics);
 router.get("/percents/:fillial_id",checkUser, appController.getPercents);
 
 router.get("/:id", appController.getByid);
+router.get("/graph/:id", appController.graph);
 
 module.exports = router;
 
