@@ -37,13 +37,13 @@ const errorRouter = require("./10.errors");
 
 const accountantRouter = require("./11.accountant");
 const qrCodeRouter = require("./12.qrcode");
-// const cardRouter=require("./13.card.js")
+const cardRouter=require("./13.card.js")
 
 router.use("/login", loginRouter);
 router.use("/myid", myidRouter);
 router.use("/user", userRouter);
 router.use("/super", superRouter);
-// router.use("/card", cardRouter);
+router.use("/card", cardRouter);
 
 
 router.use("/fillial-admin", fillialAdminRouter);
