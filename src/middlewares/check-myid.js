@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
     console.log(req.body);
     let myIdData = await new Promise(function (resolve, reject) {
       db.query(
-        `Select * from MyId WHERE pass_seriya='${req.body.passport}'`,
+        `Select * from MyId WHERE pass_seriya='${req.body.passport}' and Date(now()) < Date(created_day + INTERVAL 1 YEAR)`,
         function (err, results, fields) {
           if (err) {
             resolve(null);
