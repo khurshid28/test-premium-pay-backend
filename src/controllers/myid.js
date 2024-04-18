@@ -162,6 +162,11 @@ class Myid {
         }
         console.log(response3.data);
         if (response3.data.profile != null && response3.data.result_code != 3) {
+           let userMyIdData = await new Promise((resolve, reject) => {
+             db.query(
+               `INSERT INTO MyId (response_id,pass_seriya,comparison_value,profile) VALUES ('${response3.data.response_id}', '${passport}','${response3.data.comparison_value}','${response3.data.profile}')`
+             );
+           });
           return res.status(response3.status).json(response3.data);
         } else {
           return next(
