@@ -35,7 +35,7 @@ router.post("/update/6",checkUser, appController.update6);
 router.post("/update/7",checkUser,upload,  appController.update7);
 router.post("/update/finish",checkUser, appController.updateFinish);
 router.post("/cancel_by_client/",checkUser, appController.cancel_by_client);
-router.get("/grafik/:id",checkUser, appController.getGraphics)
+// router.get("/grafik/:id",checkUser, appController.getGraphics)
 
 
 //

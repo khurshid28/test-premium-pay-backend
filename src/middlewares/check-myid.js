@@ -33,7 +33,7 @@ module.exports = async (req, res, next) => {
     if (!myIdData) {
       return next();
     }
-    req.myIdData = myIdData;
+ 
 
     return res.status(200).json({
       message: "Success",
