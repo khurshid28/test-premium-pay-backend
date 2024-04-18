@@ -33,17 +33,14 @@ module.exports = async (req, res, next) => {
     if (!myIdData) {
       return next();
     }
- 
-    console.log('my id ---',myIdData);
+
+    console.log("my id ---", myIdData);
     return res.status(200).json({
-      message: "Success",
-      data: {
-        response_id: myIdData.response_id,
-        comparison_value: myIdData.comparison_value,
-        result_code: 1,
-        result_note: "Все проверки успешно прошли",
-        profile: myIdData.profile,
-      },
+      response_id: myIdData.response_id,
+      comparison_value: myIdData.comparison_value,
+      result_code: 1,
+      result_note: "Все проверки успешно прошли",
+      profile: myIdData.profile,
     });
   } catch (error) {
     console.log("????????????");
