@@ -164,7 +164,24 @@ class Myid {
         if (response3.data.profile != null && response3.data.result_code != 3) {
            let userMyIdData = await new Promise((resolve, reject) => {
              db.query(
-               `INSERT INTO MyId (response_id,pass_seriya,comparison_value,profile) VALUES ('${response3.data.response_id}', '${passport}','${response3.data.comparison_value}','${JSON.stringify(response3.data.profile)}')`
+               `INSERT INTO MyId (response_id,pass_seriya,comparison_value,profile) VALUES ('${
+                 response3.data.response_id
+               }', '${passport}','${
+                 response3.data.comparison_value
+               }','${JSON.stringify(response3.data.profile)}')`,
+               function (err, results, fields) {
+                 if (err) {
+                   resolve(null);
+                   // return null;
+                 }
+                 console.log("", results);
+                 if (!results.warningStatus) {
+                   resolve("success");
+                 } else {
+                   resolve(null);
+                   // return null;
+                 }
+               }
              );
            });
           return res.status(response3.status).json(response3.data);
