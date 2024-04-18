@@ -8,7 +8,7 @@ class Myid {
   async getMe(req, res, next) {
     try {
       console.log(">>>>>>>>>>>>>>>>>");
-      let { code, base64 } = req.body;
+      let { code, base64,passport } = req.body;
 
       if (code) {
         let url1 = process.env.FACE_URL + "oauth2/access-token";
