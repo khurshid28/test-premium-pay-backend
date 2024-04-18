@@ -1,5 +1,6 @@
 require("./src/config/_index.js");
 
+let fs =require("fs");
 
 var express = require("express");
 const cors = require("cors");
@@ -26,7 +27,9 @@ const checkToken = require("./src/middlewares/check-token.js");
 let PREMIUM = require("./Premium-Query").PREMIUM;
 
 // PORT
-const PORT = process.env.TEST_PORT || 1212;
+const PORT = 1212;
+// app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+// app.use(bodyParser.json({ limit: "50mb" }));
 
 // app.use((req, res, next) => {
 //   // console.log(`${req.method} ${req.originalUrl} [STARTED]`)
@@ -65,29 +68,81 @@ const PORT = process.env.TEST_PORT || 1212;
 app.use(morgan("dev"));
 
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true, limit: "20mb" }));
+app.use(bodyParser.json({
+  limit: "50mb" 
+}));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 
 
 app.use(cors(), rateLimit());
 
-// static
+// static 
 
-const mime = require("mime-types");
-app.get('/graph',checkToken, (req, res) => {
-  var fpath = path.join(
-    __dirname,
-    "public",
-    "graphs",
-    `graph-${req.orderId}.pdf`
-  );
-  const contentType = mime.lookup(fpath);
-  const pdfData = fs.readFileSync(fpath);
-  res.setHeader("Content-Type", contentType);
-  res.setHeader("Content-Disposition", `attachment; filename=graph-${req.orderId}-${ Date.now()}.pdf`);
-  return res.send(pdfData);
+let mime = require("mime-types");
+const { InternalServerError } = require("./src/utils/errors.js");
+
+// app.get('/api', async (req,res,next)=>{
+//  try {
+//    console.log(res.statusCode);
+//    console.log(req.body);
+//    let fpath = path.join(
+//      __dirname,
+//      "public",
+//      "graphs",
+//      `graph-${req.orderId}.pdf`
+//    );
+//    console.log(fpath);
+//    const contentType = mime.contentType(fpath);
+//    let pdfData =  fs.readFileSync(fpath);
+//    console.log(contentType);
+//    console.log(pdfData);
+//    res.setHeader("Content-Type", contentType);
+//    res.setHeader(
+//      "Content-Disposition",
+//      `attachment; filename=graph-${req.orderId}-${Date.now()}.pdf`
+//    );
+//    return res.status(200).send(pdfData);
+//  } catch (error) {
+//   console.log(error);
+//   return next(new InternalServerError(500,error))
+  
+//  }
+
+      
+// });
+
+app.get('/graph',checkToken, (req, res,next) => {
+
+  try {
+  console.log(res.statusCode);
+   console.log(req.body);
+   console.log(req.orderId);
+   let fpath = path.join(
+     __dirname,
+     "public",
+     "graphs",
+     `graph-${req.orderId}.pdf`
+   );
+   console.log(fpath);
+   const contentType = mime.lookup(fpath);
+   let pdfData =  fs.readFileSync(fpath);
+  //  console.log(contentType);
+  //  console.log(pdfData);
+   res.setHeader("Content-Type", contentType);
+   res.setHeader(
+     "Content-Disposition",
+     `attachment; filename=graph-${req.orderId}-${Date.now()}.pdf`
+   );
+   return res.status(200).send(pdfData);
+ } catch (error) {
+  console.log(error);
+  return next(new InternalServerError(500,error))
+  
+ }
+
 });
+
 app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 
 // app.use((req, res, next) => {
@@ -99,15 +154,16 @@ app.use("/static",checkToken, express.static(path.join(__dirname, "public")));
 //   next();
 // });
 
-app.use(bodyParser.urlencoded({ extended: true,  limit :"50mb"})); 
-app.use(bodyParser.json({ limit:"50mb" }));
-app.use((err, req, res, next) => {
-  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
-      console.error(err);
-      return res.status(400).send({ status: 400, message: err.message }); // Bad request
-  }
-  next();
-});
+
+
+
+// app.use((err, req, res, next) => {
+//   if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+//       console.error(err);
+//       return res.status(400).send({ status: 400, message: err.message }); // Bad request
+//   }
+//   next();
+// });
 
 
 app.use("/api/v3",router3);
@@ -265,6 +321,8 @@ app.listen(PORT, async () => {
 
   //
 
+  
+
   // db.query(PREMIUM.createMerchantTable, function (err, results, fields) {
   //   console.log(err);
   //   if (err) {
@@ -365,3 +423,4 @@ const getDurationInMilliseconds = (start) => {
 
   return (diff[0] * NS_PER_SEC + diff[1]) / NS_TO_MS;
 };
+

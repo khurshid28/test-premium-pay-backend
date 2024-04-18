@@ -26,7 +26,9 @@ module.exports = async (req, res, next) => {
       return next(new AuthorizationError(401, "No token provided"));
     }
 
-    const { userId, agent, role } = jwt.verify(token);
+    const { userId, agent, role, orderId } = jwt.verify(token);
+    // console.log(" token data :"+JSON.stringify(jwt.verify(token)));
+    req.orderId = orderId;
 
     let user = await new Promise(function (resolve, reject) {
       db.query(
@@ -45,9 +47,9 @@ module.exports = async (req, res, next) => {
       );
     });
 
-    if (!user) {
-      return next(new AuthorizationError(401, "Invalid token"));
-    }
+    // if (!user) {
+    //   return next(new AuthorizationError(401, "Invalid token"));
+    // }
 
     // const reqAgent = req.headers["user-agent"];
     // if (agent !== reqAgent) {
@@ -56,10 +58,12 @@ module.exports = async (req, res, next) => {
     //     );
     // }
 
-    req.user = {
-      id: user["id"],
-      role: user["role"],
-    };
+   if (user) {
+     req.user = {
+       id: user["id"],
+       role: user["role"],
+     };
+   }
 
     return next();
   } catch (error) {
