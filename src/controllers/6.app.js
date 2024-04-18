@@ -2311,6 +2311,9 @@ class App {
     }
   }
 
+  
+
+
   async graph(req, res, next) {
     let id = req.params.id;
     console.log(id);
@@ -2393,6 +2396,7 @@ class App {
     }
   }
 }
+
 
 function update1ZayavkaFunc(data) {
   let { user_id, merchant_id, fillial_id, fullname, passport, pinfl } = data;
