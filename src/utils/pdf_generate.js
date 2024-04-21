@@ -32,7 +32,7 @@ module.exports = async function (zayavka) {
       html: fs.readFileSync(
         path.join(
             __dirname,
-            
+            "../",
             "../",
             
             "public", "templetes", "pdf-templete.html"),
