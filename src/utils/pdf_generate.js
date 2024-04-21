@@ -34,7 +34,7 @@ module.exports = async function (zayavka) {
             "../",
             "../",
             
-            "public", "templetes", "templete.html"),
+            "public", "templetes", "pdf-templete.html"),
         "utf8"
       ),
       data: {
