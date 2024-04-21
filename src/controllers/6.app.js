@@ -1167,6 +1167,7 @@ let bot = require("../bot/bot");
 
 const fs = require("fs");
 const path = require("path");
+let mime =require("mime")
 
 class App {
   async update1(req, res, next) {
