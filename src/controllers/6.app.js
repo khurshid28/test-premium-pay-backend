@@ -2395,6 +2395,23 @@ class App {
       return next(new InternalServerError(500, error));
     }
   }
+
+
+  async cancelTexts(req, res, next) {
+    try {
+      return res.status(200).json({
+        data: [
+          "Клиент ушел с магазина",
+          "Не хватало по лимита",
+          "Клиент отказался",
+          "Другой",
+        ],
+      });
+    } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+    }
+  }
 }
 
 

@@ -44,6 +44,8 @@ router.post("/cancel_by_client/",checkUser, appController.cancel_by_client);
 router.get("/getAll/", appController.getAll);
 router.get("/statistics/", appController.getStatistics);
 
+router.get("/cancelTexts/",checkUser, appController.cancelTexts);
+
 
 router.get("/percents/:fillial_id",checkUser, appController.getPercents);
 
