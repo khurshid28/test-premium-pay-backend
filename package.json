@@ -32,6 +32,7 @@
     "node-schedule": "^2.1.1",
     "node-telegram-bot-api": "^0.64.0",
     "nodemon": "^3.0.1",
+    "pdf-creator-node": "^2.3.5",
     "pdfkit": "^0.13.0",
     "redis": "^4.6.5",
     "secure-random-string": "^1.1.3",

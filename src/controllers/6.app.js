@@ -1160,6 +1160,7 @@ const {
 } = require("../utils/errors.js");
 
 let db = require("../config/db");
+let pdfGenerator =require("../utils/pdf_generate")
 
 let axios = require("axios");
 let bot = require("../bot/bot");
@@ -2321,7 +2322,7 @@ class App {
     try {
       let Zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT * from TestZayavka where id='${id}'`,
+          `SELECT TestZayavka.*, merchant.name as merchant_name from TestZayavka,merchant where id='${id}' and merchant.name=TestZayavka.merchant_id`,
           function (err, results, fields) {
             if (err) {
               console.log(err);
@@ -2354,29 +2355,31 @@ class App {
         );
         if (!fs.existsSync(fpath)) {
            console.log("generating pdf > ID:" + Zayavka.id);
-           await new Promise((resolve, reject) => {
-            exec(
-              `cd ./script/my_generator && dart run --define=data="""${JSON.stringify(Zayavka)}"""`,
-              (error, stdout, stderr) => {
-                if (error) {
-                  console.log(`error: ${error.message}`);
-                  reject(error)
-                  return;
-                }
-                if (stderr) {
-                    console.log(`error: ${stderr.message}`);
-                    reject(stderr)
-                    return;
-                  }
-                if (stdout) {
-                  console.log(`${stdout}`);
-                  resolve(stdout)
-                  return;
-                }
-              }
-            );
-          });
+          //  await new Promise((resolve, reject) => {
+          //   exec(
+          //     `cd ./script/my_generator && dart run --define=data="""${JSON.stringify(Zayavka)}"""`,
+          //     (error, stdout, stderr) => {
+          //       if (error) {
+          //         console.log(`error: ${error.message}`);
+          //         reject(error)
+          //         return;
+          //       }
+          //       if (stderr) {
+          //           console.log(`error: ${stderr.message}`);
+          //           reject(stderr)
+          //           return;
+          //         }
+          //       if (stdout) {
+          //         console.log(`${stdout}`);
+          //         resolve(stdout)
+          //         return;
+          //       }
+          //     }
+          //   );
+          // });
 
+          await pdfGenerator(Zayavka);
+         
           console.log("finished generating pdf > ID:" + Zayavka.id);
         }
 
