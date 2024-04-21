@@ -1,4 +1,4 @@
-var pdf = require("pdf-creator-node");
+var pdf = require("@chelmsfordbeer/pdf-creator-node");
 const path = require("path");
 let fs = require("fs");
 module.exports = async function (zayavka) {
@@ -6,7 +6,7 @@ module.exports = async function (zayavka) {
 
     let options = {
       format: 'A4',
-     phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs", 
+    //  phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs", 
     };
   
     let newFilePath = path.join(
