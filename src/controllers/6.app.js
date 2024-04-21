@@ -2322,7 +2322,7 @@ class App {
     try {
       let Zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          `SELECT TestZayavka.*, merchant.name as merchant_name from TestZayavka,merchant where id='${id}' and merchant.name=TestZayavka.merchant_id`,
+          `SELECT TestZayavka.*, merchant.name as merchant_name from TestZayavka,merchant where TestZayavka.id='${id}' and merchant.name=TestZayavka.merchant_id`,
           function (err, results, fields) {
             if (err) {
               console.log(err);
