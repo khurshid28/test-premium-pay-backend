@@ -5,7 +5,8 @@ module.exports = async function (zayavka) {
   
 
     let options = {
-      // format: 'A4'
+      format: 'A4',
+     phantomPath: "./node_modules/phantomjs/bin/phantomjs", 
     };
   
     let newFilePath = path.join(
