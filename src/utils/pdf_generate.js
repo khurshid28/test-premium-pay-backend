@@ -1,6 +1,6 @@
 var pdf = require("pdf-creator-node");
 const path = require("path");
-
+let fs = require("fs");
 module.exports = async function (zayavka) {
   
 
