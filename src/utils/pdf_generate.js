@@ -44,12 +44,12 @@ module.exports = async function (zayavka) {
         payment_amount_month: toMoney(
           Math.floor(zayavka.payment_amount / zayavka.expired_month)
         ),
-        created_time: zayavka.created_time
+        created_time: zayavka.created_time.toISOString()
           .substring(0, 10)
           .split("-")
           .reverse()
           .join("-"),
-        created_time_hour: zayavka.created_time.substring(11, 16),
+        created_time_hour: zayavka.created_time.toISOString().substring(11, 16),
         passport_seria: zayavka.passport.substring(0, 2),
         passport_number: zayavka.passport.substring(2),
         products: zayavka.products.map((item) => {
@@ -89,7 +89,7 @@ module.exports = async function (zayavka) {
       type: "",
     };
 
-    console.log(zayavka.created_time.substring(11, 16));
+    console.log(zayavka.created_time.toISOString().substring(11, 16));
     await pdf
       .create(document, options)
       .then((res) => {
