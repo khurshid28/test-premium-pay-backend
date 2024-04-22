@@ -51,6 +51,9 @@ router.get("/percents/:fillial_id",checkUser, appController.getPercents);
 
 router.get("/:id", appController.getByid);
 router.get("/graph/:id", appController.graph);
+router.get("/oferta/:id", appController.oferta);
+
+
 
 module.exports = router;
 

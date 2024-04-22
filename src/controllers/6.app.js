@@ -1165,8 +1165,10 @@ let pdfGenerator =require("../utils/pdf_generate")
 let axios = require("axios");
 let bot = require("../bot/bot");
 
-const fs = require("fs");
-const path = require("path");
+const ejs = require("ejs"); // 3.1.8
+const path = require("path"); 
+const fs = require("fs"); 
+const puppeteer = require("puppeteer");
 let mime =require("mime")
 
 class App {
@@ -2339,9 +2341,9 @@ class App {
     try {
       let Zayavka = await new Promise(function (resolve, reject) {
         db.query(
-          // `SELECT TestZayavka.*, merchant.name as merchant_name from TestZayavka,merchant where TestZayavka.id='${id}' and merchant.name=TestZayavka.merchant_id`,
+          `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${id} and merchant.id=TestZayavka.merchant_id;`,
 
-          `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
+          // `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
           function (err, results, fields) {
             if (err) {
               console.log(err);
@@ -2357,58 +2359,93 @@ class App {
         );
       });
 
-      
+      console.log(Zayavka);
       if (!Zayavka) {
         return next(new NotFoundError(404, "Zayavka not found"));
       }
 
       if (Zayavka.status == "finished" || Zayavka.status == "paid") {
-        console.log(Zayavka);
-        var fpath = path.join(
-          __dirname,
-          "..",
-          "..",
-          "public",
-          "graphs",
-          `graph-${id}.pdf`
-        );
-        if (!fs.existsSync(fpath)) {
-           console.log("generating pdf > ID:" + Zayavka.id);
-          //  await new Promise((resolve, reject) => {
-          //   exec(
-          //     `cd ./script/my_generator && dart run --define=data="""${JSON.stringify(Zayavka)}"""`,
-          //     (error, stdout, stderr) => {
-          //       if (error) {
-          //         console.log(`error: ${error.message}`);
-          //         reject(error)
-          //         return;
-          //       }
-          //       if (stderr) {
-          //           console.log(`error: ${stderr.message}`);
-          //           reject(stderr)
-          //           return;
-          //         }
-          //       if (stdout) {
-          //         console.log(`${stdout}`);
-          //         resolve(stdout)
-          //         return;
-          //       }
-          //     }
-          //   );
-          // });
+        // console.log(Zayavka);
+        // var fpath = path.join(
+        //   __dirname,
+        //   "..",
+        //   "..",
+        //   "public",
+        //   "graphs",
+        //   `graph-${id}.pdf`
+        // );
+        // if (!fs.existsSync(fpath)) {
+        //    console.log("generating pdf > ID:" + Zayavka.id);
+        //   //  await new Promise((resolve, reject) => {
+        //   //   exec(
+        //   //     `cd ./script/my_generator && dart run --define=data="""${JSON.stringify(Zayavka)}"""`,
+        //   //     (error, stdout, stderr) => {
+        //   //       if (error) {
+        //   //         console.log(`error: ${error.message}`);
+        //   //         reject(error)
+        //   //         return;
+        //   //       }
+        //   //       if (stderr) {
+        //   //           console.log(`error: ${stderr.message}`);
+        //   //           reject(stderr)
+        //   //           return;
+        //   //         }
+        //   //       if (stdout) {
+        //   //         console.log(`${stdout}`);
+        //   //         resolve(stdout)
+        //   //         return;
+        //   //       }
+        //   //     }
+        //   //   );
+        //   // });
 
-          await pdfGenerator(Zayavka);
+        //   await pdfGenerator(Zayavka);
          
-          console.log("finished generating pdf > ID:" + Zayavka.id);
-        }
+        //   console.log("finished generating pdf > ID:" + Zayavka.id);
+        // }
 
 
-        const contentType = mime.lookup(fpath);
-        const pdfData = fs.readFileSync(fpath);
-        res.setHeader("Content-Type", contentType);
-        res.setHeader("Content-Disposition", `attachment; filename=TestZayavka${new Date()}.pdf`);
+        // const contentType = mime.lookup(fpath);
+        // const pdfData = fs.readFileSync(fpath);
+        // res.setHeader("Content-Type", contentType);
+        // res.setHeader("Content-Disposition", `attachment; filename=TestZayavka${new Date()}.pdf`);
 
-        return res.send(pdfData);
+        // return res.send(pdfData);
+       
+      
+        let browser;
+        (async () => {
+          browser = await puppeteer.launch();
+          const [page] = await browser.pages();
+          const html = await ejs.renderFile(path.join(__dirname,"../","../","/public/templetes/graph-templete.ejs"), Zayavka);
+          await page.setContent(html);
+          const pdf = await page.pdf({format: "A4"});
+    
+          res.contentType("application/pdf");
+          
+      
+          // optionally:
+          res.setHeader(
+            "Content-Disposition",
+            `attachment; filename=graph-${Zayavka.id}.pdf`
+          );
+      
+          res.send(pdf);
+    
+        //   fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
+        //     if(err){
+        //         return console.error('error')
+        //     }
+    
+        //     console.log('success!')
+        // })
+        })()
+          .catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+          }) 
+          .finally(() => browser?.close());
+
       } else {
         return next(new BadRequestError(400, "Zayavka isnot finished"));
       }
@@ -2418,6 +2455,83 @@ class App {
     }
   }
 
+
+  
+  async oferta(req, res, next) {
+    let id = req.params.id;
+    console.log(id);
+
+    try {
+      let Zayavka = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${id} and merchant.id=TestZayavka.merchant_id;`,
+
+          // `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
+          function (err, results, fields) {
+            if (err) {
+              console.log(err);
+              reject(err);
+              return null;
+            }
+            if (results.length > 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
+
+      console.log(Zayavka);
+      if (!Zayavka) {
+        return next(new NotFoundError(404, "Zayavka not found"));
+      }
+
+      if (Zayavka.step > 2) {
+       
+       
+      
+        let browser;
+        (async () => {
+          browser = await puppeteer.launch();
+          const [page] = await browser.pages();
+          const html = await ejs.renderFile(path.join(__dirname,"../","../","/public/templetes/oferta-templete.ejs"), Zayavka);
+          await page.setContent(html);
+          const pdf = await page.pdf({format: "A4"});
+    
+          res.contentType("application/pdf");
+          
+      
+          // optionally:
+          res.setHeader(
+            "Content-Disposition",
+            `attachment; filename=oferta-${Zayavka.id}.pdf`
+          );
+      
+          res.send(pdf);
+    
+        //   fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
+        //     if(err){
+        //         return console.error('error')
+        //     }
+    
+        //     console.log('success!')
+        // })
+        })()
+          .catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+          }) 
+          .finally(() => browser?.close());
+
+      } else {
+        return next(new BadRequestError(400, "Zayavka isnot finished"));
+      }
+    } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+    }
+  }
 
   async cancelTexts(req, res, next) {
     try {
