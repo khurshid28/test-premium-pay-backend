@@ -1699,6 +1699,7 @@ class App {
       });
 
       if (fillial.percent_type == "OUT") {
+        console.log(fillial.expired_months);
          let arr = fillial.expired_months.map((obj) => {
         return `${obj.month}`;
       });
@@ -1716,7 +1717,7 @@ class App {
           db.query(update6ZayavkaFunc({
             ...req.body,
             type: fillial.percent_type,
-            payment_amount :Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000)
+            payment_amount :Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100))
           }), function (err, results, fields) {
             if (err) {
               return resolve(null);
@@ -1740,7 +1741,6 @@ class App {
           });
         });
       }
-     
 
       let zayavka = await new Promise(function (resolve, reject) {
         db.query(
