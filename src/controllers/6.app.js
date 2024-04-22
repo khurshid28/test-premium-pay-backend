@@ -1709,14 +1709,15 @@ class App {
         console.log((Math.floor( req.body.payment_amount  +1) / 1000));
         console.log(Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
         console.log(( Math.floor( req.body.payment_amount  +1) / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000));
-        if ( Math.floor(( req.body.payment_amount   + 1) / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000)) {
-         return next(new BadRequestError(400, "Payment amount Error"));
-        } 
+        // if ( Math.floor(( req.body.payment_amount   + 1) / 1000)  !=  Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000)) {
+        //  return next(new BadRequestError(400, "Payment amount Error"));
+        // } 
       } 
       await new Promise(function (resolve, reject) {
         db.query(update6ZayavkaFunc({
           ...req.body,
-          type: fillial.percent_type
+          type: fillial.percent_type,
+          payment_amount :Math.floor(zayavkaOld.amount * (1 + val["percent"] / 100)/1000)
         }), function (err, results, fields) {
           if (err) {
             return resolve(null);
