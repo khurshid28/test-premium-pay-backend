@@ -115,7 +115,7 @@ const { InternalServerError, NotFoundError } = require("./src/utils/errors.js");
 
 const ejs = require("ejs"); // 3.1.8
 const puppeteer = require("puppeteer");
-app.get('/graph',checkToken, async(req, res,next) => {
+app.get('/graph', async(req, res,next) => {
 
   try {
     // if (!req.orderId) {
