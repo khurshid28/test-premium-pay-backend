@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@chelmsfordbeer/pdf-creator-node": "^2.2.5",
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "bottleneck": "^2.19.5",
