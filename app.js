@@ -172,7 +172,9 @@ app.get('/graph', async(req, res,next) => {
     })()
       .catch(err => {
         console.error(err);
-        res.sendStatus(500);
+        res.sendStatus(500).json({
+          "error": err
+        });
       }) 
       .finally(() => browser?.close());
 
