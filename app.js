@@ -118,74 +118,77 @@ const puppeteer = require("puppeteer");
 app.get('/graph',checkToken, async(req, res,next) => {
 
   try {
-    if (!req.orderId) {
-      return next( new NotFoundError(400,"orderId required"))
-    }
+    // if (!req.orderId) {
+    //   return next( new NotFoundError(400,"orderId required"))
+    // }
 
-    // let Zayavka = await new Promise(function (resolve, reject) {
-    //   db.query(
-    //     `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${req.orderId} and merchant.id=TestZayavka.merchant_id;`,
+    let Zayavka = await new Promise(function (resolve, reject) {
+      db.query(
+        `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${req.orderId} and merchant.id=TestZayavka.merchant_id;`,
 
-    //     // `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
-    //     function (err, results, fields) {
-    //       if (err) {
-    //         console.log(err);
-    //         reject(err);
-    //         return null;
-    //       }
-    //       if (results.length > 0) {
-    //         resolve(results[0]);
-    //       } else {
-    //         resolve(null);
-    //       }
-    //     }
-    //   );
-    // });
+        // `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
+        function (err, results, fields) {
+          if (err) {
+            console.log(err);
+            reject(err);
+            return null;
+          }
+          if (results.length > 0) {
+            resolve(results[0]);
+          } else {
+            resolve(null);
+          }
+        }
+      );
+    });
 
 
-    // let browser;
-    // (async () => {
-    //   browser = await puppeteer.launch();
-    //   const [page] = await browser.pages();
-    //   const html = await ejs.renderFile(path.join(__dirname,"/public/templetes/graph-templete.ejs"), Zayavka);
-    //   await page.setContent(html);
-    //   const pdf = await page.pdf({format: "A4"});
+    let browser;
+    (async () => {
+      browser = await puppeteer.launch();
+      const [page] = await browser.pages();
+      const html = await ejs.renderFile(path.join(__dirname,"/public/templetes/graph-templete.ejs"), Zayavka);
+      await page.setContent(html);
+      const pdf = await page.pdf({format: "A4"});
 
-    //   res.contentType("application/pdf");
-      
-  
-    //   // optionally:
-    //   res.setHeader(
-    //     "Content-Disposition",
-    //     `attachment; filename=graph-${Zayavka.id}.pdf`
-    //   );
-  
-    //   res.send(pdf);
-
-    //   fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
-    //     if(err){
-    //         return console.error('error')
-    //     }
-
-    //     console.log('success!')
-    // })
-    // })()
-    //   .catch(err => {
-    //     console.error(err);
-    //     res.sendStatus(500);
-    //   }) 
-    //   .finally(() => browser?.close());
-    let pdfData = fs.readFileSync(path.join(__dirname,"/public/test-graph.pdf"), );
-    res.contentType("application/pdf");
+      res.contentType("application/pdf");
       
   
       // optionally:
       res.setHeader(
         "Content-Disposition",
-        `attachment; filename=graph-test.pdf`
+        `attachment; filename=graph-${Zayavka.id}.pdf`
       );
   
-      res.send(pdfData);
+      res.send(pdf);
+
+      fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
+        if(err){
+            return console.error('error')
+        }
+
+        console.log('success!')
+    })
+    })()
+      .catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+      }) 
+      .finally(() => browser?.close());
+
+
+    // let pdfData = fs.readFileSync(path.join(__dirname,"/public/test-graph.pdf"), );
+    // res.contentType("application/pdf");
+      
+  
+    //   // optionally:
+    //   res.setHeader(
+    //     "Content-Disposition",
+    //     `attachment; filename=graph-test.pdf`
+    //   );
+  
+    //   res.send(pdfData);
+
  } catch (error) {
   console.log(error);
   return next(new InternalServerError(500,error))
