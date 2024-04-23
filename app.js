@@ -122,27 +122,27 @@ app.get('/graph', async(req, res,next) => {
     //   return next( new NotFoundError(400,"orderId required"))
     // }
 
-    let Zayavka = await new Promise(function (resolve, reject) {
-      db.query(
-        `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${req.orderId} and merchant.id=TestZayavka.merchant_id;`,
+    // let Zayavka = await new Promise(function (resolve, reject) {
+    //   db.query(
+    //     `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${req.orderId} and merchant.id=TestZayavka.merchant_id;`,
 
-        // `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
-        function (err, results, fields) {
-          if (err) {
-            console.log(err);
-            reject(err);
-            return null;
-          }
-          if (results.length > 0) {
-            resolve(results[0]);
-          } else {
-            resolve(null);
-          }
-        }
-      );
-    });
+    //     // `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
+    //     function (err, results, fields) {
+    //       if (err) {
+    //         console.log(err);
+    //         reject(err);
+    //         return null;
+    //       }
+    //       if (results.length > 0) {
+    //         resolve(results[0]);
+    //       } else {
+    //         resolve(null);
+    //       }
+    //     }
+    //   );
+    // });
 
-
+    let Zayavka ={}
     let browser;
     (async () => {
       browser = await puppeteer.launch();
