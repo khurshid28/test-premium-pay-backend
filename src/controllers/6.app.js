@@ -2339,6 +2339,21 @@ class App {
     console.log(id);
 
     try {
+
+
+      let pdfData = fs.readFileSync(path.join(__dirname,"../","../","/public/test-graph.pdf"), );
+      res.contentType("application/pdf");
+        
+    
+        // optionally:
+        res.setHeader(
+          "Content-Disposition",
+          `attachment; filename=graph-test.pdf`
+        );
+    
+       return res.send(pdfData);
+
+
       let Zayavka = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${id} and merchant.id=TestZayavka.merchant_id;`,
@@ -2462,6 +2477,18 @@ class App {
     console.log(id);
 
     try {
+
+      let pdfData = fs.readFileSync(path.join(__dirname,"../","../","/public/test-oferta.pdf"), );
+      res.contentType("application/pdf");
+        
+    
+        // optionally:
+        res.setHeader(
+          "Content-Disposition",
+          `attachment; filename=graph-test.pdf`
+        );
+    
+       return res.send(pdfData);
       let Zayavka = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${id} and merchant.id=TestZayavka.merchant_id;`,
