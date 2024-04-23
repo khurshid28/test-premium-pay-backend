@@ -124,7 +124,7 @@ module.exports = async function (z) {
             "../",
             "../",
             
-            "public", "templetes", "pdf-templete.html"),
+            "public", "templetes", "graph-templete.html"),
         "utf8"
       ),
       data: {
