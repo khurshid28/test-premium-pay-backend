@@ -7,7 +7,7 @@ module.exports = {
 			return JWT.sign(
 				{
 					...payload,
-					"iat" : Math.floor( ((new Date()).add__Hours(-6)).getTime() / 1000)
+					"iat" : Math.floor( ((new Date()).add__Hours(-24)).getTime() / 1000)
 				},
 				 process.env.JWT_SECRET, {
 				expiresIn: process.env.JWT_EXPIRATION_TIME,
@@ -22,7 +22,6 @@ module.exports = {
 	verify: (token) => {
 		try {
 			const decodedToken = JWT.verify(token, process.env.JWT_SECRET);
-
 			console.log(decodedToken);
 			console.log(token);
 			return decodedToken;
