@@ -374,3 +374,4 @@
 /api/v3/zayavka/update/6___POST___1713765040557___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
 /api/v3/zayavka/update/6___POST___1713765041341___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
 /graph___GET___1713873568050___InternalServerError___ReferenceError: Zayavka is not defined
+/graph___GET___1713900848374___InternalServerError___Error: Table 'premiumdb.TestZayavka' doesn't exist
