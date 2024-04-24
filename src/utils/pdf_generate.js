@@ -17,7 +17,7 @@ module.exports = async function (zayavka,filename,newFilePath) {
   };
 
  
-  let dt2 = new Date(zayavka.created_time);
+  let dt2 = new Date(zayavka.created_time.toString());
 
   dt2.setMonth(dt2.getMonth() + 12);
 
@@ -78,12 +78,12 @@ module.exports = async function (zayavka,filename,newFilePath) {
       payment_amount_month: toMoney(
         Math.floor(zayavka.payment_amount / zayavka.expired_month)
       ),
-      created_time: zayavka.created_time
+      created_time: zayavka.created_time.toString()
         .substring(0, 10)
         .split("-")
         .reverse()
         .join("-"),
-      created_time_hour: zayavka.created_time.substring(11, 16),
+      created_time_hour: zayavka.created_time.toString().substring(11, 16),
       passport_seria: zayavka.passport.substring(0, 2),
       passport_number: zayavka.passport.substring(2),
       products: zayavka.products.map((item) => {
@@ -122,7 +122,7 @@ module.exports = async function (zayavka,filename,newFilePath) {
     type: "",
   };
 
-  console.log(zayavka.created_time.substring(11, 16));
+  console.log(zayavka.created_time.toString().substring(11, 16));
   await pdf
     .create(document, options)
     .then((res) => {
