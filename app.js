@@ -80,7 +80,7 @@ app.use(cors(), rateLimit());
 // static 
 
 let mime = require("mime-types");
-const { InternalServerError } = require("./src/utils/errors.js");
+const { InternalServerError, NotFoundError } = require("./src/utils/errors.js");
 
 // app.get('/api', async (req,res,next)=>{
 //  try {
@@ -112,29 +112,194 @@ const { InternalServerError } = require("./src/utils/errors.js");
       
 // });
 
-app.get('/graph',checkToken, (req, res,next) => {
+
+const ejs = require("ejs"); // 3.1.8
+const puppeteer = require("puppeteer");
+const pdf_generate = require("./src/utils/pdf_generate.js");
+app.get('/graph', async(req, res,next) => {
 
   try {
-  console.log(res.statusCode);
-   console.log(req.body);
-   console.log(req.orderId);
-   let fpath = path.join(
-     __dirname,
-     "public",
-     "graphs",
-     `graph-${req.orderId}.pdf`
-   );
-   console.log(fpath);
-   const contentType = mime.lookup(fpath);
-   let pdfData =  fs.readFileSync(fpath);
-  //  console.log(contentType);
-  //  console.log(pdfData);
-   res.setHeader("Content-Type", contentType);
-   res.setHeader(
-     "Content-Disposition",
-     `attachment; filename=graph-${req.orderId}-${Date.now()}.pdf`
-   );
-   return res.status(200).send(pdfData);
+    // if (!req.orderId) {
+    //   return next( new NotFoundError(400,"orderId required"))
+    // }
+
+    // let Zayavka = await new Promise(function (resolve, reject) {
+    //   db.query(
+    //     `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${req.orderId} and merchant.id=TestZayavka.merchant_id;`,
+
+    //     // `select TestZayavka.* ,merchant.name as merchant_name from TestZayavka join merchant on TestZayavka.merchant_id=merchant.id where TestZayavka.id=${id};`,
+    //     function (err, results, fields) {
+    //       if (err) {
+    //         console.log(err);
+    //         reject(err);
+    //         return null;
+    //       }
+    //       if (results.length > 0) {
+    //         resolve(results[0]);
+    //       } else {
+    //         resolve(null);
+    //       }
+    //     }
+    //   );
+    // });
+
+    // let Zayavka ={}
+    // let browser;
+    // (async () => {
+    //   browser = await puppeteer.launch();
+    //   const [page] = await browser.pages();
+    //   const html = await ejs.renderFile(path.join(__dirname,"/public/templetes/graph-templete.ejs"), Zayavka);
+    //   await page.setContent(html);
+    //   const pdf = await page.pdf({format: "A4"});
+
+    //   res.contentType("application/pdf");
+      
+  
+    //   // optionally:
+    //   res.setHeader(
+    //     "Content-Disposition",
+    //     `attachment; filename=graph-${Zayavka.id}.pdf`
+    //   );
+  
+    //   res.send(pdf);
+
+    //   fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
+    //     if(err){
+    //         return console.error('error')
+    //     }
+
+    //     console.log('success!')
+    // })
+    // })()
+    //   .catch(err => {
+    //     console.error(err);
+    //     res.sendStatus(500).json({
+    //       "error": err
+    //     });
+    //   }) 
+    //   .finally(() => browser?.close());
+
+
+
+
+
+
+    // let pdfData = fs.readFileSync(path.join(__dirname,"/public/test-graph.pdf"), );
+    // res.contentType("application/pdf");
+      
+  
+    //   // optionally:
+    //   res.setHeader(
+    //     "Content-Disposition",
+    //     `attachment; filename=graph-test.pdf`
+    //   );
+  
+    //   res.send(pdfData);
+    let Zayavka ={
+      "id": 705,
+      "merchant_id": 2,
+      "fillial_id": 1,
+      "user_id": 3,
+      "fullname": "Xurshid Ismoilov O‘tkir o‘g‘li",
+      "phoneNumber": "+998950642827",
+      "phoneNumber2": "+998950642827",
+      "cardNumber": "860014******0006",
+      "passport": "AB6935244",
+      "passport_date": "15.06.2017",
+      "passport_by": "Buxoro viloyati Qorako'l tumani Ichki ishlar boshqarmasi",
+      "address": {
+          "city": "ҚОРАКЎЛ ТУМАНИ",
+          "home": "Бухарская область, Каракульский район, Арабхона МСГ, Арабхона, дом 53",
+          "region": "БУХОРО ВИЛОЯТИ"
+      },
+      "region_id": 20,
+      "status": "canceled_by_daily",
+      "canceled_reason": "Автоматический",
+      "device": {
+          "id": "UP1A.231005.007",
+          "name": "Redmi fire"
+      },
+      "location": {
+          "lat": "41.2719656",
+          "long": "69.2319445"
+      },
+      "products": [
+          {
+              "name": "xgfsgd",
+              "price": "500000"
+          }
+      ],
+      "amount": 500000,
+      "max_amount": 40000000,
+      "payment_amount": 834000,
+      "expired_month": 12,
+      "created_time": "2024-04-01T17:10:29.000Z",
+      "finished_time": "2024-04-02T00:00:00.000Z",
+      "bank": "Davr",
+      "selfie": null,
+      "agree": null,
+      "step": 8,
+      "scoring_start": "2024-03-29T11:07:24.000Z",
+      "scoring_end": "2024-03-29T11:07:53.000Z",
+      "paid_status": "no_value",
+      "term": null,
+      "pinfl": "53107005320039",
+      "limit_summa": 9000000,
+      "cardId": null,
+      "fillial": {
+          "inn": "306028283",
+          "mfo": "01095",
+          "nds": "326060092299",
+          "name": "TEST OUT FIRMA",
+          "address": {
+              "city": "",
+              "home": "ZAFAR KO`CHASI, 23-UY",
+              "region": "Toshkent"
+          },
+          "admin_id": null,
+          "bank_name": "ASIA ALLIANCE BANK",
+          "hisob_raqam": "20208000700980700001",
+          "work_status": "working",
+          "created_time": "2023-12-28 15:59:19.000000",
+          "percent_type": "OUT",
+          "director_name": "YULDASHEV KAXRAMON KASIMOVICH",
+          "director_phone": "",
+          "expired_months": [
+              {
+                  "month": 12,
+                  "percent": 39
+              },
+              {
+                  "month": 9,
+                  "percent": 34
+              },
+              {
+                  "month": 6,
+                  "percent": 30
+              },
+              {
+                  "month": 3,
+                  "percent": 25
+              }
+          ]
+      },
+      "admin": null
+  };
+   let newFilePath = await  pdf_generate(Zayavka);
+
+    let pdfData = fs.readFileSync(newFilePath );
+    res.contentType("application/pdf");
+      
+  
+    //   // optionally:
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename=graph-${Zayavka.id}.pdf`
+      );
+  
+      res.send(pdfData);
+    
+
  } catch (error) {
   console.log(error);
   return next(new InternalServerError(500,error))

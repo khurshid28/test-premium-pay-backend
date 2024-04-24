@@ -367,3 +367,15 @@
 /graph?authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmRlcklkIjoiMjAiLCJpYXQiOjE3MTMzNjUwNDV9.SX3Q5eureUUEujaKnTvek0PLID3GdCugrrwWBQe3IiA___GET___1713365980972___InternalServerError___Error: ENOENT: no such file or directory, open 'C:\Users\JONIBEK\Desktop\mysql_premiumpay\test-premium-pay-backend\premium-pay-backend\public\graphs\graph-undefined.pdf'
 /api/v3/zayavka/update/3___POST___1713977198465___InternalServerError___AxiosError: Request failed with status code 400
 /api/v3/zayavka/update/3___POST___1713977227487___InternalServerError___AxiosError: Request failed with status code 400
+
+/api/v3/zayavka/update/6___POST___1713764776553___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
+/api/v3/zayavka/update/6___POST___1713764804392___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
+/api/v3/zayavka/update/6___POST___1713764843953___InternalServerError___TypeError: Cannot read properties of null (reading 'map')
+/api/v3/zayavka/update/6___POST___1713765036900___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
+/api/v3/zayavka/update/6___POST___1713765039046___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
+/api/v3/zayavka/update/6___POST___1713765039848___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
+/api/v3/zayavka/update/6___POST___1713765040557___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
+/api/v3/zayavka/update/6___POST___1713765041341___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
+/graph___GET___1713873568050___InternalServerError___ReferenceError: Zayavka is not defined
+/graph___GET___1713900848374___InternalServerError___Error: Table 'premiumdb.TestZayavka' doesn't exist
+
