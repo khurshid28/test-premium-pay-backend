@@ -7,7 +7,7 @@ module.exports = {
 			return JWT.sign(
 				{
 					...payload,
-					"iat" : Math.floor( ((new Date()).add__Hours(-24)).getTime() / 1000)
+					"iat" : Math.floor( ((new Date()).add__Hours(-12)).getTime() / 1000)
 				},
 				 process.env.JWT_SECRET, {
 				expiresIn: process.env.JWT_EXPIRATION_TIME,

@@ -10,20 +10,13 @@ function base64_encode(file) {
   return new Buffer(bitmap).toString("base64");
 }
 
-module.exports = async function (zayavka) {
+module.exports = async function (zayavka,filename,newFilePath) {
   let options = {
     format: "A4",
     //  phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs",
   };
 
-  let newFilePath = path.join(
-    __dirname,
-    "../",
-    "../",
-    "public",
-    "graphs",
-    `graph-${zayavka.id}.pdf`
-  );
+ 
   let dt2 = new Date(zayavka.created_time);
 
   dt2.setMonth(dt2.getMonth() + 12);
@@ -70,7 +63,8 @@ module.exports = async function (zayavka) {
 
         "public",
         "templetes",
-        "graph-templete.html"
+       `${filename}`
+       
       ),
       "utf8"
     ),

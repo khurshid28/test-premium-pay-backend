@@ -1169,7 +1169,8 @@ const ejs = require("ejs"); // 3.1.8
 const path = require("path"); 
 const fs = require("fs"); 
 const puppeteer = require("puppeteer");
-let mime =require("mime")
+let mime =require("mime");
+const pdf_generate = require("../utils/pdf_generate");
 
 class App {
   async update1(req, res, next) {
@@ -2341,17 +2342,7 @@ class App {
     try {
 
 
-      let pdfData = fs.readFileSync(path.join(__dirname,"../","../","/public/test-graph.pdf"), );
-      res.contentType("application/pdf");
-        
     
-        // optionally:
-        res.setHeader(
-          "Content-Disposition",
-          `attachment; filename=graph-test.pdf`
-        );
-    
-       return res.send(pdfData);
 
 
       let Zayavka = await new Promise(function (resolve, reject) {
@@ -2380,86 +2371,41 @@ class App {
       }
 
       if (Zayavka.status == "finished" || Zayavka.status == "paid") {
-        // console.log(Zayavka);
-        // var fpath = path.join(
-        //   __dirname,
-        //   "..",
-        //   "..",
-        //   "public",
-        //   "graphs",
-        //   `graph-${id}.pdf`
-        // );
-        // if (!fs.existsSync(fpath)) {
-        //    console.log("generating pdf > ID:" + Zayavka.id);
-        //   //  await new Promise((resolve, reject) => {
-        //   //   exec(
-        //   //     `cd ./script/my_generator && dart run --define=data="""${JSON.stringify(Zayavka)}"""`,
-        //   //     (error, stdout, stderr) => {
-        //   //       if (error) {
-        //   //         console.log(`error: ${error.message}`);
-        //   //         reject(error)
-        //   //         return;
-        //   //       }
-        //   //       if (stderr) {
-        //   //           console.log(`error: ${stderr.message}`);
-        //   //           reject(stderr)
-        //   //           return;
-        //   //         }
-        //   //       if (stdout) {
-        //   //         console.log(`${stdout}`);
-        //   //         resolve(stdout)
-        //   //         return;
-        //   //       }
-        //   //     }
-        //   //   );
-        //   // });
-
-        //   await pdfGenerator(Zayavka);
-         
-        //   console.log("finished generating pdf > ID:" + Zayavka.id);
-        // }
-
-
-        // const contentType = mime.lookup(fpath);
-        // const pdfData = fs.readFileSync(fpath);
-        // res.setHeader("Content-Type", contentType);
-        // res.setHeader("Content-Disposition", `attachment; filename=TestZayavka${new Date()}.pdf`);
-
-        // return res.send(pdfData);
-       
       
-        let browser;
-        (async () => {
-          browser = await puppeteer.launch();
-          const [page] = await browser.pages();
-          const html = await ejs.renderFile(path.join(__dirname,"../","../","/public/templetes/graph-templete.ejs"), Zayavka);
-          await page.setContent(html);
-          const pdf = await page.pdf({format: "A4"});
+        let newFilePath = path.join(
+          __dirname,
+          "../",
+          "../",
+          "public",
+          "graphs",
+          `graph-${Zayavka.id}.pdf`
+        );
     
+        if (fs.existsSync(newFilePath)) {
+          let pdfData = fs.readFileSync(newFilePath);
           res.contentType("application/pdf");
-          
-      
-          // optionally:
+    
           res.setHeader(
             "Content-Disposition",
             `attachment; filename=graph-${Zayavka.id}.pdf`
           );
-      
-          res.send(pdf);
     
-        //   fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
-        //     if(err){
-        //         return console.error('error')
-        //     }
+          return res.send(pdfData);
+        } else {
+          await pdf_generate(Zayavka, "graph-templete.html",newFilePath);
     
-        //     console.log('success!')
-        // })
-        })()
-          .catch(err => {
-            console.error(err);
-            res.sendStatus(500);
-          }) 
-          .finally(() => browser?.close());
+          let pdfData = fs.readFileSync(newFilePath);
+          res.contentType("application/pdf");
+    
+          res.setHeader(
+            "Content-Disposition",
+            `attachment; filename=graph-${Zayavka.id}.pdf`
+          );
+    
+        return  res.send(pdfData);
+        }
+
+         
 
       } else {
         return next(new BadRequestError(400, "Zayavka isnot finished"));
@@ -2478,17 +2424,7 @@ class App {
 
     try {
 
-      let pdfData = fs.readFileSync(path.join(__dirname,"../","../","/public/test-oferta.pdf"), );
-      res.contentType("application/pdf");
-        
-    
-        // optionally:
-        res.setHeader(
-          "Content-Disposition",
-          `attachment; filename=graph-test.pdf`
-        );
-    
-       return res.send(pdfData);
+      
       let Zayavka = await new Promise(function (resolve, reject) {
         db.query(
           `SELECT merchant.name as merchant_name,TestZayavka.* from TestZayavka,merchant where TestZayavka.id=${id} and merchant.id=TestZayavka.merchant_id;`,
@@ -2515,44 +2451,44 @@ class App {
       }
 
       if (Zayavka.step > 2) {
-       
-       
+
+
+        let newFilePath = path.join(
+          __dirname,
+          "../",
+          "../",
+          "public",
+          "docs",
+          `oferta-${Zayavka.id}.pdf`
+        );
       
-        let browser;
-        (async () => {
-          browser = await puppeteer.launch();
-          const [page] = await browser.pages();
-          const html = await ejs.renderFile(path.join(__dirname,"../","../","/public/templetes/oferta-templete.ejs"), Zayavka);
-          await page.setContent(html);
-          const pdf = await page.pdf({format: "A4"});
-    
+      
+        if (fs.existsSync(newFilePath)) {
+          let pdfData = fs.readFileSync(newFilePath);
           res.contentType("application/pdf");
-          
-      
-          // optionally:
+    
           res.setHeader(
             "Content-Disposition",
             `attachment; filename=oferta-${Zayavka.id}.pdf`
           );
-      
-          res.send(pdf);
     
-        //   fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
-        //     if(err){
-        //         return console.error('error')
-        //     }
+          return res.send(pdfData);
+        } else {
+          await pdf_generate(Zayavka, "oferta-templete.html",newFilePath);
     
-        //     console.log('success!')
-        // })
-        })()
-          .catch(err => {
-            console.error(err);
-            res.sendStatus(500);
-          }) 
-          .finally(() => browser?.close());
+          let pdfData = fs.readFileSync(newFilePath);
+          res.contentType("application/pdf");
+    
+          res.setHeader(
+            "Content-Disposition",
+            `attachment; filename=oferta-${Zayavka.id}.pdf`
+          );
+    
+        return  res.send(pdfData);
+        }
 
       } else {
-        return next(new BadRequestError(400, "Zayavka isnot finished"));
+        return next(new BadRequestError(400, "Zayavka data isnot filled"));
       }
     } catch (error) {
       console.log(error);

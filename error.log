@@ -375,3 +375,11 @@
 /api/v3/zayavka/update/6___POST___1713765041341___InternalServerError___TypeError: Cannot read properties of undefined (reading 'percent')
 /graph___GET___1713873568050___InternalServerError___ReferenceError: Zayavka is not defined
 /graph___GET___1713900848374___InternalServerError___Error: Table 'premiumdb.TestZayavka' doesn't exist
+/api/v3/card/sendotp___POST___1713964983641___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1713965048378___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1713965169989___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1713965545673___InternalServerError___TypeError: Cannot set properties of undefined (setting 'data')
+/api/v3/card/sendotp___POST___1713965591424___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1713965593669___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1713965661138___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1713966345580___InternalServerError___Error: getaddrinfo ENOTFOUND testmd.davrbank.uz

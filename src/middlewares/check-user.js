@@ -11,7 +11,7 @@ let db =require("../config/db")
 
 module.exports = async(req, res, next) => {
     try {
-        if (req.user.role !== "User") {
+        if (req.user.role !== "User" ) {
             return next(
               new ForbiddenError(
                 403,

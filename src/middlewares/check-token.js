@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
       return next(new AuthorizationError(401, "No token provided"));
     }
 
-    const { userId, agent, role, orderId } = jwt.verify(token);
+    let { userId, agent, role, orderId } = jwt.verify(token);
     // console.log(" token data :"+JSON.stringify(jwt.verify(token)));
     req.orderId = orderId;
 
@@ -57,14 +57,14 @@ module.exports = async (req, res, next) => {
     //         new ForbiddenError(403, "You can't log in different devices")
     //     );
     // }
-
+  console.log(user);
    if (user) {
      req.user = {
        id: user["id"],
        role: user["role"],
      };
    }
-
+   console.log(user);
     return next();
   } catch (error) {
     console.log("check token >>");
