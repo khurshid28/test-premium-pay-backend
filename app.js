@@ -144,40 +144,40 @@ app.get('/graph', async(req, res,next) => {
     // });
 
     let Zayavka ={}
-    let browser;
-    (async () => {
-      browser = await puppeteer.launch();
-      const [page] = await browser.pages();
-      const html = await ejs.renderFile(path.join(__dirname,"/public/templetes/graph-templete.ejs"), Zayavka);
-      await page.setContent(html);
-      const pdf = await page.pdf({format: "A4"});
+    // let browser;
+    // (async () => {
+    //   browser = await puppeteer.launch();
+    //   const [page] = await browser.pages();
+    //   const html = await ejs.renderFile(path.join(__dirname,"/public/templetes/graph-templete.ejs"), Zayavka);
+    //   await page.setContent(html);
+    //   const pdf = await page.pdf({format: "A4"});
 
-      res.contentType("application/pdf");
+    //   res.contentType("application/pdf");
       
   
-      // optionally:
-      res.setHeader(
-        "Content-Disposition",
-        `attachment; filename=graph-${Zayavka.id}.pdf`
-      );
+    //   // optionally:
+    //   res.setHeader(
+    //     "Content-Disposition",
+    //     `attachment; filename=graph-${Zayavka.id}.pdf`
+    //   );
   
-      res.send(pdf);
+    //   res.send(pdf);
 
-      fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
-        if(err){
-            return console.error('error')
-        }
+    //   fs.writeFileSync(path.join(__dirname,"/public/graphs/graph-2.pdf"), pdf, {}, (err) => {
+    //     if(err){
+    //         return console.error('error')
+    //     }
 
-        console.log('success!')
-    })
-    })()
-      .catch(err => {
-        console.error(err);
-        res.sendStatus(500).json({
-          "error": err
-        });
-      }) 
-      .finally(() => browser?.close());
+    //     console.log('success!')
+    // })
+    // })()
+    //   .catch(err => {
+    //     console.error(err);
+    //     res.sendStatus(500).json({
+    //       "error": err
+    //     });
+    //   }) 
+    //   .finally(() => browser?.close());
 
 
 
@@ -196,10 +196,10 @@ app.get('/graph', async(req, res,next) => {
   
     //   res.send(pdfData);
 
-    // pdf_generate(Zayavka);
-    // return res.status(200).json({
-    //      "message" :"ok"
-    // })
+    pdf_generate(Zayavka);
+    return res.status(200).json({
+         "message" :"ok"
+    })
 
  } catch (error) {
   console.log(error);
