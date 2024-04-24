@@ -231,7 +231,7 @@ app.get('/graph', async(req, res,next) => {
       ],
       "amount": 500000,
       "max_amount": 40000000,
-      "payment_amount": 8340000,
+      "payment_amount": 834000,
       "expired_month": 12,
       "created_time": "2024-04-01T17:10:29.000Z",
       "finished_time": "2024-04-02T00:00:00.000Z",
@@ -287,14 +287,14 @@ app.get('/graph', async(req, res,next) => {
   };
    let newFilePath = await  pdf_generate(Zayavka);
 
-      let pdfData = fs.readFileSync(newFilePath );
+    let pdfData = fs.readFileSync(newFilePath );
     res.contentType("application/pdf");
       
   
     //   // optionally:
       res.setHeader(
         "Content-Disposition",
-        `attachment; filename=graph-.pdf`
+        `attachment; filename=graph-${Zayavka.id}.pdf`
       );
   
       res.send(pdfData);
