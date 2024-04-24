@@ -196,7 +196,7 @@ app.get('/graph', async(req, res,next) => {
   
     //   res.send(pdfData);
 
-    pdf_generate(Zayavka);
+    await  pdf_generate(Zayavka);
     return res.status(200).json({
          "message" :"ok"
     })
