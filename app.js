@@ -106,7 +106,7 @@ const { InternalServerError, NotFoundError, BadRequestError } = require("./src/u
 // });
 
 const pdf_generate = require("./src/utils/pdf_generate.js");
-app.get("/graph", async (req, res, next) => {
+app.get("/graph",checkToken, async (req, res, next) => {
   try {
     if (!req.orderId) {
       return next(new NotFoundError(400, "orderId required"));
