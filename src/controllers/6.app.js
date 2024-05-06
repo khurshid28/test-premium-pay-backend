@@ -1498,22 +1498,22 @@ class App {
 
       // console.log(response2.data);
 
-      // await new Promise(function (resolve, reject) {
-      //   db.query(
-      //     update3ZayavkaFunc({
-      //       ...req.body,
-      //     //   payment_amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
-      //     }),
-      //     function (err, results, fields) {
-      //       console.log(err);
-      //       if (err) {
-      //         return resolve(null);
-      //         return null;
-      //       }
-      //       resolve(results);
-      //     }
-      //   );
-      // });
+      await new Promise(function (resolve, reject) {
+        db.query(
+          update3ZayavkaFunc({
+            ...req.body,
+          //   payment_amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
+          }),
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              return resolve(null);
+              return null;
+            }
+            resolve(results);
+          }
+        );
+      });
 
       let zayavkaUpdated = await new Promise(function (resolve, reject) {
         db.query(
