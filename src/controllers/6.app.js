@@ -1340,22 +1340,22 @@ class App {
       birthDate,
       // IdentificationVideoBase64,
     });
-      let zayavka = await new Promise(function (resolve, reject) {
-        db.query(
-          `SELECT * from TestZayavka WHERE id=${req.body.id}`,
-          function (err, results, fields) {
-            if (err) {
-              resolve(null);
-              return null;
-            }
-            if (results.length != 0) {
-              resolve(results[0]);
-            } else {
-              resolve(null);
-            }
-          }
-        );
-      });
+      // let zayavka = await new Promise(function (resolve, reject) {
+      //   db.query(
+      //     `SELECT * from TestZayavka WHERE id=${req.body.id}`,
+      //     function (err, results, fields) {
+      //       if (err) {
+      //         resolve(null);
+      //         return null;
+      //       }
+      //       if (results.length != 0) {
+      //         resolve(results[0]);
+      //       } else {
+      //         resolve(null);
+      //       }
+      //     }
+      //   );
+      // });
       // let fillial = await new Promise(function (resolve, reject) {
       //   db.query(
       //     `SELECT * from fillial WHERE id=${zayavka.fillial_id}`,
@@ -1390,36 +1390,36 @@ class App {
       //   ];
      
 
-      let alldata = {
-        orderId: "PPDTEST-" + zayavka.id,
-      //   amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
-        amount: max_amount,
-        duration: "12",
-        term: "12",
-        passSeria: zayavka.passport.substring(0, 2),
-        passNumber: zayavka.passport.substring(2),
-        birthDate: birthDate,
-        phoneNumber: zayavka.phoneNumber,
-        phoneNumber2: zayavka.phoneNumber2,
-        // cardNumber: cardNumber,
-        cardId: zayavka.cardId,
-        inn: process.env.PREMIUM_INN,
-        // inn : 200655453,
-        selfie: selfie_with_passport.substring(0, 30),
-        identificationVideoBase64: IdentificationVideoBase64.substring(0, 30),
-      };
+      // let alldata = {
+      //   orderId: "PPDTEST-" + zayavka.id,
+      // //   amount: Math.floor(max_amount * (1 + val["percent"] / 100)),
+      //   amount: max_amount,
+      //   duration: "12",
+      //   term: "12",
+      //   passSeria: zayavka.passport.substring(0, 2),
+      //   passNumber: zayavka.passport.substring(2),
+      //   birthDate: birthDate,
+      //   phoneNumber: zayavka.phoneNumber,
+      //   phoneNumber2: zayavka.phoneNumber2,
+      //   // cardNumber: cardNumber,
+      //   cardId: zayavka.cardId,
+      //   inn: process.env.PREMIUM_INN,
+      //   // inn : 200655453,
+      //   selfie: selfie_with_passport.substring(0, 30),
+      //   identificationVideoBase64: IdentificationVideoBase64.substring(0, 30),
+      // };
 
-      fs.appendFile(
-        path.join(__dirname, "output.txt"),
-        `\n ${Date().toString()}` + " >> " + JSON.stringify(alldata),
-        (err) => {
-          if (err)
-            throw {
-              err,
-              type: "file",
-            };
-        }
-      );
+      // fs.appendFile(
+      //   path.join(__dirname, "output.txt"),
+      //   `\n ${Date().toString()}` + " >> " + JSON.stringify(alldata),
+      //   (err) => {
+      //     if (err)
+      //       throw {
+      //         err,
+      //         type: "file",
+      //       };
+      //   }
+      // );
      
       // // return next(new InternalServerError(500, error));
       // let url1 = process.env.DAVR_TEST_BASE_URL + process.env.DAVR_LOGIN;
@@ -1515,23 +1515,23 @@ class App {
       //   );
       // });
 
-      // let zayavkaUpdated = await new Promise(function (resolve, reject) {
-      //   db.query(
-      //     `SELECT * from TestZayavka WHERE id=${id}`,
-      //     function (err, results, fields) {
-      //       console.log(err);
-      //       if (err) {
-      //         resolve(null);
-      //         return null;
-      //       }
-      //       if (results.length != 0) {
-      //         resolve(results[0]);
-      //       } else {
-      //         resolve(null);
-      //       }
-      //     }
-      //   );
-      // });
+      let zayavkaUpdated = await new Promise(function (resolve, reject) {
+        db.query(
+          `SELECT * from TestZayavka WHERE id=${id}`,
+          function (err, results, fields) {
+            console.log(err);
+            if (err) {
+              resolve(null);
+              return null;
+            }
+            if (results.length != 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        );
+      });
       
       let t1 = setTimeout(async function () {
        if (id % 2 == 0) {
