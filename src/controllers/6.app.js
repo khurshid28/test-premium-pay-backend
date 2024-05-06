@@ -2544,8 +2544,8 @@ function update2ZayavkaFunc(data) {
   }
 }
 function update3ZayavkaFunc(data) {
-  let { id, max_amount, payment_amount } = data;
-  return `update TestZayavka SET step=3,max_amount='${max_amount}' WHERE id = ${id};`;
+  let { id, max_amount, payment_amount,cardId } = data;
+  return `update TestZayavka SET step=3,max_amount='${max_amount}',cardId='${cardId}' WHERE id = ${id};`;
 }
 
 // function update4ZayavkaFunc(data) {
