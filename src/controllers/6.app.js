@@ -1574,7 +1574,7 @@ class App {
         
         clearTimeout(t1);
 
-      }, 3 * 1000);
+      }, 10 * 1000);
 
       return res.status(200).json({
         data: zayavkaUpdated,
