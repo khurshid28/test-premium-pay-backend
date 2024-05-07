@@ -8,7 +8,7 @@ class Myid {
   async getMe(req, res, next) {
     try {
       console.log(">>>>>>>>>>>>>>>>>");
-      let { code, base64,passport } = req.body;
+      let { code, base64,passport,birthDate } = req.body;
 
       if (code) {
         let url1 = process.env.FACE_URL + "oauth2/access-token";
@@ -161,6 +161,7 @@ class Myid {
             });
         }
         console.log(response3.data);
+        // console.log(response3.data);
         if (response3.data.profile != null && response3.data.result_code != 3) {
            let userMyIdData = await new Promise((resolve, reject) => {
              db.query(
@@ -184,6 +185,7 @@ class Myid {
                }
              );
            });
+
           return res.status(response3.status).json(response3.data);
         } else {
           return next(
@@ -450,12 +452,14 @@ Date.daysBetween = function (date1, date2) {
   return Math.round(difference / one_day);
 };
 
-function base64_decode(base64str, filePath) {
+ function  base64_decode(base64str, filePath) {
   let base64Image = base64str.split(";base64,")[1];
   var bitmap = Buffer.from(base64Image.toString(), "base64");
-
+  
   fs.writeFileSync(filePath, bitmap);
   console.log("******** File created from base64 encoded string ********");
 }
+
+
 
 module.exports = new Myid();
