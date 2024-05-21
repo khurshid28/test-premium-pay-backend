@@ -2519,7 +2519,7 @@ class App {
 function update1ZayavkaFunc(data) {
   let { user_id, merchant_id, fillial_id, fullname, passport, pinfl } = data;
   fullname = `${fullname}`;
-  fullname = fullname.replaceAll("ʻ", "'");
+  fullname = fullname.replaceAll("'", "ʻ");
   return `INSERT INTO TestZayavka (user_id,merchant_id,fillial_id,fullname,passport,pinfl) VALUES (${user_id},${merchant_id},${fillial_id},'${fullname}','${passport}','${
     pinfl ?? ""
   }') ; `;
