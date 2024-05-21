@@ -20,6 +20,7 @@ const checkToken = require("../middlewares/check-token.js");
 const checkBlocked = require("../middlewares/check-blocked.js");
 const checkZayavka = require("../middlewares/check-zayavka.js");
 const checkUser = require("../middlewares/check-user.js");
+const {default_config , ZayavkaReq } = require("../middlewares/check-step");
 
 const router = Router();
 
@@ -27,14 +28,14 @@ router.use(checkToken);
 router.use(checkBlocked);
 
 router.post("/update/1",checkUser, appController.update1);
-router.post("/update/2",checkUser, appController.update2);
-router.post("/update/3",checkUser, appController.update3);
+router.post("/update/2",checkUser,default_config,ZayavkaReq.update2, appController.update2);
+router.post("/update/3",checkUser,default_config,ZayavkaReq.update3, appController.update3);
 // router.post("/update/4",checkUser, appController.update4);
-router.post("/update/5",checkUser, appController.update5);
-router.post("/update/6",checkUser, appController.update6);
-router.post("/update/7",checkUser,upload,  appController.update7);
-router.post("/update/finish",checkUser, appController.updateFinish);
-router.post("/cancel_by_client/",checkUser, appController.cancel_by_client);
+router.post("/update/5",checkUser,default_config,ZayavkaReq.update5_6_7_finish, appController.update5);
+router.post("/update/6",checkUser,default_config,ZayavkaReq.update5_6_7_finish,  appController.update6);
+router.post("/update/7",checkUser,upload,default_config,ZayavkaReq.update5_6_7_finish,   appController.update7);
+router.post("/update/finish",checkUser,default_config,ZayavkaReq.update5_6_7_finish, appController.updateFinish);
+router.post("/cancel_by_client/",checkUser,default_config,ZayavkaReq.cancel,  appController.cancel_by_client);
 // router.get("/grafik/:id",checkUser, appController.getGraphics)
 
 

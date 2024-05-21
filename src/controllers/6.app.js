@@ -1624,6 +1624,9 @@ class App {
       });
       console.log(zayavkaOld);
       console.log(fillial);
+      if(fillial.percent_type =="IN" && req.body.amount>zayavkaOld.limit_summa){
+        return next(new BadRequestError(400, "Amount summa is over than limit summa"));
+      }
       await new Promise(function (resolve, reject) {
         db.query(update5ZayavkaFunc({
           ...req.body,
