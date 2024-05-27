@@ -386,3 +386,5 @@
 /api/v3/zayavka/update/1___POST___1716289121224___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
 /api/v3/zayavka/update/2___POST___1716289183007___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
 /api/v3/zayavka/update/3___POST___1716289246377___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1716818951018___InternalServerError___TypeError: Cannot read properties of undefined (reading 'role')
+/api/v3/card/sendotp___POST___1716820009628___InternalServerError___Error: Hostname/IP does not match certificate's altnames: Host: testmd.davrbank.uz. is not in the cert's altnames: DNS:uz.my.comfolks.com

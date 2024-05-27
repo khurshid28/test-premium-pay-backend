@@ -48,6 +48,33 @@ class CardController {
           },
         }
       );
+
+      if (response2.status != 200) {
+        while (k > 0) {
+          k = k - 1;
+          response2 = await axios
+            .post(
+              url2,
+              {
+                card: cardNumber,
+              },
+              {
+                headers: {
+                  Authorization: "Bearer " + response1.data["token"],
+                  "Content-Type": "application/json",
+                },
+              }
+            )
+            .then((res) => res)
+            .catch((err) => err.response);
+          if (response2.status == 200) {
+            break;
+          }
+        }
+
+        console.log(response2.data);
+      }
+
       console.log(response2.data);
         if(response2.data["successCode"] != 0 )
      {
