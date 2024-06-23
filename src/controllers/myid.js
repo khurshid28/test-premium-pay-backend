@@ -50,7 +50,7 @@ class Myid {
         console.log(response2.data);
         return res.status(200).json(response2.data);
       } else if (base64) {
-          let response3 = await axios.post("localhost:7070/api/v1/me",{
+          let response3 = await axios.post("http://localhost:7070/api/v1/me",{
             base64,passport,birthDate
           });
 
