@@ -62,7 +62,7 @@ class Myid {
           })
           .then((res) => res)
           .catch((err) => {
-            console.log(">>>> Test server ERROR", err.response);
+            console.log(">>>> Test server ERROR", err.response.data);
             return err.response;
           });
 
