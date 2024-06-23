@@ -53,6 +53,7 @@ class Myid {
           let response3 = await axios.post("http://localhost:7070/api/v1/me",{
             base64,passport,birthDate
           }).then((res)=>res).catch((err)=>{
+            console.log(">>>> Test server ERROR",JSON.stringify(err.response));
              if(err.response.status ==404){
                return err.response;
              }else{
