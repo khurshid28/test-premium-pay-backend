@@ -77,6 +77,25 @@ class Myid {
       return next(new InternalServerError(500, error));
     }
   }
+  async base64(req, res, next) {
+    try {
+      console.log(">>>>>>>>>>>>>>>>>");
+      let { passport } = req.params;
+
+      let response3 = await axios
+      .get("http://localhost:7070/api/v1/base64/"+ passport, )
+      .then((res) => res)
+      .catch((err) => {
+        console.log(">>>> Test server ERROR", err.response);
+        return err.response;
+      });
+
+    return res.status(response3.status).json(response3.data);
+    } catch (error) {
+      console.log(error);
+      return next(new InternalServerError(500, error));
+    }
+  }
 
   async check(req, res, next) {
     try {
