@@ -29,7 +29,7 @@ router.use(checkUser);
 
 router.post("/image",upload, myidController.imageGetMe);
 router.post("/check", myidController.check);
-router.post("/",myIdMiddleware, myidController.getMe);
+router.post("/", myidController.getMe);
 
 
 
