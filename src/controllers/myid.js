@@ -52,6 +52,12 @@ class Myid {
       } else if (base64) {
           let response3 = await axios.post("http://localhost:7070/api/v1/me",{
             base64,passport,birthDate
+          }).then((res)=>res).catch((err)=>{
+             if(err.response.status ==404){
+               return err.response;
+             }else{
+               throw err
+             }
           });
 
           return res.status(response3.status).json(response3.data);
