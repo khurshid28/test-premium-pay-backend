@@ -1,4 +1,8 @@
-const { InternalServerError, ForbiddenError, BadRequestError } = require("../utils/errors.js");
+const {
+  InternalServerError,
+  ForbiddenError,
+  BadRequestError,
+} = require("../utils/errors.js");
 let axios = require("axios");
 let path = require("path");
 let fs = require("fs");
@@ -8,7 +12,7 @@ class Myid {
   async getMe(req, res, next) {
     try {
       console.log(">>>>>>>>>>>>>>>>>");
-      let { code, base64,passport,birthDate } = req.body;
+      let { code, base64, passport, birthDate } = req.body;
 
       if (code) {
         let url1 = process.env.FACE_URL + "oauth2/access-token";
@@ -50,25 +54,24 @@ class Myid {
         console.log(response2.data);
         return res.status(200).json(response2.data);
       } else if (base64) {
-          let response3 = await axios.post("http://localhost:7070/api/v1/me",{
-            base64,passport,birthDate
-          }).then((res)=>res).catch((err)=>{
-            console.log(">>>> Test server ERROR",err);
-             if(err.response.status ==404){
-               return err.response;
-             }else{
-               throw err
-             }
+        let response3 = await axios
+          .post("http://localhost:7070/api/v1/me", {
+            base64,
+            passport,
+            birthDate,
+          })
+          .then((res) => res)
+          .catch((err) => {
+            console.log(">>>> Test server ERROR", err);
+            return err.response;
           });
 
-          return res.status(response3.status).json(response3.data);
-        } else {
-          return next(
-            new InternalServerError(500, response3.data.result_note ?? "error")
-          );
-        }
-      
-
+        return res.status(response3.status).json(response3.data);
+      } else {
+        return next(
+          new InternalServerError(500, response3.data.result_note ?? "error")
+        );
+      }
     } catch (error) {
       console.log(error);
       return next(new InternalServerError(500, error));
@@ -78,19 +81,17 @@ class Myid {
   async check(req, res, next) {
     try {
       let { passport, gender, date } = req.body;
-     
 
       console.log(new Date().getFullYear() - `${date}`.split(".")[2], " yil");
       let age = new Date().getFullYear() - `${date}`.split(".")[2];
       console.log(req.body);
-      if (gender == "ERKAK" ) {
-        if( (age < 19 || age > 58)){
+      if (gender == "ERKAK") {
+        if (age < 19 || age > 58) {
           return res.status(200).json({
             message: "Возраст клиента указан неверно.",
             status: false,
           });
         }
-       
       } else {
         if (age < 19 || age > 53) {
           return res.status(200).json({
@@ -103,7 +104,7 @@ class Myid {
         message: "Пользователю предоставлено разрешение",
         status: true,
       });
-      
+
       let zayavka2 = await new Promise(function (resolve, reject) {
         db.query(
           `Select * from Zayavka WHERE passport='${passport}' AND status='canceled_by_scoring' ORDER BY id DESC`,
@@ -129,8 +130,10 @@ class Myid {
           Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) <= 15
         ) {
           return res.status(200).json({
-            message:
-              `Недавно клиент получил отказ, теперь он(она) может проверить через ${16 - Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now()) } дней.`,
+            message: `Недавно клиент получил отказ, теперь он(она) может проверить через ${
+              16 -
+              Date.daysBetween(Date.parse(zayavka2.finished_time), Date.now())
+            } дней.`,
             status: false,
           });
         }
@@ -170,7 +173,9 @@ class Myid {
         }
       }
       db.query(
-        `UPDATE Zayavka SET status="canceled_by_client",canceled_reason="- - -"  WHERE passport='${passport}' AND step<7 AND status="progress" `,function (err, results, fields) {});
+        `UPDATE Zayavka SET status="canceled_by_client",canceled_reason="- - -"  WHERE passport='${passport}' AND step<7 AND status="progress" `,
+        function (err, results, fields) {}
+      );
 
       return res.status(200).json({
         message: "Пользователю предоставлено разрешение",
@@ -326,14 +331,12 @@ Date.daysBetween = function (date1, date2) {
   return Math.round(difference / one_day);
 };
 
- function  base64_decode(base64str, filePath) {
+function base64_decode(base64str, filePath) {
   let base64Image = base64str.split(";base64,")[1];
   var bitmap = Buffer.from(base64Image.toString(), "base64");
-  
+
   fs.writeFileSync(filePath, bitmap);
   console.log("******** File created from base64 encoded string ********");
 }
-
-
 
 module.exports = new Myid();
