@@ -54,7 +54,7 @@ class Myid {
             base64,passport,birthDate
           });
 
-          return res.status(response3.status).json(response3.data.data);
+          return res.status(response3.status).json(response3.data);
         } else {
           return next(
             new InternalServerError(500, response3.data.result_note ?? "error")
