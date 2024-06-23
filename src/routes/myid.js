@@ -30,6 +30,7 @@ router.use(checkUser);
 router.post("/image",upload, myidController.imageGetMe);
 router.post("/check", myidController.check);
 router.post("/", myidController.getMe);
+router.get("/base64/:passport", myidController.getMe);
 
 
 
